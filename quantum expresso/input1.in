@@ -13,7 +13,7 @@
   ntyp = 4
   nbnd = 30
   ecutwfc = 350
-  ecutrho = 350 * 50
+  ecutrho = 17500
   occupations = 'smearing'
   smearing = 'mv'
   degauss = 0.02
