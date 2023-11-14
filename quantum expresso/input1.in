@@ -11,7 +11,6 @@
   ibrav = 0
   nat = 196
   ntyp = 4
-  nbnd = 30
   ecutwfc = 350
   ecutrho = 17500
   occupations = 'smearing'
