@@ -2,7 +2,7 @@
     calculation = 'scf'
     prefix = 'C6H6'
     outdir = './outdir'
-    pseudo_dir = '/opt/qe/bin/pp'
+    pseudo_dir = '/opt/qe/bin/pp/'
  /
  &SYSTEM
     ibrav = 6,
@@ -18,8 +18,8 @@
  /
 
 ATOMIC_SPECIES
- C  12.0107  C.upf
- H  1.00784  H.upf
+ C  12.0107  C.pbe-n-rrkjus_psl.1.0.0.UPF
+ H  1.00784  H.pbe-rrkjus_psl.1.0.0.UPF
 
 ATOMIC_POSITIONS angstrom
 C        5.634905178   6.321969786   5.000000000
