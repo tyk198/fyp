@@ -11,8 +11,8 @@
   ibrav = 0
   nat = 196
   ntyp = 4
-  ecutwfc = 1
-  ecutrho = 4
+  ecutwfc = 100
+  ecutrho = 400
   occupations = 'smearing'
   smearing = 'mv'
   degauss = 0.02
