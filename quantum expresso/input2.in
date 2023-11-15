@@ -4,7 +4,7 @@
   prefix = 'mo_4AMP15_0m'
   tstress = .true.
   tprnfor = .true.
-  pseudo_dir = '/usr/bin/pp/'
+  pseudo_dir = '/opt/bin/pp/'
 /
 
 &SYSTEM
