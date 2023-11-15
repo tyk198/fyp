@@ -2,7 +2,7 @@
     calculation = 'scf'
     prefix = 'C6H6'
     outdir = './outdir'
-    pseudo_dir = '/home/anonymous/quantumEspresso_2019/nc-sr-04_pbe_stringent_upf'
+    pseudo_dir = '/opt/qe/bin/pp'
  /
  &SYSTEM
     ibrav = 6,
