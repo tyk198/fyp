@@ -1,7 +1,7 @@
 Tan Xin Hong, MACHENIKE, 16/11/2023 (Fail)
 Input
- ecutwfc = 40,
-    ecutrho = 160
+ ecutwfc = 100
+  ecutrho = 400
 
 Program PWSCF v.6.8 starts on 16Nov2023 at  7:13: 6
 
