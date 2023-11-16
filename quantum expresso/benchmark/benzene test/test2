@@ -1,4 +1,8 @@
-TAN XIN HONG, MACHENIKE, 16/11/2023
+TAN XIN HONG, MACHENIKE, 16/11/2023 (Success)
+Input
+ ecutwfc = 40,
+    ecutrho = 160
+
 Program PWSCF v.6.8 starts on 16Nov2023 at  6:58: 5
 
      This program is part of the open-source Quantum ESPRESSO suite
