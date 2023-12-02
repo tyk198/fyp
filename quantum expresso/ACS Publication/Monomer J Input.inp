@@ -7,7 +7,7 @@
     pseudo_dir = '/opt/qe/bin/pp/'
  /
  &SYSTEM
-    ibrav = 0,
+    ibrav = 8,
     nat = 48,
     ntyp = 4,
     ecutwfc = 50,
