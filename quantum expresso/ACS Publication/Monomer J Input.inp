@@ -7,11 +7,11 @@
     pseudo_dir = '/opt/qe/bin/pp/'
  /
  &SYSTEM
-    ibrav = 8,
-    nat = 48,
-    ntyp = 4,
-    input_dft = pbe
-    ecutwfc = 50,
+    ibrav = 8
+    nat = 48
+    ntyp = 4
+    input_dft = 'pbe'
+    ecutwfc = 50
     ecutrho = 500
     occupations = 'smearing'
     smearing = 'mv'
