@@ -7,7 +7,7 @@
     pseudo_dir = '/opt/qe/bin/pp/'
  /
  &SYSTEM
-    ibrav = 8, celldm(2) =1, celldm(3) =1.46002907
+    ibrav = 8, celldm(2) =0.9394622, celldm(3) =1.46002907
     nat = 48
     ntyp = 4
     input_dft = 'pbe'
