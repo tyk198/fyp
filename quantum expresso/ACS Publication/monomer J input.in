@@ -1,6 +1,6 @@
  &CONTROL
     calculation = 'scf'
-    prefix = 'Monomer J'
+    prefix = 'Monomer_J'
     outdir = './outdir'
     tstress = .true.
     tprnfor = .true.
