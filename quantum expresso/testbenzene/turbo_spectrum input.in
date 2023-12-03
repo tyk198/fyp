@@ -2,6 +2,7 @@
   prefix = 'C6H6'
   outdir = './outdir'
   intermax0 = 10
+  intermax = 10
   epsil = 0.01
   units = 1
   start = 0.0
