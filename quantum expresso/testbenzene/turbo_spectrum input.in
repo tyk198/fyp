@@ -3,6 +3,7 @@
   outdir = './outdir'
   itermax0 = 10
   itermax = 10
+  extrapolation = 'no'
   epsil = 0.01
   units = 1
   start = 0.0
