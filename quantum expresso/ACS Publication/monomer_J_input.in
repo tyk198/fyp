@@ -2,8 +2,6 @@
     calculation = 'scf'
     prefix = 'Monomer_J'
     outdir = './outdir'
-    tstress = .true.
-    tprnfor = .true.
     pseudo_dir = '/opt/qe/bin/pp/'
  /
  &SYSTEM
@@ -13,16 +11,13 @@
     input_dft = 'pbe'
     ecutwfc = 50
     ecutrho = 500
-    occupations = 'smearing'
-    smearing = 'mv'
-    degauss = 0.02
  /
  &ELECTRONS
     conv_thr =  1.0d-10
     mixing_mode = 'plain'
-    mixing_beta = 0.4
+    mixing_beta = 0.7
     mixing_ndim = 8
-    diagonalization = 'david'
+    diagonalization = 'local-TF'
     electron_maxstep = 128
  /
 
