@@ -20,6 +20,8 @@
     diagonalization = 'david'
     electron_maxstep = 128
  /
+ &IONS
+ /
 
 ATOMIC_SPECIES
  C  12.0107  C.pbe-n-rrkjus_psl.1.0.0.UPF
