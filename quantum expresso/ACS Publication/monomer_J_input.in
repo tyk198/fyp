@@ -5,7 +5,7 @@
     pseudo_dir = '/opt/qe/bin/pp/'
  /
  &SYSTEM
-    ibrav = 8, A = 27.52, B = 27.52, C = 50.18, cosAB = 0, cosAC = 0, cosBC = 0,
+    ibrav = 8, celldm(1) = 52.005263, celldm(2) = 1, celldm(3) =1.823401
     nat = 48
     ntyp = 4
     input_dft = 'pbe'
@@ -27,12 +27,7 @@ ATOMIC_SPECIES
  F  18.9984  F.pbe-n-rrkjus_psl.1.0.0.UPF
  N  14.0067  N.pbe-n-rrkjus_psl.1.0.0.UPF
 
-CELL_PARAMETERS {angstrom}
-       27.52000000     0.00000000     0.00000000
-        0.00000000     27.5200000     0.00000000
-        0.00000000     0.00000000     50.1800000
-
-ATOMIC_POSITIONS crystal
+ATOMIC_POSITIONS angstrom
 F	1.5841	4.3356	44.0417
 F	2.1833	3.8005	46.6178
 F	4.1638	-0.2984	45.4979
