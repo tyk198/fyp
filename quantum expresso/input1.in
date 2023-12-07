@@ -18,9 +18,6 @@
   degauss = 0.02
 /
 
-&DFT
-  xc_method = 'PBE'
-
 &ELECTRONS
   conv_thr = 1.0E-06
   mixing_mode = 'local-TF'
@@ -30,9 +27,6 @@
   electron_maxstep = 128
 /
 
-&tddftpt
-  nstates = 25
-  
 ATOMIC_SPECIES
   O   16.00  O.pbe-n-rrkjus_psl.1.0.0.UPF
   N   14.00  N.pbe-n-rrkjus_psl.1.0.0.UPF
