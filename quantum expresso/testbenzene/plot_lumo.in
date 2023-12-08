@@ -1,0 +1,17 @@
+&inputpp
+  prefix = 'C6H6'
+  outdir = './outdir'
+  fileplot = 'LUMO_16_gamma.dat'
+  plot_num = 7
+  kpoint = 1
+  kband = 16
+  lsign = .true.
+/
+&plot
+  nfile = 1
+  filepp(1) = 'LUMO_16_gamma.dat'
+  weight(1) = 1
+  output_format = 6
+  fileout = 'LUMO_16_gamma.cub'
+  iflag = 3
+/
