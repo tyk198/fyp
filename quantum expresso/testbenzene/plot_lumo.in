@@ -1,4 +1,4 @@
-&inputpp
+&INPUTPP
   prefix = 'C6H6'
   outdir = './outdir'
   fileplot = 'LUMO_16_gamma.dat'
@@ -7,7 +7,7 @@
   kband = 16
   lsign = .true.
 /
-&plot
+&PLOT
   nfile = 1
   filepp(1) = 'LUMO_16_gamma.dat'
   weight(1) = 1
