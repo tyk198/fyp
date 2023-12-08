@@ -1,0 +1,18 @@
+&LR_INPUT
+  prefix = 'C6H6'
+  outdir = './outdir'
+  restart = .TRUE.
+/
+
+&LR_CONTROL  
+  itermax = 500
+  ipol = 4
+  charge_response = 1
+/
+
+&LR_POST
+  omeg = 0.4961
+  epsil = 0.025
+  w_T_npol = 3
+  plot_type = 3
+/
