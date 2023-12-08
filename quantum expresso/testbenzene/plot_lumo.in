@@ -5,7 +5,7 @@
   plot_num = 7
   kpoint = 1
   kband = 16
-  lsign = .true.
+  lsign = .TRUE.
 /
 &PLOT
   nfile = 1
