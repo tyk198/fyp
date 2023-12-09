@@ -14,5 +14,5 @@
   omeg = 0.4961
   epsil = 0.025
   w_T_npol = 3
-  plot_type = 2
+  plot_type = 1
 /
