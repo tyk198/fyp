@@ -8,6 +8,8 @@
     ibrav = 8, celldm(1) = 52.005263, celldm(2) = 1, celldm(3) =1.460029
     nat = 48
     ntyp = 4
+    occupations = 'fixed'
+    nbnd = 80
     input_dft = 'pbe'
     ecutwfc = 50
     ecutrho = 500
