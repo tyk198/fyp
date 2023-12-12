@@ -1,0 +1,17 @@
+&INPUTPP
+  prefix = 'Monomer_J'
+  outdir = './outdir'
+  filplot = 'HOMO_monomerJ.dat'
+  plot_num = 7
+  kpoint = 1
+  kband = 74
+  lsign = .TRUE.
+/
+&PLOT
+  nfile = 1
+  filepp(1) = 'HOMO_monomerJ.dat'
+  weight(1) = 1
+  output_format = 6
+  fileout = 'HOMO_monomerJ.cub'
+  iflag = 3
+/
