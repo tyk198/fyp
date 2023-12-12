@@ -3,6 +3,7 @@
   outdir = './outdir'
   itermax0 = 500
   itermax = 10000
+  magnons = .TRUE.
   extrapolation = 'osc'
   epsil = 0.01
   units = 1
