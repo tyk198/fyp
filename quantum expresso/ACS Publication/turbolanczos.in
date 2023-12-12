@@ -6,4 +6,12 @@
 &LR_CONTROL  
   itermax = 500
   ipol = 4
+  charge_response = 1
+/
+
+&LR_POST
+  omeg = 0.1469971714
+  epsil = 0.0051449
+  w_T_npol = 3
+  plot_type = 1
 /
