@@ -4,8 +4,7 @@
   itermax0 = 500
   itermax = 10000
   extrapolation = 'osc'
-  magnons = .TRUE.
-  epsil = 70
+  epsil = 0.0051449
   units = 1
   start = 0.0
   end = 5.0
