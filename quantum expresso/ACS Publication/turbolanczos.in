@@ -1,7 +1,6 @@
 &LR_INPUT
   prefix = 'Monomer_J'
   outdir = './outdir'
-  restart = .TRUE.
 /
 
 &LR_CONTROL  
