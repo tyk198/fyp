@@ -1,0 +1,10 @@
+set   autoscale                        # scale axes automatically
+unset log                              # remove any log-scaling
+unset label                            # remove any previous labels
+set xtic auto                          # set xtics automatically
+set ytic auto                          # set ytics automatically
+set title "absorption spectrum of Monomer_J"
+set xlabel "Energy (eV)"
+set ylabel "Absoprtion"
+plot 'Monomer_J.plot_S(2).dat' u 1:2 title 'absorption: Monomer_J' with linespoints
+pause -1 "Hit any key to continue\n"    #so that the code doesn't exit automatically
