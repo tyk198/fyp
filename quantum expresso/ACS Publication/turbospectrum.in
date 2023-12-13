@@ -1,13 +1,13 @@
 &LR_INPUT
   prefix = 'Monomer_J'
   outdir = './outdir'
-  itermax0 = 500
+  itermax0 = 1500
   itermax = 10000
   extrapolation = 'osc'
   epsil = 0.0051449
   units = 1
   start = 0.0
-  end = 5.0
+  end = 4.0
   increment = 0.01
   ipol = 4
 /
