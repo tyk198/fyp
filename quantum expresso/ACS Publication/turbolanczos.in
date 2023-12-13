@@ -1,10 +1,11 @@
 &LR_INPUT
   prefix = 'Monomer_J'
   outdir = './outdir'
+  restart = .TRUE.
 /
 
 &LR_CONTROL  
-  itermax = 500
+  itermax = 1500
   ipol = 4
 /
 
