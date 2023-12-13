@@ -4,7 +4,7 @@
   filplot = 'LUMO_monomerJ.dat'
   plot_num = 7
   kpoint = 1
-  kband = 74
+  kband = 75
   lsign = .TRUE.
 /
 &PLOT
