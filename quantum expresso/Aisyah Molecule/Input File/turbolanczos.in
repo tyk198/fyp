@@ -1,0 +1,10 @@
+&LR_INPUT
+  prefix = '4amp'
+  outdir = './outdir'
+  restart = .FALSE.
+/
+
+&LR_CONTROL  
+  itermax = 1500
+  ipol = 4
+/
