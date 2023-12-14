@@ -1,6 +1,7 @@
 &LR_INPUT
   prefix = 'C6H6'
   outdir = './outdir'
+  disk_io = 'reduced'
 /
 
 &LR_CONTROL  
