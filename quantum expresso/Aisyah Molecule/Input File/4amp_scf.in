@@ -1,5 +1,5 @@
 &CONTROL
-  calculation = 'relax'
+  calculation = 'scf'
   prefix = '4amp'
   outdir = './outdir'
   pseudo_dir = '/opt/qe/bin/pp/'
