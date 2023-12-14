@@ -5,6 +5,6 @@
 /
 
 &LR_CONTROL  
-  itermax = 1500
+  itermax = 2000
   ipol = 4
 /
