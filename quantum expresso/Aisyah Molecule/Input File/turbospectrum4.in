@@ -1,1 +1,11 @@
-
+&LR_INPUT
+  prefix = '4amp'
+  outdir = './outdir'
+  itermax0 = 3000
+  epsil = 0.0051449
+  units = 1
+  start = 0.0
+  end = 40.0
+  increment = 0.01
+  ipol = 4
+/
