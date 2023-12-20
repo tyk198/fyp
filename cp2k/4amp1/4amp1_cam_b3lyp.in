@@ -312,8 +312,8 @@
       &OT T
         PRECONDITIONER FULL_ALL
         ENERGY_GAP 0.001
-        MINIMIZER CG
-        LINESEARCH 3PNT
+        MINIMIZER DISS
+        LINESEARCH 2PNT
       &END OT
       &PRINT
         &RESTART #Note: Use "&RESTART OFF" can prevent generating .wfn file
