@@ -1,0 +1,31 @@
+    &XC
+      &HF
+        &INTERACTION_POTENTIAL
+          OMEGA 0.33
+          POTENTIAL_TYPE MIX_CL
+          SCALE_COULOMB 0.18352
+          SCALE_LONGRANGE 0.94979
+        &END INTERACTION_POTENTIAL
+        &MEMORY
+          MAX_MEMORY 100
+        &END MEMORY
+        &SCREENING
+          EPS_SCHWARZ 1.0E-10
+        &END SCREENING
+      &END HF
+      &XC_FUNCTIONAL
+        &BECKE88
+          SCALE_X 0.95238
+        &END BECKE88
+        &BECKE88_LR
+          OMEGA 0.33
+          SCALE_X -0.94979
+        &END BECKE88_LR
+        &LYP
+          SCALE_C 1.0
+        &END LYP
+        &XALPHA
+          SCALE_X -0.13590
+        &END XALPHA
+      &END XC_FUNCTIONAL
+    &END XC
