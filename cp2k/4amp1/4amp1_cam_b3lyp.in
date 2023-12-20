@@ -240,6 +240,7 @@
     CHARGE    0 #Net charge
     MULTIPLICITY    1 #Spin multiplicity
     &QS
+      METHOD GAPW
       EPS_DEFAULT 1.0E-12 #Set all EPS_xxx to values such that the energy will be correct up to this value
     &END QS
     &POISSON
