@@ -309,11 +309,9 @@
          MAX_SCF 900
          EPS_SCF 1.0E-7
       &END OUTER_SCF
-      &OT T
-        PRECONDITIONER FULL_ALL
-        ENERGY_GAP 0.001
-        MINIMIZER CG
-        LINESEARCH 3PNT
+      &OT
+         PRECONDITIONER FULL_ALL
+         MINIMIZER DIIS
       &END OT
       &PRINT
         &RESTART #Note: Use "&RESTART OFF" can prevent generating .wfn file
