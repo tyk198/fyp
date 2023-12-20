@@ -306,8 +306,10 @@
         NDIGITS 9 #Output orbital coefficients if absolute value is larger than 1E-9
       &END MO_MOLDEN
       &MO_CUBES
+        APPEND T
         NHOMO 1
         NLUMO 1
+        WRITE_CUBE T
       &END MO_CUBES
     &END PRINT
   &END DFT
