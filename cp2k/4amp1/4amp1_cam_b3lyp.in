@@ -292,7 +292,7 @@
       &END vdW_POTENTIAL
     &END XC
     &MGRID
-      CUTOFF  500
+      CUTOFF  400
       REL_CUTOFF  50
     &END MGRID
     &AUXILIARY_DENSITY_MATRIX_METHOD      
@@ -302,16 +302,18 @@
       ADMM_PURIFICATION_METHOD NONE        
     &END AUXILIARY_DENSITY_MATRIX_METHOD
     &SCF
-      MAX_SCF 128
-      EPS_SCF 1.0E-07 #Convergence threshold of density matrix of inner SCF
+      MAX_SCF 50
+      EPS_SCF 1.0E-06 #Convergence threshold of density matrix of inner SCF
 #     SCF_GUESS RESTART #Use wavefunction from WFN_RESTART_FILE_NAME file as initial guess
       &OUTER_SCF
-         MAX_SCF 900
-         EPS_SCF 1.0E-7
+         MAX_SCF 30
+         EPS_SCF 1.0E-6
       &END OUTER_SCF
-      &OT
-         PRECONDITIONER FULL_ALL
-         MINIMIZER DIIS
+      &OT T
+        PRECONDITIONER FULL_ALL
+        ENERGY_GAP 0.001
+        MINIMIZER CG
+        LINESEARCH 3PNT
       &END OT
       &PRINT
         &RESTART #Note: Use "&RESTART OFF" can prevent generating .wfn file
