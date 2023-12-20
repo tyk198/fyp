@@ -2,6 +2,7 @@
   PROJECT 4amp1_cam_b3lyp.in
   PRINT_LEVEL LOW
   RUN_TYPE ENERGY
+  PREFERRED_DIAG_LIBRARY SL
 &END GLOBAL
 
 &FORCE_EVAL
@@ -213,35 +214,40 @@
     &END COORD
     &KIND O
       ELEMENT O
-      BASIS_SET aug-TZVP-GTH-q6
-      POTENTIAL ALL
+      BASIS_SET ORB TZVP-MOLOPT-PBE0-GTH-q6
+      BASIS_SET AUX_FIT admm-tzp-q6
+      POTENTIAL GTH-PBE0-q6
     &END KIND
     &KIND N
       ELEMENT N
-      BASIS_SET aug-TZVP-GTH-q5
-      POTENTIAL ALL
+      BASIS_SET ORB TZVP-MOLOPT-PBE0-GTH-q5
+      BASIS_SET AUX_FIT admm-tzp-q5
+      POTENTIAL GTH-PBE0-q5
     &END KIND
     &KIND C
       ELEMENT C
-      BASIS_SET aug-TZVP-GTH-q4
-      POTENTIAL ALL
+      BASIS_SET ORB TZVP-MOLOPT-PBE0-GTH-q4
+      BASIS_SET AUX_FIT admm-tzp-q4
+      POTENTIAL GTH-PBE0-q4
     &END KIND
     &KIND H
       ELEMENT H
-      BASIS_SET aug-TZVP-GTH-q1
-      POTENTIAL ALL
+      BASIS_SET ORB TZVP-MOLOPT-PBE0-GTH-q1  
+      BASIS_SET AUX_FIT admm-tzp-q1          
+      POTENTIAL GTH-PBE0-q1
     &END KIND
   &END SUBSYS
 
   &DFT
-    BASIS_SET_FILE_NAME  GTH_BASIS_SETS
-    POTENTIAL_FILE_NAME  POTENTIAL
+    POTENTIAL_FILE_NAME POTENTIAL_UZH
+    BASIS_SET_FILE_NAME BASIS_MOLOPT_UZH
+    BASIS_SET_FILE_NAME BASIS_ADMM_UZH
 #   WFN_RESTART_FILE_NAME mo_4AMP15_0m-RESTART.wfn
     CHARGE    0 #Net charge
     MULTIPLICITY    1 #Spin multiplicity
     &QS
       EPS_DEFAULT 1.0E-10
-      METHOD GAPW
+      METHOD GPW
       EPS_FILTER_MATRIX 0	
       EPS_PGF_ORB 1.0E-15
     &END QS
@@ -289,10 +295,20 @@
       CUTOFF  500
       REL_CUTOFF  50
     &END MGRID
+    &AUXILIARY_DENSITY_MATRIX_METHOD      
+      METHOD BASIS_PROJECTION             
+      EXCH_SCALING_MODEL NONE            
+      EXCH_CORRECTION_FUNC PBEX         
+      ADMM_PURIFICATION_METHOD NONE        
+    &END AUXILIARY_DENSITY_MATRIX_METHOD
     &SCF
       MAX_SCF 128
-      EPS_SCF 1.0E-06 #Convergence threshold of density matrix of inner SCF
+      EPS_SCF 1.0E-07 #Convergence threshold of density matrix of inner SCF
 #     SCF_GUESS RESTART #Use wavefunction from WFN_RESTART_FILE_NAME file as initial guess
+      &OUTER_SCF
+         MAX_SCF 900
+         EPS_SCF 1.0E-7
+      &END OUTER_SCF
       &OT T
         PRECONDITIONER FULL_ALL
         ENERGY_GAP 0.001
@@ -310,15 +326,19 @@
         NDIGITS 9 #Output orbital coefficients if absolute value is larger than 1E-9
       &END MO_MOLDEN
       &MO_CUBES
-        APPEND T
         NHOMO 1
         NLUMO 1
-        WRITE_CUBE T
+        WRITE_CUBE F
+        &EACH
+          MD 10
+        &END
       &END MO_CUBES
     &END PRINT
   &END DFT
   &PROPERTIES
     &TDDFPT #TDDFT calculation with Tamm-Dancoff approximation
+      KERNEL FULL
+      MAX_ITER 100
       NSTATES   50 #Number of excited states to solve
       RKS_TRIPLETS F #If calculating triplet rather than singlet excited states
       CONVERGENCE [eV] 1E-4 #Convergence criterion of all excitation energies
