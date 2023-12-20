@@ -240,8 +240,10 @@
     CHARGE    0 #Net charge
     MULTIPLICITY    1 #Spin multiplicity
     &QS
+      EPS_DEFAULT 1.0E-10
       METHOD GAPW
-      EPS_DEFAULT 1.0E-12 #Set all EPS_xxx to values such that the energy will be correct up to this value
+      EPS_FILTER_MATRIX 0	
+      EPS_PGF_ORB 1.0E-15
     &END QS
     &POISSON
       PERIODIC XYZ #Direction(s) of PBC for calculating electrostatics
@@ -291,14 +293,12 @@
       MAX_SCF 128
       EPS_SCF 1.0E-06 #Convergence threshold of density matrix of inner SCF
 #     SCF_GUESS RESTART #Use wavefunction from WFN_RESTART_FILE_NAME file as initial guess
-      &DIAGONALIZATION
-        ALGORITHM STANDARD #Algorithm for diagonalization
-      &END DIAGONALIZATION
-      &MIXING #How to mix old and new density matrices
-        METHOD BROYDEN_MIXING #PULAY_MIXING is also a good alternative
-        ALPHA 0.4 #Default. Mixing 40% of new density matrix with the old one
-        NBROYDEN 8 #Default is 4. Number of previous steps stored for the actual mixing scheme
-      &END MIXING
+      &OT T
+        PRECONDITIONER FULL_ALL
+        ENERGY_GAP 0.001
+        MINIMIZER CG
+        LINESEARCH 3PNT
+      &END OT
       ADDED_MOS    30 #Number of virtual MOs to solve
       &PRINT
         &RESTART #Note: Use "&RESTART OFF" can prevent generating .wfn file
