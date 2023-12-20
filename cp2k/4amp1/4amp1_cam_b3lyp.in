@@ -312,7 +312,7 @@
       &OT T
         PRECONDITIONER FULL_ALL
         ENERGY_GAP 0.001
-        MINIMIZER DISS
+        MINIMIZER DIIS
         LINESEARCH 2PNT
       &END OT
       &PRINT
