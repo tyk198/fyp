@@ -264,7 +264,7 @@
          &END
          &INTERACTION_POTENTIAL
             POTENTIAL_TYPE MIX_CL_TRUNC
-            CUTOFF_RADIUS 4.5
+            CUTOFF_RADIUS 2.5
             OMEGA 0.33
             SCALE_COULOMB 0.19
             SCALE_LONGRANGE 0.46
