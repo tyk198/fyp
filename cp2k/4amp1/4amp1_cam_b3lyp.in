@@ -242,7 +242,7 @@
     POTENTIAL_FILE_NAME POTENTIAL_UZH
     BASIS_SET_FILE_NAME BASIS_MOLOPT_UZH
     BASIS_SET_FILE_NAME BASIS_ADMM_UZH
-#   WFN_RESTART_FILE_NAME mo_4AMP15_0m-RESTART.wfn
+    WFN_RESTART_FILE_NAME 4amp1_cam_b3lyp-RESTART.wfn
     CHARGE    0 #Net charge
     MULTIPLICITY    1 #Spin multiplicity
     &QS
@@ -304,7 +304,7 @@
     &SCF
       MAX_SCF 50
       EPS_SCF 1.0E-06 #Convergence threshold of density matrix of inner SCF
-#     SCF_GUESS RESTART #Use wavefunction from WFN_RESTART_FILE_NAME file as initial guess
+      SCF_GUESS RESTART #Use wavefunction from WFN_RESTART_FILE_NAME file as initial guess
       &OUTER_SCF
          MAX_SCF 30
          EPS_SCF 1.0E-6
@@ -337,7 +337,11 @@
   &END DFT
   &PROPERTIES
     &TDDFPT #TDDFT calculation with Tamm-Dancoff approximation
-      KERNEL FULL
+      KERNEL sTDA
+      &sTDA
+        FRACTION 0.20
+        DO_EWALD T
+      &END sTDA
       MAX_ITER 100
       NSTATES   50 #Number of excited states to solve
       RKS_TRIPLETS F #If calculating triplet rather than singlet excited states
