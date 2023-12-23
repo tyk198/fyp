@@ -292,12 +292,12 @@
     &END MGRID
   
     &SCF
-      MAX_SCF 130
-      EPS_SCF 1.0E-06 #Convergence threshold of density matrix of inner SCF
+      MAX_SCF 150
+      EPS_SCF 1.0E-05 #Convergence threshold of density matrix of inner SCF
 #     SCF_GUESS RESTART #Use wavefunction from WFN_RESTART_FILE_NAME file as initial guess
       &OUTER_SCF
          MAX_SCF 10
-         EPS_SCF 1.0E-6
+         EPS_SCF 1.0E-5
       &END OUTER_SCF
       &OT T
         PRECONDITIONER FULL_ALL
@@ -319,7 +319,7 @@
   &END DFT
   &PROPERTIES
     &TDDFPT #TDDFT calculation with Tamm-Dancoff approximation
-      NSTATES   50 #Number of excited states to solve
+      NSTATES   100 #Number of excited states to solve
       RKS_TRIPLETS F #If calculating triplet rather than singlet excited states
       CONVERGENCE [eV] 1E-4 #Convergence criterion of all excitation energies
       MIN_AMPLITUDE 0.01 #The smallest excitation amplitude to print
