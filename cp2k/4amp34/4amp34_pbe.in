@@ -289,7 +289,7 @@
       CUTOFF  400
       REL_CUTOFF  50
     &END MGRID
-    &SCF
+  
     &SCF
       MAX_SCF 30
       EPS_SCF 1.0E-06 #Convergence threshold of density matrix of inner SCF
