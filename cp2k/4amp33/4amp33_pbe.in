@@ -1,1 +1,216 @@
+&GLOBAL
+  PROJECT 4AMP34_pbe
+  PRINT_LEVEL LOW
+  RUN_TYPE ENERGY
+  PREFERRED_DIAG_LIBRARY SL
+&END GLOBAL
 
+&FORCE_EVAL
+  METHOD Quickstep
+  &SUBSYS
+    &CELL
+      ABC [angstrom] 5.6423 10.1765 17.4919
+      PERIODIC XYZ #Direction(s) of applied PBC (geometry aspect)
+      ALPHA_BETA_GAMMA [deg] 75.803 82.664 83.643
+    &END CELL
+    &COORD
+      O       6.527170   5.933569   5.435964
+      O       2.475349   8.248052  11.429151
+      N       4.332797  10.456832   9.068709
+      N       4.669721   3.724788   7.796405
+      C       2.718227   4.779964   2.312713
+      C       6.284292   9.401657  14.552401
+      H       2.409952   5.562217   2.707188
+      H       6.592567   8.619403  14.157926
+      C       2.006353   4.215522   1.322731
+      C       6.996165   9.966099  15.542384
+      H       1.217688   4.614454   1.032921
+      H       7.784830   9.567167  15.832194
+      C       2.433892   3.065618   0.744258
+      C       6.568627  11.116002  16.120857
+      C       3.563436   2.486937   1.204844
+      C       5.439083  11.694684  15.660271
+      H       3.851162   1.679753   0.839680
+      H       5.151356  12.501868  16.025434
+      C       4.267752   3.065516   2.177961
+      C       4.734766  11.116104  14.687154
+      H       5.049213   2.657536   2.473488
+      H       3.953305  11.524085  14.391626
+      C       3.875418   4.228714   2.744460
+      C       5.127100   9.952907  14.120655
+      C       4.687137   4.846252   3.732756
+      C       4.315381   9.335369  13.132359
+      H       5.522943   4.458281   3.856040
+      H       3.479576   9.723339  13.009075
+      C       4.439838   5.857211   4.481567
+      C       4.562680   8.324410  12.383548
+      H       3.608397   6.270749   4.422944
+      H       5.394121   7.910871  12.442171
+      C       5.419917   6.373842   5.415894
+      C       3.582601   7.807778  11.449220
+      C       5.040785   7.442683   6.341789
+      C       3.961733   6.738938  10.523326
+      C       5.911126   7.748417   7.336831
+      C       3.091392   6.433203   9.528284
+      H       6.705506   7.270494   7.404848
+      H       2.297013   6.911127   9.460267
+      C       5.650775   8.728211   8.228995
+      C       3.351744   5.453409   8.636119
+      H       6.266615   8.915995   8.898962
+      H       2.735903   5.265625   7.966153
+      C       4.503452   9.436087   8.153102
+      C       4.499066   4.745534   8.712012
+      C       3.634798   9.143303   7.161434
+      C       5.367721   5.038318   9.703681
+      H       2.849057   9.634405   7.082724
+      H       6.153461   4.547216   9.782390
+      C       3.885313   8.150987   6.284448
+      C       5.117205   6.030633  10.580667
+      H       3.255729   7.948167   5.628918
+      H       5.746789   6.233454  11.236197
+      C       3.248810  10.633257   9.606875
+      C       5.753709   3.548363   7.258239
+      H       2.543359  10.071836   9.376464
+      H       6.459159   4.109784   7.488651
+      C       3.017816  11.653189  10.564814
+      C       5.984703   2.528432   6.300301
+      C       3.928133  12.623921  10.794179
+      C       5.074385   1.557699   6.070935
+      H       3.574846   2.539300  10.279270
+      H       5.427672  11.642321   6.585844
+      C       2.612725   3.422196  11.741999
+      C       6.389794  10.759425   5.123116
+      H       3.257791   4.077837  11.877510
+      H       5.744728  10.103783   4.987605
+      C       7.147636   3.417134  12.509361
+      C       1.854882  10.764487   4.355753
+      C       7.341973  12.577739  12.288428
+      C       1.660546   1.603882   4.576686
+      H       6.563033  12.556938  12.796052
+      H       2.439486   1.624682   4.069063
+      C       7.552079  11.649930  11.318684
+      C       1.450439   2.531691   5.546430
+      H       6.908670  10.993305  11.172430
+      H       2.093848   3.188315   5.692685
+      C       3.958251   6.503383  16.521910
+      C       5.044268   7.678238   0.343205
+      C       6.973080   4.378683  13.572032
+      C       2.029438   9.802937   3.293082
+      F       2.937854   7.321542  16.030966
+      F       6.064664   6.860078   0.834149
+      F       4.723237   6.443639  15.418594
+      F       4.279281   7.737982   1.446521
+      F       3.354294   5.460732  16.803220
+      F       5.648225   8.720888   0.061895
+      F       5.667050   4.809798  13.609473
+      F       3.335468   9.371822   3.255642
+      F       7.626529   5.494033  13.335465
+      F       1.375990   8.687588   3.529649
+      F       7.193444   4.008449  14.702501
+      F       1.809075  10.173172   2.162614
+      F       4.109271   7.023975  15.463792
+      F       4.893247   7.157646   1.401322
+      F       4.319808   5.210309  16.330996
+      F       4.682710   8.971311   0.534118
+      F       2.715207   6.423678  16.686682
+      F       6.287312   7.757942   0.178433
+      F       7.030352   5.596081  13.251174
+      F       1.972167   8.585539   3.613941
+      F       5.902550   4.255713  14.239048
+      F       3.099968   9.925907   2.626067
+      F       2.346357   4.167596  14.499141
+      F       6.656162  10.014025   2.365973
+    &END COORD
+    &KIND H
+      ELEMENT H
+      BASIS_SET TZVP-GTH-q1
+      POTENTIAL GTH-PBE
+    &END KIND
+    &KIND O
+      ELEMENT O
+      BASIS_SET TZVP-GTH-q6
+      POTENTIAL GTH-PBE
+    &END KIND
+    &KIND C
+      ELEMENT C
+      BASIS_SET TZVP-GTH-q4
+      POTENTIAL GTH-PBE
+    &END KIND
+    &KIND N
+      ELEMENT N
+      BASIS_SET TZVP-GTH-q5
+      POTENTIAL GTH-PBE
+    &END KIND
+    &KIND F
+      ELEMENT F
+      BASIS_SET TZVP-GTH-q7
+      POTENTIAL GTH-PBE
+    &END KIND
+  &END SUBSYS
+
+  &DFT
+    BASIS_SET_FILE_NAME  GTH_BASIS_SETS
+    POTENTIAL_FILE_NAME  POTENTIAL
+#   WFN_RESTART_FILE_NAME mo_4AMP34_0m-RESTART.wfn
+    CHARGE    0 #Net charge
+    MULTIPLICITY    1 #Spin multiplicity
+    &QS
+      EPS_DEFAULT 1.0E-10
+      METHOD GPW
+      EPS_FILTER_MATRIX 0	
+      EPS_PGF_ORB 1.0E-15
+    &END QS
+    &POISSON
+      PERIODIC XYZ #Direction(s) of PBC for calculating electrostatics
+      PSOLVER PERIODIC #The way to solve Poisson equation
+    &END POISSON
+    &XC
+      &XC_FUNCTIONAL PBE
+      &END XC_FUNCTIONAL
+    &END XC
+    &MGRID
+      CUTOFF  400
+      REL_CUTOFF  50
+    &END MGRID
+  
+    &SCF
+      MAX_SCF 150
+      EPS_SCF 1.0E-05 #Convergence threshold of density matrix of inner SCF
+#     SCF_GUESS RESTART #Use wavefunction from WFN_RESTART_FILE_NAME file as initial guess
+      &OUTER_SCF
+         MAX_SCF 3
+         EPS_SCF 1.0E-5
+      &END OUTER_SCF
+      &OT T
+        PRECONDITIONER FULL_ALL
+        ENERGY_GAP 0.001
+        MINIMIZER CG
+        LINESEARCH 3PNT
+      &END OT
+      &PRINT
+        &RESTART #Note: Use "&RESTART OFF" can prevent generating .wfn file
+          BACKUP_COPIES 0 #Maximum number of backup copies of wfn file. 0 means never
+        &END RESTART
+      &END PRINT
+    &END SCF
+    &PRINT
+      &MO_MOLDEN #Exporting .molden file containing wavefunction information
+        NDIGITS 9 #Output orbital coefficients if absolute value is larger than 1E-9
+      &END MO_MOLDEN
+    &END PRINT
+  &END DFT
+  &PROPERTIES
+    &TDDFPT #TDDFT calculation with Tamm-Dancoff approximation
+      NSTATES   100 #Number of excited states to solve
+      RKS_TRIPLETS F #If calculating triplet rather than singlet excited states
+      CONVERGENCE [eV] 1E-4 #Convergence criterion of all excitation energies
+      MIN_AMPLITUDE 0.01 #The smallest excitation amplitude to print
+#     RESTART T #If restarting TDDFT calculation. If true, WFN_RESTART_FILE_NAME should be set to previous .tdwfn file
+#     WFN_RESTART_FILE_NAME mo_4AMP34_0m-RESTART.tdwfn
+      &PRINT
+        #&DETAILED_ENERGY #Print excitation energies at every Davidson iteration
+        #&END DETAILED_ENERGY
+      &END PRINT
+    &END TDDFPT
+  &END PROPERTIES
+&END FORCE_EVAL
