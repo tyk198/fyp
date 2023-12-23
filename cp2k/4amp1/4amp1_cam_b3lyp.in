@@ -302,7 +302,7 @@
       ADMM_PURIFICATION_METHOD NONE        
     &END AUXILIARY_DENSITY_MATRIX_METHOD
     &SCF
-      MAX_SCF 50
+      MAX_SCF 30
       EPS_SCF 1.0E-06 #Convergence threshold of density matrix of inner SCF
       SCF_GUESS RESTART #Use wavefunction from WFN_RESTART_FILE_NAME file as initial guess
       &OUTER_SCF
