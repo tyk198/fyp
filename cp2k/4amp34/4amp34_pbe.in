@@ -2,13 +2,14 @@
   PROJECT 4AMP34_pbe
   PRINT_LEVEL LOW
   RUN_TYPE ENERGY
+  PREFERRED_DIAG_LIBRARY SL
 &END GLOBAL
 
 &FORCE_EVAL
   METHOD Quickstep
   &SUBSYS
     &CELL
-      ABC [angstrom] 21.75500000 6.76330000 18.11400000
+      ABC [angstrom] 20.75500000 5.76330000 17.11400000
       PERIODIC XYZ #Direction(s) of applied PBC (geometry aspect)
       ALPHA_BETA_GAMMA [deg] 90.0 90.906 90.0
     &END CELL
@@ -301,8 +302,8 @@
       &OT T
         PRECONDITIONER FULL_ALL
         ENERGY_GAP 0.001
-        MINIMIZER DIIS
-        LINESEARCH 2PNT
+        MINIMIZER CG
+        LINESEARCH 3PNT
       &END OT
       &PRINT
         &RESTART #Note: Use "&RESTART OFF" can prevent generating .wfn file
@@ -318,7 +319,7 @@
   &END DFT
   &PROPERTIES
     &TDDFPT #TDDFT calculation with Tamm-Dancoff approximation
-      NSTATES   100 #Number of excited states to solve
+      NSTATES   50 #Number of excited states to solve
       RKS_TRIPLETS F #If calculating triplet rather than singlet excited states
       CONVERGENCE [eV] 1E-4 #Convergence criterion of all excitation energies
       MIN_AMPLITUDE 0.01 #The smallest excitation amplitude to print
