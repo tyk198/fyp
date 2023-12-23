@@ -292,11 +292,11 @@
     &END MGRID
   
     &SCF
-      MAX_SCF 30
+      MAX_SCF 130
       EPS_SCF 1.0E-06 #Convergence threshold of density matrix of inner SCF
 #     SCF_GUESS RESTART #Use wavefunction from WFN_RESTART_FILE_NAME file as initial guess
       &OUTER_SCF
-         MAX_SCF 30
+         MAX_SCF 10
          EPS_SCF 1.0E-6
       &END OUTER_SCF
       &OT T
