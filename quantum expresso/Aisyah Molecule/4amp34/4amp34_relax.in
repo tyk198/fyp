@@ -32,11 +32,7 @@ ATOMIC_SPECIES
   N   14.00  N.pbe-n-rrkjus_psl.1.0.0.UPF
   C   12.00  C.pbe-n-rrkjus_psl.1.0.0.UPF
   H    1.00  H.pbe-rrkjus_psl.1.0.0.UPF
-
-CELL_PARAMETERS {angstrom}
-       16.29700000     0.00000000     0.00000000
-        0.00000000     5.63040000     0.00000000
-      -15.27928516     0.00000000    19.56081507
+  F  18.9984  F.pbe-n-rrkjus_psl.1.0.0.UPF
 
 ATOMIC_POSITIONS {angstrom}
 O	-4.56454782	3.85457184	9.46117503	1	1	1
