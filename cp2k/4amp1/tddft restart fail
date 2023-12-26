@@ -1,0 +1,3104 @@
+ DBCSR| CPU Multiplication driver                                           XSMM (U)
+ DBCSR| Multrec recursion limit                                              512 (U)
+ DBCSR| Multiplication stack size                                           1000 (D)
+ DBCSR| Maximum elements for images                                    UNLIMITED (U)
+ DBCSR| Multiplicative factor virtual images                                   1 (U)
+ DBCSR| Use multiplication densification                                       T (D)
+ DBCSR| Multiplication size stacks                                             3 (U)
+ DBCSR| Use memory pool for CPU allocation                                     F (U)
+ DBCSR| Number of 3D layers                                               SINGLE (U)
+ DBCSR| Use MPI memory allocation                                              F (U)
+ DBCSR| Use RMA algorithm                                                      F (U)
+ DBCSR| Use Communication thread                                               T (U)
+ DBCSR| Communication thread load                                             83 (D)
+ DBCSR| MPI: My process id                                                     0
+ DBCSR| MPI: Number of processes                                              88
+ DBCSR| OMP: Current number of threads                                         2
+ DBCSR| OMP: Max number of threads                                             2
+ DBCSR| Split modifier for TAS multiplication algorithm                  1.0E+00 (U)
+
+
+  **** **** ******  **  PROGRAM STARTED AT               2023-12-26 05:06:25.377
+ ***** ** ***  *** **   PROGRAM STARTED ON                          248eeb1926f9
+ **    ****   ******    PROGRAM STARTED BY                             <unknown>
+ ***** **    ** ** **   PROGRAM PROCESS ID                                   538
+  **** **  *******  **  PROGRAM STARTED IN                                  /mnt
+
+ CP2K| version string:                                       CP2K version 2023.2
+ CP2K| source code revision number:                                  git:65cca6c
+ CP2K| cp2kflags: omp libint fftw3 libxc pexsi elpa parallel scalapack cosma qui
+ CP2K|            p xsmm plumed2 spglib sirius libvori libbqb libtorch libvdwxc
+ CP2K| is freely available from                            https://www.cp2k.org/
+ CP2K| Program compiled at                          Wed Oct 18 11:40:41 UTC 2023
+ CP2K| Program compiled on                                          633bb7bf566f
+ CP2K| Program compiled for                                                local
+ CP2K| Data directory path                                        /opt/cp2k/data
+ CP2K| Input file name                                        4amp1_cam_b3lyp.in
+
+ GLOBAL| Force Environment number                                              1
+ GLOBAL| Basis set file name                                    BASIS_MOLOPT_UZH
+ GLOBAL| Potential file name                                       POTENTIAL_UZH
+ GLOBAL| MM Potential file name                                     MM_POTENTIAL
+ GLOBAL| Coordinate file name                                      __STD_INPUT__
+ GLOBAL| Method name                                                        CP2K
+ GLOBAL| Project name                                            4amp1_cam_b3lyp
+ GLOBAL| Run type                                                         ENERGY
+ GLOBAL| FFT library                                                       FFTW3
+ GLOBAL| Diagonalization library                                       ScaLAPACK
+ GLOBAL| DGEMM library                                                      BLAS
+ GLOBAL| Orthonormality check for eigenvectors                          DISABLED
+ GLOBAL| Matrix multiplication library                                     COSMA
+ GLOBAL| All-to-all communication in single precision                          F
+ GLOBAL| FFTs using library dependent lengths                                  F
+ GLOBAL| Grid backend                                                       AUTO
+ GLOBAL| Global print level                                                  LOW
+ GLOBAL| MPI I/O enabled                                                       T
+ GLOBAL| Total number of message passing processes                            88
+ GLOBAL| Number of threads for this process                                    2
+ GLOBAL| This output is from process                                           0
+ GLOBAL| Stack size for threads created by OpenMP (OMP_STACKSIZE)            16M
+ GLOBAL| CPU model name                         AMD EPYC 9V33X 96-Core Processor
+ GLOBAL| CPUID                                                              1003
+ GLOBAL| Compiled for CPUID                                                    0
+
+ *** HINT in environment.F:904 :: The compiler target flags (generic) used ***
+ *** to build this binary cannot exploit all extensions of this CPU model  ***
+ *** (x86_avx512). Consider compiler target flags as part of FCFLAGS and   ***
+ *** CFLAGS (ARCH file).                                                   ***
+
+
+ MEMORY| system memory details [Kb]
+ MEMORY|                        rank 0           min           max       average
+ MEMORY| MemTotal           1444892888    1444892888    1444892888    1444892888
+ MEMORY| MemFree            1425838120    1425838120    1425840784    1425838357
+ MEMORY| Buffers                 27280         27280         27280         27280
+ MEMORY| Cached                 781612        781612        781612        781612
+ MEMORY| Slab                   999932        999932        999932        999932
+ MEMORY| SReclaimable           107740        107740        107740        107740
+ MEMORY| MemLikelyFree      1426754752    1426754752    1426757416    1426754989
+
+
+ GENERATE|  Preliminary Number of Bonds generated:                             0
+ GENERATE|  Achieved consistency in connectivity generation.
+
+ *******************************************************************************
+ *******************************************************************************
+ **                                                                           **
+ **     #####                         ##              ##                      **
+ **    ##   ##            ##          ##              ##                      **
+ **   ##     ##                       ##            ######                    **
+ **   ##     ##  ##   ##  ##   #####  ##  ##   ####   ##    #####    #####    **
+ **   ##     ##  ##   ##  ##  ##      ## ##   ##      ##   ##   ##  ##   ##   **
+ **   ##  ## ##  ##   ##  ##  ##      ####     ###    ##   ######   ######    **
+ **    ##  ###   ##   ##  ##  ##      ## ##      ##   ##   ##       ##        **
+ **     #######   #####   ##   #####  ##  ##  ####    ##    #####   ##        **
+ **           ##                                                    ##        **
+ **                                                                           **
+ **                                                ... make the atoms dance   **
+ **                                                                           **
+ **            Copyright (C) by CP2K developers group (2000-2023)             **
+ **                      J. Chem. Phys. 152, 194103 (2020)                    **
+ **                                                                           **
+ *******************************************************************************
+
+
+ TOTAL NUMBERS AND MAXIMUM NUMBERS
+
+  Total number of            - Atomic kinds:                                   4
+                             - Atoms:                                        196
+                             - Shell sets:                                   196
+                             - Shells:                                      1120
+                             - Primitive Cartesian functions:                980
+                             - Cartesian basis functions:                   2520
+                             - Spherical basis functions:                   2408
+
+  Maximum angular momentum of- Orbital basis functions:                        2
+                             - Local part of the GTH pseudopotential:          2
+                             - Non-local part of the GTH pseudopotential:      0
+
+  AUX_FIT ADMM-Basis:
+  Total number of            - Shell sets:                                  1120
+                             - Shells:                                      1120
+                             - Primitive Cartesian functions:               1428
+                             - Cartesian basis functions:                   2520
+                             - Spherical basis functions:                   2408
+                               Maximum angular momentum                        2
+
+
+ SCF PARAMETERS         Density guess:                                   RESTART
+                        --------------------------------------------------------
+                        max_scf:                                              50
+                        max_scf_history:                                       0
+                        max_diis:                                              4
+                        --------------------------------------------------------
+                        eps_scf:                                        1.00E-06
+                        eps_scf_history:                                0.00E+00
+                        eps_diis:                                       1.00E-01
+                        eps_eigval:                                     1.00E-05
+                        --------------------------------------------------------
+                        level_shift [a.u.]:                             0.000000
+                        --------------------------------------------------------
+                        Outer loop SCF in use
+                        No variables optimised in outer loop
+                        eps_scf                                         1.00E-06
+                        max_scf                                               30
+                        No outer loop optimization
+                        step_size                                       5.00E-01
+
+  HFX_INFO| Replica ID:                                                        1
+  HFX_INFO| FRACTION:                                               1.0000000000
+  HFX_INFO| Interaction Potential:                              TRUNCATED MIX_CL
+  HFX_INFO| Cutoff Radius [angstrom]:                               2.5000000000
+  HFX_INFO| EPS_SCHWARZ:                                                 1.0E-10
+  HFX_INFO| EPS_SCHWARZ_FORCES                                           1.0E-06
+  HFX_INFO| EPS_STORAGE_SCALING:                                         1.0E+00
+  HFX_INFO| NBINS:                                                            64
+  HFX_INFO| BLOCK_SIZE:                                                        2
+  HFX_INFO| NUMBER_OF_SHELLS:                                               AUTO
+  HFX_INFO| Number of periodic shells considered:                             -1
+  HFX_INFO| Number of periodic cells considered:                              37
+
+
+ Number of electrons:                                                        560
+ Number of occupied orbitals:                                                280
+ Number of molecular orbitals:                                               280
+
+ Number of orbital functions:                                               2408
+ Number of independent orbital functions:                                   2408
+
+ Extrapolation method: initial_guess
+
+
+ SCF WAVEFUNCTION OPTIMIZATION
+
+  ----------------------------------- OT ---------------------------------------
+  Minimizer      : DIIS                : direct inversion
+                                         in the iterative subspace
+                                         using   7 DIIS vectors
+                                         safer DIIS on
+  Preconditioner : FULL_ALL            : diagonalization, state selective
+  Precond_solver : DEFAULT
+  stepsize       :    0.15000000                  energy_gap     :    0.00100000
+  eps_taylor     :   0.10000E-15                  max_taylor     :             4
+  ----------------------------------- OT ---------------------------------------
+
+  Step     Update method      Time    Convergence         Total energy    Change
+  ------------------------------------------------------------------------------
+
+  HFX_MEM_INFO| Est. max. program size before HFX [MiB]:                     572
+  HFX_MEM_INFO| Number of cart. primitive ERI's calculated:         616205659155
+  HFX_MEM_INFO| Number of sph. ERI's calculated:                    227902291615
+  HFX_MEM_INFO| Number of sph. ERI's stored in-core:                 17019980395
+  HFX_MEM_INFO| Number of sph. ERI's stored on disk:                           0
+  HFX_MEM_INFO| Number of sph. ERI's calculated on the fly:         210882311220
+  HFX_MEM_INFO| Total memory consumption ERI's RAM [MiB]:                  41188
+  HFX_MEM_INFO| Whereof max-vals [MiB]:                                      543
+  HFX_MEM_INFO| Total compression factor ERI's RAM:                         3.15
+  HFX_MEM_INFO| Total memory consumption ERI's disk [MiB]:                     0
+  HFX_MEM_INFO| Total compression factor ERI's disk:                        0.00
+  HFX_MEM_INFO| Size of density/Fock matrix [MiB]:                            44
+  HFX_MEM_INFO| Size of buffers [MiB]:                                        14
+  HFX_MEM_INFO| Number of periodic image cells considered:                    37
+  HFX_MEM_INFO| Est. max. program size after HFX  [MiB]:                    1220
+
+     1 OT DIIS     0.15E+00  322.4     0.00000012      -824.5280070559 -8.25E+02
+
+  *** SCF run converged in     1 steps ***
+
+
+  Electronic density on regular grids:       -559.9999999681        0.0000000319
+  Core density on regular grids:              559.9999999598       -0.0000000402
+  Total charge density on r-space grids:       -0.0000000082
+  Total charge density g-space grids:          -0.0000000082
+
+  Overlap energy of the core charge distribution:               0.00146218304205
+  Self energy of the core charge distribution:              -1985.29240839861768
+  Core Hamiltonian energy:                                    644.35331871273650
+  Hartree energy:                                             772.54609166892305
+  Exchange-correlation energy:                               -170.01358094506566
+  Hartree-Fock Exchange energy:                               -85.68860647975524
+  Dispersion energy:                                           -0.43428379716192
+
+  Total energy:                                              -824.52800705589857
+
+  outer SCF iter =    1 RMS gradient =   0.12E-06 energy =       -824.5280070559
+  outer SCF loop converged in   1 iterations or    1 steps
+
+
+  Eigenvalues of the occupied subspace spin            1
+ ---------------------------------------------
+      -0.94196992     -0.94196535     -0.93930115     -0.93929423
+      -0.93681167     -0.93678032     -0.93663948     -0.93660523
+      -0.91251142     -0.91251078     -0.91246883     -0.91246791
+      -0.83075879     -0.83073671     -0.83027936     -0.83025386
+      -0.76653038     -0.76642739     -0.76552392     -0.76532847
+      -0.76313321     -0.76257252     -0.76251729     -0.76208958
+      -0.75121357     -0.75037411     -0.74999559     -0.74922686
+      -0.70332082     -0.70316330     -0.70270115     -0.70269624
+      -0.67193875     -0.67143712     -0.67096174     -0.67036753
+      -0.66472658     -0.66387209     -0.66148027     -0.66133863
+      -0.65961875     -0.65788336     -0.65711822     -0.65708850
+      -0.65571836     -0.65469792     -0.65309248     -0.65298988
+      -0.64518319     -0.64465433     -0.64406909     -0.64380165
+      -0.63266182     -0.63191207     -0.63159550     -0.63109526
+      -0.60407717     -0.60350585     -0.60148011     -0.60073218
+      -0.59502037     -0.59401249     -0.59360786     -0.59284592
+      -0.56256723     -0.56239149     -0.56210712     -0.56208425
+      -0.54027816     -0.54010830     -0.53895118     -0.53880114
+      -0.51484328     -0.51477232     -0.51469111     -0.51458467
+      -0.51203808     -0.51074773     -0.50982520     -0.50891487
+      -0.50829271     -0.50669741     -0.50641482     -0.50636346
+      -0.49763536     -0.49671478     -0.49617535     -0.49581876
+      -0.46641276     -0.46572293     -0.46316078     -0.46303243
+      -0.45047038     -0.44891068     -0.44782431     -0.44601400
+      -0.43816230     -0.43746177     -0.43368044     -0.43261299
+      -0.42803061     -0.42768514     -0.42611550     -0.42516704
+      -0.42093497     -0.42061154     -0.42020466     -0.41839713
+      -0.41324398     -0.41317777     -0.40720853     -0.40665276
+      -0.38379468     -0.38320332     -0.38301488     -0.38230589
+      -0.37008809     -0.36995784     -0.36757992     -0.36641418
+      -0.36497822     -0.36407413     -0.36364518     -0.36268498
+      -0.35761506     -0.35639488     -0.35588166     -0.35455419
+      -0.35370095     -0.35232815     -0.35228646     -0.35177899
+      -0.35050807     -0.35041943     -0.34875824     -0.34751062
+      -0.34319703     -0.34295830     -0.34228264     -0.34222946
+      -0.34165532     -0.34165124     -0.34111278     -0.34074822
+      -0.33700074     -0.33692193     -0.33467302     -0.33290970
+      -0.32707755     -0.32598162     -0.32350649     -0.32324947
+      -0.31435440     -0.31342222     -0.31277298     -0.31271334
+      -0.30926758     -0.30684103     -0.30562785     -0.30472269
+      -0.30361626     -0.30129995     -0.30106171     -0.30065968
+      -0.29999391     -0.29986324     -0.29530158     -0.29451125
+      -0.29390201     -0.29174332     -0.29161926     -0.29157366
+      -0.28292578     -0.28216213     -0.28214173     -0.28213139
+      -0.27721624     -0.27663493     -0.27598370     -0.27518162
+      -0.27441389     -0.27403351     -0.27321932     -0.27301479
+      -0.27261609     -0.27182183     -0.27110485     -0.27105931
+      -0.26734060     -0.26592284     -0.26172389     -0.25941542
+      -0.25911318     -0.25745431     -0.25739512     -0.25454423
+      -0.25240597     -0.25205455     -0.25039975     -0.25022241
+      -0.23845930     -0.23771659     -0.23741432     -0.23704459
+      -0.22794714     -0.22781699     -0.22682314     -0.22540856
+      -0.22232909     -0.22024806     -0.22001498     -0.21926700
+      -0.21736053     -0.21733454     -0.21727519     -0.21694698
+      -0.21566673     -0.21484083     -0.21466346     -0.21294519
+      -0.20982031     -0.20762732     -0.20741896     -0.20739967
+      -0.19964233     -0.19870365     -0.19691604     -0.19559664
+      -0.18426375     -0.18341967     -0.18324249     -0.18316494
+      -0.17943191     -0.17938864     -0.17901215     -0.17881909
+      -0.17404188     -0.17376184     -0.16973847     -0.16846683
+      -0.16517611     -0.16457730     -0.15908568     -0.15895840
+      -0.13248187     -0.13244367     -0.13088217     -0.13064299
+      -0.12629234     -0.12610426     -0.12429594     -0.12392143
+      -0.09757684     -0.09749252     -0.09699610     -0.09696740
+      -0.09032904     -0.09017006     -0.08751432     -0.08588607
+      -0.08327344     -0.08323206     -0.07872833     -0.07655363
+      -0.07026181     -0.06980551     -0.06749936     -0.06735725
+      -0.05282330     -0.05098878     -0.04850659     -0.04633494
+      -0.04614510     -0.04468247     -0.04459574     -0.04372497
+      -0.03586373     -0.03500223     -0.03255384     -0.03145804
+ Fermi Energy [eV] :   -0.856017
+
+  Lowest Eigenvalues of the unoccupied subspace spin            1
+ -----------------------------------------------------
+ WARNING : did not converge in ot_eigensolver
+ number of iterations          299  exceeded maximum
+ current gradient / target gradient   3.5318680825562190E-005  /    1.0000000000000001E-005
+       0.16182987
+
+ HOMO - LUMO gap [eV] :    5.259631
+
+ *******************************************************************************
+ **                                                                           **
+ **         ######## #######   #######   ######## #######  ########           **
+ **            ##    ##     ## ##     ## ##       ##   ##     ##              **
+ **            ##    ##     ## ##     ## ######   #######     ##              **
+ **            ##    ##     ## ##     ## ##       ##          ##              **
+ **            ##    #######   #######   ##       ##          ##              **
+ **                                                                           **
+ *******************************************************************************
+ KERNEL|                                                                    sTDA
+ KERNEL| Coulomb term uses Ewald summation
+ KERNEL| Exact exchange term                                                 YES
+ KERNEL| Short range HFX fraction:                                         0.200
+ KERNEL| Transition density filter                                     0.100E-09
+ KERNEL| Spin symmetry of excitations                                    Singlet
+ TDDFPT| Number of states calculated                                         200
+ TDDFPT| Number of Davidson iterations                                       100
+ TDDFPT| Davidson iteration convergence                                0.367E-05
+ TDDFPT| Max. number of Krylov space vectors                                5000
+ TDDFPT| Molecular Orbitals:        Spin       AOs       Occ      Virt     Total
+ TDDFPT|                               1      2408       280      2128      2408
+ sTDA| HFX Fraction                                                       0.2000
+ sTDA| Mataga-Nishimoto exponent (C)                                      1.5160
+ sTDA| Mataga-Nishimoto exponent (X)                                      0.5660
+ sTDA| TD matrix filter                                           0.10000000E-09
+
+ -------------------------------------------------------------------------------
+ -                      sTDA Kernel: Create Matrix SQRT(S)                     -
+ -------------------------------------------------------------------------------
+
+     Lanczos converged:  F threshold:   0.100E-03
+     Est. extremal eigenvalues:    0.119E+02   0.278E-02
+     Est. condition number :    0.427E+04
+
+ Order=           3
+     NS sqrt iter    1 1.00000000   0.297E+01       0.079     6456.839
+     NS sqrt iter    2 1.00000000   0.151E+01       0.107    11851.159
+     NS sqrt iter    3 1.00000000   0.823E+00       0.107    11879.484
+     NS sqrt iter    4 1.00000000   0.575E+00       0.107    11915.006
+     NS sqrt iter    5 1.00000000   0.441E+00       0.106    11923.742
+     NS sqrt iter    6 1.00000000   0.312E+00       0.106    11943.607
+     NS sqrt iter    7 1.00000000   0.179E+00       0.108    11802.306
+     NS sqrt iter    8 1.00000000   0.885E-01       0.106    11924.604
+     NS sqrt iter    9 1.00000000   0.207E-01       0.106    11918.700
+     NS sqrt iter   10 1.00000000   0.477E-03       0.106    11563.026
+     NS sqrt iter   11 1.00000000   0.114E-07       0.057     5767.610
+     Symmetrizing Results
+     Final NS sqrt iter   11 1.00000000   0.574E-07
+
+
+ EWALD| Summation is done by:                                               SPME
+ EWALD| Alpha parameter [       ANGSTROM^-1]                              1.8897
+ EWALD| Real Space Cutoff [          ANGSTROM]                            1.7854
+ EWALD| G-space max. Miller index                        125        45       225
+ EWALD| Spline interpolation order                                             6
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+#0  0x14c4f5adf960 in ???
+#1  0x14c4f5adeac5 in ???
+#2  0x14c4f568651f in ???
+#0  0x154e7a47b960 in ???
+#1  0x154e7a47aac5 in ???
+#2  0x154e7a02251f in ???
+#0  0x14e469891960 in ???
+#1  0x14e469890ac5 in ???
+#2  0x14e46943851f in ???
+#0  0x1493cd6e2960 in ???
+#1  0x1493cd6e1ac5 in ???
+#2  0x1493cd28951f in ???
+#0  0x154f63c27960 in ???
+#1  0x154f63c26ac5 in ???
+#2  0x154f637ce51f in ???
+#0  0x14e4b05c1960 in ???
+#1  0x14e4b05c0ac5 in ???
+#2  0x14e4b016851f in ???
+#0  0x153056993960 in ???
+#1  0x153056992ac5 in ???
+#2  0x15305653a51f in ???
+#0  0x152c0d929960 in ???
+#1  0x152c0d928ac5 in ???
+#2  0x152c0d4d051f in ???
+#0  0x147c3adf5960 in ???
+#1  0x147c3adf4ac5 in ???
+#2  0x147c3a99c51f in ???
+#0  0x152b0f494960 in ???
+#1  0x152b0f493ac5 in ???
+#2  0x152b0f03b51f in ???
+#0  0x1527e21d5960 in ???
+#1  0x1527e21d4ac5 in ???
+#2  0x1527e1d7c51f in ???
+#0  0x14dac68e6960 in ???
+#1  0x14dac68e5ac5 in ???
+#2  0x14dac648d51f in ???
+#0  0x14efa1c74960 in ???
+#1  0x14efa1c73ac5 in ???
+#2  0x14efa181b51f in ???
+#0  0x14d496e92960 in ???
+#1  0x14d496e91ac5 in ???
+#2  0x14d496a3951f in ???
+#0  0x14ed234ad960 in ???
+#1  0x14ed234acac5 in ???
+#2  0x14ed2305451f in ???
+#0  0x150ee7f43960 in ???
+#1  0x150ee7f42ac5 in ???
+#2  0x150ee7aea51f in ???
+#0  0x148bc87fd960 in ???
+#1  0x148bc87fcac5 in ???
+#2  0x148bc83a451f in ???
+#0  0x14a0f9748960 in ???
+#1  0x14a0f9747ac5 in ???
+#2  0x14a0f92ef51f in ???
+#0  0x146e3560a960 in ???
+#1  0x146e35609ac5 in ???
+#2  0x146e351b151f in ???
+#0  0x1481f94fe960 in ???
+#1  0x1481f94fdac5 in ???
+#2  0x1481f90a551f in ???
+#0  0x14d7434fc960 in ???
+#1  0x14d7434fbac5 in ???
+#2  0x14d7430a351f in ???
+#0  0x14c23f9bf960 in ???
+#1  0x14c23f9beac5 in ???
+#2  0x14c23f56651f in ???
+#0  0x151afbed8960 in ???
+#1  0x151afbed7ac5 in ???
+#2  0x151afba7f51f in ???
+#0  0x146b2a6d3960 in ???
+#1  0x146b2a6d2ac5 in ???
+#2  0x146b2a27a51f in ???
+#0  0x151633053960 in ???
+#1  0x151633052ac5 in ???
+#2  0x151632bfa51f in ???
+#0  0x1476719d5960 in ???
+#1  0x1476719d4ac5 in ???
+#2  0x14767157c51f in ???
+#0  0x1518f2d76960 in ???
+#1  0x1518f2d75ac5 in ???
+#2  0x1518f291d51f in ???
+#0  0x14cdca6ca960 in ???
+#1  0x14cdca6c9ac5 in ???
+#2  0x14cdca27151f in ???
+#0  0x14b164d88960 in ???
+#1  0x14b164d87ac5 in ???
+#2  0x14b16492f51f in ???
+#0  0x14d15ad25960 in ???
+#1  0x14d15ad24ac5 in ???
+#2  0x14d15a8cc51f in ???
+#0  0x14b33dfeb960 in ???
+#1  0x14b33dfeaac5 in ???
+#2  0x14b33db9251f in ???
+#0  0x14702ff4d960 in ???
+#1  0x14702ff4cac5 in ???
+#2  0x14702faf451f in ???
+#0  0x147b960d7960 in ???
+#1  0x147b960d6ac5 in ???
+#2  0x147b95c7e51f in ???
+#0  0x14bb0bf39960 in ???
+#1  0x14bb0bf38ac5 in ???
+#2  0x14bb0bae051f in ???
+#0  0x145bcbf16960 in ???
+#1  0x145bcbf15ac5 in ???
+#2  0x145bcbabd51f in ???
+#0  0x14d8f4418960 in ???
+#1  0x14d8f4417ac5 in ???
+#2  0x14d8f3fbf51f in ???
+#0  0x1527bf85a960 in ???
+#1  0x1527bf859ac5 in ???
+#2  0x1527bf40151f in ???
+#0  0x148e7d02f960 in ???
+#1  0x148e7d02eac5 in ???
+#2  0x148e7cbd651f in ???
+#0  0x151ee8ade960 in ???
+#1  0x151ee8addac5 in ???
+#2  0x151ee868551f in ???
+#0  0x15060eae5960 in ???
+#1  0x15060eae4ac5 in ???
+#2  0x15060e68c51f in ???
+#0  0x151002cc7960 in ???
+#1  0x151002cc6ac5 in ???
+#2  0x15100286e51f in ???
+#0  0x14613c040960 in ???
+#1  0x14613c03fac5 in ???
+#2  0x14613bbe751f in ???
+#0  0x15158a43a960 in ???
+#1  0x15158a439ac5 in ???
+#2  0x151589fe151f in ???
+#0  0x153278a19960 in ???
+#1  0x153278a18ac5 in ???
+#2  0x1532785c051f in ???
+#0  0x14ac1f427960 in ???
+#1  0x14ac1f426ac5 in ???
+#2  0x14ac1efce51f in ???
+#0  0x14cc49f52960 in ???
+#1  0x14cc49f51ac5 in ???
+#2  0x14cc49af951f in ???
+#0  0x1514e4a90960 in ???
+#1  0x1514e4a8fac5 in ???
+#2  0x1514e463751f in ???
+#0  0x152de450b960 in ???
+#1  0x152de450aac5 in ???
+#2  0x152de40b251f in ???
+#0  0x1458d2cfd960 in ???
+#1  0x1458d2cfcac5 in ???
+#2  0x1458d28a451f in ???
+#0  0x1532d7a75960 in ???
+#1  0x1532d7a74ac5 in ???
+#2  0x1532d761c51f in ???
+#0  0x14bcc4b45960 in ???
+#1  0x14bcc4b44ac5 in ???
+#2  0x14bcc46ec51f in ???
+#0  0x147a7509f960 in ???
+#1  0x147a7509eac5 in ???
+#2  0x147a74c4651f in ???
+#0  0x14b8f4981960 in ???
+#1  0x14b8f4980ac5 in ???
+#2  0x14b8f452851f in ???
+#0  0x14fc3768c960 in ???
+#1  0x14fc3768bac5 in ???
+#2  0x14fc3723351f in ???
+#0  0x1546cee12960 in ???
+#1  0x1546cee11ac5 in ???
+#2  0x1546ce9b951f in ???
+#0  0x1462e6c1e960 in ???
+#1  0x1462e6c1dac5 in ???
+#2  0x1462e67c551f in ???
+#0  0x1551628cf960 in ???
+#1  0x1551628ceac5 in ???
+#2  0x15516247651f in ???
+#0  0x154f7e1bf960 in ???
+#1  0x154f7e1beac5 in ???
+#2  0x154f7dd6651f in ???
+#0  0x147561f9a960 in ???
+#1  0x147561f99ac5 in ???
+#2  0x147561b4151f in ???
+#0  0x14cfdb969960 in ???
+#1  0x14cfdb968ac5 in ???
+#2  0x14cfdb51051f in ???
+#0  0x151b2e218960 in ???
+#1  0x151b2e217ac5 in ???
+#2  0x151b2ddbf51f in ???
+#0  0x1508020d5960 in ???
+#1  0x1508020d4ac5 in ???
+#2  0x150801c7c51f in ???
+#0  0x14fe6620f960 in ???
+#1  0x14fe6620eac5 in ???
+#2  0x14fe65db651f in ???
+#0  0x145ebe100960 in ???
+#1  0x145ebe0ffac5 in ???
+#2  0x145ebdca751f in ???
+#0  0x14673f020960 in ???
+#1  0x14673f01fac5 in ???
+#2  0x14673ebc751f in ???
+#0  0x15136bbb4960 in ???
+#1  0x15136bbb3ac5 in ???
+#2  0x15136b75b51f in ???
+#0  0x1527f38b2960 in ???
+#1  0x1527f38b1ac5 in ???
+#2  0x1527f345951f in ???
+#0  0x15177b591960 in ???
+#1  0x15177b590ac5 in ???
+#2  0x15177b13851f in ???
+#0  0x147282715960 in ???
+#1  0x147282714ac5 in ???
+#2  0x1472822bc51f in ???
+#0  0x1517cbc73960 in ???
+#1  0x1517cbc72ac5 in ???
+#2  0x1517cb81a51f in ???
+#0  0x14b166db1960 in ???
+#1  0x14b166db0ac5 in ???
+#2  0x14b16695851f in ???
+#0  0x14d1e2e04960 in ???
+#1  0x14d1e2e03ac5 in ???
+#2  0x14d1e29ab51f in ???
+#0  0x14e522464960 in ???
+#1  0x14e522463ac5 in ???
+#2  0x14e52200b51f in ???
+#0  0x14a49c7e4960 in ???
+#1  0x14a49c7e3ac5 in ???
+#2  0x14a49c38b51f in ???
+#0  0x146bb9a57960 in ???
+#1  0x146bb9a56ac5 in ???
+#2  0x146bb95fe51f in ???
+#0  0x14caba411960 in ???
+#1  0x14caba410ac5 in ???
+#2  0x14cab9fb851f in ???
+#0  0x146bd7ff5960 in ???
+#1  0x146bd7ff4ac5 in ???
+#2  0x146bd7b9c51f in ???
+#0  0x1485e8d90960 in ???
+#1  0x1485e8d8fac5 in ???
+#2  0x1485e893751f in ???
+#0  0x14d20d174960 in ???
+#1  0x14d20d173ac5 in ???
+#2  0x14d20cd1b51f in ???
+#0  0x14b481e73960 in ???
+#1  0x14b481e72ac5 in ???
+#2  0x14b481a1a51f in ???
+#0  0x14a1aa981960 in ???
+#1  0x14a1aa980ac5 in ???
+#2  0x14a1aa52851f in ???
+#0  0x155439866960 in ???
+#1  0x155439865ac5 in ???
+#2  0x15543940d51f in ???
+#0  0x14bf5c2fb960 in ???
+#1  0x14bf5c2faac5 in ???
+#2  0x14bf5bea251f in ???
+#0  0x14f6d3819960 in ???
+#1  0x14f6d3818ac5 in ???
+#2  0x14f6d33c051f in ???
+#0  0x1463d5405960 in ???
+#1  0x1463d5404ac5 in ???
+#2  0x1463d4fac51f in ???
+#0  0x151c9d185960 in ???
+#1  0x151c9d184ac5 in ???
+#2  0x151c9cd2c51f in ???
+#0  0x149b8a35b960 in ???
+#1  0x149b8a35aac5 in ???
+#2  0x149b89f0251f in ???
+#0  0x14697aea4960 in ???
+#1  0x14697aea3ac5 in ???
+#2  0x14697aa4b51f in ???
+#3  0x563e305176dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x562cb4d6d6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x558fd997f6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x561f8f0586dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x564cc79d36dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55aef194f6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55bdd7eae6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55bf9deda6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x557d468456dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x558bd0aa86dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x5620c3d3c6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x562e6b2d26dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55f0945c26dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55db6f2ee6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x56350db886dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x556d4c3026dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x564fdabbe6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x56309a63d6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x56026b8aa6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x558fd44486dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x5555ab07c6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x558ad1cde6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55fcd8d366dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x56536729d6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x560b70c036dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x5595f7df66dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x5555aaf286dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x559692e046dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x561a00c486dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x56089568d6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x557117b6a6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55dbbef0f6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x560f897446dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x5607b70346dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x56159726a6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x558623c5e6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x559c0db246dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55c8744f86dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x5641e8fad6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x558d385096dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55d0829c66dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x564f633e46dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x5590de3d36dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x5600eec386dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x560f4f3456dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55fead3576dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x556423c8b6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x56317f3e76dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55b7588de6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x560ddee9c6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55594664b6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55f1ebc476dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55f70ac796dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x556b5fe696dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x5618a52736dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55a6c59406dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55bd71dd86dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55a6c54c46dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x564cba7f86dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55b4b54056dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x556869d466dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55a6db9696dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55bae2c256dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x555749b636dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55fb814206dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55993bb9c6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55f65ecb86dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55e32f4336dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55fdeaebf6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55a79610f6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x558c677d56dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x5602f62116dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x564b91a3b6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55a26cad46dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55d312fbb6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x565102f8e6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55f6bfe0c6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x560041dc86dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x56281ac4e6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55669ea816dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x559339e8f6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x5633bf5946dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x5631e5caa6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55da2f2416dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55c4b4a096dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x55ba1dd6e6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x5611803676dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#3  0x5621481be6dd in __cp_blacs_env_MOD_get_blacs_info
+        at /opt/cp2k/src/fm/cp_blacs_env.F:104
+#4  0x562cb4d6d6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55aef194f6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55bdd7eae6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x563e305176dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x558fd997f6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x564cc79d36dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x5620c3d3c6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x561f8f0586dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55db6f2ee6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55bf9deda6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x558bd0aa86dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x557d468456dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x562e6b2d26dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x556d4c3026dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x564fdabbe6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x56309a63d6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55f0945c26dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x56026b8aa6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x56350db886dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x558ad1cde6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x560b70c036dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x5555ab07c6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x558fd44486dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x5555aaf286dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x56536729d6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x5595f7df66dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x561a00c486dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55594664b6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x5607b70346dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x56089568d6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x557117b6a6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55c8744f86dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x5641e8fad6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x558d385096dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55d0829c66dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x564f633e46dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x5590de3d36dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x5600eec386dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55fead3576dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x556423c8b6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55b7588de6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55fcd8d366dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55f70ac796dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x556b5fe696dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x5618a52736dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55bd71dd86dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55a6c54c46dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x560f897446dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x556869d466dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55a6db9696dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55bae2c256dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55993bb9c6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55a79610f6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x558c677d56dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x5602f62116dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55a26cad46dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55d312fbb6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x565102f8e6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55f6bfe0c6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x560041dc86dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x56281ac4e6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55669ea816dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x56159726a6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x5633bf5946dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x559692e046dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55da2f2416dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55c4b4a096dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55dbbef0f6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55ba1dd6e6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x5611803676dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x558623c5e6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x559c0db246dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x560f4f3456dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x56317f3e76dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x560ddee9c6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55f1ebc476dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55a6c59406dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x564cba7f86dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55b4b54056dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x555749b636dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55fb814206dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55f65ecb86dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55e32f4336dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x55fdeaebf6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x564b91a3b6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x559339e8f6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x5631e5caa6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#4  0x5621481be6dd in __qs_tddfpt2_restart_MOD_tddfpt_read_restart
+        at /opt/cp2k/src/qs_tddfpt2_restart.F:199
+#5  0x5620c2fa89bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x5620c2fd4efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55aef0bbb9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55aef0be7efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55bdd711a9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55bdd7146efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x563e2f7839bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x563e2f7afefb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x562cb3fd99bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x562cb4005efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x558fd8beb9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x558fd8c17efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x561f8e2c49bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x561f8e2f0efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x564cc6c3f9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x564cc6c6befb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x562e6a53e9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x562e6a56aefb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55db6e55a9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55db6e586efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55bf9d1469bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55bf9d172efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x557d45ab19bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x557d45addefb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x558bcfd149bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x558bcfd40efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x56350cdf49bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x56350ce20efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55f09382e9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55f09385aefb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x556d4b56e9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x556d4b59aefb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x564fd9e2a9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x564fd9e56efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x5630998a99bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x5630998d5efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x558ad0f4a9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x558ad0f76efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x56026ab169bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x56026ab42efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x560b6fe6f9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x560b6fe9befb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x5555aa2e89bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x5555aa314efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x5653665099bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x565366535efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x558fd36b49bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x558fd36e0efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x5555aa1949bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x5555aa1c0efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x557116dd69bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x557116e02efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x5619ffeb49bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x5619ffee0efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x5559458b79bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x5559458e3efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x5607b62a09bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x5607b62ccefb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x5608948f99bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x560894925efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x5595f70629bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x5595f708eefb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55dbbe17b9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55dbbe1a7efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x559c0cd909bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x559c0cdbcefb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x564f626509bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x564f6267cefb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55bd710449bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55bd71070efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x560f889b09bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x560f889dcefb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x555748dcf9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x555748dfbefb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55fb8068c9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55fb806b8efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55993ae089bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55993ae34efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55e32e69f9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55e32e6cbefb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55fdea12b9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55fdea157efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x5602f547d9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x5602f54a9efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55d3122279bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55d312253efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x5600410349bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x560041060efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x5615964d69bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x561596502efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x5633be8009bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x5633be82cefb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55c4b3c759bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55c4b3ca1efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55ba1cfda9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55ba1d006efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x558622eca9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x558622ef6efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55c8737649bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55c873790efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x5641e82199bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x5641e8245efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x558d377759bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x558d377a1efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55d081c329bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55d081c5eefb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x5590dd63f9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x5590dd66befb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x5600edea49bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x5600eded0efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x560f4e5b19bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x560f4e5ddefb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55feac5c39bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55feac5efefb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x556422ef79bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x556422f23efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x56317e6539bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x56317e67fefb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55b757b4a9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55b757b76efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x560dde1089bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x560dde134efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55fcd7fa29bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55fcd7fceefb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55f1eaeb39bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55f1eaedfefb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55f709ee59bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55f709f11efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x556b5f0d59bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x556b5f101efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x5618a44df9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x5618a450befb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55a6c4bac9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55a6c4bd8efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55a6c47309bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55a6c475cefb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x564cb9a649bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x564cb9a90efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55b4b46719bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55b4b469defb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x556868fb29bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x556868fdeefb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55a6dabd59bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55a6dac01efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55bae1e919bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55bae1ebdefb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55f65df249bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55f65df50efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55a79537b9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55a7953a7efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x558c66a419bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x558c66a6defb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x564b90ca79bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x564b90cd3efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55a26bd409bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55a26bd6cefb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x5651021fa9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x565102226efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55f6bf0789bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55f6bf0a4efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x562819eba9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x562819ee6efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55669dced9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55669dd19efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x5593390fb9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x559339127efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x5596920709bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55969209cefb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x5631e4f169bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x5631e4f42efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x55da2e4ad9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x55da2e4d9efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x56117f5d39bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x56117f5ffefb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#5  0x56214742a9bc in __qs_tddfpt2_methods_MOD_tddfpt_energies
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:893
+#6  0x562147456efb in __qs_tddfpt2_methods_MOD_tddfpt
+        at /opt/cp2k/src/qs_tddfpt2_methods.F:339
+#7  0x563e2f89cf0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x563e2f89cf0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x562cb40f2f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x562cb40f2f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x5620c30c1f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x5620c30c1f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x561f8e3ddf0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x561f8e3ddf0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x5630999c2f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x5630999c2f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x564cc6d58f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x564cc6d58f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x56350cf0df0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x56350cf0df0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x557d45bcaf0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x557d45bcaf0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x558fd8d04f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x558fd8d04f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x562e6a657f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x562e6a657f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55db6e673f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55db6e673f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55bdd7233f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55bdd7233f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55bf9d25ff0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55bf9d25ff0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x564fd9f43f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x564fd9f43f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x5555aa401f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x5555aa401f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x558ad1063f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x558ad1063f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x56026ac2ff0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x56026ac2ff0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55f093947f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55f093947f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x556d4b687f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x556d4b687f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x558fd37cdf0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x558fd37cdf0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x558bcfe2df0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x558bcfe2df0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x557116eeff0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x557116eeff0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x5555aa2adf0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x5555aa2adf0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x565366622f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x565366622f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x560b6ff88f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x560b6ff88f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x5619fffcdf0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x5619fffcdf0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x5559459d0f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x5559459d0f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55aef0cd4f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55aef0cd4f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x5607b63b9f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x5607b63b9f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x560894a12f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x560894a12f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x56117f6ecf0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x56117f6ecf0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x5595f717bf0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x5595f717bf0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x564f62769f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x564f62769f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55fcd80bbf0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55fcd80bbf0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55bd7115df0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55bd7115df0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x560f88ac9f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x560f88ac9f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55bae1faaf0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55bae1faaf0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55f65e03df0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55f65e03df0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55f6bf191f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55f6bf191f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x5631e502ff0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x5631e502ff0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55c4b3d8ef0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55c4b3d8ef0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55dbbe294f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55dbbe294f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x558622fe3f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x558622fe3f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x559c0cea9f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x559c0cea9f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55c87387df0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55c87387df0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x5641e8332f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x5641e8332f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x558d3788ef0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x558d3788ef0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55d081d4bf0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55d081d4bf0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x5590dd758f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x5590dd758f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x5600edfbdf0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x5600edfbdf0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x560f4e6caf0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x560f4e6caf0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55feac6dcf0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55feac6dcf0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x556423010f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x556423010f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55b757c63f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55b757c63f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x560dde221f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x560dde221f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55f1eafccf0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55f1eafccf0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55f709ffef0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55f709ffef0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x556b5f1eef0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x556b5f1eef0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x5618a45f8f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x5618a45f8f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55a6c4cc5f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55a6c4cc5f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55a6c4849f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55a6c4849f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x564cb9b7df0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x564cb9b7df0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55b4b478af0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55b4b478af0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x5568690cbf0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x5568690cbf0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55a6daceef0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55a6daceef0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x555748ee8f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x555748ee8f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55fb807a5f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55fb807a5f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55993af21f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55993af21f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55e32e7b8f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55e32e7b8f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55fdea244f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55fdea244f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55a795494f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55a795494f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x558c66b5af0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x558c66b5af0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x5602f5596f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x5602f5596f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x564b90dc0f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x564b90dc0f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55a26be59f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55a26be59f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55d312340f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55d312340f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x565102313f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x565102313f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x56004114df0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x56004114df0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55669de06f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55669de06f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x559339214f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x559339214f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x5615965eff0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x5615965eff0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x5633be919f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x5633be919f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x559692189f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x559692189f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55da2e5c6f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55da2e5c6f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x55ba1d0f3f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x55ba1d0f3f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x562147543f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x562147543f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x56317e76cf0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x56317e76cf0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#7  0x562819fd3f0a in __qs_energy_utils_MOD_qs_energies_properties
+        at /opt/cp2k/src/qs_energy_utils.F:157
+#8  0x562819fd3f0a in __qs_energy_MOD_qs_energies
+        at /opt/cp2k/src/qs_energy.F:136
+#9  0x563e30a442d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x563e30a442d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x5620c42692d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x5620c42692d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x561f8f5852d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x561f8f5852d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55f094aef2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55f094aef2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x56350e0b52d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x56350e0b52d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x557d46d722d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x557d46d722d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x5555ab5a92d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x5555ab5a92d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x558ad220b2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x558ad220b2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x562cb529a2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x562cb529a2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x562e6b7ff2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x562e6b7ff2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x56309ab6a2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x56309ab6a2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x564fdb0eb2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x564fdb0eb2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x558fd9eac2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x558fd9eac2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x564cc7f002d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x564cc7f002d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x5571180972d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x5571180972d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55bf9e4072d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55bf9e4072d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x56026bdd72d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x56026bdd72d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x5607b75612d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x5607b75612d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55bdd83db2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55bdd83db2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x556d4c82f2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x556d4c82f2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x558fd49752d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x558fd49752d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x5555ab4552d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x5555ab4552d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x558bd0fd52d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x558bd0fd52d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x5653677ca2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x5653677ca2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x560b711302d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x560b711302d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x561a011752d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x561a011752d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x555946b782d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x555946b782d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x560895bba2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x560895bba2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x5595f83232d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x5595f83232d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55aef1e7c2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55aef1e7c2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55862418b2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55862418b2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55dbbf43c2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55dbbf43c2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x5611808942d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x5611808942d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55f65f1e52d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55f65f1e52d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55c4b4f362d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55c4b4f362d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55c874a252d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55c874a252d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x564f639112d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x564f639112d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x5600ef1652d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x5600ef1652d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55fead8842d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55fead8842d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x5618a57a02d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x5618a57a02d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x560f89c712d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x560f89c712d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55fdeb3ec2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55fdeb3ec2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55f6c03392d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55f6c03392d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x5600422f52d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x5600422f52d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x5615977972d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x5615977972d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x5631e61d72d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x5631e61d72d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55da2f76e2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55da2f76e2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x559c0e0512d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x559c0e0512d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x5641e94da2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x5641e94da2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x558d38a362d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x558d38a362d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55d082ef32d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55d082ef32d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x5590de9002d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x5590de9002d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x560f4f8722d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x560f4f8722d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x5564241b82d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x5564241b82d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x56317f9142d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x56317f9142d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55b758e0b2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55b758e0b2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x560ddf3c92d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x560ddf3c92d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55fcd92632d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55fcd92632d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55f1ec1742d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55f1ec1742d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55f70b1a62d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55f70b1a62d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x556b603962d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x556b603962d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55bd723052d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55bd723052d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55a6c59f12d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55a6c59f12d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x564cbad252d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x564cbad252d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55b4b59322d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55b4b59322d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55686a2732d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55686a2732d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55bae31522d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55bae31522d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55574a0902d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55574a0902d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55fb8194d2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55fb8194d2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55993c0c92d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55993c0c92d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55e32f9602d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55e32f9602d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55a79663c2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55a79663c2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x558c67d022d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x558c67d022d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x5602f673e2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x5602f673e2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x564b91f682d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x564b91f682d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55a26d0012d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55a26d0012d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55d3134e82d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55d3134e82d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x5651034bb2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x5651034bb2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55669efae2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55669efae2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55933a3bc2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55933a3bc2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x5633bfac12d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x5633bfac12d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x5596933312d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x5596933312d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55ba1e29b2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55ba1e29b2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x5621486eb2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x5621486eb2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55a6c5e6d2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55a6c5e6d2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55a6dbe962d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55a6dbe962d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x55db6f81b2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x55db6f81b2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#9  0x56281b17b2d0 in __qs_force_MOD_qs_calc_energy_force
+        at /opt/cp2k/src/qs_force.F:112
+#10  0x56281b17b2d0 in __force_env_methods_MOD_force_env_calc_energy_force
+        at /opt/cp2k/src/force_env_methods.F:256
+#11  0x5555ac4f3685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x5555ac4f3d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x561f904cf685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x561f904cfd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x56309bab4685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x56309bab4d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x56350efff685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x56350efffd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x563e3198e685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x563e3198ed62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x562cb61e4685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x562cb61e4d62 in __cp2k_runs_MOD_run_input.constprop.0
+#11  0x555947ac2685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x555947ac2d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x558fdadf6685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x558fdadf6d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x564cc8e4a685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x564cc8e4ad62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x5607b84ab685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x5607b84abd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x558fd58bf685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x558fd58bfd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55bf9f351685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55bf9f351d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x565368714685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x565368714d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x560b7207a685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x560b7207ad62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55bdd9325685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55bdd9325d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x561a020bf685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x561a020bfd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x557118fe1685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x557118fe1d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55f66012f685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55f66012fd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x560896b04685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x560896b04d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x556d4d779685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x556d4d779d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x5595f926d685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x5595f926dd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x558bd1f1f685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x558bd1f1fd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x564f6485b685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x564f6485bd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x5620c51b3685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x5620c51b3d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55aef2dc6685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55aef2dc6d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x5615986e1685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x5615986e1d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x558ad3155685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x558ad3155d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55fcda1ad685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55fcda1add62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55b4b687c685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55b4b687cd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55993d013685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55993d013d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55f6c1283685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55f6c1283d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x556425102685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#11  0x55f095a39685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55f095a39d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x559c0ef9b685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#11  0x55c87596f685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55c87596fd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x5641ea424685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x5641ea424d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x5555ac39f685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x5555ac39fd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x558d39980685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x558d39980d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55d083e3d685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55d083e3dd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x5600f00af685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x5600f00afd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x560f507bc685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x560f507bcd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55feae7ce685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55feae7ced62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#12  0x556425102d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x56318085e685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x56318085ed62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55b759d55685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55b759d55d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55f1ed0be685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55f1ed0bed62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x556b612e0685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x556b612e0d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x5618a66ea685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x5618a66ead62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55bd7324f685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55bd7324fd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55a6c693b685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55a6c693bd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x564cbbc6f685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x564cbbc6fd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x560f8abbb685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x560f8abbbd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55a6dcde0685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55a6dcde0d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55bae409c685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55bae409cd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55574afda685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55574afdad62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55fb82897685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55fb82897d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55db70765685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55db70765d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x56026cd21685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x56026cd21d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55fdec336685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55fdec336d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55a797586685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55a797586d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x558c68c4c685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x558c68c4cd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x5602f7688685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x5602f7688d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x564b92eb2685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x564b92eb2d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x56004323f685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x56004323fd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55669fef8685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55669fef8d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55933b306685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55933b306d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x5633c0a0b685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x5633c0a0bd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55969427b685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55969427bd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x5631e7121685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x5631e7121d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55da306b8685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55da306b8d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55c4b5e80685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55c4b5e80d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55dbc0386685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55dbc0386d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x562149635685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x562149635d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x5586250d5685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x5586250d5d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x564fdc035685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x564fdc035d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#12  0x559c0ef9bd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x557d47cbc685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x557d47cbcd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x5590df84a685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x5590df84ad62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x560de0313685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x560de0313d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55f70c0f0685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55f70c0f0d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55686b1bd685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55686b1bdd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x562e6c749685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x562e6c749d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55e3308aa685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55e3308aad62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55a26df4b685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55a26df4bd62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55d314432685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55d314432d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x565104405685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x565104405d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x56281c0c5685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x56281c0c5d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x55ba1f1e5685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55ba1f1e5d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#11  0x5611817de685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x5611817ded62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#13  0x5555a9f15df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x5555a9bf7cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x561f8def1df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x561f8dbd3cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x56350ca21df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x56350c703cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55bf9cd73df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55bf9ca55cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x563e2f3b0df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x563e2f092cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x558fd8818df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x558fd84facee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x5630994d6df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x5630991b8cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x564cc686cdf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x564cc654ecee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x558fd32e1df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x558fd2fc3cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x562cb3c06df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x562cb38e8cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x5559454e4df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x5559451c6cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#11  0x55a6c6db7685 in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:355
+#12  0x55a6c6db7d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#13  0x5607b5ecddf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x5607b5bafcee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55bdd6d47df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55bdd6a29cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x5619ffae1df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x5619ff7c3cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x565366136df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x565365e18cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x560b6fa9cdf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x560b6f77ecee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x557116a03df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x5571166e5cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55f65db51df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55f65d833cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x560894526df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x560894208cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x556d4b19bdf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x556d4ae7dcee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x558622af7df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x5586227d9cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x564fd9a57df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x564fd9739cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x559c0c9bddf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x559c0c69fcee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x557d456dedf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x557d453c0cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55c873391df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55c873073cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x5641e7e46df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x5641e7b28cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x5595f6c8fdf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x5595f6971cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x5555a9dc1df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x5555a9aa3cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x558d373a2df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x558d37084cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x558bcf941df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x558bcf623cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55d08185fdf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55d081541cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x564f6227ddf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x564f61f5fcee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x5590dd26cdf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x5590dcf4ecee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x558ad0b77df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x558ad0859cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x5600edad1df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x5600ed7b3cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x560f4e1dedf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x560f4dec0cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55feac1f0df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55feabed2cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x556422b24df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x556422806cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x5620c2bd5df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x5620c28b7cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x56317e280df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x56317df62cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55b757777df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55b757459cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x560dddd35df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x560ddda17cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55fcd7bcfdf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55fcd78b1cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55f1eaae0df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55f1ea7c2cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55f709b12df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55f7097f4cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x556b5ed02df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x556b5e9e4cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x5618a410cdf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x5618a3deecee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55bd70c71df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55bd70953cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55a6c435ddf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55a6c403fcee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x564cb9691df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x564cb9373cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x560f885dddf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x560f882bfcee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55b4b429edf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55b4b3f80cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x556868bdfdf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x5568688c1cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55a6da802df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55a6da4e4cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55bae1abedf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55bae17a0cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x5557489fcdf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x5557486decee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55fb802b9df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55fb7ff9bcee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x562e6a16bdf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x562e69e4dcee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55f09345bdf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55f09313dcee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55db6e187df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55db6de69cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55993aa35df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55993a717cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x56026a743df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x56026a425cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55e32e2ccdf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55e32dfaecee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55fde9d58df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55fde9a3acee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55a794fa8df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55a794c8acee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x558c6666edf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x558c66350cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x5602f50aadf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x5602f4d8ccee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x564b908d4df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x564b905b6cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55a26b96ddf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55a26b64fcee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55d311e54df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55d311b36cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x565101e27df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x565101b09cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55aef07e8df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55aef04cacee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55f6beca5df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55f6be987cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x560040c61df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x560040943cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x562819ae7df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x5628197c9cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55669d91adf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55669d5fccee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x559338d28df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x559338a0acee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x561596103df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x561595de5cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x5633be42ddf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x5633be10fcee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x559691c9ddf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55969197fcee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x5631e4b43df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x5631e4825cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55da2e0dadf9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55da2ddbccee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55c4b38a2df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55c4b3584cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55dbbdda8df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55dbbda8acee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55ba1cc07df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55ba1c8e9cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x56117f200df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x56117eee2cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x562147057df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x562146d39cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+#13  0x55a6c47d9df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#14  0x55a6c44bbcee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   PID 538 RUNNING AT 248eeb1926f9
+=   EXIT CODE: 11
+=   CLEANING UP REMAINING PROCESSES
+=   YOU CAN IGNORE THE BELOW CLEANUP MESSAGES
+===================================================================================
+YOUR APPLICATION TERMINATED WITH THE EXIT STRING: Segmentation fault (signal 11)
+This typically refers to a problem with your application.
+Please see the FAQ page for debugging suggestions
