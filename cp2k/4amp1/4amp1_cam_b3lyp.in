@@ -322,13 +322,11 @@
       &END PRINT
     &END SCF
     &PRINT
-      &MO_MOLDEN #Exporting .molden file containing wavefunction information
-        NDIGITS 9 #Output orbital coefficients if absolute value is larger than 1E-9
-      &END MO_MOLDEN
       &MO_CUBES
+        APPEND T
         NHOMO 1
         NLUMO 1
-        WRITE_CUBE F
+        WRITE_CUBE T
         &EACH
           MD 10
         &END
@@ -343,7 +341,7 @@
         DO_EWALD T
       &END sTDA
       MAX_ITER 100
-      NSTATES   50 #Number of excited states to solve
+      NSTATES   200 #Number of excited states to solve
       RKS_TRIPLETS F #If calculating triplet rather than singlet excited states
       CONVERGENCE [eV] 1E-4 #Convergence criterion of all excitation energies
       MIN_AMPLITUDE 0.01 #The smallest excitation amplitude to print
