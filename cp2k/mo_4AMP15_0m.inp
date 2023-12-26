@@ -236,7 +236,7 @@
   &DFT
     BASIS_SET_FILE_NAME  GTH_BASIS_SETS
     POTENTIAL_FILE_NAME  POTENTIAL
-#   WFN_RESTART_FILE_NAME mo_4AMP15_0m-RESTART.wfn
+    WFN_RESTART_FILE_NAME mo_4AMP15_0m-RESTART.wfn
     CHARGE    0 #Net charge
     MULTIPLICITY    1 #Spin multiplicity
     &QS
@@ -257,7 +257,7 @@
     &SCF
       MAX_SCF 128
       EPS_SCF 1.0E-06 #Convergence threshold of density matrix of inner SCF
-#     SCF_GUESS RESTART #Use wavefunction from WFN_RESTART_FILE_NAME file as initial guess
+      SCF_GUESS RESTART #Use wavefunction from WFN_RESTART_FILE_NAME file as initial guess
       &DIAGONALIZATION
         ALGORITHM STANDARD #Algorithm for diagonalization
       &END DIAGONALIZATION
@@ -277,16 +277,25 @@
       &MO_MOLDEN #Exporting .molden file containing wavefunction information
         NDIGITS 9 #Output orbital coefficients if absolute value is larger than 1E-9
       &END MO_MOLDEN
+      &MO_CUBES
+        APPEND T
+        NHOMO 1
+        NLUMO 1
+        WRITE_CUBE T
+        &EACH
+          MD 10
+        &END
+      &END MO_CUBES
     &END PRINT
   &END DFT
   &PROPERTIES
     &TDDFPT #TDDFT calculation with Tamm-Dancoff approximation
-      NSTATES   50 #Number of excited states to solve
+      NSTATES   500 #Number of excited states to solve
       RKS_TRIPLETS F #If calculating triplet rather than singlet excited states
       CONVERGENCE [eV] 1E-4 #Convergence criterion of all excitation energies
       MIN_AMPLITUDE 0.01 #The smallest excitation amplitude to print
-#     RESTART T #If restarting TDDFT calculation. If true, WFN_RESTART_FILE_NAME should be set to previous .tdwfn file
-#     WFN_RESTART_FILE_NAME mo_4AMP15_0m-RESTART.tdwfn
+      RESTART T #If restarting TDDFT calculation. If true, WFN_RESTART_FILE_NAME should be set to previous .tdwfn file
+      WFN_RESTART_FILE_NAME mo_4AMP15_0m-RESTART.tdwfn
       &PRINT
         #&DETAILED_ENERGY #Print excitation energies at every Davidson iteration
         #&END DETAILED_ENERGY
