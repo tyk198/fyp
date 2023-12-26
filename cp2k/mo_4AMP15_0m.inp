@@ -289,13 +289,19 @@
     &END PRINT
   &END DFT
   &PROPERTIES
-    &TDDFPT #TDDFT calculation with Tamm-Dancoff approximation
+     &TDDFPT #TDDFT calculation with Tamm-Dancoff approximation
+      KERNEL sTDA
+      &sTDA
+        FRACTION 0.20
+        DO_EWALD T
+      &END sTDA
+      MAX_ITER 100
       NSTATES   500 #Number of excited states to solve
       RKS_TRIPLETS F #If calculating triplet rather than singlet excited states
       CONVERGENCE [eV] 1E-4 #Convergence criterion of all excitation energies
       MIN_AMPLITUDE 0.01 #The smallest excitation amplitude to print
-      RESTART T #If restarting TDDFT calculation. If true, WFN_RESTART_FILE_NAME should be set to previous .tdwfn file
-      WFN_RESTART_FILE_NAME mo_4AMP15_0m-RESTART.tdwfn
+#     RESTART T #If restarting TDDFT calculation. If true, WFN_RESTART_FILE_NAME should be set to previous .tdwfn file
+#     WFN_RESTART_FILE_NAME mo_4AMP15_0m-RESTART.tdwfn
       &PRINT
         #&DETAILED_ENERGY #Print excitation energies at every Davidson iteration
         #&END DETAILED_ENERGY
