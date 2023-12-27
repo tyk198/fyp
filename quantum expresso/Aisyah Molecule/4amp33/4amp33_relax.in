@@ -2,7 +2,7 @@
   calculation = 'relax'
   prefix = '4amp34'
   outdir = './outdir'
-  pseudo_dir = '/opt/qe/bin/pp/'
+  pseudo_dir = '/home/yongkeat1017/miniconda3/pp'
 /
 &SYSTEM
   a     =  5.64230e+00
