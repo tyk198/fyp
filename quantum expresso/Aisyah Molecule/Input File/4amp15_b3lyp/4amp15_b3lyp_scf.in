@@ -9,13 +9,17 @@
   nat = 196
   ntyp = 4
   occupations = 'fixed'
-  nbnd = 285
-  input_dft = 'b3lyp-v1r'
-  ecutwfc = 50
-  ecutrho = 500
+  nbnd = 281
+  input_dft = 'b3lyp-v1r', nqx1 = 1, nqx2 = 1, nqx3	=1,
+  x_gamma_extrapolation = .true.
+  exxdiv_treatment = 'gygi-baldereschi'
+  ecutwfc = 100
+  ecutrho = 400
+  ecutfock = 200
 /
 &ELECTRONS
-  conv_thr = 1.0E-10
+  conv_thr = 1.0E-7
+  adaptive_thr = .TRUE.
   mixing_mode = 'local-TF'
   mixing_beta = 0.7
   mixing_ndim = 8
