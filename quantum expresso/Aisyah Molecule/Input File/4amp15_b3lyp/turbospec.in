@@ -1,0 +1,11 @@
+&lr_input
+  prefix = '4amp15_b3lyp',
+  outdir = './outir',
+  td = 'davidson',
+  start = 0.0,
+  end   = 0.6,
+  increment = 0.001,
+  epsil = 0.004,
+  eign_file = '4amp15_b3lyp.eigen'
+/
+
