@@ -5,6 +5,9 @@
  &lr_dav
    d0psi_rs = .true.
    lshift_d0psi = .false.
+   ltammd = .true.
+   p_nbnd_occ = 10
+   p_nbnd_virt = 5
    num_eign = 15,
    num_init = 30,
    num_basis_max = 80,
