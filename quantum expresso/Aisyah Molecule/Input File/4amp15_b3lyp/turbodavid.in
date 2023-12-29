@@ -4,6 +4,7 @@
  /
  &lr_dav
    d0psi_rs = .true.
+   lshift_d0psi = .false.
    num_eign = 15,
    num_init = 30,
    num_basis_max = 80,
