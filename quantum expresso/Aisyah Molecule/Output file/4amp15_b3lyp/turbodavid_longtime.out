@@ -1,0 +1,106 @@
+
+     Program turboTDDFT v.7.2 starts on 29Dec2023 at 14:38:14 
+
+     This program is part of the open-source Quantum ESPRESSO suite
+     for quantum simulation of materials; please cite
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 21 395502 (2009);
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 29 465901 (2017);
+         "P. Giannozzi et al., J. Chem. Phys. 152 154105 (2020);
+          URL http://www.quantum-espresso.org", 
+     in publications or presentations arising from this work. More details at
+     http://www.quantum-espresso.org/quote
+
+     Parallel version (MPI & OpenMP), running on      96 processor cores
+     Number of MPI processes:                48
+     Threads/MPI process:                     2
+
+     MPI processes distributed on     1 nodes
+     R & G space division:  proc/nbgrp/npool/nimage =      48
+     244731 MiB available memory on the printing compute node when the environment starts
+
+
+     Reading xml data from directory:
+
+     ./outdir/4amp15_b3lyp.save/
+     EXX fraction changed:   0.20
+     EXX Screening parameter changed:    0.0000000
+
+     IMPORTANT: XC functional enforced from input :
+     Exchange-correlation= B3LYP-V1R
+                           (   7  13   9   7   0   0   0)
+     EXX-fraction              =        0.20
+     Any further DFT definition will be discarded
+     Please, verify this is what you really want
+
+
+     Parallelization info
+     --------------------
+     sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+     Min         216     216     53                34076    34076    4248
+     Max         218     218     58                34102    34102    4266
+     Sum       10419   10419   2595              1636139  1636139  204437
+
+     Using Slab Decomposition
+
+     Reading collected, re-writing distributed wavefunctions
+[supercomputer:02331] 47 more processes have sent help message help-btl-vader.txt / cma-permission-denied
+[supercomputer:02331] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+ Symmetries are disabled for the gamma_only case
+     Subspace diagonalization in iterative solution of the eigenvalue problem:
+     one sub-group per band group will be used
+     ELPA distributed-memory algorithm (size of sub-group:  6*  6 procs)
+
+     Allocating     1 extra bands for projection
+
+     =-----------------------------------------------------------------=
+
+     Please cite the TDDFPT project as:
+       X. Ge, S. J. Binnie, D. Rocca, R. Gebauer, and S. Baroni,
+       Comput. Phys. Commun. 185, 2080 (2014)
+     in publications and presentations arising from this work.
+
+     =-----------------------------------------------------------------=
+
+     Virt read
+
+     Gamma point algorithm
+     EXX: q-point mesh:     1    1    1
+     EXX: grid of k+q points same as grid of k-points
+
+     EXX grid:   289181 G-vectors     FFT dimensions: ( 144,  48, 216)
+     Finished exx setting.
+
+     Calculation of the dipole in real space
+     Num of eigen values=             15
+     Allocating parameters for davidson ...
+
+     Estimating the RAM requirements:
+          For the basis sets:      104934.38     M
+          For the eigenvectors:       26233.59     M
+          Num_eign =   15     Num_basis_max =   80
+          Reference =  0.20  Ry
+     Do make sure that you have enough RAM.
+
+     poor_of_ram2 is set to .false.. This means that you would like to increase the speed 
+     by storing the D_basis and C_basis vectors which will cause three time of the memory cost.
+     Switch it to .true. if you need to save memory.
+
+     p_nbnd_virt is larger than the total number of computed empty states!
+     Reset: p_nbnd_virt = all computed empty states!
+
+     Initial vectors are forced to be chosen randomly because no enough particle-hole pairs are available.
+     You may want to try to calculate more virtual states or include more occupied states by changing  p_nbnd_occ in the input.
+
+     Finished allocating parameters.
+     Initiating variables for davidson ...
+     Preconditional random vectors are used as initial vectors ...
+     Finished initiating.
+
+     Precondition is used in the algorithm,
+
+     total cpu time spent up to now is      120.5 secs
+
+       ==============================
+
+       Davidson iteration:        1
+       num of basis:   30   total built basis:   30
