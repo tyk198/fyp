@@ -1,10 +1,10 @@
 &LR_INPUT
-  prefix = '4amp'
+  prefix = '4amp_b3lyp'
   outdir = './outdir'
   disk_io = 'reduced'
 /
 
 &LR_CONTROL  
-  itermax = 3000
+  itermax = 5000
   ipol = 4
 /
