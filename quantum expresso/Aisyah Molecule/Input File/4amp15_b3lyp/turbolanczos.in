@@ -1,0 +1,10 @@
+&LR_INPUT
+  prefix = '4amp'
+  outdir = './outdir'
+  disk_io = 'reduced'
+/
+
+&LR_CONTROL  
+  itermax = 3000
+  ipol = 4
+/
