@@ -9,4 +9,5 @@
   ipol = 4
   d0psi_rs = .true.
   lshift_d0psi = .false.
+  ltammd = .true.
 /
