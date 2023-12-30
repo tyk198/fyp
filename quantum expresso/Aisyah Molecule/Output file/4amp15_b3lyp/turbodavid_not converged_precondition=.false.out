@@ -1,0 +1,368 @@
+     Program turboTDDFT v.7.2 starts on 30Dec2023 at  5:23:47 
+
+     This program is part of the open-source Quantum ESPRESSO suite
+     for quantum simulation of materials; please cite
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 21 395502 (2009);
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 29 465901 (2017);
+         "P. Giannozzi et al., J. Chem. Phys. 152 154105 (2020);
+          URL http://www.quantum-espresso.org", 
+     in publications or presentations arising from this work. More details at
+     http://www.quantum-espresso.org/quote
+
+     Parallel version (MPI & OpenMP), running on      96 processor cores
+     Number of MPI processes:                48
+     Threads/MPI process:                     2
+
+     MPI processes distributed on     1 nodes
+     R & G space division:  proc/nbgrp/npool/nimage =      48
+     623556 MiB available memory on the printing compute node when the environment starts
+
+
+     Reading xml data from directory:
+
+     ./outdir/4amp15_b3lyp.save/
+     EXX fraction changed:   0.20
+     EXX Screening parameter changed:    0.0000000
+
+     IMPORTANT: XC functional enforced from input :
+     Exchange-correlation= B3LYP-V1R
+                           (   7  13   9   7   0   0   0)
+     EXX-fraction              =        0.20
+     Any further DFT definition will be discarded
+     Please, verify this is what you really want
+
+
+     Parallelization info
+     --------------------
+     sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+     Min         216     216     53                34076    34076    4248
+     Max         218     218     58                34102    34102    4266
+     Sum       10419   10419   2595              1636139  1636139  204437
+
+     Using Slab Decomposition
+
+     Reading collected, re-writing distributed wavefunctions
+ Symmetries are disabled for the gamma_only case
+     Subspace diagonalization in iterative solution of the eigenvalue problem:
+     one sub-group per band group will be used
+     ELPA distributed-memory algorithm (size of sub-group:  6*  6 procs)
+
+     Allocating     5 extra bands for projection
+
+     =-----------------------------------------------------------------=
+
+     Please cite the TDDFPT project as:
+       X. Ge, S. J. Binnie, D. Rocca, R. Gebauer, and S. Baroni,
+       Comput. Phys. Commun. 185, 2080 (2014)
+     in publications and presentations arising from this work.
+
+     =-----------------------------------------------------------------=
+
+     Virt read
+
+     Gamma point algorithm
+     EXX: q-point mesh:     1    1    1
+     EXX: grid of k+q points same as grid of k-points
+
+     EXX grid:   289181 G-vectors     FFT dimensions: ( 144,  48, 216)
+[supercomputer:04872] 47 more processes have sent help message help-btl-vader.txt / cma-permission-denied
+[supercomputer:04872] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+     Finished exx setting.
+
+     Calculation of the dipole in real space
+     Num of eigen values=             15
+     Allocating parameters for davidson ...
+
+     Estimating the RAM requirements:
+          For the basis sets:      196751.95     M
+          For the eigenvectors:       26233.59     M
+          Num_eign =   15     Num_basis_max =  150
+          Reference =  0.20  Ry
+     Do make sure that you have enough RAM.
+
+     poor_of_ram2 is set to .false.. This means that you would like to increase the speed 
+     by storing the D_basis and C_basis vectors which will cause three time of the memory cost.
+     Switch it to .true. if you need to save memory.
+
+     Finished allocating parameters.
+     Initiating variables for davidson ...
+     Lowest energy electron-hole pairs are used as initial vectors ...
+     Calculating the electron-hole pairs for initiating trial vectors ...
+
+              1       280         1           0.258588021514
+              2       279         1           0.259415548186
+              3       280         2           0.260048232003
+              4       279         2           0.260875758675
+              5       278         1           0.262080531544
+              6       280         3           0.262723584839
+              7       278         2           0.263540742033
+              8       279         3           0.263551111511
+              9       280         4           0.263551274521
+             10       277         1           0.264213016914
+             11       279         4           0.264378801193
+             12       277         2           0.265673227403
+             13       278         3           0.266216094869
+             14       278         4           0.267043784551
+             15       277         3           0.268348580239
+             16       277         4           0.269176269921
+             17       276         1           0.281655453667
+             18       275         1           0.283051188367
+             19       276         2           0.283115664156
+             20       275         2           0.284511398856
+             21       276         3           0.285791016992
+             22       276         4           0.286618706674
+             23       275         3           0.287186751692
+             24       274         1           0.287872216523
+             25       275         4           0.288014441374
+             26       273         1           0.288845982003
+             27       272         1           0.289202032785
+             28       274         2           0.289332427012
+             29       271         1           0.289876739140
+             30       273         2           0.290306192492
+             31       272         2           0.290662243274
+             32       271         2           0.291336949629
+             33       274         3           0.292007779848
+             34       274         4           0.292835469529
+             35       273         3           0.292981545328
+             36       272         3           0.293337596110
+             37       273         4           0.293809235009
+             38       271         3           0.294012302465
+             39       272         4           0.294165285791
+             40       271         4           0.294839992146
+             41       280         5           0.325868650134
+             42       279         5           0.326696176806
+             43       278         5           0.329361160164
+             44       277         5           0.331493645534
+             45       276         5           0.348936082287
+             46       275         5           0.350331816987
+             47       274         5           0.355152845143
+             48       273         5           0.356126610622
+             49       272         5           0.356482661405
+             50       271         5           0.357157367759
+     Finished calculating the cv couples.
+     Finished initiating.
+
+     total cpu time spent up to now is       84.3 secs
+
+       ==============================
+
+       Davidson iteration:        1
+       num of basis:   30   total built basis:   30
+        30     Transition energy    1  :                  0.3939667592
+        30     Transition energy    2  :                  0.3940712524
+        30     Transition energy    3  :                  0.3942237908
+        30     Transition energy    4  :                  0.3952247312
+        30     Transition energy    5  :                  0.4070503786
+        30     Transition energy    6  :                  0.4073552875
+        30     Transition energy    7  :                  0.4076397195
+        30     Transition energy    8  :                  0.4079024379
+        30     Transition energy    9  :                  0.4123612181
+        30     Transition energy   10  :                  0.4183741241
+        30     Transition energy   11  :                  0.4206895605
+        30     Transition energy   12  :                  0.4215422681
+        30     Transition energy   13  :                  0.4227494084
+        30     Transition energy   14  :                  0.4236280896
+        30     Transition energy   15  :                  0.4239136699
+     Residue(Squared modulus):    1        0.0061331      0.0061331
+     Residue(Squared modulus):    2        0.0058727      0.0058727
+     Residue(Squared modulus):    3        0.0051868      0.0051868
+     Residue(Squared modulus):    4        0.0046875      0.0046875
+     Residue(Squared modulus):    5        0.0050975      0.0050975
+     Residue(Squared modulus):    6        0.0058840      0.0058840
+     Residue(Squared modulus):    7        0.0034504      0.0034504
+     Residue(Squared modulus):    8        0.0035007      0.0035007
+     Residue(Squared modulus):    9        0.0508857      0.0508857
+     Residue(Squared modulus):   10        0.0356776      0.0356776
+     Residue(Squared modulus):   11        0.0089537      0.0089537
+     Residue(Squared modulus):   12        0.0373628      0.0373628
+     Residue(Squared modulus):   13        0.0313928      0.0313928
+     Residue(Squared modulus):   14        0.0108130      0.0108130
+     Residue(Squared modulus):   15        0.0094688      0.0094688
+       Largest residue:           0.050885742609
+One residue is eliminated:       0.795298164632E-27
+One residue is eliminated:       0.379579413436E-28
+One residue is eliminated:       0.335866466334E-30
+One residue is eliminated:       0.191079336171E-04
+One residue is eliminated:       0.120401597545E-30
+One residue is eliminated:       0.261815760415E-27
+One residue is eliminated:       0.219322144195E-28
+One residue is eliminated:       0.673879589782E-05
+One residue is eliminated:       0.989757561541E-29
+One residue is eliminated:       0.710697103400E-04
+One residue is eliminated:       0.583847913931E-30
+One residue is eliminated:       0.218675872101E-04
+One residue is eliminated:       0.536609932396E-30
+One residue is eliminated:       0.507234927633E-29
+One residue is eliminated:       0.197591512025E-29
+One residue is eliminated:       0.240584798898E-29
+One residue is eliminated:       0.202730511861E-29
+One residue is eliminated:       0.214633181612E-28
+One residue is eliminated:       0.227744377538E-29
+One residue is eliminated:       0.264382594521E-04
+
+     total cpu time spent up to now is     4176.0 secs
+
+       ==============================
+
+       Davidson iteration:        2
+       num of basis:   40   total built basis:   40
+        40     Transition energy    1  :                  0.3911001141
+        40     Transition energy    2  :                  0.3923448223
+        40     Transition energy    3  :                  0.3940819719
+        40     Transition energy    4  :                  0.3948242554
+        40     Transition energy    5  :                  0.4018774538
+        40     Transition energy    6  :                  0.4055408755
+        40     Transition energy    7  :                  0.4059487722
+        40     Transition energy    8  :                  0.4076363770
+        40     Transition energy    9  :                  0.4078962004
+        40     Transition energy   10  :                  0.4113264871
+        40     Transition energy   11  :                  0.4161261376
+        40     Transition energy   12  :                  0.4195150860
+        40     Transition energy   13  :                  0.4202892895
+        40     Transition energy   14  :                  0.4221944009
+        40     Transition energy   15  :                  0.4229133429
+     Residue(Squared modulus):    1        0.0366105      0.0366105
+     Residue(Squared modulus):    2        0.0225557      0.0225557
+     Residue(Squared modulus):    3        0.0057769      0.0057769
+     Residue(Squared modulus):    4        0.0077896      0.0077896
+     Residue(Squared modulus):    5        0.0725979      0.0725979
+     Residue(Squared modulus):    6        0.0294711      0.0294711
+     Residue(Squared modulus):    7        0.0215516      0.0215516
+     Residue(Squared modulus):    8        0.0034525      0.0034525
+     Residue(Squared modulus):    9        0.0034439      0.0034439
+     Residue(Squared modulus):   10        0.0620922      0.0620922
+     Residue(Squared modulus):   11        0.0661284      0.0661284
+     Residue(Squared modulus):   12        0.0281800      0.0281800
+     Residue(Squared modulus):   13        0.0363708      0.0363708
+     Residue(Squared modulus):   14        0.0166058      0.0166058
+     Residue(Squared modulus):   15        0.0148245      0.0148245
+       Largest residue:           0.072597869956
+One residue is eliminated:       0.519116165735E-27
+One residue is eliminated:       0.184654408177E-27
+One residue is eliminated:       0.151819190244E-26
+One residue is eliminated:       0.106528806890E-27
+One residue is eliminated:       0.531724173732E-28
+One residue is eliminated:       0.397023695122E-27
+One residue is eliminated:       0.384582440288E-28
+One residue is eliminated:       0.450964393490E-27
+One residue is eliminated:       0.715218363578E-29
+One residue is eliminated:       0.775168826147E-05
+One residue is eliminated:       0.344282100726E-29
+One residue is eliminated:       0.173502041525E-28
+One residue is eliminated:       0.430811001879E-28
+One residue is eliminated:       0.535310843698E-29
+One residue is eliminated:       0.473302491730E-29
+One residue is eliminated:       0.152435699911E-29
+
+     total cpu time spent up to now is     5648.3 secs
+
+       ==============================
+
+       Davidson iteration:        3
+       num of basis:   54   total built basis:   54
+        54     Transition energy    1  :                  0.3897046772
+        54     Transition energy    2  :                  0.3917090373
+        54     Transition energy    3  :                  0.3939635533
+        54     Transition energy    4  :                  0.3946133854
+        54     Transition energy    5  :                  0.3988304349
+        54     Transition energy    6  :                  0.4049849601
+        54     Transition energy    7  :                  0.4054426398
+        54     Transition energy    8  :                  0.4070762186
+        54     Transition energy    9  :                  0.4076723367
+        54     Transition energy   10  :                  0.4090286697
+        54     Transition energy   11  :                  0.4138604339
+        54     Transition energy   12  :                  0.4188436206
+        54     Transition energy   13  :                  0.4196356339
+        54     Transition energy   14  :                  0.4215244190
+        54     Transition energy   15  :                  0.4221224586
+     Residue(Squared modulus):    1        0.0344259      0.0344259
+     Residue(Squared modulus):    2        0.0144140      0.0144140
+     Residue(Squared modulus):    3        0.0092627      0.0092627
+     Residue(Squared modulus):    4        0.0098222      0.0098222
+     Residue(Squared modulus):    5        0.0505037      0.0505037
+     Residue(Squared modulus):    6        0.0306696      0.0306696
+     Residue(Squared modulus):    7        0.0175211      0.0175211
+     Residue(Squared modulus):    8        0.0144859      0.0144859
+     Residue(Squared modulus):    9        0.0062171      0.0062171
+     Residue(Squared modulus):   10        0.0602784      0.0602784
+     Residue(Squared modulus):   11        0.0807016      0.0807016
+     Residue(Squared modulus):   12        0.0301391      0.0301391
+     Residue(Squared modulus):   13        0.0390670      0.0390670
+     Residue(Squared modulus):   14        0.0157124      0.0157124
+     Residue(Squared modulus):   15        0.0226946      0.0226946
+       Largest residue:           0.080701581497
+One residue is eliminated:       0.356179109437E-23
+One residue is eliminated:       0.901253729554E-25
+One residue is eliminated:       0.120827198215E-22
+One residue is eliminated:       0.210634223934E-25
+One residue is eliminated:       0.386648160724E-25
+One residue is eliminated:       0.184987150343E-23
+One residue is eliminated:       0.213670053760E-25
+One residue is eliminated:       0.725255799843E-04
+One residue is eliminated:       0.232111795712E-24
+One residue is eliminated:       0.471634216160E-25
+One residue is eliminated:       0.487420129762E-05
+One residue is eliminated:       0.588780522182E-27
+One residue is eliminated:       0.411809016906E-04
+One residue is eliminated:       0.885798799366E-27
+One residue is eliminated:       0.700813715285E-26
+One residue is eliminated:       0.388353292219E-26
+One residue is eliminated:       0.254101231593E-04
+One residue is eliminated:       0.192052370915E-26
+One residue is eliminated:       0.242016763310E-27
+
+     total cpu time spent up to now is     7646.9 secs
+
+       ==============================
+
+       Davidson iteration:        4
+       num of basis:   65   total built basis:   65
+        65     Transition energy    1  :                  0.3881900749
+        65     Transition energy    2  :                  0.3913850618
+        65     Transition energy    3  :                  0.3933567595
+        65     Transition energy    4  :                  0.3944147924
+        65     Transition energy    5  :                  0.3974672096
+        65     Transition energy    6  :                  0.4036644459
+        65     Transition energy    7  :                  0.4048693534
+        65     Transition energy    8  :                  0.4067697544
+        65     Transition energy    9  :                  0.4068336732
+        65     Transition energy   10  :                  0.4080834190
+        65     Transition energy   11  :                  0.4123834107
+        65     Transition energy   12  :                  0.4167892118
+        65     Transition energy   13  :                  0.4191014175
+        65     Transition energy   14  :                  0.4212015549
+        65     Transition energy   15  :                  0.4217615056
+     Residue(Squared modulus):    1        0.0413254      0.0413254
+     Residue(Squared modulus):    2        0.0130027      0.0130027
+     Residue(Squared modulus):    3        0.0235067      0.0235067
+     Residue(Squared modulus):    4        0.0116335      0.0116335
+     Residue(Squared modulus):    5        0.0379724      0.0379724
+     Residue(Squared modulus):    6        0.0473016      0.0473016
+     Residue(Squared modulus):    7        0.0285021      0.0285021
+     Residue(Squared modulus):    8        0.0328414      0.0328414
+     Residue(Squared modulus):    9        0.0162921      0.0162921
+     Residue(Squared modulus):   10        0.0255570      0.0255570
+     Residue(Squared modulus):   11        0.1146417      0.1146417
+     Residue(Squared modulus):   12        0.0911917      0.0911917
+     Residue(Squared modulus):   13        0.0189384      0.0189384
+     Residue(Squared modulus):   14        0.0127989      0.0127989
+     Residue(Squared modulus):   15        0.0220145      0.0220145
+       Largest residue:           0.114641722713
+One residue is eliminated:       0.922657092004E-23
+One residue is eliminated:       0.327996979453E-22
+One residue is eliminated:       0.146101210914E-22
+One residue is eliminated:       0.728325074984E-23
+One residue is eliminated:       0.154935762729E-23
+One residue is eliminated:       0.725728251865E-23
+One residue is eliminated:       0.115767953622E-23
+One residue is eliminated:       0.234027810446E-21
+One residue is eliminated:       0.640643003749E-24
+One residue is eliminated:       0.850682125498E-06
+One residue is eliminated:       0.389467155451E-25
+One residue is eliminated:       0.151888300642E-04
+One residue is eliminated:       0.876283712273E-25
+One residue is eliminated:       0.279013902281E-24
+One residue is eliminated:       0.164824333612E-24
+One residue is eliminated:       0.569151220743E-04
+One residue is eliminated:       0.436558804736E-25
+One residue is eliminated:       0.868312080731E-26
