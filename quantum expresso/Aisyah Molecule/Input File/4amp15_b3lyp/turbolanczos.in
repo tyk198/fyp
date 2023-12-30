@@ -7,4 +7,6 @@
 &LR_CONTROL  
   itermax = 5000
   ipol = 4
+  d0psi_rs = .true.
+  lshift_d0psi = .false.
 /
