@@ -1,0 +1,154 @@
+
+     Program TDDFPT_PP v.6.7MaX starts on 30Dec2023 at 13:34: 7
+
+     This program is part of the open-source Quantum ESPRESSO suite
+     for quantum simulation of materials; please cite
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 21 395502 (2009);
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 29 465901 (2017);
+          URL http://www.quantum-espresso.org",
+     in publications or presentations arising from this work. More details at
+     http://www.quantum-espresso.org/quote
+
+     Parallel version (MPI), running on   170 processors
+
+     MPI processes distributed on     1 nodes
+     R & G space division:  proc/nbgrp/npool/nimage =     170
+
+     Reading   3000 Lanczos steps for direction 1
+       2500 steps will be considered
+
+
+     Reading   3000 Lanczos steps for direction 2
+       2500 steps will be considered
+
+
+     Reading   3000 Lanczos steps for direction 3
+       2500 steps will be considered
+
+
+     Polarization direction:1
+     Lanczos coefficients:
+     Average =    25.64083714
+     Average oscillation amplitude =     0.07600817
+
+     Polarization direction:2
+     Lanczos coefficients:
+     Average =    25.64095129
+     Average oscillation amplitude =     0.07566969
+
+     Polarization direction:3
+     Lanczos coefficients:
+     Average =    25.64062571
+     Average oscillation amplitude =     0.07573868
+
+     Data ready, starting to calculate observables...
+
+     Broadening =      0.00514490 Ry
+
+     Output file name: 4amp.plot_chi.dat
+
+     Output file name for the oscillator strength S  4amp.plot_S.dat
+
+     chi_i_j: dipole polarizability tensor  in units of e^2*a_0^2/energy
+
+     S: oscillator strength in units of 1/energy
+
+     S(\hbar \omega) = 2m/( 3 \pi e^2 \hbar)  \omega sum_j chi_j_j
+
+     S(\hbar \omega) satisfies the f-sum rule:  \int_0^\infty dE S(E) = N_el
+
+     Functions are reported in \hbar.\omega  Energy unit is (eV)
+
+     TDDFPT_PP    :      4.69s CPU      4.69s WALL
+
+
+   This run was terminated on:  13:34:12  30Dec2023
+
+=------------------------------------------------------------------------------=
+   JOB DONE.
+=------------------------------------------------------------------------------=
+cykeat@SuperQuantumComputerProMaxPlusMK3000:~/qefyp$ mv 4amp.plot_S.dat 4amp.plot_S6.dat
+cykeat@SuperQuantumComputerProMaxPlusMK3000:~/qefyp$ mv 4amp.plot_chi.dat 4amp.plot_chi6.dat
+cykeat@SuperQuantumComputerProMaxPlusMK3000:~/qefyp$ wget https://raw.githubusercontent.com/tyk198/fyp/cyk_sub-branch/quantum%20expresso/Aisyah%20Molecule/Input%20File/turbospectrum7.in
+--2023-12-30 13:34:29--  https://raw.githubusercontent.com/tyk198/fyp/cyk_sub-branch/quantum%20expresso/Aisyah%20Molecule/Input%20File/turbospectrum7.in
+Resolving raw.githubusercontent.com (raw.githubusercontent.com)... 185.199.110.133, 185.199.109.133, 185.199.108.133, ...
+Connecting to raw.githubusercontent.com (raw.githubusercontent.com)|185.199.110.133|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 201 [text/plain]
+Saving to: ‘turbospectrum7.in’
+
+turbospectrum7.in                         100%[=====================================================================================>]     201  --.-KB/s    in 0s
+
+2023-12-30 13:34:29 (28.5 MB/s) - ‘turbospectrum7.in’ saved [201/201]
+
+cykeat@SuperQuantumComputerProMaxPlusMK3000:~/qefyp$ mpirun -np 170 turbo_spectrum.x < turbospectrum7.in
+ Warning: Only a single CPU will be used!
+
+     Program TDDFPT_PP v.6.7MaX starts on 30Dec2023 at 13:34:35
+
+     This program is part of the open-source Quantum ESPRESSO suite
+     for quantum simulation of materials; please cite
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 21 395502 (2009);
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 29 465901 (2017);
+          URL http://www.quantum-espresso.org",
+     in publications or presentations arising from this work. More details at
+     http://www.quantum-espresso.org/quote
+
+     Parallel version (MPI), running on   170 processors
+
+     MPI processes distributed on     1 nodes
+     R & G space division:  proc/nbgrp/npool/nimage =     170
+
+     Reading   3000 Lanczos steps for direction 1
+       2000 steps will be considered
+
+
+     Reading   3000 Lanczos steps for direction 2
+       2000 steps will be considered
+
+
+     Reading   3000 Lanczos steps for direction 3
+       2000 steps will be considered
+
+
+     Polarization direction:1
+     Lanczos coefficients:
+     Average =    25.64147023
+     Average oscillation amplitude =     0.07392120
+
+     Polarization direction:2
+     Lanczos coefficients:
+     Average =    25.64165324
+     Average oscillation amplitude =     0.07686169
+
+     Polarization direction:3
+     Lanczos coefficients:
+     Average =    25.64153747
+     Average oscillation amplitude =     0.07785032
+
+     Data ready, starting to calculate observables...
+
+     Broadening =      0.00514490 Ry
+
+     Output file name: 4amp.plot_chi.dat
+
+     Output file name for the oscillator strength S  4amp.plot_S.dat
+
+     chi_i_j: dipole polarizability tensor  in units of e^2*a_0^2/energy
+
+     S: oscillator strength in units of 1/energy
+
+     S(\hbar \omega) = 2m/( 3 \pi e^2 \hbar)  \omega sum_j chi_j_j
+
+     S(\hbar \omega) satisfies the f-sum rule:  \int_0^\infty dE S(E) = N_el
+
+     Functions are reported in \hbar.\omega  Energy unit is (eV)
+
+     TDDFPT_PP    :      4.57s CPU      4.57s WALL
+
+
+   This run was terminated on:  13:34:40  30Dec2023
+
+=------------------------------------------------------------------------------=
+   JOB DONE.
+=------------------------------------------------------------------------------=
