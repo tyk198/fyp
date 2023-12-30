@@ -2,8 +2,6 @@
   prefix = '4amp'
   outdir = './outdir'
   itermax0 = 3000
-  itermax = 10000
-  extrapolation = 'osc'
   epsil = 0.0051449
   units = 1
   start = 0.0
