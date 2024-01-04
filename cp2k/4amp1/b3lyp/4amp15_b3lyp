@@ -258,6 +258,11 @@
     &XC
       &HF
         FRACTION 0.20
+        &INTERACTION_POTENTIAL
+          CUTOFF_RADIUS 2.5
+          POTENTIAL_TYPE TRUNCATED
+          T_C_G_DATA t_c_g.dat
+        &END INTERACTION_POTENTIAL
         &MEMORY
           MAX_MEMORY 5
         &END MEMORY
