@@ -10,7 +10,7 @@
   ntyp = 4
   occupations = 'fixed'
   nbnd = 285
-  input_dft = 'XC_HYB_GGA_XC_REVB3LYP'
+  input_dft = 'pbe'
   ecutwfc = 50
   ecutrho = 500
 /
