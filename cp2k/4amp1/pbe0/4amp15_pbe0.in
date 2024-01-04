@@ -292,7 +292,7 @@
       EPS_SCF 1.0E-05 #Convergence threshold of density matrix of inner SCF
   #   SCF_GUESS RESTART #Use wavefunction from WFN_RESTART_FILE_NAME file as initial guess
       &OUTER_SCF
-         MAX_SCF 10
+         MAX_SCF 20
          EPS_SCF 1.0E-5
       &END OUTER_SCF
       &OT T
