@@ -260,9 +260,11 @@
         FRACTION 1.000
         &INTERACTION_POTENTIAL
           OMEGA 0.30
-          POTENTIAL_TYPE MIX_CL
+          POTENTIAL_TYPE MIX_CL_TRUNC
+          CUTOFF_RADIUS 2.5
           SCALE_COULOMB 0.167
           SCALE_LONGRANGE 0.833
+          T_C_G_DATA t_c_g.dat
         &END INTERACTION_POTENTIAL
         &MEMORY
           MAX_MEMORY 10
