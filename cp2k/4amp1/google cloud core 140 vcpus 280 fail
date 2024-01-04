@@ -1,0 +1,90 @@
+yongkeat1017@superquantumcomputerpromax:~/TEST-local-psmp-2024-01-04_14-54-04/ATOM/regtest-1$ sudo docker run -it --rm --shm-size=1g -v $PWD:/mnt -u $(id -u $USER):$(id -g $USER) cp2k/cp2k:2023.2_mpich_generic_psmp mpirun -n 140 -genv OMP_NUM_THREADS=2 cp2k -i 4amp15_wB97X.in
+ DBCSR| CPU Multiplication driver                                           XSMM (U)
+ DBCSR| Multrec recursion limit                                              512 (U)
+ DBCSR| Multiplication stack size                                           1000 (D)
+ DBCSR| Maximum elements for images                                    UNLIMITED (U)
+ DBCSR| Multiplicative factor virtual images                                   1 (U)
+ DBCSR| Use multiplication densification                                       T (D)
+ DBCSR| Multiplication size stacks                                             3 (U)
+ DBCSR| Use memory pool for CPU allocation                                     F (U)
+ DBCSR| Number of 3D layers                                               SINGLE (U)
+ DBCSR| Use MPI memory allocation                                              F (U)
+ DBCSR| Use RMA algorithm                                                      F (U)
+ DBCSR| Use Communication thread                                               T (U)
+ DBCSR| Communication thread load                                             83 (D)
+ DBCSR| MPI: My process id                                                     0
+ DBCSR| MPI: Number of processes                                             140
+ DBCSR| OMP: Current number of threads                                         2
+ DBCSR| OMP: Max number of threads                                             2
+ DBCSR| Split modifier for TAS multiplication algorithm                  1.0E+00 (U)
+
+
+  **** **** ******  **  PROGRAM STARTED AT               2024-01-04 15:19:58.188
+ ***** ** ***  *** **   PROGRAM STARTED ON                          52c84357b733
+ **    ****   ******    PROGRAM STARTED BY                             <unknown>
+ ***** **    ** ** **   PROGRAM PROCESS ID                                   538
+  **** **  *******  **  PROGRAM STARTED IN                                  /mnt
+
+ CP2K| version string:                                       CP2K version 2023.2
+ CP2K| source code revision number:                                  git:65cca6c
+ CP2K| cp2kflags: omp libint fftw3 libxc pexsi elpa parallel scalapack cosma qui
+ CP2K|            p xsmm plumed2 spglib sirius libvori libbqb libtorch libvdwxc
+ CP2K| is freely available from                            https://www.cp2k.org/
+ CP2K| Program compiled at                          Wed Oct 18 11:40:41 UTC 2023
+ CP2K| Program compiled on                                          633bb7bf566f
+ CP2K| Program compiled for                                                local
+ CP2K| Data directory path                                        /opt/cp2k/data
+ CP2K| Input file name                                           4amp15_wB97X.in
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Program received signal SIGSEGV: Segmentation fault - invalid memory reference.
+
+Backtrace for this error:
+
+Backtrace for this error:
+#0  0x14f934b2e960 in ???
+#1  0x14f934b2dac5 in ???
+#2  0x14f9346d551f in ???
+#3  0x14f94e15b4a9 in ???
+#4  0x14f94e15c01a in ???
+#5  0x14f94e1700ae in ???
+#6  0x14f94dfade81 in ???
+#7  0x14f9505c087b in ???
+#8  0x55c160941dc8 in __message_passing_MOD_mp_sum_l
+        at /opt/cp2k/src/mpiwrap/message_passing.fypp:1287
+#9  0x55c15f5a3350 in read_global_section
+        at /opt/cp2k/src/environment.F:670
+#10  0x55c15f5a85de in read_cp2k_section
+        at /opt/cp2k/src/environment.F:953
+#11  0x55c15f5a85de in __environment_MOD_cp2k_read
+        at /opt/cp2k/src/environment.F:383
+#12  0x55c160be1f68 in __f77_interface_MOD_create_force_env.constprop.0
+        at /opt/cp2k/src/f77_interface.F:692
+#13  0x55c160b5050d in __cp2k_runs_MOD_cp2k_run.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:310
+#14  0x55c160b52d62 in __cp2k_runs_MOD_run_input.constprop.0
+        at /opt/cp2k/src/start/cp2k_runs.F:997
+#15  0x55c15e574df9 in cp2k
+        at /opt/cp2k/src/start/cp2k.F:379
+#16  0x55c15e256cee in main
+        at /opt/cp2k/src/start/cp2k.F:44
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   PID 538 RUNNING AT 52c84357b733
+=   EXIT CODE: 9
+=   CLEANING UP REMAINING PROCESSES
+=   YOU CAN IGNORE THE BELOW CLEANUP MESSAGES
+===================================================================================
+YOUR APPLICATION TERMINATED WITH THE EXIT STRING: Segmentation fault (signal 11)
+This typically refers to a problem with your application.
+Please see the FAQ page for debugging suggestions
