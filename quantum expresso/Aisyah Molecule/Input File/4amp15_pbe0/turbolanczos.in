@@ -1,0 +1,12 @@
+&LR_INPUT
+  prefix = '4amp15_pbe0'
+  outdir = './outdir'
+  disk_io = 'reduced'
+/
+
+&LR_CONTROL  
+  itermax = 3000
+  ipol = 4
+  d0psi_rs = .true.
+  lshift_d0psi = .false.
+/
