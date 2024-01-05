@@ -9,7 +9,7 @@
   nat = 196
   ntyp = 4
   occupations = 'fixed'
-  nbnd = 291
+  nbnd = 286
   input_dft = 'pbe0', nqx1 = 1, nqx2 = 1, nqx3=1,
   x_gamma_extrapolation = .true.
   exxdiv_treatment = 'gygi-baldereschi'
