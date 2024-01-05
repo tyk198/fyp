@@ -15,7 +15,7 @@
   exxdiv_treatment = 'gygi-baldereschi'
   ecutwfc = 50
   ecutrho = 500
-  ecutfock = 200
+  ecutfock = 100
 /
 &ELECTRONS
   conv_thr = 1.0E-7
