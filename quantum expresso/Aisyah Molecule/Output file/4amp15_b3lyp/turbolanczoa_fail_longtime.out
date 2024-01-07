@@ -1,0 +1,124 @@
+(/home/yongkeat1017/miniconda3/env) yongkeat1017@superquantumcomputerpromax:~/miniconda3/4amp15_b3lyp$ mpirun -np 120 turbo_lanczos.x --npool 6 -input turbolanczos.in
+--------------------------------------------------------------------------
+WARNING: Linux kernel CMA support was requested via the
+btl_vader_single_copy_mechanism MCA variable, but CMA support is
+not available due to restrictive ptrace settings.
+
+The vader shared memory BTL will fall back on another single-copy
+mechanism if one is available. This may result in lower performance.
+
+  Local host: superquantumcomputerpromax
+--------------------------------------------------------------------------
+[superquantumcomputerpromax:13542] mca_base_component_repository_open: unable to open mca_btl_openib: librdmacm.so.1: cannot open shared object file: No such file or directory (ignored)
+
+[superquantumcomputerpromax:14084] mca_base_component_repository_open: unable to open mca_btl_openib: librdmacm.so.1: cannot open shared object file: No such file or directory (ignored)
+
+     Program turboTDDFT v.7.2 starts on  7Jan2024 at  5:11:10 
+
+     This program is part of the open-source Quantum ESPRESSO suite
+     for quantum simulation of materials; please cite
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 21 395502 (2009);
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 29 465901 (2017);
+         "P. Giannozzi et al., J. Chem. Phys. 152 154105 (2020);
+          URL http://www.quantum-espresso.org", 
+     in publications or presentations arising from this work. More details at
+     http://www.quantum-espresso.org/quote
+
+     Parallel version (MPI & OpenMP), running on     360 processor cores
+     Number of MPI processes:               120
+     Threads/MPI process:                     3
+
+     MPI processes distributed on     1 nodes
+     R & G space division:  proc/nbgrp/npool/nimage =     120
+     706400 MiB available memory on the printing compute node when the environment starts
+
+
+     Reading xml data from directory:
+
+     ./outdir/4amp15_b3lyp.save/
+     EXX fraction changed:   0.20
+     EXX Screening parameter changed:    0.0000000
+
+     IMPORTANT: XC functional enforced from input :
+     Exchange-correlation= B3LYP-V1R
+                           (   7  13   9   7   0   0   0)
+     EXX-fraction              =        0.20
+     Any further DFT definition will be discarded
+     Please, verify this is what you really want
+
+
+     Parallelization info
+     --------------------
+     sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+     Min          86      86     20                13620    13620    1672
+     Max          88      88     22                13660    13660    1726
+     Sum       10419   10419   2595              1636139  1636139  204437
+
+     Using Slab Decomposition
+
+     Reading collected, re-writing distributed wavefunctions
+ Symmetries are disabled for the gamma_only case
+     Subspace diagonalization in iterative solution of the eigenvalue problem:
+     one sub-group per band group will be used
+     ELPA distributed-memory algorithm (size of sub-group: 10* 10 procs)
+
+
+     Warning: There are virtual states in the input file, trying to disregard in response calculation
+
+     =-----------------------------------------------------------------=
+
+     Please cite the TDDFPT project as:
+       O. B. Malcioglu, R. Gebauer, D. Rocca, and S. Baroni,
+       Comput. Phys. Commun. 182, 1744 (2011)
+     and
+       X. Ge, S. J. Binnie, D. Rocca, R. Gebauer, and S. Baroni,
+       Comput. Phys. Commun. 185, 2080 (2014)
+     in publications and presentations arising from this work.
+
+     =-----------------------------------------------------------------=
+
+     Normal read
+
+     Gamma point algorithm
+     EXX: q-point mesh:     1    1    1
+     EXX: grid of k+q points same as grid of k-points
+
+     EXX grid:   289181 G-vectors     FFT dimensions: ( 144,  48, 216)
+[superquantumcomputerpromax:13534] 119 more processes have sent help message help-btl-vader.txt / cma-permission-denied
+[superquantumcomputerpromax:13534] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+     Finished exx setting.
+
+     Calculation of the dipole in real space
+
+     LANCZOS LINEAR-RESPONSE SPECTRUM CALCULATION
+      
+     Number of Lanczos iterations =   5000
+
+     Starting Lanczos loop        1
+
+     Lanczos iteration:      1   Pol:1
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000001)=  0.000000
+     beta (00000001)=201.916918
+     gamma(00000001)=201.916918
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
+
+     Lanczos iteration:      2   Pol:1
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000002)=  0.000000
+     beta (00000002)= 44.980569
+     gamma(00000002)= 44.980569
+     z1=       1  0.448898092756558E+01  0.000000000000000E+00
+     z1=       2  0.109553828729298E-04  0.000000000000000E+00
+     z1=       3 -0.177315166832896E+01  0.000000000000000E+00
+
+     Lanczos iteration:      3   Pol:1
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000003)=  0.000000
+     beta (00000003)= 57.421559
+     gamma(00000003)= 57.421559
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
