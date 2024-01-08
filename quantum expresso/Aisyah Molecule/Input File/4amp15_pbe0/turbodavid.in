@@ -9,7 +9,7 @@
    p_nbnd_virt = 5
    num_eign = 15,
    num_init = 30,
-   num_basis_max = 150,
+   num_basis_max = 100,
    residue_conv_thr = 1.0D-4,
    start  = 0.150,
    finish = 0.456,
