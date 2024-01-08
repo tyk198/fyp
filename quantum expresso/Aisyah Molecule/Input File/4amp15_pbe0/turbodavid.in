@@ -5,11 +5,11 @@
  &lr_dav
    d0psi_rs = .true.
    lshift_d0psi = .false.
-   p_nbnd_occ = 10
-   p_nbnd_virt = 5
-   num_eign = 15,
-   num_init = 30,
-   num_basis_max = 100,
+   p_nbnd_occ = 5
+   p_nbnd_virt = 4
+   num_eign = 5,
+   num_init = 10,
+   num_basis_max = 40,
    residue_conv_thr = 1.0D-4,
    start  = 0.150,
    finish = 0.456,
