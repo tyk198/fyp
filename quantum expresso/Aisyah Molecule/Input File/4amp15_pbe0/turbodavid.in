@@ -1,6 +1,7 @@
  &lr_input
    prefix = '4amp15_pbe0',
    outdir = './outdir',
+   disk_io = 'reduced'
  /
  &lr_dav
    d0psi_rs = .true.
