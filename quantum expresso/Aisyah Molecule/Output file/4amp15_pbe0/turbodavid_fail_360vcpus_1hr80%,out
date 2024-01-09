@@ -1,0 +1,152 @@
+(/home/yongkeat1017/miniconda3/env) yongkeat1017@superquantumcomputerpromax:~/miniconda3/4amp15_pbe0$ mpirun -np 90 turbo_davidson.x --npool 6 -input turbodavid.in
+--------------------------------------------------------------------------
+WARNING: Linux kernel CMA support was requested via the
+btl_vader_single_copy_mechanism MCA variable, but CMA support is
+not available due to restrictive ptrace settings.
+
+The vader shared memory BTL will fall back on another single-copy
+mechanism if one is available. This may result in lower performance.
+
+  Local host: superquantumcomputerpromax
+--------------------------------------------------------------------------
+
+     Program turboTDDFT v.7.2 starts on  9Jan2024 at  4:57:26 
+
+     This program is part of the open-source Quantum ESPRESSO suite
+     for quantum simulation of materials; please cite
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 21 395502 (2009);
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 29 465901 (2017);
+         "P. Giannozzi et al., J. Chem. Phys. 152 154105 (2020);
+          URL http://www.quantum-espresso.org", 
+     in publications or presentations arising from this work. More details at
+     http://www.quantum-espresso.org/quote
+
+     Parallel version (MPI & OpenMP), running on     360 processor cores
+     Number of MPI processes:                90
+     Threads/MPI process:                     4
+
+     MPI processes distributed on     1 nodes
+     R & G space division:  proc/nbgrp/npool/nimage =      90
+     707261 MiB available memory on the printing compute node when the environment starts
+
+
+     Reading xml data from directory:
+
+     ./outdir/4amp15_pbe0.save/
+     EXX fraction changed:   0.25
+     EXX Screening parameter changed:    0.0000000
+
+     IMPORTANT: XC functional enforced from input :
+     Exchange-correlation= PBE0
+                           (   6   4   8   4   0   0   0)
+     EXX-fraction              =        0.25
+     Any further DFT definition will be discarded
+     Please, verify this is what you really want
+
+
+     Parallelization info
+     --------------------
+     sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+     Min         114     114     27                18148    18148    2260
+     Max         116     116     30                18196    18196    2292
+     Sum       10419   10419   2595              1636139  1636139  204437
+
+     Using Slab Decomposition
+
+     Reading collected, re-writing distributed wavefunctions
+ Symmetries are disabled for the gamma_only case
+     Subspace diagonalization in iterative solution of the eigenvalue problem:
+     one sub-group per band group will be used
+     ELPA distributed-memory algorithm (size of sub-group:  9*  9 procs)
+
+     Allocating     6 extra bands for projection
+
+     =-----------------------------------------------------------------=
+
+     Please cite the TDDFPT project as:
+       X. Ge, S. J. Binnie, D. Rocca, R. Gebauer, and S. Baroni,
+       Comput. Phys. Commun. 185, 2080 (2014)
+     in publications and presentations arising from this work.
+
+     =-----------------------------------------------------------------=
+
+     Virt read
+
+     Gamma point algorithm
+     EXX: q-point mesh:     1    1    1
+     EXX: grid of k+q points same as grid of k-points
+
+     EXX grid:   289181 G-vectors     FFT dimensions: ( 144,  48, 216)
+[superquantumcomputerpromax:06486] 89 more processes have sent help message help-btl-vader.txt / cma-permission-denied
+[superquantumcomputerpromax:06486] Set MCA parameter "orte_base_help_aggregate" to 0 to see all help / error messages
+     Finished exx setting.
+
+     Calculation of the dipole in real space
+     Num of eigen values=              5
+     Allocating parameters for davidson ...
+
+     Estimating the RAM requirements:
+          For the basis sets:       52833.25     M
+          For the eigenvectors:        8805.54     M
+          Num_eign =    5     Num_basis_max =   40
+          Reference =  0.22  Ry
+     Do make sure that you have enough RAM.
+
+     poor_of_ram2 is set to .false.. This means that you would like to increase the speed 
+     by storing the D_basis and C_basis vectors which will cause three time of the memory cost.
+     Switch it to .true. if you need to save memory.
+
+     Finished allocating parameters.
+     Initiating variables for davidson ...
+     Lowest energy electron-hole pairs are used as initial vectors ...
+     Calculating the electron-hole pairs for initiating trial vectors ...
+
+              1       280         1           0.300844453545
+              2       279         1           0.301383620142
+              3       280         2           0.302000793210
+              4       279         2           0.302539959807
+              5       278         1           0.303768695402
+              6       280         3           0.304576065492
+              7       278         2           0.304925035067
+              8       279         3           0.305115232089
+              9       280         4           0.305230227956
+             10       279         4           0.305769394553
+             11       277         1           0.305990619688
+             12       277         2           0.307146959353
+             13       278         3           0.307500307349
+             14       278         4           0.308154469813
+             15       277         3           0.309722231635
+             16       277         4           0.310376394099
+             17       276         1           0.318873622420
+             18       276         2           0.320029962085
+             19       276         3           0.322605234367
+             20       276         4           0.323259396831
+     Finished calculating the cv couples.
+     Finished initiating.
+
+     Precondition is used in the algorithm,
+
+     total cpu time spent up to now is       49.4 secs
+
+       ==============================
+
+       Davidson iteration:        1
+       num of basis:   10   total built basis:   10
+        10     Transition energy    1  :                  0.2745601574
+        10     Transition energy    2  :                  0.2771414958
+        10     Transition energy    3  :                  0.2888970304
+        10     Transition energy    4  :                  0.2898355806
+        10     Transition energy    5  :                  0.2902563924
+     Residue(Squared modulus):    1        0.0814243      0.0012538
+     Residue(Squared modulus):    2        0.0802033      0.0011156
+     Residue(Squared modulus):    3        0.0737535      0.0013645
+     Residue(Squared modulus):    4        0.0357286      0.0008768
+     Residue(Squared modulus):    5        0.0489605      0.0009603
+       Largest residue:           0.081424318732
+
+     total cpu time spent up to now is     3032.4 secs
+
+       ==============================
+
+       Davidson iteration:        2
+       num of basis:   20   total built basis:   20
