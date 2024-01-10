@@ -2,7 +2,7 @@
     calculation = 'scf'
     prefix = 'C6H6'
     outdir = './outdir'
-    pseudo_dir = '/home/cyk/qe_conda/pp'
+    pseudo_dir = '/home/cykeat/miniconda3/pp'
  /
  &SYSTEM
     ibrav = 6,
