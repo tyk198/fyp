@@ -1,0 +1,10 @@
+&lr_input
+  prefix = 'C6H6',
+  outdir = './outdir',
+  td = 'davidson',
+  start = 0.150,
+  end   = 0.456,
+  increment = 0.001,
+  epsil = 0.005,
+  eign_file = 'C6H6.eigen'
+/
