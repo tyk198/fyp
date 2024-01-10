@@ -15,9 +15,9 @@
     nbnd = 28
     nat = 12,
     ntyp = 2,
-    ecutwfc = 100,
-    ecutrho = 400
-    ecutfock = 200
+    ecutwfc = 90,
+    ecutrho = 360
+    ecutfock = 180
  /
  &ELECTRONS
     conv_thr = 1.0E-7
