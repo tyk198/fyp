@@ -98,6 +98,8 @@
     &QS
       EPS_DEFAULT 1.0E-10
       METHOD GAPW
+      EPS_FILTER_MATRIX 0	
+      EPS_PGF_ORB 1.0E-15
     &END QS
     &POISSON
       PERIODIC NONE #Direction(s) of PBC for calculating electrostatics
