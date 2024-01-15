@@ -1,0 +1,242 @@
+ DBCSR| CPU Multiplication driver                                           XSMM (U)
+ DBCSR| Multrec recursion limit                                              512 (U)
+ DBCSR| Multiplication stack size                                           1000 (D)
+ DBCSR| Maximum elements for images                                    UNLIMITED (U)
+ DBCSR| Multiplicative factor virtual images                                   1 (U)
+ DBCSR| Use multiplication densification                                       T (D)
+ DBCSR| Multiplication size stacks                                             3 (U)
+ DBCSR| Use memory pool for CPU allocation                                     F (U)
+ DBCSR| Number of 3D layers                                               SINGLE (U)
+ DBCSR| Use MPI memory allocation                                              F (U)
+ DBCSR| Use RMA algorithm                                                      F (U)
+ DBCSR| Use Communication thread                                               T (U)
+ DBCSR| Communication thread load                                             83 (D)
+ DBCSR| MPI: My process id                                                     0
+ DBCSR| MPI: Number of processes                                              88
+ DBCSR| OMP: Current number of threads                                         2
+ DBCSR| OMP: Max number of threads                                             2
+ DBCSR| Split modifier for TAS multiplication algorithm                  1.0E+00 (U)
+
+
+  **** **** ******  **  PROGRAM STARTED AT               2024-01-15 19:39:39.865
+ ***** ** ***  *** **   PROGRAM STARTED ON                          a5eccaac587f
+ **    ****   ******    PROGRAM STARTED BY                             <unknown>
+ ***** **    ** ** **   PROGRAM PROCESS ID                                   538
+  **** **  *******  **  PROGRAM STARTED IN                                  /mnt
+
+ CP2K| version string:                                       CP2K version 2023.2
+ CP2K| source code revision number:                                  git:65cca6c
+ CP2K| cp2kflags: omp libint fftw3 libxc pexsi elpa parallel scalapack cosma qui
+ CP2K|            p xsmm plumed2 spglib sirius libvori libbqb libtorch libvdwxc
+ CP2K| is freely available from                            https://www.cp2k.org/
+ CP2K| Program compiled at                          Wed Oct 18 11:40:41 UTC 2023
+ CP2K| Program compiled on                                          633bb7bf566f
+ CP2K| Program compiled for                                                local
+ CP2K| Data directory path                                        /opt/cp2k/data
+ CP2K| Input file name                                            iso4amp15_pbe0
+
+ GLOBAL| Force Environment number                                              1
+ GLOBAL| Basis set file name                                      ALL_BASIS_SETS
+ GLOBAL| Potential file name                                           POTENTIAL
+ GLOBAL| MM Potential file name                                     MM_POTENTIAL
+ GLOBAL| Coordinate file name                                      __STD_INPUT__
+ GLOBAL| Method name                                                        CP2K
+ GLOBAL| Project name                                             iso4amp15_pbe0
+ GLOBAL| Run type                                                         ENERGY
+ GLOBAL| FFT library                                                       FFTW3
+ GLOBAL| Diagonalization library                                       ScaLAPACK
+ GLOBAL| DGEMM library                                                      BLAS
+ GLOBAL| Orthonormality check for eigenvectors                          DISABLED
+ GLOBAL| Matrix multiplication library                                     COSMA
+ GLOBAL| All-to-all communication in single precision                          F
+ GLOBAL| FFTs using library dependent lengths                                  F
+ GLOBAL| Grid backend                                                       AUTO
+ GLOBAL| Global print level                                                  LOW
+ GLOBAL| MPI I/O enabled                                                       T
+ GLOBAL| Total number of message passing processes                            88
+ GLOBAL| Number of threads for this process                                    2
+ GLOBAL| This output is from process                                           0
+ GLOBAL| Stack size for threads created by OpenMP (OMP_STACKSIZE)            16M
+ GLOBAL| CPU model name                         AMD EPYC 9V33X 96-Core Processor
+ GLOBAL| CPUID                                                              1003
+ GLOBAL| Compiled for CPUID                                                    0
+
+ *** HINT in environment.F:904 :: The compiler target flags (generic) used ***
+ *** to build this binary cannot exploit all extensions of this CPU model  ***
+ *** (x86_avx512). Consider compiler target flags as part of FCFLAGS and   ***
+ *** CFLAGS (ARCH file).                                                   ***
+
+
+ MEMORY| system memory details [Kb]
+ MEMORY|                        rank 0           min           max       average
+ MEMORY| MemTotal           1444892892    1444892892    1444892892    1444892892
+ MEMORY| MemFree            1425658924    1425658672    1425658924    1425658889
+ MEMORY| Buffers                 28696         28696         28696         28696
+ MEMORY| Cached                 791060        791056        791060        791056
+ MEMORY| Slab                  1009368       1009368       1009368       1009368
+ MEMORY| SReclaimable           110728        110728        110728        110728
+ MEMORY| MemLikelyFree      1426589408    1426589156    1426589408    1426589370
+
+
+ GENERATE|  Preliminary Number of Bonds generated:                             0
+ GENERATE|  Achieved consistency in connectivity generation.
+
+ *******************************************************************************
+ *******************************************************************************
+ **                                                                           **
+ **     #####                         ##              ##                      **
+ **    ##   ##            ##          ##              ##                      **
+ **   ##     ##                       ##            ######                    **
+ **   ##     ##  ##   ##  ##   #####  ##  ##   ####   ##    #####    #####    **
+ **   ##     ##  ##   ##  ##  ##      ## ##   ##      ##   ##   ##  ##   ##   **
+ **   ##  ## ##  ##   ##  ##  ##      ####     ###    ##   ######   ######    **
+ **    ##  ###   ##   ##  ##  ##      ## ##      ##   ##   ##       ##        **
+ **     #######   #####   ##   #####  ##  ##  ####    ##    #####   ##        **
+ **           ##                                                    ##        **
+ **                                                                           **
+ **                                                ... make the atoms dance   **
+ **                                                                           **
+ **            Copyright (C) by CP2K developers group (2000-2023)             **
+ **                      J. Chem. Phys. 152, 194103 (2020)                    **
+ **                                                                           **
+ *******************************************************************************
+
+
+ TOTAL NUMBERS AND MAXIMUM NUMBERS
+
+  Total number of            - Atomic kinds:                                   4
+                             - Atoms:                                         49
+                             - Shell sets:                                   322
+                             - Shells:                                       434
+                             - Primitive Cartesian functions:                560
+                             - Cartesian basis functions:                   1022
+                             - Spherical basis functions:                    966
+
+  Maximum angular momentum of the orbital basis functions:                     2
+
+
+ SCF PARAMETERS         Density guess:                                    ATOMIC
+                        --------------------------------------------------------
+                        max_scf:                                              20
+                        max_scf_history:                                       0
+                        max_diis:                                              4
+                        --------------------------------------------------------
+                        eps_scf:                                        1.00E-05
+                        eps_scf_history:                                0.00E+00
+                        eps_diis:                                       1.00E-01
+                        eps_eigval:                                     1.00E-05
+                        --------------------------------------------------------
+                        level_shift [a.u.]:                             0.000000
+                        --------------------------------------------------------
+                        Outer loop SCF in use
+                        No variables optimised in outer loop
+                        eps_scf                                         1.00E-05
+                        max_scf                                               20
+                        No outer loop optimization
+                        step_size                                       5.00E-01
+
+ Number of electrons:                                                        196
+ Number of occupied orbitals:                                                 98
+ Number of molecular orbitals:                                                98
+
+ Number of orbital functions:                                                966
+ Number of independent orbital functions:                                    966
+
+ Extrapolation method: initial_guess
+
+
+ SCF WAVEFUNCTION OPTIMIZATION
+
+  ----------------------------------- OT ---------------------------------------
+  Minimizer      : CG                  : conjugate gradient
+  Preconditioner : FULL_ALL            : diagonalization, state selective
+  Precond_solver : DEFAULT
+  Line search    : 3PNT                : 3 energies
+  stepsize       :    0.15000000                  energy_gap     :    0.00100000
+  eps_taylor     :   0.10000E-15                  max_taylor     :             4
+  ----------------------------------- OT ---------------------------------------
+
+  Step     Update method      Time    Convergence         Total energy    Change
+  ------------------------------------------------------------------------------
+     1 OT CG       0.12E+00   19.1     0.07758043     -1145.1332959752 -1.15E+03
+     2 OT LS       0.17E+00   14.3                    -1190.4798712749
+     3 OT LS       0.16E+00   14.3                    -1193.3562714729
+     4 OT CG       0.13E+00   14.9     0.02978183     -1193.4939157853 -4.84E+01
+     5 OT LS       0.18E+00   14.3                    -1199.6191293827
+     6 OT LS       0.15E+00   14.3                    -1199.4396756602
+     7 OT CG       0.12E+00   14.9     0.01373013     -1199.7270884374 -6.23E+00
+     8 OT LS       0.17E+00   14.3                    -1201.3858587547
+     9 OT LS       0.27E+00   14.3                    -1201.7946302123
+    10 OT CG       0.22E+00   14.9     0.01066746     -1202.1660752286 -2.44E+00
+    11 OT LS       0.31E+00   14.3                    -1203.6641720876
+    12 OT LS       0.29E+00   14.3                    -1203.7492836809
+    13 OT CG       0.23E+00   15.3     0.00791010     -1203.7576756104 -1.59E+00
+    14 OT LS       0.32E+00   14.4                    -1204.5608065468
+    15 OT LS       0.28E+00   14.4                    -1204.5646457862
+    16 OT CG       0.22E+00   15.0     0.00539797     -1204.5857996072 -8.28E-01
+    17 OT LS       0.31E+00   14.4                    -1205.0064922142
+    18 OT LS       0.35E+00   14.4                    -1205.0625008194
+    19 OT CG       0.28E+00   15.0     0.00498757     -1205.0663853788 -4.81E-01
+    20 OT LS       0.39E+00   14.4                    -1205.4069479108
+
+  Leaving inner SCF loop after reaching    20 steps.
+
+
+  Electronic density on regular grids:       -139.5865130790       56.4134869210
+  Core density on regular grids:              196.0000000000       -0.0000000000
+  Hard and soft densities (Lebedev):       -14756.8994603834   -14700.4859653572
+  Total Rho_soft + Rho1_hard - Rho1_soft     -196.0000081052
+  Total charge density (r-space):              -0.0000081052
+  Total Rho_soft + Rho0_soft (g-space):        -0.0000088892
+
+  Overlap energy of the core charge distribution:               0.00005400803107
+  Self energy of the core charge distribution:               -994.85580942027639
+  Core Hamiltonian energy:                                   -191.21562858148036
+  Hartree energy:                                             365.86234086763506
+  Exchange-correlation energy:                                -47.51591167470561
+  Hartree-Fock Exchange energy:                               -40.59004164198225
+
+  GAPW| Exc from hard and soft atomic rho1:                   -80.96078806572157
+  GAPW| local Eh = 1 center integrals:                       -216.13116340227899
+
+  Total energy:                                             -1205.40694791077908
+
+  outer SCF iter =    1 RMS gradient =   0.50E-02 energy =      -1205.4069479108
+
+  ----------------------------------- OT ---------------------------------------
+  Minimizer      : CG                  : conjugate gradient
+  Preconditioner : FULL_ALL            : diagonalization, state selective
+  Precond_solver : DEFAULT
+  Line search    : 3PNT                : 3 energies
+  stepsize       :    0.15000000                  energy_gap     :    0.00100000
+  eps_taylor     :   0.10000E-15                  max_taylor     :             4
+  ----------------------------------- OT ---------------------------------------
+
+  Step     Update method      Time    Convergence         Total energy    Change
+  ------------------------------------------------------------------------------
+     1 OT CG       0.12E+00   29.6     0.00872346     -1205.3760063061 -3.10E-01
+     2 OT LS       0.17E+00   15.3                    -1206.0819524639
+     3 OT LS       0.23E+00   14.4                    -1206.2218733189
+     4 OT CG       0.18E+00   14.9     0.01399969     -1206.2504093850 -8.74E-01
+     5 OT LS       0.91E-01   14.4                     -758.2083583244
+     6 OT LS       0.24E-01   14.5                    -1133.9309439139
+     7 OT CG       0.19E-01   15.6     0.10366753     -1206.1728263537  7.76E-02
+     8 OT LS       0.95E-02   14.4                     -757.9104712483
+     9 OT LS       0.34E-02   15.0                    -1157.7627036679
+    10 OT CG       0.27E-02   15.0     0.79323988     -1214.1907030052 -8.02E+00
+    11 OT LS       0.14E-02   14.4                     -825.8640792169
+    12 OT LS       0.27E-04   14.4                    -1090.2426585084
+    13 OT CG       0.22E-04   15.1     1.57987700     -1220.0099005266 -5.82E+00
+^C[mpiexec@a5eccaac587f] Sending Ctrl-C to processes as requested
+[mpiexec@a5eccaac587f] Press Ctrl-C again to force abort
+
+===================================================================================
+=   BAD TERMINATION OF ONE OF YOUR APPLICATION PROCESSES
+=   PID 538 RUNNING AT a5eccaac587f
+=   EXIT CODE: 9
+=   CLEANING UP REMAINING PROCESSES
+=   YOU CAN IGNORE THE BELOW CLEANUP MESSAGES
+===================================================================================
+YOUR APPLICATION TERMINATED WITH THE EXIT STRING: Killed (signal 9)
+This typically refers to a problem with your application.
+Please see the FAQ page for debugging suggestions
