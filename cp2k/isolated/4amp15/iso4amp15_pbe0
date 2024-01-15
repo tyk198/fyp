@@ -1,5 +1,5 @@
 &GLOBAL
-  PROJECT 4amp15_pbe0
+  PROJECT iso4amp15_pbe0
   PRINT_LEVEL LOW
   RUN_TYPE ENERGY
   PREFERRED_DIAG_LIBRARY SL
@@ -106,11 +106,6 @@
     &XC
       &HF
         FRACTION 0.25
-        &INTERACTION_POTENTIAL
-          CUTOFF_RADIUS 12.99
-          POTENTIAL_TYPE TRUNCATED
-          T_C_G_DATA t_c_g.dat
-        &END INTERACTION_POTENTIAL
         &MEMORY
           MAX_MEMORY 5
         &END MEMORY
