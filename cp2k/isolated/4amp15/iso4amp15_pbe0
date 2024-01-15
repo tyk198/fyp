@@ -12,6 +12,10 @@
       ABC 26 26 26
       PERIODIC NONE #Direction(s) of applied PBC (geometry aspect)
     &END CELL
+    &TOPOLOGY                    #Section used to center the atomic coordinates in the given box. Useful for big molecules
+      &CENTER_COORDINATES
+      &END
+    &END
     &COORD
       O   -4.53784594355726     -1.84478708906163      9.45424193525963
       O   -0.10819328986948     -7.30599598818627     10.93573136816041
@@ -65,40 +69,35 @@
     &END COORD
     &KIND O
       ELEMENT O
-      BASIS_SET ORB TZVP-MOLOPT-PBE0-GTH-q6
-      BASIS_SET AUX_FIT admm-tzp-q6
-      POTENTIAL GTH-PBE0-q6
+      BASIS_SET 6-311ppG2d2p
+      POTENTIAL ALL
     &END KIND
     &KIND N
       ELEMENT N
-      BASIS_SET ORB TZVP-MOLOPT-PBE0-GTH-q5
-      BASIS_SET AUX_FIT admm-tzp-q5
-      POTENTIAL GTH-PBE0-q5
+      BASIS_SET 6-311ppG2d2p
+      POTENTIAL ALL
     &END KIND
     &KIND C
       ELEMENT C
-      BASIS_SET ORB TZVP-MOLOPT-PBE0-GTH-q4
-      BASIS_SET AUX_FIT admm-tzp-q4
-      POTENTIAL GTH-PBE0-q4
+      BASIS_SET 6-311ppG2d2p
+      POTENTIAL ALL
     &END KIND
     &KIND H
       ELEMENT H
-      BASIS_SET ORB TZVP-MOLOPT-PBE0-GTH-q1  
-      BASIS_SET AUX_FIT admm-tzp-q1          
-      POTENTIAL GTH-PBE0-q1
+      BASIS_SET 6-311ppG2d2p        
+      POTENTIAL ALL
     &END KIND
   &END SUBSYS
 
   &DFT
-    POTENTIAL_FILE_NAME POTENTIAL_UZH
-    BASIS_SET_FILE_NAME BASIS_MOLOPT_UZH
-    BASIS_SET_FILE_NAME BASIS_ADMM_UZH
+    POTENTIAL_FILE_NAME POTENTIAL
+    BASIS_SET_FILE_NAME ALL_BASIS_SETS
 #   WFN_RESTART_FILE_NAME 4amp1_pbe0-RESTART.wfn
     CHARGE    0 #Net charge
     MULTIPLICITY    1 #Spin multiplicity
     &QS
       EPS_DEFAULT 1.0E-10
-      METHOD GPW
+      METHOD GAPW
       EPS_FILTER_MATRIX 0	
       EPS_PGF_ORB 1.0E-15
     &END QS
@@ -110,7 +109,7 @@
       &HF
         FRACTION 0.25
         &INTERACTION_POTENTIAL
-          CUTOFF_RADIUS 2.5
+          CUTOFF_RADIUS 12.99
           POTENTIAL_TYPE TRUNCATED
           T_C_G_DATA t_c_g.dat
         &END INTERACTION_POTENTIAL
