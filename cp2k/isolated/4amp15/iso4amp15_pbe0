@@ -125,7 +125,7 @@
     &MGRID
       CUTOFF  400
       REL_CUTOFF  60
-      NGIRDS 6
+      NGRIDS 6
     &END MGRID
     &SCF
       MAX_SCF 120
