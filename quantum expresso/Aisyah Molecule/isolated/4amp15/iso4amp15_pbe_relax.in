@@ -1,6 +1,6 @@
 &CONTROL
   calculation = 'relax'
-  prefix = 'iso4amp15_pbe0'
+  prefix = 'iso4amp15_pbe'
   outdir = './outdir'
   pseudo_dir = '/home/yongkeat1017/miniconda3/pp'
 /
@@ -11,9 +11,8 @@
   input_dft = 'pbe0'
   x_gamma_extrapolation = .true.
   exxdiv_treatment = 'gygi-baldereschi'
-  ecutwfc = 100
-  ecutrho = 400
-  ecutfock = 100
+  ecutwfc = 50
+  ecutrho = 500
 /
 &ELECTRONS
   conv_thr = 1.0E-7
@@ -28,10 +27,10 @@
 /
 
 ATOMIC_SPECIES
-  O   16.00  O_ONCV_PBE-1.2.upf
-  N   14.00  N_ONCV_PBE-1.2.upf
-  C   12.00  C_ONCV_PBE-1.2.upf
-  H    1.00  H_ONCV_PBE-1.2.upf
+  O   16.00  O.pbe-n-rrkjus_psl.1.0.0.UPF
+  N   14.00  N.pbe-n-rrkjus_psl.1.0.0.UPF
+  C   12.00  C.pbe-n-rrkjus_psl.1.0.0.UPF
+  H    1.00  H.pbe-rrkjus_psl.1.0.0.UPF
 
 CELL_PARAMETERS {angstrom}
        30.00000000     0.00000000     0.00000000
