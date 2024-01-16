@@ -69,22 +69,22 @@
     &END COORD
     &KIND O
       ELEMENT O
-      BASIS_SET 6-311ppG2d2p
+      BASIS_SET Ahlrichs-def2-TZVP
       POTENTIAL ALL
     &END KIND
     &KIND N
       ELEMENT N
-      BASIS_SET 6-311ppG2d2p
+      BASIS_SET Ahlrichs-def2-TZVP
       POTENTIAL ALL
     &END KIND
     &KIND C
       ELEMENT C
-      BASIS_SET 6-311ppG2d2p
+      BASIS_SET Ahlrichs-def2-TZVP
       POTENTIAL ALL
     &END KIND
     &KIND H
       ELEMENT H
-      BASIS_SET 6-311ppG2d2p        
+      BASIS_SET Ahlrichs-def2-TZVP        
       POTENTIAL ALL
     &END KIND
   &END SUBSYS
@@ -125,9 +125,10 @@
     &MGRID
       CUTOFF  400
       REL_CUTOFF  60
+      NGIRDS 6
     &END MGRID
     &SCF
-      MAX_SCF 20
+      MAX_SCF 120
       EPS_SCF 1.0E-05 #Convergence threshold of density matrix of inner SCF
   #   SCF_GUESS RESTART #Use wavefunction from WFN_RESTART_FILE_NAME file as initial guess
       &OUTER_SCF
