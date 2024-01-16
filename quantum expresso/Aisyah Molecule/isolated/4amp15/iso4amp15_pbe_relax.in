@@ -9,8 +9,6 @@
   nat = 49
   ntyp = 4
   input_dft = 'pbe'
-  x_gamma_extrapolation = .true.
-  exxdiv_treatment = 'gygi-baldereschi'
   ecutwfc = 50
   ecutrho = 500
 /
