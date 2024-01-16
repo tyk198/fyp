@@ -8,15 +8,14 @@
   ibrav = 0
   nat = 49
   ntyp = 4
-  input_dft = 'pbe0'
+  input_dft = 'pbe'
   x_gamma_extrapolation = .true.
   exxdiv_treatment = 'gygi-baldereschi'
   ecutwfc = 50
   ecutrho = 500
 /
 &ELECTRONS
-  conv_thr = 1.0E-7
-  adaptive_thr = .TRUE.
+  conv_thr = 1.0E-10
   mixing_mode = 'local-TF'
   mixing_beta = 0.7
   mixing_ndim = 8
