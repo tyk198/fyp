@@ -1,0 +1,914 @@
+ DBCSR| CPU Multiplication driver                                           XSMM (U)
+ DBCSR| Multrec recursion limit                                              512 (U)
+ DBCSR| Multiplication stack size                                           1000 (D)
+ DBCSR| Maximum elements for images                                    UNLIMITED (U)
+ DBCSR| Multiplicative factor virtual images                                   1 (U)
+ DBCSR| Use multiplication densification                                       T (D)
+ DBCSR| Multiplication size stacks                                             3 (U)
+ DBCSR| Use memory pool for CPU allocation                                     F (U)
+ DBCSR| Number of 3D layers                                               SINGLE (U)
+ DBCSR| Use MPI memory allocation                                              F (U)
+ DBCSR| Use RMA algorithm                                                      F (U)
+ DBCSR| Use Communication thread                                               T (U)
+ DBCSR| Communication thread load                                             83 (D)
+ DBCSR| MPI: My process id                                                     0
+ DBCSR| MPI: Number of processes                                              88
+ DBCSR| OMP: Current number of threads                                         2
+ DBCSR| OMP: Max number of threads                                             2
+ DBCSR| Split modifier for TAS multiplication algorithm                  1.0E+00 (U)
+
+
+  **** **** ******  **  PROGRAM STARTED AT               2024-01-20 17:42:50.818
+ ***** ** ***  *** **   PROGRAM STARTED ON                          e72caf6f4605
+ **    ****   ******    PROGRAM STARTED BY                             <unknown>
+ ***** **    ** ** **   PROGRAM PROCESS ID                                   538
+  **** **  *******  **  PROGRAM STARTED IN                                  /mnt
+
+ CP2K| version string:                                       CP2K version 2023.2
+ CP2K| source code revision number:                                  git:65cca6c
+ CP2K| cp2kflags: omp libint fftw3 libxc pexsi elpa parallel scalapack cosma qui
+ CP2K|            p xsmm plumed2 spglib sirius libvori libbqb libtorch libvdwxc
+ CP2K| is freely available from                            https://www.cp2k.org/
+ CP2K| Program compiled at                          Wed Oct 18 11:40:41 UTC 2023
+ CP2K| Program compiled on                                          633bb7bf566f
+ CP2K| Program compiled for                                                local
+ CP2K| Data directory path                                        /opt/cp2k/data
+ CP2K| Input file name                                          4amp15pbe_dft.in
+
+ GLOBAL| Force Environment number                                              1
+ GLOBAL| Basis set file name                                      GTH_BASIS_SETS
+ GLOBAL| Potential file name                                           POTENTIAL
+ GLOBAL| MM Potential file name                                     MM_POTENTIAL
+ GLOBAL| Coordinate file name                                      __STD_INPUT__
+ GLOBAL| Method name                                                        CP2K
+ GLOBAL| Project name                                               4amp15pbedft
+ GLOBAL| Run type                                                         ENERGY
+ GLOBAL| FFT library                                                       FFTW3
+ GLOBAL| Diagonalization library                                            ELPA
+ GLOBAL| DGEMM library                                                      BLAS
+ GLOBAL| Minimum number of eigenvectors for ELPA usage                        16
+ GLOBAL| Orthonormality check for eigenvectors                          DISABLED
+ GLOBAL| Matrix multiplication library                                     COSMA
+ GLOBAL| All-to-all communication in single precision                          F
+ GLOBAL| FFTs using library dependent lengths                                  F
+ GLOBAL| Grid backend                                                       AUTO
+ GLOBAL| Global print level                                                  LOW
+ GLOBAL| MPI I/O enabled                                                       T
+ GLOBAL| Total number of message passing processes                            88
+ GLOBAL| Number of threads for this process                                    2
+ GLOBAL| This output is from process                                           0
+ GLOBAL| Stack size for threads created by OpenMP (OMP_STACKSIZE)            16M
+ GLOBAL| CPU model name                         AMD EPYC 9V33X 96-Core Processor
+ GLOBAL| CPUID                                                              1003
+ GLOBAL| Compiled for CPUID                                                    0
+
+ *** HINT in environment.F:904 :: The compiler target flags (generic) used ***
+ *** to build this binary cannot exploit all extensions of this CPU model  ***
+ *** (x86_avx512). Consider compiler target flags as part of FCFLAGS and   ***
+ *** CFLAGS (ARCH file).                                                   ***
+
+
+ MEMORY| system memory details [Kb]
+ MEMORY|                        rank 0           min           max       average
+ MEMORY| MemTotal           1444892860    1444892860    1444892860    1444892860
+ MEMORY| MemFree            1425710680    1425710680    1425710680    1425710680
+ MEMORY| Buffers                 31596         31596         31596         31596
+ MEMORY| Cached                 815008        815008        815008        815008
+ MEMORY| Slab                  1009024       1009024       1009024       1009024
+ MEMORY| SReclaimable           111536        111536        111536        111536
+ MEMORY| MemLikelyFree      1426668820    1426668820    1426668820    1426668820
+
+
+ GENERATE|  Preliminary Number of Bonds generated:                             0
+ GENERATE|  Achieved consistency in connectivity generation.
+
+ *******************************************************************************
+ *******************************************************************************
+ **                                                                           **
+ **     #####                         ##              ##                      **
+ **    ##   ##            ##          ##              ##                      **
+ **   ##     ##                       ##            ######                    **
+ **   ##     ##  ##   ##  ##   #####  ##  ##   ####   ##    #####    #####    **
+ **   ##     ##  ##   ##  ##  ##      ## ##   ##      ##   ##   ##  ##   ##   **
+ **   ##  ## ##  ##   ##  ##  ##      ####     ###    ##   ######   ######    **
+ **    ##  ###   ##   ##  ##  ##      ## ##      ##   ##   ##       ##        **
+ **     #######   #####   ##   #####  ##  ##  ####    ##    #####   ##        **
+ **           ##                                                    ##        **
+ **                                                                           **
+ **                                                ... make the atoms dance   **
+ **                                                                           **
+ **            Copyright (C) by CP2K developers group (2000-2023)             **
+ **                      J. Chem. Phys. 152, 194103 (2020)                    **
+ **                                                                           **
+ *******************************************************************************
+
+
+ TOTAL NUMBERS AND MAXIMUM NUMBERS
+
+  Total number of            - Atomic kinds:                                   4
+                             - Atoms:                                        196
+                             - Shell sets:                                   392
+                             - Shells:                                      1120
+                             - Primitive Cartesian functions:               1176
+                             - Cartesian basis functions:                   2520
+                             - Spherical basis functions:                   2408
+
+  Maximum angular momentum of- Orbital basis functions:                        2
+                             - Local part of the GTH pseudopotential:          2
+                             - Non-local part of the GTH pseudopotential:      0
+
+
+ SCF PARAMETERS         Density guess:                                    ATOMIC
+                        --------------------------------------------------------
+                        max_scf:                                             128
+                        max_scf_history:                                       0
+                        max_diis:                                              4
+                        --------------------------------------------------------
+                        eps_scf:                                        1.00E-06
+                        eps_scf_history:                                0.00E+00
+                        eps_diis:                                       1.00E-01
+                        eps_eigval:                                     1.00E-05
+                        --------------------------------------------------------
+                        level_shift [a.u.]:                             0.000000
+                        added MOs                                        30    0
+                        --------------------------------------------------------
+                        Mixing method:                            BROYDEN_MIXING
+                                                charge density mixing in g-space
+                        --------------------------------------------------------
+                        No outer SCF
+
+ Number of electrons:                                                        560
+ Number of occupied orbitals:                                                280
+ Number of molecular orbitals:                                               310
+
+ Number of orbital functions:                                               2408
+ Number of independent orbital functions:                                   2408
+
+ Extrapolation method: initial_guess
+
+
+ SCF WAVEFUNCTION OPTIMIZATION
+
+  Step     Update method      Time    Convergence         Total energy    Change
+  ------------------------------------------------------------------------------
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+     1 NoMix/Diag. 0.40E+00    1.7    13.13003432      -823.8072628878 -8.24E+02
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+     2 Broy./Diag. 0.40E+00    1.7     2.36271113      -762.5333676097  6.13E+01
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+     3 Broy./Diag. 0.40E+00    1.6     1.36017415      -809.7782169813 -4.72E+01
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+     4 Broy./Diag. 0.40E+00    2.0     0.44370036      -825.5836706857 -1.58E+01
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+     5 Broy./Diag. 0.40E+00    1.1     0.43706754      -829.3138484428 -3.73E+00
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+     6 Broy./Diag. 0.40E+00    1.1     0.13051723      -828.0564990600  1.26E+00
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+     7 Broy./Diag. 0.40E+00    1.1     0.05446954      -827.7762572451  2.80E-01
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+     8 Broy./Diag. 0.40E+00    1.1     0.02915929      -827.7170011706  5.93E-02
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+     9 Broy./Diag. 0.40E+00    1.3     0.01081028      -827.7214031306 -4.40E-03
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    10 Broy./Diag. 0.40E+00    1.1     0.00747851      -827.7378630463 -1.65E-02
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    11 Broy./Diag. 0.40E+00    1.1     0.00260899      -827.7432079601 -5.34E-03
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    12 Broy./Diag. 0.40E+00    1.1     0.00109519      -827.7435960741 -3.88E-04
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    13 Broy./Diag. 0.40E+00    1.1     0.00045918      -827.7432791569  3.17E-04
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    14 Broy./Diag. 0.40E+00    1.1     0.00028846      -827.7428054830  4.74E-04
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    15 Broy./Diag. 0.40E+00    1.1     0.00003216      -827.7426294053  1.76E-04
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    16 Broy./Diag. 0.40E+00    1.1     0.00001772      -827.7425462345  8.32E-05
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    17 Broy./Diag. 0.40E+00    1.1     0.00001784      -827.7425796428 -3.34E-05
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    18 Broy./Diag. 0.40E+00    1.1     0.00000551      -827.7425939455 -1.43E-05
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    19 Broy./Diag. 0.40E+00    1.1     0.00000207      -827.7426024966 -8.55E-06
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    20 Broy./Diag. 0.40E+00    1.1     0.00000103      -827.7426045629 -2.07E-06
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    21 Broy./Diag. 0.40E+00    1.1     0.00000074      -827.7426030102  1.55E-06
+
+  *** SCF run converged in    21 steps ***
+
+
+  Electronic density on regular grids:       -559.9999999981        0.0000000019
+  Core density on regular grids:              559.9999999996       -0.0000000004
+  Total charge density on r-space grids:        0.0000000015
+  Total charge density g-space grids:           0.0000000015
+
+  Overlap energy of the core charge distribution:               0.00004303421694
+  Self energy of the core charge distribution:              -1996.35753382145731
+  Core Hamiltonian energy:                                    614.68832946348482
+  Hartree energy:                                             803.30654237110457
+  Exchange-correlation energy:                               -249.37998405754510
+
+  Total energy:                                              -827.74260301019592
+
+  Eigenvalues of the occupied subspace spin            1
+ ---------------------------------------------
+      -0.77158963      -0.77158608      -0.77010200      -0.77010002
+      -0.76716053      -0.76714601      -0.76709575      -0.76708053
+      -0.71809200      -0.71809031      -0.71807789      -0.71807748
+      -0.64815212      -0.64814521      -0.64803840      -0.64803215
+      -0.57580955      -0.57569658      -0.57445948      -0.57431651
+      -0.57338167      -0.57302714      -0.57302277      -0.57264456
+      -0.56187833      -0.56141268      -0.56129698      -0.56084965
+      -0.51460259      -0.51445384      -0.51422067      -0.51399843
+      -0.49255335      -0.49231613      -0.49165596      -0.49132384
+      -0.48006667      -0.47962645      -0.47798311      -0.47738062
+      -0.47622010      -0.47572662      -0.47503368      -0.47491381
+      -0.47178350      -0.47060503      -0.46890596      -0.46782391
+      -0.46734415      -0.46692931      -0.46655679      -0.46609084
+      -0.44993677      -0.44947134      -0.44939106      -0.44904556
+      -0.42343964      -0.42314454      -0.42003221      -0.41981420
+      -0.41154075      -0.41116383      -0.41106896      -0.41069201
+      -0.39605780      -0.39562754      -0.39559596      -0.39525386
+      -0.37071818      -0.37041968      -0.36977177      -0.36959516
+      -0.34386835      -0.34367863      -0.34313204      -0.34208613
+      -0.34046863      -0.34046244      -0.33950517      -0.33908065
+      -0.33705680      -0.33631458      -0.33562902      -0.33427645
+      -0.33387571      -0.33169717      -0.33116313      -0.33112492
+      -0.30188770      -0.30156475      -0.30142325      -0.30078381
+      -0.29614236      -0.29583595      -0.29431838      -0.29277556
+      -0.28114667      -0.27882045      -0.27565479      -0.27187540
+      -0.26970093      -0.26847643      -0.26524004      -0.26488822
+      -0.25738535      -0.25689759      -0.25530979      -0.25479912
+      -0.25361987      -0.25288445      -0.24863962      -0.24830065
+      -0.23749594      -0.23737720      -0.23685705      -0.23560857
+      -0.22878641      -0.22764646      -0.22689896      -0.22632429
+      -0.22473712      -0.22298814      -0.22224425      -0.22041104
+      -0.21617625      -0.21442097      -0.21426599      -0.21390412
+      -0.21269247      -0.21238332      -0.20911482      -0.20857058
+      -0.20835961      -0.20832089      -0.20567148      -0.20480051
+      -0.20400518      -0.20391624      -0.20341039      -0.20225607
+      -0.19722626      -0.19664636      -0.19650056      -0.19572498
+      -0.19345639      -0.19223388      -0.18952544      -0.18874580
+      -0.18732642      -0.18729890      -0.18069949      -0.17965271
+      -0.17591660      -0.17537132      -0.17263618      -0.17225120
+      -0.17216412      -0.17121029      -0.17101553      -0.16831778
+      -0.16628558      -0.16590654      -0.16586875      -0.16510409
+      -0.16130246      -0.16116120      -0.16087866      -0.16027880
+      -0.16020599      -0.15829596      -0.15688747      -0.15471993
+      -0.15248166      -0.15148286      -0.15119137      -0.15039615
+      -0.14632614      -0.14385651      -0.14343226      -0.14312101
+      -0.14279159      -0.14234468      -0.13949818      -0.13942490
+      -0.13890541      -0.13825636      -0.13755336      -0.13714798
+      -0.13690130      -0.13527758      -0.12995161      -0.12993084
+      -0.12925139      -0.12753034      -0.12736834      -0.12640310
+      -0.12517256      -0.12496197      -0.12492550      -0.12378294
+      -0.12289457      -0.12179291      -0.11972894      -0.11899621
+      -0.11363782      -0.11350097      -0.11321577      -0.11181864
+      -0.10991960      -0.10942552      -0.10870096      -0.10866523
+      -0.10623074      -0.10598484      -0.10390987      -0.10351083
+      -0.10326400      -0.10322560      -0.10017878      -0.09974636
+      -0.09962452      -0.09833204      -0.09817472      -0.09602972
+      -0.08731374      -0.08701121      -0.08583953      -0.08413587
+      -0.08265495      -0.08224371      -0.08161627      -0.08020722
+      -0.07748468      -0.07635005      -0.07613324      -0.07552313
+      -0.07530793      -0.07229111      -0.07040623      -0.06899386
+      -0.06494336      -0.06415628      -0.06393621      -0.06389127
+      -0.04626097      -0.04580888      -0.04478655      -0.04388878
+      -0.04004772      -0.03905895      -0.03900237      -0.03851600
+      -0.02408654      -0.02372797      -0.01771795      -0.01714632
+      -0.01614904      -0.01476408      -0.01272038      -0.01166274
+      -0.00874659      -0.00869572      -0.00866724      -0.00730405
+       0.00702284       0.00719768       0.00722226       0.00743942
+       0.00766732       0.00822687       0.01027031       0.01107581
+       0.01239952       0.01280842       0.01360392       0.01450685
+       0.01662533       0.01698208       0.01956425       0.02055759
+ Fermi Energy [eV] :    0.559400
+
+  Lowest eigenvalues of the unoccupied subspace spin            1
+ ---------------------------------------------
+       0.10582801
+
+ *******************************************************************************
+ **                                                                           **
+ **         ######## #######   #######   ######## #######  ########           **
+ **            ##    ##     ## ##     ## ##       ##   ##     ##              **
+ **            ##    ##     ## ##     ## ######   #######     ##              **
+ **            ##    ##     ## ##     ## ##       ##          ##              **
+ **            ##    #######   #######   ##       ##          ##              **
+ **                                                                           **
+ *******************************************************************************
+ KERNEL|                                                                    sTDA
+ KERNEL| Coulomb term uses Ewald summation
+ KERNEL| Exact exchange term                                                 YES
+ KERNEL| Short range HFX fraction:                                         0.200
+ KERNEL| Transition density filter                                     0.100E-09
+ KERNEL| Spin symmetry of excitations                                    Singlet
+ TDDFPT| Number of states calculated                                         500
+ TDDFPT| Number of Davidson iterations                                       100
+ TDDFPT| Davidson iteration convergence                                0.367E-05
+ TDDFPT| Max. number of Krylov space vectors                                5000
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+ TDDFPT| Molecular Orbitals:        Spin       AOs       Occ      Virt     Total
+ TDDFPT|                               1      2408       280      2128      2408
+ sTDA| HFX Fraction                                                       0.2000
+ sTDA| Mataga-Nishimoto exponent (C)                                      1.5160
+ sTDA| Mataga-Nishimoto exponent (X)                                      0.5660
+ sTDA| TD matrix filter                                           0.10000000E-09
+
+ -------------------------------------------------------------------------------
+ -                      sTDA Kernel: Create Matrix SQRT(S)                     -
+ -------------------------------------------------------------------------------
+
+     Lanczos converged:  F threshold:   0.100E-03
+     Est. extremal eigenvalues:    0.145E+02   0.151E-02
+     Est. condition number :    0.957E+04
+
+ Order=           3
+     NS sqrt iter    1 1.00000000   0.296E+01       0.061     8179.590
+     NS sqrt iter    2 1.00000000   0.197E+01       0.086    14693.807
+     NS sqrt iter    3 1.00000000   0.119E+01       0.087    14589.642
+     NS sqrt iter    4 1.00000000   0.828E+00       0.086    14691.400
+     NS sqrt iter    5 1.00000000   0.604E+00       0.089    14314.895
+     NS sqrt iter    6 1.00000000   0.451E+00       0.087    14568.020
+     NS sqrt iter    7 1.00000000   0.336E+00       0.087    14527.936
+     NS sqrt iter    8 1.00000000   0.266E+00       0.087    14664.092
+     NS sqrt iter    9 1.00000000   0.219E+00       0.087    14602.381
+     NS sqrt iter   10 1.00000000   0.177E+00       0.088    14420.458
+     NS sqrt iter   11 1.00000000   0.133E+00       0.086    14784.451
+     NS sqrt iter   12 1.00000000   0.850E-01       0.086    14681.522
+     NS sqrt iter   13 1.00000000   0.383E-01       0.086    14722.891
+     NS sqrt iter   14 1.00000000   0.592E-02       0.087    14504.378
+     NS sqrt iter   15 1.00000000   0.442E-04       0.084    11572.658
+     Symmetrizing Results
+     Final NS sqrt iter   15 1.00000000   0.139E-05
+
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+
+ EWALD| Summation is done by:                                               SPME
+ EWALD| Alpha parameter [       ANGSTROM^-1]                              1.8897
+ EWALD| Real Space Cutoff [          ANGSTROM]                            1.7854
+ EWALD| G-space max. Miller index                        125        45       225
+ EWALD| Spline interpolation order                                             6
+
+ -------------------------------------------------------------------------------
+ -                            TDDFPT Initial Guess                             -
+ -------------------------------------------------------------------------------
+          State         Occupied      ->      Virtual          Excitation
+          number         orbital              orbital          energy (eV)
+ -------------------------------------------------------------------------------
+             1              280                  281              2.32033
+             2              280                  282              2.32979
+             3              279                  281              2.34736
+             4              280                  283              2.34781
+             5              279                  282              2.35682
+             6              280                  284              2.36076
+             7              279                  283              2.37484
+             8              279                  284              2.38779
+             9              278                  281              2.41762
+            10              278                  282              2.42708
+            11              277                  281              2.42733
+            12              277                  282              2.43679
+            13              278                  283              2.44511
+            14              277                  283              2.45482
+            15              278                  284              2.45805
+            16              277                  284              2.46776
+            17              276                  281              2.48498
+            18              276                  282              2.49444
+            19              275                  281              2.50955
+            20              276                  283              2.51246
+            21              275                  282              2.51901
+            22              276                  284              2.52541
+            23              274                  281              2.53119
+            24              275                  283              2.53703
+            25              274                  282              2.54066
+            26              273                  281              2.54232
+            27              275                  284              2.54998
+            28              273                  282              2.55178
+            29              274                  283              2.55868
+            30              273                  283              2.56981
+            31              274                  284              2.57162
+            32              272                  281              2.57834
+            33              273                  284              2.58275
+            34              272                  282              2.58780
+            35              271                  281              2.60026
+            36              272                  283              2.60583
+            37              271                  282              2.60972
+            38              272                  284              2.61877
+            39              271                  283              2.62774
+            40              271                  284              2.64069
+            41              270                  281              2.65586
+            42              270                  282              2.66533
+            43              269                  281              2.67109
+            44              268                  281              2.67729
+            45              269                  282              2.68055
+            46              267                  281              2.68320
+            47              270                  283              2.68335
+            48              266                  281              2.68387
+            49              268                  282              2.68675
+            50              265                  281              2.68863
+            51              267                  282              2.69266
+            52              266                  282              2.69333
+            53              270                  284              2.69629
+            54              265                  282              2.69809
+            55              269                  283              2.69858
+            56              268                  283              2.70478
+            57              267                  283              2.71069
+            58              266                  283              2.71135
+            59              269                  284              2.71152
+            60              265                  283              2.71611
+            61              268                  284              2.71772
+            62              267                  284              2.72363
+            63              266                  284              2.72430
+            64              265                  284              2.72906
+            65              280                  285              2.91115
+            66              280                  286              2.93793
+            67              279                  285              2.93818
+            68              280                  287              2.94757
+            69              279                  286              2.96496
+            70              280                  288              2.97267
+            71              279                  287              2.97460
+            72              279                  288              2.99970
+            73              278                  285              3.00845
+            74              277                  285              3.01816
+            75              278                  286              3.03523
+            76              278                  287              3.04487
+            77              277                  286              3.04494
+            78              277                  287              3.05457
+            79              278                  288              3.06996
+            80              276                  285              3.07580
+            81              264                  281              3.07848
+            82              277                  288              3.07967
+            83              264                  282              3.08794
+            84              275                  285              3.10037
+            85              276                  286              3.10258
+            86              264                  283              3.10597
+            87              276                  287              3.11222
+            88              263                  281              3.11557
+            89              262                  281              3.11635
+            90              261                  281              3.11773
+            91              264                  284              3.11891
+            92              274                  285              3.12202
+            93              263                  282              3.12504
+            94              262                  282              3.12581
+            95              275                  286              3.12715
+            96              261                  282              3.12720
+            97              273                  285              3.13315
+            98              275                  287              3.13679
+            99              276                  288              3.13732
+           100              263                  283              3.14306
+           101              262                  283              3.14384
+           102              261                  283              3.14522
+           103              274                  286              3.14880
+           104              263                  284              3.15601
+           105              262                  284              3.15678
+           106              261                  284              3.15817
+           107              274                  287              3.15844
+           108              273                  286              3.15993
+           109              275                  288              3.16189
+           110              272                  285              3.16917
+           111              273                  287              3.16956
+           112              274                  288              3.18353
+           113              271                  285              3.19109
+           114              273                  288              3.19466
+           115              272                  286              3.19595
+           116              260                  281              3.19709
+           117              272                  287              3.20558
+           118              260                  282              3.20655
+           119              271                  286              3.21787
+           120              260                  283              3.22457
+           121              259                  281              3.22587
+           122              271                  287              3.22750
+           123              272                  288              3.23068
+           124              259                  282              3.23533
+           125              260                  284              3.23752
+           126              270                  285              3.24669
+           127              271                  288              3.25260
+           128              259                  283              3.25335
+           129              269                  285              3.26192
+           130              259                  284              3.26630
+           131              268                  285              3.26812
+           132              270                  286              3.27347
+           133              267                  285              3.27403
+           134              266                  285              3.27470
+           135              265                  285              3.27945
+           136              258                  281              3.28148
+           137              270                  287              3.28311
+           138              269                  286              3.28870
+           139              258                  282              3.29094
+           140              268                  286              3.29490
+           141              269                  287              3.29833
+           142              267                  286              3.30081
+           143              266                  286              3.30148
+           144              268                  287              3.30453
+           145              265                  286              3.30623
+           146              270                  288              3.30821
+           147              258                  283              3.30896
+           148              267                  287              3.31044
+           149              266                  287              3.31111
+           150              265                  287              3.31587
+           151              257                  281              3.31916
+           152              258                  284              3.32191
+           153              269                  288              3.32343
+           154              257                  282              3.32863
+           155              268                  288              3.32963
+           156              267                  288              3.33554
+           157              266                  288              3.33621
+           158              265                  288              3.34097
+           159              256                  281              3.34630
+           160              257                  283              3.34665
+           161              256                  282              3.35577
+           162              257                  284              3.35960
+           163              255                  281              3.36186
+           164              255                  282              3.37132
+           165              256                  283              3.37379
+           166              256                  284              3.38673
+           167              255                  283              3.38934
+           168              255                  284              3.40229
+           169              254                  281              3.52540
+           170              254                  282              3.53486
+           171              253                  281              3.53515
+           172              253                  282              3.54462
+           173              254                  283              3.55288
+           174              253                  283              3.56264
+           175              254                  284              3.56583
+           176              253                  284              3.57559
+           177              264                  285              3.66931
+           178              280                  289              3.67249
+           179              264                  286              3.69609
+           180              279                  289              3.69952
+           181              264                  287              3.70572
+           182              263                  285              3.70640
+           183              262                  285              3.70718
+           184              261                  285              3.70856
+           185              264                  288              3.73082
+           186              263                  286              3.73318
+           187              262                  286              3.73396
+           188              261                  286              3.73534
+           189              263                  287              3.74282
+           190              262                  287              3.74359
+           191              261                  287              3.74498
+           192              263                  288              3.76792
+           193              262                  288              3.76869
+           194              278                  289              3.76979
+           195              261                  288              3.77008
+           196              277                  289              3.77950
+           197              280                  290              3.78070
+           198              260                  285              3.78791
+           199              279                  290              3.80773
+           200              260                  286              3.81469
+           201              259                  285              3.81669
+           202              280                  291              3.81734
+           203              260                  287              3.82433
+           204              276                  289              3.83714
+           205              259                  286              3.84347
+           206              279                  291              3.84437
+           207              260                  288              3.84943
+           208              259                  287              3.85311
+           209              275                  289              3.86171
+           210              258                  285              3.87231
+           211              278                  290              3.87800
+           212              259                  288              3.87821
+           213              274                  289              3.88336
+           214              277                  290              3.88770
+           215              273                  289              3.89449
+           216              258                  286              3.89909
+           217              258                  287              3.90872
+           218              257                  285              3.90999
+           219              278                  291              3.91464
+           220              277                  291              3.92434
+           221              252                  281              3.92780
+           222              272                  289              3.93051
+           223              280                  292              3.93134
+           224              258                  288              3.93382
+           225              257                  286              3.93677
+           226              256                  285              3.93713
+           227              252                  282              3.93726
+           228              251                  281              3.94104
+           229              250                  281              3.94257
+           230              280                  293              3.94409
+           231              276                  290              3.94535
+           232              257                  287              3.94641
+           233              251                  282              3.95050
+           234              250                  282              3.95204
+           235              271                  289              3.95243
+           236              255                  285              3.95269
+           237              252                  283              3.95529
+           238              279                  292              3.95837
+           239              256                  286              3.96391
+           240              252                  284              3.96823
+           241              251                  283              3.96852
+           242              249                  281              3.96948
+           243              275                  290              3.96992
+           244              250                  283              3.97006
+           245              279                  293              3.97112
+           246              257                  288              3.97151
+           247              256                  287              3.97355
+           248              249                  282              3.97894
+           249              255                  286              3.97946
+           250              251                  284              3.98147
+           251              276                  291              3.98199
+           252              250                  284              3.98301
+           253              255                  287              3.98910
+           254              274                  290              3.99157
+           255              249                  283              3.99697
+           256              256                  288              3.99864
+           257              273                  290              4.00269
+           258              275                  291              4.00656
+           259              270                  289              4.00803
+           260              249                  284              4.00991
+           261              255                  288              4.01420
+           262              269                  289              4.02326
+           263              274                  291              4.02821
+           264              278                  292              4.02864
+           265              268                  289              4.02946
+           266              280                  294              4.03242
+           267              267                  289              4.03537
+           268              266                  289              4.03604
+           269              277                  292              4.03834
+           270              272                  290              4.03871
+           271              273                  291              4.03933
+           272              265                  289              4.04079
+           273              278                  293              4.04138
+           274              280                  295              4.04500
+           275              277                  293              4.05109
+           276              279                  294              4.05945
+           277              271                  290              4.06063
+           278              279                  295              4.07203
+           279              280                  296              4.07220
+           280              248                  281              4.07400
+           281              272                  291              4.07535
+           282              248                  282              4.08346
+           283              276                  292              4.09599
+           284              271                  291              4.09727
+           285              247                  281              4.09843
+           286              279                  296              4.09923
+           287              248                  283              4.10149
+           288              247                  282              4.10789
+           289              276                  293              4.10874
+           290              248                  284              4.11443
+           291              254                  285              4.11623
+           292              270                  290              4.11624
+           293              275                  292              4.12056
+           294              247                  283              4.12592
+           295              253                  285              4.12598
+           296              246                  281              4.12625
+           297              278                  294              4.12972
+           298              269                  290              4.13146
+           299              275                  293              4.13331
+           300              246                  282              4.13571
+           301              268                  290              4.13766
+           302              245                  281              4.13855
+           303              247                  284              4.13886
+           304              277                  294              4.13943
+           305              274                  292              4.14221
+           306              278                  295              4.14229
+           307              254                  286              4.14301
+           308              267                  290              4.14357
+           309              266                  290              4.14424
+           310              245                  282              4.14802
+           311              265                  290              4.14900
+           312              277                  295              4.15200
+           313              254                  287              4.15264
+           314              253                  286              4.15276
+           315              270                  291              4.15288
+           316              273                  292              4.15333
+           317              246                  283              4.15374
+           318              274                  293              4.15495
+           319              253                  287              4.16240
+           320              245                  283              4.16604
+           321              273                  293              4.16608
+           322              246                  284              4.16668
+           323              269                  291              4.16810
+           324              278                  296              4.16949
+           325              268                  291              4.17431
+           326              254                  288              4.17774
+           327              245                  284              4.17898
+           328              277                  296              4.17920
+           329              267                  291              4.18022
+           330              266                  291              4.18088
+           331              265                  291              4.18564
+           332              253                  288              4.18750
+           333              272                  292              4.18935
+           334              276                  294              4.19707
+           335              272                  293              4.20210
+           336              276                  295              4.20965
+           337              271                  292              4.21127
+           338              275                  294              4.22164
+           339              271                  293              4.22402
+           340              280                  297              4.22506
+           341              275                  295              4.23422
+           342              276                  296              4.23685
+           343              274                  294              4.24329
+           344              279                  297              4.25209
+           345              273                  294              4.25442
+           346              274                  295              4.25586
+           347              275                  296              4.26142
+           348              280                  298              4.26263
+           349              270                  292              4.26688
+           350              273                  295              4.26699
+           351              270                  293              4.27962
+           352              269                  292              4.28210
+           353              274                  296              4.28306
+           354              280                  299              4.28366
+           355              280                  300              4.28686
+           356              268                  292              4.28830
+           357              279                  298              4.28966
+           358              272                  294              4.29044
+           359              273                  296              4.29419
+           360              267                  292              4.29421
+           361              269                  293              4.29485
+           362              266                  292              4.29488
+           363              265                  292              4.29964
+           364              268                  293              4.30105
+           365              272                  295              4.30301
+           366              267                  293              4.30696
+           367              266                  293              4.30763
+           368              279                  299              4.31069
+           369              271                  294              4.31235
+           370              265                  293              4.31239
+           371              279                  300              4.31389
+           372              278                  297              4.32236
+           373              271                  295              4.32493
+           374              272                  296              4.33021
+           375              277                  297              4.33206
+           376              280                  301              4.34910
+           377              271                  296              4.35213
+           378              278                  298              4.35992
+           379              270                  294              4.36796
+           380              280                  302              4.36948
+           381              277                  298              4.36963
+           382              279                  301              4.37613
+           383              270                  295              4.38053
+           384              278                  299              4.38095
+           385              269                  294              4.38319
+           386              278                  300              4.38415
+           387              280                  303              4.38760
+           388              268                  294              4.38939
+           389              276                  297              4.38971
+           390              277                  299              4.39066
+           391              277                  300              4.39386
+           392              267                  294              4.39530
+           393              269                  295              4.39576
+           394              266                  294              4.39597
+           395              279                  302              4.39651
+           396              265                  294              4.40072
+           397              268                  295              4.40196
+           398              270                  296              4.40773
+           399              267                  295              4.40787
+           400              266                  295              4.40854
+           401              265                  295              4.41330
+           402              275                  297              4.41428
+           403              279                  303              4.41463
+           404              269                  296              4.42296
+           405              276                  298              4.42727
+           406              268                  296              4.42916
+           407              264                  289              4.43065
+           408              280                  304              4.43418
+           409              267                  296              4.43507
+           410              266                  296              4.43574
+           411              274                  297              4.43593
+           412              265                  296              4.44050
+           413              278                  301              4.44640
+           414              273                  297              4.44705
+           415              276                  299              4.44831
+           416              276                  300              4.45151
+           417              275                  298              4.45184
+           418              277                  301              4.45610
+           419              279                  304              4.46121
+           420              278                  302              4.46678
+           421              263                  289              4.46774
+           422              262                  289              4.46852
+           423              261                  289              4.46990
+           424              275                  299              4.47288
+           425              274                  298              4.47349
+           426              275                  300              4.47608
+           427              277                  302              4.47648
+           428              272                  297              4.48307
+           429              273                  298              4.48462
+           430              278                  303              4.48490
+           431              274                  299              4.49452
+           432              277                  303              4.49461
+           433              274                  300              4.49772
+           434              271                  297              4.50499
+           435              273                  299              4.50565
+           436              273                  300              4.50885
+           437              276                  301              4.51375
+           438              252                  285              4.51863
+           439              272                  298              4.52064
+           440              278                  304              4.53147
+           441              251                  285              4.53186
+           442              250                  285              4.53340
+           443              276                  302              4.53413
+           444              275                  301              4.53832
+           445              264                  290              4.53885
+           446              277                  304              4.54118
+           447              272                  299              4.54167
+           448              271                  298              4.54256
+           449              272                  300              4.54487
+           450              252                  286              4.54541
+           451              260                  289              4.54925
+           452              276                  303              4.55225
+           453              252                  287              4.55505
+           454              251                  286              4.55864
+           455              275                  302              4.55870
+           456              274                  301              4.55997
+           457              250                  286              4.56018
+           458              249                  285              4.56031
+           459              270                  297              4.56060
+           460              271                  299              4.56359
+           461              271                  300              4.56679
+           462              251                  287              4.56828
+           463              250                  287              4.56982
+           464              273                  301              4.57109
+           465              264                  291              4.57550
+           466              269                  297              4.57582
+           467              263                  290              4.57595
+           468              262                  290              4.57672
+           469              275                  303              4.57682
+           470              259                  289              4.57803
+           471              261                  290              4.57811
+           472              252                  288              4.58014
+           473              274                  302              4.58035
+           474              268                  297              4.58203
+           475              249                  286              4.58709
+           476              267                  297              4.58793
+           477              266                  297              4.58860
+           478              273                  302              4.59147
+           479              265                  297              4.59336
+           480              251                  288              4.59338
+           481              250                  288              4.59492
+           482              249                  287              4.59673
+           483              270                  298              4.59816
+           484              274                  303              4.59847
+           485              276                  304              4.59882
+           486              272                  301              4.60711
+           487              273                  303              4.60960
+           488              263                  291              4.61259
+           489              262                  291              4.61337
+           490              269                  298              4.61339
+           491              261                  291              4.61475
+           492              244                  281              4.61830
+           493              270                  299              4.61919
+           494              243                  281              4.61952
+           495              268                  298              4.61959
+           496              249                  288              4.62182
+           497              270                  300              4.62239
+           498              275                  304              4.62339
+           499              267                  298              4.62550
+           500              242                  281              4.62551
+
+      Number of active states:                                     595840
+ -------------------------------------------------------------------------------
+
+ -------------------------------------------------------------------------------
+ -                      TDDFPT WAVEFUNCTION OPTIMIZATION                       -
+ -------------------------------------------------------------------------------
+
+          Step            Time         Convergence           Conv. states
+ -------------------------------------------------------------------------------
