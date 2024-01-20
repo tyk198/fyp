@@ -940,4 +940,8 @@
  *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
 
              7           104.4          1.8565E-07                    500
- ------------------------- Restart Davidson iterations -------------------------
+ ------------------------- Restart Davidson iterations --------------------------
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+             8            59.2          1.7764E-15                    500
