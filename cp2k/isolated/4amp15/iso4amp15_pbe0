@@ -92,7 +92,7 @@
   &DFT
     POTENTIAL_FILE_NAME POTENTIAL
     BASIS_SET_FILE_NAME EMSL_BASIS_SETS
-#   WFN_RESTART_FILE_NAME 4amp1_pbe0-RESTART.wfn
+    WFN_RESTART_FILE_NAME iso4amp15_pbe0-RESTART.wfn
     CHARGE    0 #Net charge
     MULTIPLICITY    1 #Spin multiplicity
     &QS
@@ -130,7 +130,7 @@
     &SCF
       MAX_SCF 120
       EPS_SCF 1.0E-05 #Convergence threshold of density matrix of inner SCF
-  #   SCF_GUESS RESTART #Use wavefunction from WFN_RESTART_FILE_NAME file as initial guess
+      SCF_GUESS RESTART #Use wavefunction from WFN_RESTART_FILE_NAME file as initial guess
       &OUTER_SCF
          MAX_SCF 20
          EPS_SCF 1.0E-5
@@ -164,6 +164,12 @@
   &END DFT
   &PROPERTIES
     &TDDFPT #TDDFT calculation with Tamm-Dancoff approximation
+      KERNEL sTDA
+      &sTDA
+        FRACTION 0.20
+        DO_EWALD T
+      &END sTDA
+      MAX_ITER 100
       NSTATES   50 #Number of excited states to solve
       RKS_TRIPLETS F #If calculating triplet rather than singlet excited states
       CONVERGENCE [eV] 1E-4 #Convergence criterion of all excitation energies
