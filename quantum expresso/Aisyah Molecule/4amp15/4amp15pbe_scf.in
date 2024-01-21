@@ -9,7 +9,7 @@
   nat = 196
   ntyp = 4
   occupations = 'fixed'
-  nbnd = 285
+  nbnd = 295
   input_dft = 'pbe'
   ecutwfc = 60
   ecutrho = 600
