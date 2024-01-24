@@ -11,8 +11,8 @@
   occupations = 'fixed'
   nbnd = 295
   input_dft = 'pbe'
-  ecutwfc = 60
-  ecutrho = 600
+  ecutwfc = 80
+  ecutrho = 800
 /
 &ELECTRONS
   conv_thr = 1.0E-10
