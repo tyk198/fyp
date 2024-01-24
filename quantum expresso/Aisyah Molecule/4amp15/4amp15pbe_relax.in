@@ -2,7 +2,7 @@
   calculation = 'relax'
   prefix = '4amp'
   outdir = './outdir'
-  pseudo_dir = '/opt/qe/bin/pp/'
+  pseudo_dir = 'joyeechan1127/miniconda3/pp'
 /
 &SYSTEM
   ibrav = 0
