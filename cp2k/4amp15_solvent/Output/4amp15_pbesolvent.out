@@ -1,0 +1,2470 @@
+ DBCSR| CPU Multiplication driver                                           XSMM (U)
+ DBCSR| Multrec recursion limit                                              512 (U)
+ DBCSR| Multiplication stack size                                           1000 (D)
+ DBCSR| Maximum elements for images                                    UNLIMITED (U)
+ DBCSR| Multiplicative factor virtual images                                   1 (U)
+ DBCSR| Use multiplication densification                                       T (D)
+ DBCSR| Multiplication size stacks                                             3 (U)
+ DBCSR| Use memory pool for CPU allocation                                     F (U)
+ DBCSR| Number of 3D layers                                               SINGLE (U)
+ DBCSR| Use MPI memory allocation                                              F (U)
+ DBCSR| Use RMA algorithm                                                      F (U)
+ DBCSR| Use Communication thread                                               T (U)
+ DBCSR| Communication thread load                                             83 (D)
+ DBCSR| MPI: My process id                                                     0
+ DBCSR| MPI: Number of processes                                              90
+ DBCSR| OMP: Current number of threads                                         2
+ DBCSR| OMP: Max number of threads                                             2
+ DBCSR| Split modifier for TAS multiplication algorithm                  1.0E+00 (U)
+
+
+  **** **** ******  **  PROGRAM STARTED AT               2024-02-19 10:44:49.110
+ ***** ** ***  *** **   PROGRAM STARTED ON                          192ef622c2f7
+ **    ****   ******    PROGRAM STARTED BY                             <unknown>
+ ***** **    ** ** **   PROGRAM PROCESS ID                                   538
+  **** **  *******  **  PROGRAM STARTED IN                                  /mnt
+
+ CP2K| version string:                                       CP2K version 2023.2
+ CP2K| source code revision number:                                  git:65cca6c
+ CP2K| cp2kflags: omp libint fftw3 libxc pexsi elpa parallel scalapack cosma qui
+ CP2K|            p xsmm plumed2 spglib sirius libvori libbqb libtorch libvdwxc
+ CP2K| is freely available from                            https://www.cp2k.org/
+ CP2K| Program compiled at                          Wed Oct 18 11:40:41 UTC 2023
+ CP2K| Program compiled on                                          633bb7bf566f
+ CP2K| Program compiled for                                                local
+ CP2K| Data directory path                                        /opt/cp2k/data
+ CP2K| Input file name                                     4amp15_pbe_solvent.in
+
+ GLOBAL| Force Environment number                                              1
+ GLOBAL| Basis set file name                                      GTH_BASIS_SETS
+ GLOBAL| Potential file name                                           POTENTIAL
+ GLOBAL| MM Potential file name                                     MM_POTENTIAL
+ GLOBAL| Coordinate file name                                      __STD_INPUT__
+ GLOBAL| Method name                                                        CP2K
+ GLOBAL| Project name                                           4amp15pbesolvent
+ GLOBAL| Run type                                                         ENERGY
+ GLOBAL| FFT library                                                       FFTW3
+ GLOBAL| Diagonalization library                                            ELPA
+ GLOBAL| DGEMM library                                                      BLAS
+ GLOBAL| Minimum number of eigenvectors for ELPA usage                        16
+ GLOBAL| Orthonormality check for eigenvectors                          DISABLED
+ GLOBAL| Matrix multiplication library                                     COSMA
+ GLOBAL| All-to-all communication in single precision                          F
+ GLOBAL| FFTs using library dependent lengths                                  F
+ GLOBAL| Grid backend                                                       AUTO
+ GLOBAL| Global print level                                                  LOW
+ GLOBAL| MPI I/O enabled                                                       T
+ GLOBAL| Total number of message passing processes                            90
+ GLOBAL| Number of threads for this process                                    2
+ GLOBAL| This output is from process                                           0
+ GLOBAL| Stack size for threads created by OpenMP (OMP_STACKSIZE)            16M
+ GLOBAL| CPU model name                                            AMD EPYC 9B14
+ GLOBAL| CPUID                                                              1003
+ GLOBAL| Compiled for CPUID                                                    0
+
+ *** HINT in environment.F:904 :: The compiler target flags (generic) used ***
+ *** to build this binary cannot exploit all extensions of this CPU model  ***
+ *** (x86_avx512). Consider compiler target flags as part of FCFLAGS and   ***
+ *** CFLAGS (ARCH file).                                                   ***
+
+
+ MEMORY| system memory details [Kb]
+ MEMORY|                        rank 0           min           max       average
+ MEMORY| MemTotal            742610064     742610064     742610064     742610064
+ MEMORY| MemFree             724469820     724469568     724469820     724469769
+ MEMORY| Buffers                 28596         28596         28596         28596
+ MEMORY| Cached                4677988       4677988       4677988       4677988
+ MEMORY| Slab                   709112        709112        709112        709112
+ MEMORY| SReclaimable           327048        327048        327048        327048
+ MEMORY| MemLikelyFree       729503452     729503200     729503452     729503401
+
+
+ GENERATE|  Preliminary Number of Bonds generated:                             0
+ GENERATE|  Achieved consistency in connectivity generation.
+
+ *******************************************************************************
+ *******************************************************************************
+ **                                                                           **
+ **     #####                         ##              ##                      **
+ **    ##   ##            ##          ##              ##                      **
+ **   ##     ##                       ##            ######                    **
+ **   ##     ##  ##   ##  ##   #####  ##  ##   ####   ##    #####    #####    **
+ **   ##     ##  ##   ##  ##  ##      ## ##   ##      ##   ##   ##  ##   ##   **
+ **   ##  ## ##  ##   ##  ##  ##      ####     ###    ##   ######   ######    **
+ **    ##  ###   ##   ##  ##  ##      ## ##      ##   ##   ##       ##        **
+ **     #######   #####   ##   #####  ##  ##  ####    ##    #####   ##        **
+ **           ##                                                    ##        **
+ **                                                                           **
+ **                                                ... make the atoms dance   **
+ **                                                                           **
+ **            Copyright (C) by CP2K developers group (2000-2023)             **
+ **                      J. Chem. Phys. 152, 194103 (2020)                    **
+ **                                                                           **
+ *******************************************************************************
+
+
+ TOTAL NUMBERS AND MAXIMUM NUMBERS
+
+  Total number of            - Atomic kinds:                                   4
+                             - Atoms:                                        196
+                             - Shell sets:                                   392
+                             - Shells:                                      1120
+                             - Primitive Cartesian functions:               1176
+                             - Cartesian basis functions:                   2520
+                             - Spherical basis functions:                   2408
+
+  Maximum angular momentum of- Orbital basis functions:                        2
+                             - Local part of the GTH pseudopotential:          2
+                             - Non-local part of the GTH pseudopotential:      0
+
+
+ SCF PARAMETERS         Density guess:                                   RESTART
+                        --------------------------------------------------------
+                        max_scf:                                             128
+                        max_scf_history:                                       0
+                        max_diis:                                              4
+                        --------------------------------------------------------
+                        eps_scf:                                        1.00E-06
+                        eps_scf_history:                                0.00E+00
+                        eps_diis:                                       1.00E-01
+                        eps_eigval:                                     1.00E-05
+                        --------------------------------------------------------
+                        level_shift [a.u.]:                             0.000000
+                        added MOs                                        30    0
+                        --------------------------------------------------------
+                        Mixing method:                            BROYDEN_MIXING
+                                                charge density mixing in g-space
+                        --------------------------------------------------------
+                        No outer SCF
+
+ Number of electrons:                                                        560
+ Number of occupied orbitals:                                                280
+ Number of molecular orbitals:                                               310
+
+ Number of orbital functions:                                               2408
+ Number of independent orbital functions:                                   2408
+
+ Extrapolation method: initial_guess
+
+ *** WARNING in qs_initial_guess.F:305 :: User requested to restart the    ***
+ *** wavefunction from the file named: 4amp15pbedft-RESTART.wfn. This file ***
+ *** does not exist. Please check the existence of the file or change      ***
+ *** properly the value of the keyword WFN_RESTART_FILE_NAME. Calculation  ***
+ *** continues using ATOMIC GUESS.                                         ***
+
+
+
+ SCF WAVEFUNCTION OPTIMIZATION
+
+  Step     Update method      Time    Convergence         Total energy    Change
+  ------------------------------------------------------------------------------
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+     1 NoMix/Diag. 0.40E+00    0.9    13.13003432      -824.3573459122 -8.24E+02
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+     2 Broy./Diag. 0.40E+00    1.6     2.36271113      -763.0834506341  6.13E+01
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+     3 Broy./Diag. 0.40E+00    1.6     1.36017415      -810.3283000057 -4.72E+01
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+     4 Broy./Diag. 0.40E+00    1.6     0.44370036      -826.1337537101 -1.58E+01
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+     5 Broy./Diag. 0.40E+00    1.6     0.43706754      -829.8639314672 -3.73E+00
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+     6 Broy./Diag. 0.40E+00    1.6     0.13051723      -828.6065820844  1.26E+00
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+     7 Broy./Diag. 0.40E+00    1.6     0.05446953      -828.3263402695  2.80E-01
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+     8 Broy./Diag. 0.40E+00    1.8     0.02915930      -828.2670841950  5.93E-02
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+     9 Broy./Diag. 0.40E+00    1.7     0.01081028      -828.2714861550 -4.40E-03
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    10 Broy./Diag. 0.40E+00    1.8     0.00747852      -828.2879460708 -1.65E-02
+  SCCS| Iteration cycle converged in 30 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.124045982714
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        803.27238197289216
+  SCCS| Hartree energy of the solute only    [Hartree]        803.30674241290103
+  SCCS| Polarisation energy                  [Hartree]         -0.03436044000887
+  SCCS|                                      [kcal/mol]                  -21.562
+  SCCS| Cavitation energy                    [Hartree]          0.00610128626555
+  SCCS|                                      [kcal/mol]                    3.829
+  SCCS| Dispersion free energy               [Hartree]         -0.20390827819372
+  SCCS|                                      [kcal/mol]                 -127.954
+  SCCS| Repulsion free energy                [Hartree]          0.00165515398967
+  SCCS|                                      [kcal/mol]                    1.039
+  SCCS| Solvation free energy                [Hartree]         -0.23051227794737
+  SCCS|                                      [kcal/mol]                 -144.649
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    11 Broy./Diag. 0.40E+00    2.9     0.34196107      -828.3276514245 -3.97E-02
+  SCCS| Iteration cycle converged in 14 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.124073619384
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        803.27159620145619
+  SCCS| Hartree energy of the solute only    [Hartree]        803.30594950037823
+  SCCS| Polarisation energy                  [Hartree]         -0.03435329892212
+  SCCS|                                      [kcal/mol]                  -21.557
+  SCCS| Cavitation energy                    [Hartree]          0.00610391869702
+  SCCS|                                      [kcal/mol]                    3.830
+  SCCS| Dispersion free energy               [Hartree]         -0.20390737080221
+  SCCS|                                      [kcal/mol]                 -127.954
+  SCCS| Repulsion free energy                [Hartree]          0.00165586811440
+  SCCS|                                      [kcal/mol]                    1.039
+  SCCS| Solvation free energy                [Hartree]         -0.23050088291291
+  SCCS|                                      [kcal/mol]                 -144.641
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    12 Broy./Diag. 0.40E+00    2.4     0.00025814      -828.0490602446  2.79E-01
+  SCCS| Iteration cycle converged in 17 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.124261757725
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        803.26869869035443
+  SCCS| Hartree energy of the solute only    [Hartree]        803.30300725553798
+  SCCS| Polarisation energy                  [Hartree]         -0.03430856518362
+  SCCS|                                      [kcal/mol]                  -21.529
+  SCCS| Cavitation energy                    [Hartree]          0.00611870748819
+  SCCS|                                      [kcal/mol]                    3.840
+  SCCS| Dispersion free energy               [Hartree]         -0.20390212545823
+  SCCS|                                      [kcal/mol]                 -127.951
+  SCCS| Repulsion free energy                [Hartree]          0.00165988001053
+  SCCS|                                      [kcal/mol]                    1.042
+  SCCS| Solvation free energy                [Hartree]         -0.23043210314313
+  SCCS|                                      [kcal/mol]                 -144.598
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    13 Broy./Diag. 0.40E+00    2.5     0.00161928      -828.0553887210 -6.33E-03
+  SCCS| Iteration cycle converged in 20 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.125104900259
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        803.26152903963339
+  SCCS| Hartree energy of the solute only    [Hartree]        803.29562638117125
+  SCCS| Polarisation energy                  [Hartree]         -0.03409734153793
+  SCCS|                                      [kcal/mol]                  -21.396
+  SCCS| Cavitation energy                    [Hartree]          0.00616901621538
+  SCCS|                                      [kcal/mol]                    3.871
+  SCCS| Dispersion free energy               [Hartree]         -0.20388409139641
+  SCCS|                                      [kcal/mol]                 -127.939
+  SCCS| Repulsion free energy                [Hartree]          0.00167352773773
+  SCCS|                                      [kcal/mol]                    1.050
+  SCCS| Solvation free energy                [Hartree]         -0.23013888898123
+  SCCS|                                      [kcal/mol]                 -144.414
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    14 Broy./Diag. 0.40E+00    2.5     0.00641751      -828.0755560080 -2.02E-02
+  SCCS| Iteration cycle converged in 22 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.126805595586
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        803.25133169164269
+  SCCS| Hartree energy of the solute only    [Hartree]        803.28484626641080
+  SCCS| Polarisation energy                  [Hartree]         -0.03351457476808
+  SCCS|                                      [kcal/mol]                  -21.031
+  SCCS| Cavitation energy                    [Hartree]          0.00625557258305
+  SCCS|                                      [kcal/mol]                    3.925
+  SCCS| Dispersion free energy               [Hartree]         -0.20385293648282
+  SCCS|                                      [kcal/mol]                 -127.920
+  SCCS| Repulsion free energy                [Hartree]          0.00169700870732
+  SCCS|                                      [kcal/mol]                    1.065
+  SCCS| Solvation free energy                [Hartree]         -0.22941492996054
+  SCCS|                                      [kcal/mol]                 -143.960
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    15 Broy./Diag. 0.40E+00    2.7     0.01196246      -828.1187319035 -4.32E-02
+  SCCS| Iteration cycle converged in 23 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.128894218910
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        803.24042721366015
+  SCCS| Hartree energy of the solute only    [Hartree]        803.27291459479159
+  SCCS| Polarisation energy                  [Hartree]         -0.03248738113131
+  SCCS|                                      [kcal/mol]                  -20.386
+  SCCS| Cavitation energy                    [Hartree]          0.00634001313474
+  SCCS|                                      [kcal/mol]                    3.978
+  SCCS| Dispersion free energy               [Hartree]         -0.20382268287847
+  SCCS|                                      [kcal/mol]                 -127.901
+  SCCS| Repulsion free energy                [Hartree]          0.00171991569937
+  SCCS|                                      [kcal/mol]                    1.079
+  SCCS| Solvation free energy                [Hartree]         -0.22825013517567
+  SCCS|                                      [kcal/mol]                 -143.229
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    16 Broy./Diag. 0.40E+00    2.9     0.01323261      -828.1792220486 -6.05E-02
+  SCCS| Iteration cycle converged in 23 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.130820240940
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        803.23143812934313
+  SCCS| Hartree energy of the solute only    [Hartree]        803.26259588381197
+  SCCS| Polarisation energy                  [Hartree]         -0.03115775446882
+  SCCS|                                      [kcal/mol]                  -19.552
+  SCCS| Cavitation energy                    [Hartree]          0.00640168332725
+  SCCS|                                      [kcal/mol]                    4.017
+  SCCS| Dispersion free energy               [Hartree]         -0.20380087111731
+  SCCS|                                      [kcal/mol]                 -127.887
+  SCCS| Repulsion free energy                [Hartree]          0.00173664555940
+  SCCS|                                      [kcal/mol]                    1.090
+  SCCS| Solvation free energy                [Hartree]         -0.22682029669948
+  SCCS|                                      [kcal/mol]                 -142.332
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    17 Broy./Diag. 0.40E+00    2.7     0.01096714      -828.2391829804 -6.00E-02
+  SCCS| Iteration cycle converged in 21 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.132054977209
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        803.22641272424562
+  SCCS| Hartree energy of the solute only    [Hartree]        803.25643077680638
+  SCCS| Polarisation energy                  [Hartree]         -0.03001805256066
+  SCCS|                                      [kcal/mol]                  -18.837
+  SCCS| Cavitation energy                    [Hartree]          0.00643284591324
+  SCCS|                                      [kcal/mol]                    4.037
+  SCCS| Dispersion free energy               [Hartree]         -0.20379025118570
+  SCCS|                                      [kcal/mol]                 -127.880
+  SCCS| Repulsion free energy                [Hartree]          0.00174509933066
+  SCCS|                                      [kcal/mol]                    1.095
+  SCCS| Solvation free energy                [Hartree]         -0.22563035850246
+  SCCS|                                      [kcal/mol]                 -141.585
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    18 Broy./Diag. 0.40E+00    2.7     0.00786810      -828.2836728805 -4.45E-02
+  SCCS| Iteration cycle converged in 19 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.132651935583
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        803.22423123094063
+  SCCS| Hartree energy of the solute only    [Hartree]        803.25351113638749
+  SCCS| Polarisation energy                  [Hartree]         -0.02927990544690
+  SCCS|                                      [kcal/mol]                  -18.373
+  SCCS| Cavitation energy                    [Hartree]          0.00644212422132
+  SCCS|                                      [kcal/mol]                    4.042
+  SCCS| Dispersion free energy               [Hartree]         -0.20378745809087
+  SCCS|                                      [kcal/mol]                 -127.879
+  SCCS| Repulsion free energy                [Hartree]          0.00174761634560
+  SCCS|                                      [kcal/mol]                    1.097
+  SCCS| Solvation free energy                [Hartree]         -0.22487762297086
+  SCCS|                                      [kcal/mol]                 -141.113
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    19 Broy./Diag. 0.40E+00    2.6     0.00480893      -828.3075642091 -2.39E-02
+  SCCS| Iteration cycle converged in 18 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.132926274649
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        803.22337159893470
+  SCCS| Hartree energy of the solute only    [Hartree]        803.25216419628191
+  SCCS| Polarisation energy                  [Hartree]         -0.02879259734690
+  SCCS|                                      [kcal/mol]                  -18.068
+  SCCS| Cavitation energy                    [Hartree]          0.00644294098707
+  SCCS|                                      [kcal/mol]                    4.043
+  SCCS| Dispersion free energy               [Hartree]         -0.20378761028453
+  SCCS|                                      [kcal/mol]                 -127.879
+  SCCS| Repulsion free energy                [Hartree]          0.00174783791741
+  SCCS|                                      [kcal/mol]                    1.097
+  SCCS| Solvation free energy                [Hartree]         -0.22438942872695
+  SCCS|                                      [kcal/mol]                 -140.806
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    20 Broy./Diag. 0.40E+00    2.5     0.00302322      -828.3173006529 -9.74E-03
+  SCCS| Iteration cycle converged in 17 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.132993248636
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        803.22335472684119
+  SCCS| Hartree energy of the solute only    [Hartree]        803.25189180637562
+  SCCS| Polarisation energy                  [Hartree]         -0.02853707953446
+  SCCS|                                      [kcal/mol]                  -17.907
+  SCCS| Cavitation energy                    [Hartree]          0.00644004925317
+  SCCS|                                      [kcal/mol]                    4.041
+  SCCS| Dispersion free energy               [Hartree]         -0.20378892960786
+  SCCS|                                      [kcal/mol]                 -127.879
+  SCCS| Repulsion free energy                [Hartree]          0.00174705344924
+  SCCS|                                      [kcal/mol]                    1.096
+  SCCS| Solvation free energy                [Hartree]         -0.22413890643991
+  SCCS|                                      [kcal/mol]                 -140.649
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    21 Broy./Diag. 0.40E+00    2.4     0.00150849      -828.3202548792 -2.95E-03
+  SCCS| Iteration cycle converged in 16 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.133017282982
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        803.22341162117380
+  SCCS| Hartree energy of the solute only    [Hartree]        803.25182612521712
+  SCCS| Polarisation energy                  [Hartree]         -0.02841450404329
+  SCCS|                                      [kcal/mol]                  -17.830
+  SCCS| Cavitation energy                    [Hartree]          0.00643914328749
+  SCCS|                                      [kcal/mol]                    4.041
+  SCCS| Dispersion free energy               [Hartree]         -0.20378935204234
+  SCCS|                                      [kcal/mol]                 -127.880
+  SCCS| Repulsion free energy                [Hartree]          0.00174680767931
+  SCCS|                                      [kcal/mol]                    1.096
+  SCCS| Solvation free energy                [Hartree]         -0.22401790511883
+  SCCS|                                      [kcal/mol]                 -140.573
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    22 Broy./Diag. 0.40E+00    2.4     0.00068192      -828.3201143424  1.41E-04
+  SCCS| Iteration cycle converged in 15 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.133027212876
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        803.22345300513075
+  SCCS| Hartree energy of the solute only    [Hartree]        803.25181650723619
+  SCCS| Polarisation energy                  [Hartree]         -0.02836350210549
+  SCCS|                                      [kcal/mol]                  -17.798
+  SCCS| Cavitation energy                    [Hartree]          0.00643890644952
+  SCCS|                                      [kcal/mol]                    4.040
+  SCCS| Dispersion free energy               [Hartree]         -0.20378945959949
+  SCCS|                                      [kcal/mol]                 -127.880
+  SCCS| Repulsion free energy                [Hartree]          0.00174674343002
+  SCCS|                                      [kcal/mol]                    1.096
+  SCCS| Solvation free energy                [Hartree]         -0.22396731182545
+  SCCS|                                      [kcal/mol]                 -140.542
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    23 Broy./Diag. 0.40E+00    2.3     0.00028357      -828.3200123313  1.02E-04
+  SCCS| Iteration cycle converged in 15 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.133035040621
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        803.22348686362864
+  SCCS| Hartree energy of the solute only    [Hartree]        803.25180738399342
+  SCCS| Polarisation energy                  [Hartree]         -0.02832052036473
+  SCCS|                                      [kcal/mol]                  -17.771
+  SCCS| Cavitation energy                    [Hartree]          0.00643885296158
+  SCCS|                                      [kcal/mol]                    4.040
+  SCCS| Dispersion free energy               [Hartree]         -0.20378948086372
+  SCCS|                                      [kcal/mol]                 -127.880
+  SCCS| Repulsion free energy                [Hartree]          0.00174672891983
+  SCCS|                                      [kcal/mol]                    1.096
+  SCCS| Solvation free energy                [Hartree]         -0.22392441934704
+  SCCS|                                      [kcal/mol]                 -140.515
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    24 Broy./Diag. 0.40E+00    2.2     0.00023185      -828.3199428760  6.95E-05
+  SCCS| Iteration cycle converged in 14 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.133039257322
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        803.22349465740376
+  SCCS| Hartree energy of the solute only    [Hartree]        803.25179734191158
+  SCCS| Polarisation energy                  [Hartree]         -0.02830268450790
+  SCCS|                                      [kcal/mol]                  -17.760
+  SCCS| Cavitation energy                    [Hartree]          0.00643883002405
+  SCCS|                                      [kcal/mol]                    4.040
+  SCCS| Dispersion free energy               [Hartree]         -0.20378948802329
+  SCCS|                                      [kcal/mol]                 -127.880
+  SCCS| Repulsion free energy                [Hartree]          0.00174672269735
+  SCCS|                                      [kcal/mol]                    1.096
+  SCCS| Solvation free energy                [Hartree]         -0.22390661980979
+  SCCS|                                      [kcal/mol]                 -140.504
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    25 Broy./Diag. 0.40E+00    2.2     0.00009726      -828.3199264970  1.64E-05
+  SCCS| Iteration cycle converged in 14 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.133042943708
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        803.22349794327897
+  SCCS| Hartree energy of the solute only    [Hartree]        803.25178549108682
+  SCCS| Polarisation energy                  [Hartree]         -0.02828754780792
+  SCCS|                                      [kcal/mol]                  -17.751
+  SCCS| Cavitation energy                    [Hartree]          0.00643883985214
+  SCCS|                                      [kcal/mol]                    4.040
+  SCCS| Dispersion free energy               [Hartree]         -0.20378948250402
+  SCCS|                                      [kcal/mol]                 -127.880
+  SCCS| Repulsion free energy                [Hartree]          0.00174672536351
+  SCCS|                                      [kcal/mol]                    1.096
+  SCCS| Solvation free energy                [Hartree]         -0.22389146509629
+  SCCS|                                      [kcal/mol]                 -140.494
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    26 Broy./Diag. 0.40E+00    2.3     0.00008212      -828.3199132687  1.32E-05
+  SCCS| Iteration cycle converged in 13 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.133044454620
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        803.22349971304493
+  SCCS| Hartree energy of the solute only    [Hartree]        803.25178088166319
+  SCCS| Polarisation energy                  [Hartree]         -0.02828116861825
+  SCCS|                                      [kcal/mol]                  -17.747
+  SCCS| Cavitation energy                    [Hartree]          0.00643888947811
+  SCCS|                                      [kcal/mol]                    4.040
+  SCCS| Dispersion free energy               [Hartree]         -0.20378946124506
+  SCCS|                                      [kcal/mol]                 -127.880
+  SCCS| Repulsion free energy                [Hartree]          0.00174673882602
+  SCCS|                                      [kcal/mol]                    1.096
+  SCCS| Solvation free energy                [Hartree]         -0.22388500155918
+  SCCS|                                      [kcal/mol]                 -140.490
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    27 Broy./Diag. 0.40E+00    2.2     0.00003345      -828.3199124910  7.78E-07
+  SCCS| Iteration cycle converged in 9 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.133044165815
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        803.22350002286726
+  SCCS| Hartree energy of the solute only    [Hartree]        803.25178139015543
+  SCCS| Polarisation energy                  [Hartree]         -0.02828136728812
+  SCCS|                                      [kcal/mol]                  -17.747
+  SCCS| Cavitation energy                    [Hartree]          0.00643891186909
+  SCCS|                                      [kcal/mol]                    4.040
+  SCCS| Dispersion free energy               [Hartree]         -0.20378945214574
+  SCCS|                                      [kcal/mol]                 -127.880
+  SCCS| Repulsion free energy                [Hartree]          0.00174674490024
+  SCCS|                                      [kcal/mol]                    1.096
+  SCCS| Solvation free energy                [Hartree]         -0.22388516266453
+  SCCS|                                      [kcal/mol]                 -140.490
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    28 Broy./Diag. 0.40E+00    2.0     0.00000220      -828.3199101355  2.36E-06
+  SCCS| Iteration cycle converged in 9 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.133043972880
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        803.22349980949502
+  SCCS| Hartree energy of the solute only    [Hartree]        803.25178162329325
+  SCCS| Polarisation energy                  [Hartree]         -0.02828181379824
+  SCCS|                                      [kcal/mol]                  -17.747
+  SCCS| Cavitation energy                    [Hartree]          0.00643891610600
+  SCCS|                                      [kcal/mol]                    4.040
+  SCCS| Dispersion free energy               [Hartree]         -0.20378945064269
+  SCCS|                                      [kcal/mol]                 -127.880
+  SCCS| Repulsion free energy                [Hartree]          0.00174674604962
+  SCCS|                                      [kcal/mol]                    1.096
+  SCCS| Solvation free energy                [Hartree]         -0.22388560228530
+  SCCS|                                      [kcal/mol]                 -140.490
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    29 Broy./Diag. 0.40E+00    2.1     0.00000240      -828.3199104449 -3.09E-07
+  SCCS| Iteration cycle converged in 8 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.133043908418
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        803.22349990188559
+  SCCS| Hartree energy of the solute only    [Hartree]        803.25178186455673
+  SCCS| Polarisation energy                  [Hartree]         -0.02828196267102
+  SCCS|                                      [kcal/mol]                  -17.747
+  SCCS| Cavitation energy                    [Hartree]          0.00643891460630
+  SCCS|                                      [kcal/mol]                    4.040
+  SCCS| Dispersion free energy               [Hartree]         -0.20378945136703
+  SCCS|                                      [kcal/mol]                 -127.880
+  SCCS| Repulsion free energy                [Hartree]          0.00174674564279
+  SCCS|                                      [kcal/mol]                    1.096
+  SCCS| Solvation free energy                [Hartree]         -0.22388575378896
+  SCCS|                                      [kcal/mol]                 -140.490
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+    30 Broy./Diag. 0.40E+00    2.0     0.00000066      -828.3199111728 -7.28E-07
+
+  *** SCF run converged in    30 steps ***
+
+
+  Electronic density on regular grids:       -559.9999999981        0.0000000019
+  Core density on regular grids:              559.9999999996       -0.0000000004
+  Total charge density on r-space grids:        0.0000000015
+  Total charge density g-space grids:           0.0000000015
+
+  Overlap energy of the core charge distribution:               0.00004303421694
+  Self energy of the core charge distribution:              -1996.35753382145731
+  Core Hamiltonian energy:                                    614.78464922867624
+  Hartree energy:                                             803.25178186455673
+  Exchange-correlation energy:                               -249.42048649171448
+  Dispersion energy:                                           -0.55008302441076
+
+  SCCS| Hartree energy of solute and solvent [Hartree]        803.22349990188559
+  SCCS| Hartree energy of the solute only    [Hartree]        803.25178186455673
+  SCCS| Polarisation energy                  [Hartree]         -0.02828196267102
+  SCCS|                                      [kcal/mol]                  -17.747
+  SCCS| Cavitation energy                    [Hartree]          0.00643891460630
+  SCCS|                                      [kcal/mol]                    4.040
+  SCCS| Dispersion free energy               [Hartree]         -0.20378945136703
+  SCCS|                                      [kcal/mol]                 -127.880
+  SCCS| Repulsion free energy                [Hartree]          0.00174674564279
+  SCCS|                                      [kcal/mol]                    1.096
+  SCCS| Solvation free energy                [Hartree]         -0.22388575378896
+  SCCS|                                      [kcal/mol]                 -140.490
+
+  Total energy:                                              -828.31991117280359
+  
+  Eigenvalues of the occupied subspace spin            1
+ ---------------------------------------------
+      -0.77100948      -0.77100616      -0.76952867      -0.76952702
+      -0.76583013      -0.76581599      -0.76576501      -0.76575023
+      -0.71786189      -0.71786017      -0.71784807      -0.71784766
+      -0.64760812      -0.64760132      -0.64749790      -0.64749171
+      -0.57504939      -0.57491341      -0.57384399      -0.57371603
+      -0.57294807      -0.57257183      -0.57245235      -0.57209295
+      -0.56119272      -0.56069535      -0.56061669      -0.56014010
+      -0.51392539      -0.51377030      -0.51355094      -0.51332247
+      -0.49171625      -0.49147710      -0.49084837      -0.49051355
+      -0.47902547      -0.47858141      -0.47699014      -0.47618881
+      -0.47577375      -0.47510835      -0.47437319      -0.47426910
+      -0.47093384      -0.46979536      -0.46809984      -0.46704042
+      -0.46667854      -0.46628769      -0.46594580      -0.46549539
+      -0.44923899      -0.44877391      -0.44870043      -0.44835294
+      -0.42200314      -0.42169825      -0.41875746      -0.41851346
+      -0.41056095      -0.41007892      -0.41005639      -0.40958511
+      -0.39527424      -0.39484729      -0.39482758      -0.39449151
+      -0.36978728      -0.36951619      -0.36885009      -0.36869675
+      -0.34291650      -0.34281627      -0.34219221      -0.34118345
+      -0.33949418      -0.33946897      -0.33855373      -0.33830372
+      -0.33630062      -0.33576669      -0.33508972      -0.33348523
+      -0.33335168      -0.33098055      -0.33037966      -0.33034052
+      -0.30094878      -0.30078158      -0.30064411      -0.29999705
+      -0.29484935      -0.29473485      -0.29305851      -0.29148387
+      -0.28027842      -0.27798516      -0.27482412      -0.27111808
+      -0.26858597      -0.26740179      -0.26403884      -0.26371283
+      -0.25637153      -0.25581023      -0.25432383      -0.25392224
+      -0.25251508      -0.25186685      -0.24762179      -0.24721432
+      -0.23659547      -0.23646096      -0.23594093      -0.23469438
+      -0.22767834      -0.22651437      -0.22597933      -0.22539074
+      -0.22384476      -0.22182664      -0.22126292      -0.21919649
+      -0.21530579      -0.21356149      -0.21337110      -0.21295782
+      -0.21168381      -0.21122373      -0.20801744      -0.20712856
+      -0.20711015      -0.20707970      -0.20483083      -0.20370077
+      -0.20314259      -0.20281460      -0.20192005      -0.20065178
+      -0.19622031      -0.19552143      -0.19546873      -0.19455506
+      -0.19221520      -0.19093307      -0.18855379      -0.18750905
+      -0.18627591      -0.18590549      -0.17982979      -0.17881276
+      -0.17529729      -0.17469489      -0.17210687      -0.17140458
+      -0.17124164      -0.17034412      -0.17014318      -0.16733287
+      -0.16525993      -0.16493612      -0.16492994      -0.16421425
+      -0.16030059      -0.16017558      -0.15994839      -0.15919554
+      -0.15912406      -0.15739306      -0.15601253      -0.15384315
+      -0.15175021      -0.15036264      -0.15007065      -0.14959502
+      -0.14523863      -0.14329665      -0.14257477      -0.14243635
+      -0.14225497      -0.14162586      -0.13861399      -0.13860975
+      -0.13832537      -0.13781242      -0.13702457      -0.13643576
+      -0.13621011      -0.13448116      -0.12903367      -0.12892027
+      -0.12804179      -0.12687768      -0.12635661      -0.12566624
+      -0.12418048      -0.12401180      -0.12364708      -0.12306267
+      -0.12220326      -0.12107451      -0.11878053      -0.11808726
+      -0.11276454      -0.11245184      -0.11214339      -0.11069262
+      -0.10884462      -0.10838257      -0.10780988      -0.10770112
+      -0.10542548      -0.10504246      -0.10293359      -0.10244861
+      -0.10244787      -0.10227076      -0.09915430      -0.09890227
+      -0.09869145      -0.09729457      -0.09714142      -0.09508822
+      -0.08622576      -0.08592953      -0.08488248      -0.08325187
+      -0.08169556      -0.08137982      -0.08075367      -0.07936248
+      -0.07649723      -0.07570082      -0.07515697      -0.07447406
+      -0.07424831      -0.07154880      -0.06954570      -0.06798982
+      -0.06425258      -0.06339526      -0.06276268      -0.06272703
+      -0.04578068      -0.04533577      -0.04462071      -0.04363390
+      -0.04003828      -0.03911364      -0.03891884      -0.03829525
+      -0.02374454      -0.02339884      -0.01737760      -0.01681442
+      -0.01567013      -0.01426636      -0.01229436      -0.01126167
+      -0.00841510      -0.00834356      -0.00825691      -0.00683844
+       0.00735030       0.00750942       0.00752909       0.00795731
+       0.00820311       0.00905042       0.01054680       0.01129911
+       0.01262181       0.01334759       0.01413509       0.01469495
+       0.01700307       0.01730827       0.02028224       0.02125497
+ Fermi Energy [eV] :    0.578377
+  
+  Lowest eigenvalues of the unoccupied subspace spin            1
+ ---------------------------------------------
+       0.10642958
+
+ *******************************************************************************
+ **                                                                           **
+ **         ######## #######   #######   ######## #######  ########           **
+ **            ##    ##     ## ##     ## ##       ##   ##     ##              **
+ **            ##    ##     ## ##     ## ######   #######     ##              **
+ **            ##    ##     ## ##     ## ##       ##          ##              **
+ **            ##    #######   #######   ##       ##          ##              **
+ **                                                                           **
+ *******************************************************************************
+ KERNEL|                                                                    FULL
+ FUNCTIONAL| PBE:
+ FUNCTIONAL| J.P.Perdew, K.Burke, M.Ernzerhof, Phys. Rev. Letter, vol. 77, n 18,
+ FUNCTIONAL|  pp. 3865-3868, (1996){spin unpolarized}                           
+ KERNEL| Spin symmetry of excitations                                    Singlet
+ TDDFPT| Number of states calculated                                          50
+ TDDFPT| Number of Davidson iterations                                       100
+ TDDFPT| Davidson iteration convergence                                0.367E-05
+ TDDFPT| Max. number of Krylov space vectors                                5000
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+ TDDFPT| Molecular Orbitals:        Spin       AOs       Occ      Virt     Total
+ TDDFPT|                               1      2408       280      2128      2408
+ 
+ -------------------------------------------------------------------------------
+ -                            TDDFPT Initial Guess                             -
+ -------------------------------------------------------------------------------
+          State         Occupied      ->      Virtual          Excitation
+          number         orbital              orbital          energy (eV)
+ -------------------------------------------------------------------------------
+             1              280                  281              2.31772
+             2              280                  282              2.32676
+             3              279                  281              2.34419
+             4              280                  283              2.34479
+             5              279                  282              2.35322
+             6              280                  284              2.35758
+             7              279                  283              2.37126
+             8              279                  284              2.38405
+             9              278                  281              2.42511
+            10              277                  281              2.43342
+            11              278                  282              2.43415
+            12              277                  282              2.44246
+            13              278                  283              2.45219
+            14              277                  283              2.46049
+            15              278                  284              2.46497
+            16              277                  284              2.47328
+            17              276                  281              2.49623
+            18              276                  282              2.50526
+            19              275                  281              2.51146
+            20              275                  282              2.52050
+            21              276                  283              2.52330
+            22              274                  281              2.53289
+            23              276                  284              2.53608
+            24              275                  283              2.53853
+            25              274                  282              2.54193
+            26              275                  284              2.55132
+            27              273                  281              2.55264
+            28              274                  283              2.55996
+            29              273                  282              2.56168
+            30              274                  284              2.57275
+            31              273                  283              2.57971
+            32              272                  281              2.58863
+            33              273                  284              2.59250
+            34              272                  282              2.59767
+            35              271                  281              2.60910
+            36              272                  283              2.61570
+            37              271                  282              2.61814
+            38              272                  284              2.62849
+            39              271                  283              2.63617
+            40              271                  284              2.64896
+            41              270                  281              2.64982
+            42              270                  282              2.65886
+            43              269                  281              2.67288
+            44              270                  283              2.67689
+            45              268                  281              2.67957
+            46              269                  282              2.68191
+            47              268                  282              2.68860
+            48              270                  284              2.68968
+            49              267                  281              2.69122
+            50              266                  281              2.69175
+
+      Number of active states:                                     595840
+ -------------------------------------------------------------------------------
+ 
+ -------------------------------------------------------------------------------
+ -                      TDDFPT WAVEFUNCTION OPTIMIZATION                       -
+ -------------------------------------------------------------------------------
+
+          Step            Time         Convergence           Conv. states
+ -------------------------------------------------------------------------------
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+             1            61.7          4.5657E-02                      0
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+             2            61.6          4.3382E-02                      0
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+             3            60.7          1.2731E-03                      6
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+             4            60.0          2.8633E-04                     31
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+             5            61.9          1.2641E-05                     47
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+             6            57.0          5.1025E-07                     50
+ ------------------------- Restart Davidson iterations -------------------------
+
+ *** WARNING in fm/cp_fm_elpa.F:522 :: Setting real_kernel for ELPA failed ***
+
+             7            56.6          9.5757E-16                     50
+ 
+ -------------------------------------------------------------------------------
+ -  TDDFPT run converged in 7 iteration(s) 
+ -------------------------------------------------------------------------------
+
+ R-TDDFPT states of multiplicity 1
+ Transition dipoles calculated using velocity formulation
+
+         State    Excitation        Transition dipole (a.u.)        Oscillator
+         number   energy (eV)       x           y           z     strength (a.u.)
+         ------------------------------------------------------------------------
+ TDDFPT|      1       2.33277   5.3371E-01 -1.0942E-07 -3.5787E-01   2.35991E-02
+ TDDFPT|      2       2.33493  -2.8338E-06  7.3384E-10  1.8872E-06   6.63126E-13
+ TDDFPT|      3       2.36079  -5.6093E-07  4.9231E-02  3.7601E-07   1.40185E-04
+ TDDFPT|      4       2.36417  -3.3905E-09  1.0393E-07  6.9536E-10   6.26322E-16
+ TDDFPT|      5       2.38768  -9.6416E-01  3.9499E-06  5.6142E-01   7.28173E-02
+ TDDFPT|      6       2.38846  -9.1365E-08  4.8306E-09  5.5496E-08   6.70047E-16
+ TDDFPT|      7       2.39861   2.2091E-08  1.8160E-08 -1.2703E-08   5.75411E-17
+ TDDFPT|      8       2.40284  -1.1286E-05 -3.9464E-01  6.5849E-06   9.16823E-03
+ TDDFPT|      9       2.43566  -9.0845E-10 -5.4163E-07 -2.6444E-09   1.75059E-14
+ TDDFPT|     10       2.43729   1.7199E-07  7.4570E-02  7.8422E-07   3.32039E-04
+ TDDFPT|     11       2.46464  -9.6104E-06  2.4133E-09 -4.5873E-06   6.84755E-12
+ TDDFPT|     12       2.46498  -2.7003E-01 -9.9529E-09 -1.2886E-01   5.40634E-03
+ TDDFPT|     13       2.50611  -1.1663E-01  1.9685E-06  5.4476E-01   1.90559E-02
+ TDDFPT|     14       2.50989  -4.4347E-07  1.5696E-09  1.5207E-06   1.54298E-13
+ TDDFPT|     15       2.52078  -4.2058E-08  2.7112E-08  5.6237E-08   3.49958E-16
+ TDDFPT|     16       2.52316  -5.4113E-06  7.5764E-01 -6.2280E-06   3.54835E-02
+ TDDFPT|     17       2.52479  -3.7506E-08  4.2990E-07 -2.0290E-08   1.15442E-14
+ TDDFPT|     18       2.52529   2.7386E-01  1.8031E-05  1.2331E-01   5.58104E-03
+ TDDFPT|     19       2.53900  -1.6268E-10 -1.7865E-06 -2.6765E-11   1.98538E-13
+ TDDFPT|     20       2.54427  -3.1421E-06 -7.4047E-01 -1.8725E-06   3.41767E-02
+ TDDFPT|     21       2.54669  -5.4055E-01  2.5794E-06 -1.2987E-01   1.92834E-02
+ TDDFPT|     22       2.55251  -6.4899E-07 -1.3060E-08 -1.4725E-07   2.77059E-14
+ TDDFPT|     23       2.56647   2.0448E-06 -1.0014E-01  9.4221E-07   6.30548E-04
+ TDDFPT|     24       2.57343   4.3643E-09 -6.0493E-08 -6.7571E-10   2.31948E-16
+ TDDFPT|     25       2.58302   1.2518E-06 -6.8121E-02  1.2518E-06   2.93659E-04
+ TDDFPT|     26       2.58351   3.9166E-09 -1.3210E-06 -4.9672E-10   1.10451E-13
+ TDDFPT|     27       2.59475  -1.0784E-01 -3.6415E-07  1.1152E-01   1.52991E-03
+ TDDFPT|     28       2.59705  -2.9680E-07  3.3977E-10  2.8057E-07   1.06136E-14
+ TDDFPT|     29       2.61359   8.3189E-07  5.1761E-09  3.2328E-07   5.10061E-14
+ TDDFPT|     30       2.61851   9.5241E-01 -6.1773E-06  2.5776E-01   6.24537E-02
+ TDDFPT|     31       2.61928   4.0155E-08 -2.1907E-07  1.1764E-08   3.19216E-15
+ TDDFPT|     32       2.62931   1.5049E-05  5.5989E-01  3.7354E-07   2.01933E-02
+ TDDFPT|     33       2.63872  -7.1209E-08 -6.4396E-07  1.3444E-08   2.71480E-14
+ TDDFPT|     34       2.64330   1.3151E-04 -2.0199E+00 -2.2433E-05   2.64214E-01
+ TDDFPT|     35       2.64348   5.9281E-06 -2.1618E-06 -9.5568E-07   2.63778E-12
+ TDDFPT|     36       2.64447   2.3219E+00  1.1265E-04 -3.8188E-01   3.58738E-01
+ TDDFPT|     37       2.66650  -3.2007E-06  5.4049E-01 -1.3435E-06   1.90841E-02
+ TDDFPT|     38       2.66809   1.4723E-08  3.0517E-06 -4.9919E-09   6.08784E-13
+ TDDFPT|     39       2.68724   1.7607E-01 -3.4677E-06  2.6932E-01   6.81626E-03
+ TDDFPT|     40       2.68803  -7.7676E-07 -7.5033E-08 -2.2376E-06   3.69838E-13
+ TDDFPT|     41       2.69164  -6.3378E-05 -6.3333E-01 -2.5733E-06   2.64508E-02
+ TDDFPT|     42       2.69298  -1.1739E+00  3.6344E-05 -7.4831E-02   9.12866E-02
+ TDDFPT|     43       2.69492  -9.1106E-09 -1.0157E-06  1.3101E-08   6.81246E-14
+ TDDFPT|     44       2.69879  -9.7686E-07 -8.2543E-09 -3.2646E-08   6.31690E-14
+ TDDFPT|     45       2.70334   5.0849E-08 -3.9699E-07  2.6874E-08   1.06573E-14
+ TDDFPT|     46       2.70681  -3.9108E-06  2.1191E-07 -3.3879E-06   1.77842E-12
+ TDDFPT|     47       2.70727   2.8297E-05  3.4741E-01  2.0833E-05   8.00505E-03
+ TDDFPT|     48       2.70779  -5.4411E-01 -3.4738E-06 -5.1019E-01   3.69084E-02
+ TDDFPT|     49       2.70990  -1.0468E-05  5.4820E-01 -1.4739E-05   1.99517E-02
+ TDDFPT|     50       2.71087   3.5388E-08 -2.5721E-06  5.2232E-08   4.39657E-13
+
+ TDDFPT : CheckSum  =  0.667705E+00
+ 
+ -------------------------------------------------------------------------------
+ -                            Excitation analysis                              -
+ -------------------------------------------------------------------------------
+        State             Occupied              Virtual             Excitation
+        number             orbital              orbital             amplitude
+ -------------------------------------------------------------------------------
+             1   2.33277 eV
+                               280                  281               0.854197
+                               279                  282              -0.505695
+                               278                  283              -0.091178
+                               277                  284               0.058684
+                               273                  283              -0.029250
+                               274                  281               0.017926
+                               271                  284               0.014702
+                               265                  284              -0.014265
+                               266                  282               0.013744
+                               279                  286               0.012132
+                               280                  285               0.011420
+             2   2.33493 eV
+                               280                  282              -0.814728
+                               279                  281               0.575770
+                               278                  284              -0.046657
+                               277                  283               0.035695
+                               273                  284              -0.018084
+                               265                  283              -0.012993
+                               274                  282              -0.012744
+                               266                  281              -0.012407
+             3   2.36079 eV
+                               280                  283               0.868751
+                               279                  284               0.447893
+                               278                  281              -0.167551
+                               277                  282              -0.108418
+                               273                  281              -0.044793
+                               271                  282              -0.021816
+                               274                  283               0.017673
+                               265                  282               0.016149
+                               266                  284              -0.014608
+                               279                  288               0.013690
+                               280                  287               0.012824
+                               272                  284               0.012323
+                               270                  281              -0.011500
+                               275                  284              -0.010144
+             4   2.36417 eV
+                               280                  284              -0.825979
+                               279                  283              -0.555777
+                               278                  282              -0.071322
+                               277                  281              -0.049257
+                               273                  282              -0.021126
+                               265                  281               0.013652
+                               274                  284              -0.012587
+                               266                  283               0.012498
+             5   2.38768 eV
+                               279                  282              -0.792353
+                               280                  281              -0.406664
+                               278                  283               0.351380
+                               277                  284              -0.248230
+                               273                  283               0.082544
+                               271                  284              -0.062583
+                               274                  281              -0.041962
+                               272                  282               0.036532
+                               280                  285              -0.031359
+                               279                  286              -0.029843
+                               270                  283               0.027564
+                               276                  281              -0.024158
+                               268                  281              -0.021012
+                               270                  287              -0.019330
+                               267                  283              -0.018669
+                               277                  288              -0.017265
+                               265                  284               0.015509
+                               278                  287              -0.014798
+                               271                  288              -0.014133
+                               269                  288              -0.013895
+                               273                  287              -0.013384
+                               276                  285               0.013341
+                               266                  282              -0.012335
+                               275                  286              -0.011014
+             6   2.38846 eV
+                               279                  281               0.740335
+                               280                  282               0.487703
+                               277                  283              -0.327361
+                               278                  284               0.282609
+                               273                  284               0.086120
+                               271                  283              -0.072427
+                               274                  282               0.045397
+                               280                  286               0.039407
+                               279                  285               0.037049
+                               272                  281              -0.035800
+                               276                  282               0.035672
+                               270                  284               0.026017
+                               270                  288               0.023170
+                               277                  287               0.020562
+                               265                  283               0.019228
+                               278                  288               0.018159
+                               268                  282               0.018031
+                               269                  283              -0.017755
+                               269                  287               0.016506
+                               271                  287               0.016488
+                               266                  281               0.015035
+                               267                  284              -0.014648
+                               273                  288               0.013685
+                               276                  286              -0.013606
+                               275                  285               0.012314
+                               274                  286               0.011391
+             7   2.39861 eV
+                               279                  283               0.713919
+                               280                  284              -0.421734
+                               277                  281              -0.414531
+                               278                  282              -0.354113
+                               273                  282              -0.071866
+                               271                  281              -0.059667
+                               276                  284              -0.031683
+                               270                  282              -0.025860
+                               280                  288               0.022894
+                               274                  284              -0.022766
+                               279                  287               0.022190
+                               272                  283              -0.020079
+                               275                  283              -0.018721
+                               269                  281              -0.017750
+                               270                  286               0.014445
+                               267                  282               0.011643
+                               269                  285               0.011394
+                               265                  281               0.010240
+                               274                  288               0.010228
+                               277                  285               0.010151
+             8   2.40284 eV
+                               279                  284              -0.783623
+                               278                  281              -0.468606
+                               277                  282              -0.280450
+                               280                  283               0.270694
+                               273                  281              -0.071352
+                               271                  282              -0.053058
+                               276                  283               0.045232
+                               270                  281              -0.030489
+                               272                  284               0.026593
+                               280                  287               0.017532
+                               274                  283               0.017308
+                               279                  288               0.016961
+                               267                  281               0.014548
+                               275                  284               0.014315
+                               270                  285               0.011937
+                               268                  283               0.011877
+                               269                  286               0.010989
+                               274                  287               0.010333
+             9   2.43566 eV
+                               278                  282               0.733125
+                               277                  281              -0.678090
+                               279                  283              -0.028884
+                               276                  284               0.018719
+                               268                  284               0.016439
+                               267                  282              -0.016413
+                               265                  281               0.015972
+                               266                  283               0.014462
+                               272                  283               0.011347
+                               271                  281               0.011313
+            10   2.43729 eV
+                               277                  282              -0.737556
+                               278                  281               0.659531
+                               279                  284              -0.100399
+                               280                  283               0.084417
+                               276                  283              -0.035962
+                               273                  281              -0.022261
+                               265                  282               0.017155
+                               266                  284              -0.014871
+                               274                  283               0.013974
+                               269                  282              -0.013889
+                               272                  284              -0.011295
+            11   2.46464 eV
+                               278                  284              -0.717188
+                               277                  283              -0.694479
+                               276                  282              -0.029801
+                               279                  281              -0.024406
+                               268                  282              -0.020726
+                               267                  284               0.017588
+                               266                  281               0.016758
+                               265                  283               0.014980
+                               272                  281               0.013964
+                               271                  283               0.010500
+            12   2.46498 eV
+                               278                  283              -0.722365
+                               277                  284              -0.676954
+                               276                  281               0.081052
+                               279                  282              -0.068479
+                               280                  281              -0.067294
+                               273                  283               0.031846
+                               274                  281              -0.027636
+                               266                  282              -0.019696
+                               265                  284               0.019677
+                               275                  282              -0.017662
+                               269                  284              -0.011875
+                               279                  286              -0.010819
+            13   2.50611 eV
+                               276                  281               0.908256
+                               275                  282               0.289686
+                               277                  284               0.196731
+                               273                  283               0.143862
+                               271                  284              -0.079769
+                               272                  282               0.077698
+                               278                  283              -0.070250
+                               279                  282              -0.060877
+                               274                  281              -0.059653
+                               280                  281              -0.047731
+                               270                  283               0.041132
+                               267                  283              -0.023925
+                               268                  281              -0.021584
+                               280                  285              -0.017547
+                               279                  286              -0.016120
+                               274                  285              -0.013201
+                               269                  288              -0.012780
+                               278                  287              -0.011846
+                               272                  286               0.011648
+                               270                  287              -0.011281
+                               277                  288              -0.010055
+            14   2.50989 eV
+                               276                  282               0.775891
+                               275                  281               0.619107
+                               274                  282              -0.077058
+                               272                  281               0.056280
+                               273                  284              -0.048444
+                               271                  283               0.035428
+                               277                  283              -0.021439
+                               267                  284               0.015758
+                               268                  282              -0.015435
+                               279                  281              -0.015020
+                               278                  284              -0.011761
+                               269                  283              -0.010315
+            15   2.52078 eV
+                               275                  281               0.639422
+                               276                  282              -0.473016
+                               277                  283               0.347794
+                               278                  284              -0.333111
+                               273                  284               0.215545
+                               279                  281               0.159337
+                               271                  283              -0.154202
+                               280                  282               0.132360
+                               270                  284               0.071113
+                               272                  281              -0.055108
+                               269                  283              -0.049263
+                               280                  286               0.038722
+                               279                  285               0.038214
+                               270                  288               0.032474
+                               275                  285               0.028270
+                               269                  287               0.028204
+                               274                  286               0.025906
+                               268                  282               0.022810
+                               276                  286              -0.021457
+                               267                  284              -0.019664
+                               271                  287               0.018381
+                               274                  282               0.017258
+                               265                  283               0.016443
+                               277                  287               0.014892
+                               272                  285              -0.013405
+                               273                  288               0.012572
+                               278                  288               0.012348
+                               259                  282               0.010135
+            16   2.52316 eV
+                               276                  283               0.659765
+                               273                  281               0.446296
+                               277                  282              -0.350061
+                               278                  281              -0.281821
+                               279                  284               0.210561
+                               275                  284               0.194468
+                               280                  283              -0.177687
+                               271                  282               0.141194
+                               270                  281               0.091847
+                               274                  283              -0.073848
+                               272                  284              -0.059310
+                               267                  281              -0.049291
+                               268                  283              -0.046128
+                               280                  287              -0.037691
+                               279                  288              -0.036171
+                               276                  287               0.022677
+                               265                  282              -0.021371
+                               275                  288              -0.020461
+                               273                  285              -0.020171
+                               270                  285              -0.019613
+                               271                  286              -0.019362
+                               269                  286              -0.014150
+                               277                  286              -0.011782
+                               269                  282               0.010961
+            17   2.52479 eV
+                               275                  283               0.453699
+                               277                  281               0.409367
+                               276                  284               0.401558
+                               278                  282               0.379003
+                               273                  282              -0.376628
+                               279                  283               0.259738
+                               280                  284              -0.214111
+                               271                  281              -0.169278
+                               274                  284              -0.108124
+                               270                  282              -0.071137
+                               269                  281              -0.054484
+                               267                  282               0.049316
+                               280                  288               0.047086
+                               279                  287               0.046061
+                               268                  284              -0.042660
+                               276                  288              -0.032385
+                               265                  281               0.031372
+                               271                  285               0.030318
+                               273                  286               0.029025
+                               275                  287               0.028482
+                               270                  286               0.026544
+                               272                  283              -0.017283
+                               269                  285               0.014901
+                               277                  285               0.013722
+                               266                  283               0.012721
+                               258                  281               0.010643
+                               274                  288               0.010609
+            18   2.52529 eV
+                               275                  282               0.819653
+                               277                  284              -0.365254
+                               278                  283               0.275171
+                               273                  283              -0.208924
+                               279                  282               0.141273
+                               280                  281               0.118633
+                               271                  284               0.110347
+                               276                  281              -0.096428
+                               270                  283              -0.072345
+                               274                  281              -0.056252
+                               269                  284               0.042379
+                               280                  285               0.032260
+                               279                  286               0.031413
+                               270                  287               0.027989
+                               272                  282              -0.027571
+                               268                  281               0.025683
+                               275                  286               0.024719
+                               276                  285              -0.024083
+                               269                  288               0.022460
+                               274                  285               0.019138
+                               271                  288               0.018624
+                               265                  284              -0.017527
+                               267                  283               0.016235
+                               273                  287               0.015165
+                               266                  282               0.011343
+                               277                  288               0.011156
+            19   2.53900 eV
+                               276                  284               0.725582
+                               275                  283              -0.679049
+                               274                  284              -0.067007
+                               273                  282              -0.059183
+                               272                  283              -0.045169
+                               269                  281               0.022399
+                               278                  282              -0.020798
+                               267                  282               0.018524
+                               271                  281              -0.017765
+                               268                  284              -0.012742
+            20   2.54427 eV
+                               275                  284              -0.745229
+                               276                  283               0.562347
+                               278                  281               0.203549
+                               277                  282               0.192740
+                               279                  284              -0.122104
+                               280                  283               0.103909
+                               273                  281              -0.098971
+                               272                  284              -0.056525
+                               269                  282              -0.048720
+                               274                  283               0.033698
+                               271                  282              -0.032033
+                               276                  287              -0.028351
+                               265                  282               0.025322
+                               273                  285               0.024669
+                               271                  286               0.021824
+                               270                  281              -0.019767
+                               268                  283               0.019743
+                               280                  287               0.019114
+                               279                  288               0.017871
+                               275                  288               0.016947
+                               267                  281               0.014181
+                               270                  285               0.012063
+                               272                  288               0.010802
+            21   2.54669 eV
+                               274                  281               0.927478
+                               272                  282               0.209062
+                               277                  284              -0.163268
+                               273                  283               0.161173
+                               278                  283               0.121169
+                               270                  283              -0.084575
+                               276                  281               0.076331
+                               269                  284               0.056518
+                               279                  282               0.053278
+                               280                  281               0.043610
+                               271                  284              -0.032124
+                               275                  286               0.031335
+                               276                  285              -0.030811
+                               266                  282              -0.023442
+                               271                  288               0.020914
+                               275                  282              -0.019819
+                               273                  287               0.018442
+                               270                  287               0.018168
+                               269                  288               0.014597
+                               279                  286               0.012790
+                               280                  285               0.011545
+                               264                  282              -0.011015
+                               267                  283              -0.010300
+            22   2.55251 eV
+                               274                  282               0.890458
+                               272                  281               0.280693
+                               277                  283               0.180049
+                               278                  284              -0.176921
+                               276                  282               0.136099
+                               273                  284              -0.113680
+                               275                  281              -0.091153
+                               279                  281               0.069484
+                               269                  283              -0.064753
+                               270                  284               0.063705
+                               280                  282               0.057804
+                               271                  283               0.040551
+                               276                  286              -0.032201
+                               275                  285               0.031237
+                               271                  287               0.024495
+                               266                  281              -0.023542
+                               273                  288               0.022876
+                               268                  282               0.019388
+                               270                  288               0.017000
+                               280                  286               0.015126
+                               279                  285               0.014858
+                               269                  287               0.011652
+            23   2.56647 eV
+                               274                  283               0.803987
+                               273                  281               0.513500
+                               270                  281              -0.146207
+                               271                  282              -0.121725
+                               277                  282               0.119593
+                               278                  281               0.102320
+                               279                  284              -0.089092
+                               280                  283               0.084293
+                               276                  283              -0.053617
+                               269                  282              -0.051545
+                               280                  287               0.035048
+                               279                  288               0.034783
+                               275                  284               0.033426
+                               272                  284              -0.027344
+                               265                  282               0.022378
+                               275                  288               0.019615
+                               276                  287              -0.018732
+                               271                  286               0.018422
+                               270                  285               0.017591
+                               273                  285               0.017289
+                               269                  286               0.013646
+                               277                  286               0.012672
+                               266                  284              -0.010472
+                               278                  285               0.010378
+                               274                  287               0.010115
+            24   2.57343 eV
+                               274                  284              -0.692060
+                               273                  282               0.641747
+                               271                  281              -0.199327
+                               277                  281               0.124984
+                               278                  282               0.121696
+                               279                  283               0.096758
+                               280                  284              -0.085751
+                               270                  282              -0.081889
+                               269                  281              -0.066824
+                               272                  283               0.042938
+                               265                  281               0.037258
+                               279                  287               0.033558
+                               280                  288               0.033199
+                               276                  284              -0.031278
+                               275                  283              -0.030277
+                               266                  283               0.021048
+                               276                  288              -0.020560
+                               275                  287               0.020279
+                               271                  285               0.019836
+                               270                  286               0.018478
+                               273                  286               0.017547
+                               269                  285               0.011812
+                               277                  285               0.011418
+            25   2.58302 eV
+                               273                  281              -0.600367
+                               274                  283               0.449573
+                               271                  282               0.442651
+                               275                  284               0.295192
+                               272                  284              -0.278426
+                               276                  283               0.249740
+                               266                  284               0.055097
+                               265                  282              -0.048440
+                               268                  283               0.030058
+                               278                  285              -0.028216
+                               269                  282              -0.026755
+                               277                  286              -0.025941
+                               280                  283              -0.024336
+                               280                  287              -0.023065
+                               279                  288              -0.022266
+                               277                  282               0.020169
+                               276                  287              -0.018603
+                               273                  285               0.018524
+                               279                  284               0.017658
+                               272                  288               0.015789
+                               270                  281               0.015040
+                               278                  281               0.014524
+                               274                  287              -0.014218
+                               271                  286               0.013768
+                               275                  288               0.011862
+            26   2.58351 eV
+                               273                  282              -0.503270
+                               274                  284              -0.489781
+                               271                  281               0.416747
+                               276                  284              -0.334444
+                               272                  283               0.309934
+                               275                  283              -0.301583
+                               277                  281               0.103508
+                               278                  282               0.097569
+                               268                  284              -0.048563
+                               279                  283               0.043015
+                               266                  283              -0.040449
+                               280                  284              -0.032559
+                               273                  286               0.028072
+                               267                  282               0.027622
+                               269                  281              -0.025590
+                               276                  288              -0.024621
+                               271                  285               0.024217
+                               272                  287               0.022473
+                               265                  281              -0.020073
+                               278                  286              -0.017960
+                               274                  288              -0.017615
+                               277                  285              -0.015880
+                               275                  287               0.013689
+                               269                  285              -0.010691
+                               276                  298              -0.010123
+            27   2.59475 eV
+                               273                  283              -0.793257
+                               272                  282               0.536270
+                               271                  284              -0.186232
+                               275                  282              -0.129375
+                               276                  281               0.100687
+                               270                  283               0.071862
+                               268                  281               0.056755
+                               266                  282              -0.052760
+                               269                  284              -0.048941
+                               265                  284               0.034316
+                               267                  283               0.031335
+                               280                  285              -0.029096
+                               279                  286              -0.029090
+                               280                  281              -0.028095
+                               279                  282              -0.024006
+                               274                  285              -0.019215
+                               270                  287              -0.017930
+                               277                  288              -0.017905
+                               278                  287              -0.017147
+                               269                  288              -0.016419
+                               272                  286               0.013242
+                               277                  284              -0.010756
+            28   2.59705 eV
+                               273                  284               0.727019
+                               272                  281               0.614160
+                               274                  282              -0.145407
+                               275                  281              -0.137428
+                               271                  283               0.095835
+                               276                  282               0.095633
+                               269                  283               0.090274
+                               270                  284              -0.083365
+                               268                  282               0.082491
+                               267                  284              -0.061374
+                               277                  283               0.058769
+                               278                  284              -0.051349
+                               266                  281              -0.028007
+                               274                  286              -0.019496
+                               269                  287              -0.019165
+                               279                  285              -0.018558
+                               270                  288              -0.017124
+                               280                  286              -0.016408
+                               272                  285               0.015547
+                               265                  283              -0.012368
+                               261                  284               0.011178
+                               275                  285              -0.010690
+            29   2.61359 eV
+                               272                  281               0.606176
+                               271                  283              -0.551398
+                               273                  284              -0.362909
+                               278                  284               0.213760
+                               277                  283              -0.205151
+                               276                  282              -0.191440
+                               275                  281               0.176918
+                               279                  281              -0.083639
+                               269                  283               0.081987
+                               280                  282              -0.075413
+                               276                  286               0.055488
+                               274                  282              -0.053933
+                               268                  282              -0.045443
+                               275                  285              -0.045124
+                               265                  283              -0.043305
+                               271                  287              -0.038932
+                               273                  288              -0.037442
+                               272                  285              -0.027791
+                               278                  288               0.024282
+                               263                  282               0.021711
+                               277                  287               0.018313
+                               267                  284               0.017797
+                               261                  284               0.017601
+                               262                  283              -0.016224
+                               260                  281               0.016088
+                               270                  288              -0.015489
+                               274                  292              -0.012756
+                               278                  298               0.011267
+                               272                  290              -0.010954
+            30   2.61851 eV
+                               272                  282              -0.659739
+                               271                  284              -0.448376
+                               273                  283              -0.275315
+                               277                  284              -0.253194
+                               278                  283               0.245023
+                               275                  282              -0.239847
+                               276                  281               0.227074
+                               279                  282               0.097782
+                               280                  281               0.093106
+                               268                  281               0.072256
+                               276                  285              -0.069933
+                               265                  284              -0.065788
+                               274                  281               0.058804
+                               275                  286               0.049538
+                               273                  287               0.046328
+                               271                  288               0.044477
+                               269                  284               0.039352
+                               278                  287              -0.033771
+                               272                  286               0.031978
+                               266                  282               0.024397
+                               263                  281              -0.024090
+                               261                  283               0.022945
+                               277                  288              -0.021203
+                               260                  282              -0.017985
+                               272                  292              -0.016606
+                               270                  287               0.016017
+                               262                  284              -0.014793
+                               267                  283               0.014183
+                               274                  290              -0.013837
+                               276                  303              -0.012464
+                               277                  298              -0.011979
+                               273                  289              -0.011977
+                               274                  285              -0.011026
+                               278                  301              -0.010437
+                               271                  298               0.010181
+                               269                  291              -0.010171
+            31   2.61928 eV
+                               272                  283               0.743973
+                               271                  281              -0.602113
+                               270                  282               0.182200
+                               269                  281               0.144666
+                               273                  282              -0.086463
+                               274                  284               0.074015
+                               275                  283              -0.053970
+                               279                  283              -0.044312
+                               277                  281              -0.039930
+                               278                  282              -0.039448
+                               280                  284               0.038160
+                               265                  281              -0.032820
+                               279                  287              -0.030495
+                               280                  288              -0.030267
+                               267                  282               0.029796
+                               276                  284              -0.029682
+                               266                  283              -0.020839
+                               268                  284              -0.018121
+                               270                  286              -0.015029
+                               275                  287              -0.014544
+                               277                  285              -0.013496
+                               276                  288               0.013117
+                               271                  285              -0.012900
+                               273                  286              -0.011173
+                               278                  286              -0.011043
+                               269                  285              -0.011027
+            32   2.62931 eV
+                               272                  284              -0.739480
+                               271                  282              -0.606653
+                               270                  281               0.195298
+                               269                  282               0.098864
+                               273                  281              -0.087499
+                               278                  281              -0.078779
+                               277                  282              -0.071266
+                               265                  282              -0.064786
+                               279                  284               0.062902
+                               280                  283              -0.059704
+                               266                  284               0.038084
+                               280                  287              -0.030986
+                               279                  288              -0.029035
+                               276                  283              -0.022731
+                               274                  283               0.021035
+                               276                  287               0.019267
+                               271                  286              -0.015930
+                               273                  285              -0.015870
+                               270                  285              -0.015506
+                               275                  288              -0.013942
+                               277                  286              -0.011262
+            33   2.63872 eV
+                               270                  282              -0.420707
+                               275                  283               0.374890
+                               276                  284               0.329587
+                               277                  281              -0.298031
+                               278                  282              -0.296117
+                               274                  284              -0.262643
+                               265                  281              -0.251430
+                               272                  283               0.240080
+                               267                  282              -0.220472
+                               279                  283              -0.190491
+                               280                  284               0.173144
+                               271                  281               0.161083
+                               268                  284               0.151714
+                               266                  283              -0.090295
+                               273                  282              -0.075445
+                               276                  288               0.065636
+                               271                  285              -0.060524
+                               273                  286              -0.058235
+                               272                  287              -0.044690
+                               275                  287              -0.040903
+                               269                  281              -0.040404
+                               278                  286               0.035132
+                               262                  281              -0.031359
+                               280                  288              -0.024450
+                               279                  287              -0.023261
+                               270                  286              -0.021826
+                               277                  285               0.021571
+                               264                  283              -0.018579
+                               273                  292               0.016847
+                               274                  288               0.015617
+                               274                  291               0.015028
+                               274                  298               0.014414
+                               272                  301              -0.013962
+                               276                  298               0.013906
+                               272                  289               0.013253
+                               271                  290              -0.011444
+                               257                  282              -0.011346
+                               263                  284              -0.011283
+                               258                  281              -0.010961
+                               260                  283               0.010888
+                               269                  290               0.010558
+                               271                  303              -0.010479
+                               248                  283               0.010296
+                               261                  282              -0.010269
+                               263                  288               0.010258
+                               255                  281               0.010104
+            34   2.64330 eV
+                               275                  284               0.458383
+                               270                  281               0.323709
+                               276                  283               0.311145
+                               278                  281               0.306868
+                               277                  282               0.305713
+                               265                  282               0.261178
+                               271                  282              -0.232578
+                               267                  281               0.228753
+                               268                  283               0.199015
+                               269                  282               0.190282
+                               279                  284              -0.187861
+                               280                  283               0.186641
+                               272                  284               0.152185
+                               274                  283              -0.113617
+                               266                  284              -0.100876
+                               276                  287              -0.072673
+                               273                  285               0.070739
+                               271                  286               0.061625
+                               272                  288               0.048038
+                               278                  285              -0.041620
+                               275                  288               0.039418
+                               274                  287              -0.029932
+                               279                  288               0.027152
+                               280                  287               0.025646
+                               257                  281               0.021589
+                               262                  282               0.021471
+                               273                  281               0.021084
+                               272                  298               0.020415
+                               277                  286              -0.019699
+                               276                  301              -0.016350
+                               267                  285              -0.015940
+                               273                  290               0.015795
+                               258                  282               0.015779
+                               274                  289               0.015461
+                               271                  292              -0.015112
+                               273                  303               0.014588
+                               259                  283              -0.014530
+                               270                  285               0.014462
+                               269                  292               0.014226
+                               278                  303              -0.014175
+                               272                  291               0.014161
+                               264                  284              -0.014110
+                               258                  286              -0.011491
+                               274                  301              -0.011399
+                               271                  304              -0.011220
+                               269                  286              -0.010935
+                               277                  304               0.010228
+                               264                  288              -0.010183
+            35   2.64348 eV
+                               271                  283               0.379285
+                               278                  284               0.361844
+                               277                  283              -0.352734
+                               270                  284               0.308575
+                               275                  281               0.287691
+                               268                  282              -0.238520
+                               276                  282              -0.224683
+                               265                  283              -0.222835
+                               273                  284               0.219464
+                               274                  282               0.219395
+                               266                  281              -0.190296
+                               267                  284               0.186154
+                               279                  281              -0.169303
+                               280                  282              -0.157662
+                               269                  283              -0.135579
+                               276                  286               0.072567
+                               275                  285              -0.055357
+                               271                  287              -0.051110
+                               273                  288              -0.046857
+                               272                  285              -0.037272
+                               262                  283              -0.032901
+                               263                  282               0.028932
+                               278                  288               0.028612
+                               260                  281               0.024847
+                               270                  288              -0.022609
+                               274                  292              -0.022008
+                               272                  290              -0.019747
+                               261                  284               0.015894
+                               277                  287               0.015226
+                               248                  281               0.015180
+                               273                  291              -0.015021
+                               271                  289               0.013229
+                               247                  282              -0.012877
+                               259                  282              -0.011834
+                               269                  289              -0.011658
+                               273                  298              -0.010831
+                               276                  292              -0.010114
+            36   2.64447 eV
+                               271                  284               0.404115
+                               277                  284              -0.340931
+                               278                  283               0.322262
+                               268                  281               0.316336
+                               275                  282              -0.297605
+                               270                  283               0.258883
+                               269                  284              -0.228378
+                               265                  284              -0.207786
+                               266                  282               0.202509
+                               276                  281               0.197110
+                               272                  282               0.196010
+                               267                  283               0.185326
+                               274                  281              -0.160166
+                               279                  282               0.154166
+                               273                  283               0.149873
+                               280                  281               0.149796
+                               276                  285              -0.062768
+                               273                  287               0.046698
+                               271                  288               0.041588
+                               275                  286               0.038370
+                               272                  286               0.032025
+                               278                  287              -0.021064
+                               272                  292              -0.019978
+                               274                  290              -0.018098
+                               273                  289              -0.015110
+                               262                  284              -0.014645
+                               274                  285              -0.014404
+                               257                  283               0.014072
+                               267                  287              -0.012594
+                               248                  282              -0.012383
+                               271                  291               0.011086
+                               270                  287               0.010881
+                               269                  291              -0.010866
+                               247                  281               0.010806
+                               271                  298               0.010292
+            37   2.66650 eV
+                               270                  281               0.714714
+                               269                  282              -0.552484
+                               272                  284               0.246748
+                               265                  282              -0.185918
+                               267                  281              -0.175282
+                               274                  283               0.143354
+                               266                  284               0.109718
+                               271                  282              -0.103999
+                               273                  281              -0.059696
+                               275                  284              -0.053357
+                               278                  281              -0.044366
+                               276                  283              -0.042815
+                               277                  282              -0.034036
+                               279                  284               0.023949
+                               280                  283              -0.023087
+                               275                  288               0.014157
+                               280                  287               0.011645
+                               279                  288               0.011177
+                               269                  286               0.010917
+            38   2.66809 eV
+                               269                  281              -0.677297
+                               270                  282               0.585762
+                               265                  281              -0.263602
+                               267                  282              -0.164719
+                               274                  284              -0.140110
+                               266                  283              -0.125833
+                               272                  283              -0.124668
+                               271                  281              -0.119265
+                               273                  282              -0.101546
+                               278                  282              -0.076777
+                               277                  281              -0.076533
+                               279                  283              -0.060184
+                               275                  283               0.057467
+                               280                  284               0.055249
+                               268                  284               0.040053
+                               276                  284               0.034247
+                               279                  287              -0.011103
+                               280                  288              -0.010458
+            39   2.68724 eV
+                               270                  283              -0.650662
+                               266                  282               0.411919
+                               268                  281               0.406521
+                               271                  284              -0.324415
+                               269                  284              -0.270899
+                               272                  282               0.149887
+                               273                  283               0.119891
+                               265                  284              -0.083889
+                               274                  281              -0.079358
+                               276                  281              -0.048031
+                               275                  282               0.037643
+                               277                  284               0.037340
+                               276                  285               0.036067
+                               278                  283              -0.033864
+                               275                  286              -0.027607
+                               273                  287              -0.025721
+                               271                  288              -0.023338
+                               267                  283               0.019690
+                               278                  287               0.017623
+                               272                  286              -0.017303
+                               277                  288               0.014837
+                               261                  283              -0.013503
+                               259                  281               0.011205
+                               274                  285               0.010256
+            40   2.68803 eV
+                               266                  281              -0.606991
+                               270                  284              -0.453661
+                               268                  282              -0.376710
+                               271                  283              -0.340428
+                               269                  283              -0.311922
+                               273                  284               0.162108
+                               272                  281              -0.140313
+                               267                  284               0.071399
+                               276                  282               0.070208
+                               274                  282               0.058391
+                               275                  281              -0.054293
+                               265                  283              -0.033379
+                               272                  285               0.026541
+                               276                  286              -0.025158
+                               274                  286              -0.022023
+                               277                  287              -0.021507
+                               278                  288              -0.021446
+                               273                  288               0.019874
+                               278                  284              -0.018591
+                               279                  285              -0.017936
+                               280                  286              -0.017080
+                               271                  287               0.016739
+                               261                  284              -0.015135
+                               275                  285               0.014772
+                               259                  282              -0.013423
+                               277                  283               0.013324
+                               269                  287              -0.012289
+                               279                  281              -0.011967
+            41   2.69164 eV
+                               267                  281              -0.807282
+                               269                  282               0.257690
+                               271                  282              -0.248865
+                               272                  284               0.229158
+                               268                  283               0.219361
+                               270                  281              -0.167521
+                               265                  282              -0.150568
+                               273                  281              -0.125377
+                               276                  283               0.124228
+                               266                  284               0.114046
+                               275                  284               0.094645
+                               278                  285              -0.038705
+                               274                  283               0.035818
+                               278                  281               0.034547
+                               277                  286              -0.030504
+                               280                  287              -0.028677
+                               272                  288               0.028611
+                               273                  285               0.027835
+                               261                  281               0.027522
+                               279                  288              -0.027271
+                               276                  287              -0.026870
+                               274                  287              -0.025843
+                               263                  283              -0.023764
+                               277                  282               0.023557
+                               262                  282               0.021692
+                               271                  286               0.021671
+                               269                  286              -0.019218
+                               260                  284               0.017770
+                               264                  284              -0.014072
+                               259                  283              -0.011700
+            42   2.69298 eV
+                               268                  281               0.721925
+                               270                  283               0.393240
+                               267                  283              -0.369463
+                               269                  284               0.349511
+                               275                  282               0.103795
+                               277                  284               0.099936
+                               278                  283              -0.096973
+                               271                  284              -0.094145
+                               276                  281              -0.084301
+                               265                  284               0.057206
+                               266                  282               0.056797
+                               274                  281               0.048868
+                               279                  282              -0.044686
+                               280                  281              -0.041435
+                               276                  285               0.028293
+                               272                  282              -0.026104
+                               273                  283               0.025573
+                               272                  286              -0.023022
+                               273                  287              -0.022917
+                               274                  285               0.020749
+                               278                  287               0.017454
+                               271                  288              -0.016198
+                               280                  285               0.014182
+                               279                  286               0.014079
+                               269                  288               0.013360
+                               277                  288               0.011482
+            43   2.69492 eV
+                               267                  282              -0.699375
+                               269                  281               0.342178
+                               271                  281              -0.314829
+                               272                  283              -0.311443
+                               265                  281              -0.214097
+                               266                  283              -0.190623
+                               273                  282              -0.166642
+                               276                  284              -0.158889
+                               275                  283              -0.122307
+                               274                  284              -0.097045
+                               270                  282              -0.079512
+                               268                  284              -0.071977
+                               278                  282               0.050289
+                               278                  286              -0.046108
+                               276                  288              -0.043466
+                               277                  281               0.043223
+                               277                  285              -0.043210
+                               273                  286               0.041791
+                               271                  285               0.041186
+                               272                  287               0.040226
+                               261                  282               0.038807
+                               274                  288              -0.029054
+                               262                  281               0.029047
+                               263                  284               0.028766
+                               275                  287               0.025928
+                               279                  287              -0.024302
+                               260                  283              -0.023056
+                               280                  288              -0.022228
+                               259                  284               0.020267
+                               269                  285              -0.019862
+                               264                  283               0.016425
+                               276                  298              -0.013432
+                               278                  292               0.010702
+                               261                  286               0.010694
+                               267                  286              -0.010397
+            44   2.69879 eV
+                               269                  283              -0.593894
+                               268                  282               0.545251
+                               270                  284              -0.396599
+                               266                  281               0.280405
+                               265                  283              -0.196381
+                               267                  284               0.195255
+                               277                  283              -0.093970
+                               278                  284               0.093794
+                               275                  281               0.066008
+                               276                  282              -0.054331
+                               279                  281              -0.054111
+                               280                  282              -0.048335
+                               274                  282               0.045070
+                               276                  286               0.029120
+                               273                  284               0.027623
+                               271                  287              -0.020759
+                               273                  288              -0.020352
+                               275                  285              -0.019613
+                               272                  285              -0.016275
+                               262                  283              -0.015990
+                               271                  283               0.011305
+            45   2.70334 eV
+                               265                  281               0.585681
+                               269                  281              -0.428176
+                               270                  282              -0.417367
+                               266                  283              -0.342598
+                               271                  281              -0.282414
+                               273                  282              -0.151377
+                               276                  284              -0.102103
+                               275                  283              -0.100212
+                               280                  288              -0.093432
+                               279                  287              -0.093332
+                               272                  283              -0.084857
+                               279                  283              -0.077837
+                               280                  284               0.066924
+                               277                  281              -0.051388
+                               277                  285              -0.047825
+                               278                  286              -0.044683
+                               278                  282              -0.043519
+                               270                  286              -0.043235
+                               269                  285              -0.042193
+                               274                  288              -0.041905
+                               268                  284              -0.041220
+                               275                  287              -0.030940
+                               272                  287               0.029580
+                               261                  282               0.023889
+                               263                  284               0.022459
+                               260                  283              -0.019658
+                               276                  288               0.017545
+                               258                  281              -0.017496
+                               271                  285              -0.012679
+                               261                  286               0.011434
+            46   2.70681 eV
+                               268                  282               0.564506
+                               266                  281              -0.555242
+                               265                  283               0.445545
+                               267                  284               0.352691
+                               269                  283               0.161340
+                               270                  284               0.121745
+                               273                  284              -0.048538
+                               271                  283               0.041016
+                               277                  283              -0.035923
+                               275                  281               0.032058
+                               276                  282              -0.024845
+                               278                  284               0.023713
+                               279                  281              -0.015445
+                               273                  288              -0.012652
+                               276                  286               0.012637
+            47   2.70727 eV
+                               268                  283               0.505304
+                               271                  282               0.422066
+                               270                  281               0.393520
+                               269                  282               0.334356
+                               272                  284              -0.245957
+                               273                  281               0.209437
+                               276                  283              -0.200638
+                               275                  284              -0.188662
+                               267                  281              -0.186499
+                               266                  284              -0.149987
+                               280                  287               0.103260
+                               279                  288               0.091712
+                               278                  285               0.077839
+                               277                  286               0.065711
+                               274                  287               0.063590
+                               265                  282               0.061266
+                               272                  288              -0.055481
+                               269                  286               0.051801
+                               279                  284              -0.046988
+                               280                  283               0.042910
+                               270                  285               0.042735
+                               261                  281              -0.042317
+                               263                  283               0.037640
+                               273                  285              -0.028147
+                               262                  282              -0.026215
+                               260                  284              -0.025090
+                               274                  283              -0.020427
+                               276                  287               0.018075
+                               278                  281              -0.017756
+                               261                  285              -0.017123
+                               271                  286              -0.017000
+                               259                  283               0.016734
+                               264                  284               0.016083
+                               267                  285               0.015203
+                               271                  292               0.013310
+                               263                  287               0.013285
+                               258                  282               0.012180
+                               275                  298              -0.011918
+                               276                  301               0.011260
+                               278                  303               0.010976
+                               275                  288               0.010929
+                               276                  299              -0.010919
+                               275                  291              -0.010804
+                               276                  289              -0.010531
+            48   2.70779 eV
+                               266                  282               0.560186
+                               267                  283               0.530219
+                               270                  283               0.340154
+                               271                  284              -0.317145
+                               269                  284               0.276773
+                               265                  284               0.185308
+                               268                  281              -0.178422
+                               273                  283               0.105982
+                               272                  282               0.101034
+                               276                  281              -0.081209
+                               275                  282               0.071632
+                               280                  285               0.045399
+                               279                  286               0.034550
+                               278                  287               0.031467
+                               261                  283              -0.029360
+                               272                  286              -0.029207
+                               263                  281               0.026010
+                               274                  285               0.025225
+                               277                  288               0.024877
+                               278                  283              -0.022601
+                               269                  288               0.021370
+                               276                  285               0.020537
+                               262                  284               0.020057
+                               260                  282               0.019383
+                               279                  282               0.016244
+                               270                  287               0.014812
+                               259                  281               0.013063
+                               273                  287              -0.011750
+                               264                  282              -0.011271
+                               271                  288              -0.010018
+            49   2.70990 eV
+                               265                  282               0.584916
+                               268                  283               0.526962
+                               269                  282              -0.511984
+                               270                  281              -0.243561
+                               272                  284              -0.087902
+                               271                  282              -0.070319
+                               267                  281              -0.069442
+                               280                  287              -0.065583
+                               278                  281              -0.065454
+                               266                  284               0.064818
+                               279                  284               0.061070
+                               280                  283              -0.061018
+                               277                  282              -0.059324
+                               279                  288              -0.059261
+                               274                  283              -0.049235
+                               276                  287               0.042287
+                               275                  288              -0.038124
+                               270                  285              -0.033651
+                               273                  281              -0.032563
+                               271                  286              -0.032180
+                               273                  285              -0.031807
+                               269                  286              -0.022324
+                               275                  284               0.020023
+                               274                  287              -0.018691
+                               277                  286              -0.013302
+            50   2.71087 eV
+                               265                  281              -0.497340
+                               266                  283               0.402869
+                               270                  282              -0.393947
+                               267                  282               0.302550
+                               271                  281              -0.300144
+                               268                  284               0.257090
+                               269                  281              -0.210077
+                               276                  284              -0.178704
+                               275                  283              -0.167992
+                               272                  283              -0.166252
+                               273                  282              -0.130810
+                               280                  288              -0.073293
+                               279                  287              -0.072101
+                               278                  286              -0.060695
+                               277                  285              -0.054145
+                               272                  287               0.052043
+                               274                  288              -0.048686
+                               278                  282               0.046926
+                               269                  285              -0.045246
+                               261                  282               0.032212
+                               277                  281               0.030030
+                               270                  286              -0.028893
+                               263                  284               0.027999
+                               260                  283              -0.024086
+                               273                  286               0.023412
+                               274                  284               0.023222
+                               262                  281               0.021965
+                               271                  285               0.021808
+                               276                  288              -0.019392
+                               279                  283              -0.018732
+                               267                  286              -0.017260
+                               259                  284               0.013886
+                               261                  286               0.013842
+                               273                  292              -0.013386
+                               258                  281              -0.013173
+                               276                  298              -0.012602
+                               276                  291              -0.010024
+ -------------------------------------------------------------------------------
+
+ ENERGY| Total FORCE_EVAL ( QS ) energy [a.u.]:             -828.319911172803586
+
+ -------------------------------------------------------------------------------
+ -                                                                             -
+ -                                DBCSR STATISTICS                             -
+ -                                                                             -
+ -------------------------------------------------------------------------------
+ COUNTER                                    TOTAL       BLAS       SMM       ACC
+ flops     6 x    16 x     6             13307904       0.0%    100.0%      0.0%
+ flops     6 x    16 x    17             59587584       0.0%    100.0%      0.0%
+ flops    17 x    16 x     6             59587584       0.0%    100.0%      0.0%
+ flops     6 x     6 x    22            139233600       0.0%    100.0%      0.0%
+ flops    17 x    16 x    17            231643904       0.0%    100.0%      0.0%
+ flops     6 x    17 x    22            614496960       0.0%    100.0%      0.0%
+ flops    17 x     6 x    22            614496960       0.0%    100.0%      0.0%
+ flops    17 x    17 x    22           2410190640       0.0%    100.0%      0.0%
+ flops     6 x     6 x    24           3544128000       0.0%    100.0%      0.0%
+ flops     6 x    24 x     6          13514176512       0.0%    100.0%      0.0%
+ flops     6 x    17 x    24          15641740800       0.0%    100.0%      0.0%
+ flops    17 x     6 x    24          15641740800       0.0%    100.0%      0.0%
+ flops     6 x     6 x    32          39626726400       0.0%    100.0%      0.0%
+ flops     6 x    24 x    17          60511191552       0.0%    100.0%      0.0%
+ flops    17 x    24 x     6          60511191552       0.0%    100.0%      0.0%
+ flops    17 x    17 x    24          61350307200       0.0%    100.0%      0.0%
+ flops     6 x    32 x     6         145907859456       0.0%    100.0%      0.0%
+ flops     6 x    17 x    32         174889559040       0.0%    100.0%      0.0%
+ flops    17 x     6 x    32         174889559040       0.0%    100.0%      0.0%
+ flops    17 x    24 x    17         235234384512       0.0%    100.0%      0.0%
+ flops     6 x    32 x    17         653318270976       0.0%    100.0%      0.0%
+ flops    17 x    32 x     6         653318270976       0.0%    100.0%      0.0%
+ flops    17 x    17 x    32         685954863360       0.0%    100.0%      0.0%
+ flops    17 x    32 x    17        2539743763456       0.0%    100.0%      0.0%
+ flops inhomo. stacks                           0       0.0%      0.0%      0.0%
+ flops total                         5.537740E+12       0.0%    100.0%      0.0%
+ flops max/rank                     98.113869E+09       0.0%    100.0%      0.0%
+ matmuls inhomo. stacks                         0       0.0%      0.0%      0.0%
+ matmuls total                          571651520       0.0%    100.0%      0.0%
+ number of processed stacks              22052688       0.0%    100.0%      0.0%
+ average stack size                                     0.0      25.9       0.0
+ marketing flops                     6.816231E+12
+ -------------------------------------------------------------------------------
+ # multiplications                           2086
+ max memory usage/rank             821.055488E+06
+ # max total images/rank                        5
+ # max 3D layers                                1
+ # MPI messages exchanged                 9950220
+ MPI messages size (bytes):
+  total size                       976.103932E+09
+  min size                           0.000000E+00
+  max size                         345.120000E+03
+  average size                      98.098727E+03
+ MPI breakdown and total messages size (bytes):
+             size <=      128             3651300                        0
+       128 < size <=     8192                   0                        0
+      8192 < size <=    32768             1882650              38198585600
+     32768 < size <=   131072              999030              73854686720
+    131072 < size <=  4194304             3417240             864089902848
+   4194304 < size <= 16777216                   0                        0
+  16777216 < size                               0                        0
+ -------------------------------------------------------------------------------
+
+ *** WARNING in dbcsr_mm.F:291 :: Using a non-square number of MPI ranks ***
+ *** might lead to poor performance. Used ranks: 90 Suggested: 81 169    ***
+
+ -------------------------------------------------------------------------------
+ -                                                                             -
+ -                      DBCSR MESSAGE PASSING PERFORMANCE                      -
+ -                                                                             -
+ -------------------------------------------------------------------------------
+ ROUTINE             CALLS      AVE VOLUME [Bytes]
+ MP_Bcast               25                     12.
+ MP_Allreduce         7846                      8.
+ MP_Alltoall         38109                  55672.
+ MP_ISend           240516                  49208.
+ MP_IRecv           247400                  46845.
+ -------------------------------------------------------------------------------
+
+ -------------------------------------------------------------------------------
+ -                                                                             -
+ -                                DBM STATISTICS                               -
+ -                                                                             -
+ -------------------------------------------------------------------------------
+    M  x    N  x    K                                          COUNT     PERCENT
+ -------------------------------------------------------------------------------
+
+ -------------------------------------------------------------------------------
+ -                                                                             -
+ -                                GRID STATISTICS                              -
+ -                                                                             -
+ -------------------------------------------------------------------------------
+ LP    KERNEL             BACKEND                              COUNT     PERCENT
+ 2     collocate general  CPU                               74225116      22.30%
+ 2     integrate general  CPU                               73836280      22.19%
+ 1     collocate general  CPU                               60323672      18.13%
+ 1     integrate general  CPU                               60006560      18.03%
+ 3     collocate general  CPU                               17707992       5.32%
+ 3     integrate general  CPU                               17615280       5.29%
+ 0     collocate general  CPU                               13462588       4.05%
+ 0     integrate general  CPU                               13373720       4.02%
+ 4     collocate general  CPU                                1129192       0.34%
+ 4     integrate general  CPU                                1123280       0.34%
+ -------------------------------------------------------------------------------
+
+ MEMORY| Estimated peak process memory [MiB]                                 784
+
+ -------------------------------------------------------------------------------
+ -                                                                             -
+ -                         MESSAGE PASSING PERFORMANCE                         -
+ -                                                                             -
+ -------------------------------------------------------------------------------
+
+ ROUTINE             CALLS      AVE VOLUME [Bytes]
+ MP_Group                4
+ MP_Bcast              196                3573431.
+ MP_Allreduce        50729                    158.
+ MP_Sync                62
+ MP_Alltoall         10743                1516442.
+ MP_SendRecv        102884                  46243.
+ MP_ISendRecv       101460                  46400.
+ MP_Wait            127416
+ MP_comm_split           7
+ MP_ISend            16460                 386347.
+ MP_IRecv            21106                 301227.
+ MP_Write_All            2                 568800.
+ -------------------------------------------------------------------------------
+
+
+ -------------------------------------------------------------------------------
+ -                                                                             -
+ -                           R E F E R E N C E S                               -
+ -                                                                             -
+ -------------------------------------------------------------------------------
+ 
+ CP2K version 2023.2, the CP2K developers group (2023).
+ CP2K is freely available from https://www.cp2k.org/ .
+
+ Kuehne,Thomas D.; Iannuzzi,Marcella; Del Ben,Mauro;
+ Rybkin,Vladimir V.; Seewald,Patrick; Stein,Frederick; Laino,Teodoro;
+ Khaliullin,Rustam Z.; Schuett,Ole; Schiffmann,Florian; Golze,Dorothea;
+ Wilhelm,Jan; Chulkov,Sergey; Bani-Hashemian,Mohammad Hossein;
+ Weber,Valery; Borstnik,Urban; Taillefumier,Mathieu;
+ Jakobovits,Alice Shoshana; Lazzaro,Alfio; Pabst,Hans; Mueller,Tiziano;
+ Schade,Robert; Guidon,Manuel; Andermatt,Samuel; Holmberg,Nico;
+ Schenter,Gregory K.; Hehn,Anna; Bussy,Augustin; Belleflamme,Fabian;
+ Tabacchi,Gloria; Gloess,Andreas; Lass,Michael; Bethune,Iain;
+ Mundy,Christopher J.; Plessl,Christian; Watkins,Matt;
+ VandeVondele,Joost; Krack,Matthias; Hutter,Juerg. 
+ The Journal of Chemical Physics, 152 (19), (2020). 
+ CP2K: An electronic structure and molecular dynamics software package -
+ Quickstep: Efficient and accurate electronic structure calculations.
+ https://doi.org/10.1063/5.0007045
+
+ Yin, Wen-Jin; Krack, Matthias; Li, Xibo; Chen, Li-Zhen; Liu, Li-Min. 
+ Prog. Nat. Sci., 27 (2), 283-288 (2017). 
+ Periodic continuum solvation model integrated with first-principles
+ calculations for solid surfaces.
+ https://doi.org/10.1016/j.pnsc.2017.03.003
+
+ Goerigk, Lars; Hansen, Andreas; Bauer, Christoph; Ehrlich, Stephan;
+ Najibi, Asim; Grimme, Stefan. , 19 (48), (2017). 
+ A look at the density functional theory zoo with the advanced GMTKN55 database
+ for general main group thermochemistry, kinetics and noncovalent interactions.
+ https://doi.org/10.1039/C7CP04913G
+
+ Schuett, Ole; Messmer, Peter; Hutter, Juerg; VandeVondele, Joost. 
+ Electronic Structure Calculations on Graphics Processing Units, John
+ Wiley & Sons, Ltd, 173-190 (2016). 
+ GPU-Accelerated Sparse Matrix-Matrix Multiplication for
+ Linear Scaling Density Functional Theory.
+ https://doi.org/10.1002/9781118670712.ch8
+
+ Heinecke, A; Henry, G; Hutchinson, M; Pabst, H. 
+ Proceedings of Intl. Supercomputing Conference, 981-991 (2016). 
+ LIBXSMM: Accelerating Small Matrix Multiplications
+ by Runtime Code Generation.
+ https://doi.org/10.1109/SC.2016.83
+
+ Borstnik, U; VandeVondele, J; Weber, V; Hutter, J. 
+ PARALLEL COMPUTING, 40 (5-6), 47-58 (2014). 
+ Sparse matrix multiplication: The distributed block-compressed sparse
+ row library.
+ https://doi.org/10.1016/j.parco.2014.03.012
+
+ Hutter, J; Iannuzzi, M; Schiffmann, F; VandeVondele, J. 
+ WIREs Comput Mol Sci., 4 (1), 15-25 (2014). 
+ CP2K: atomistic simulations of condensed matter systems.
+ https://doi.org/10.1002/wcms.1159
+
+ Marek, A; Blum, V; Johanni, R; Havu, V; Lang, B; Auckenthaler, T;
+ Heinecke, A; Bungartz, H; Lederer, H. 
+ Journal of Physics: Condensed Matter, 26 (21), (2014). 
+ The ELPA library: scalable parallel eigenvalue solutions for
+ electronic structure
+ theory and computational science.
+ https://doi.org/10.1088/0953-8984/26/21/213201
+
+ Grimme, S; Ehrlich, S; Goerigk, L. 
+ JOURNAL OF COMPUTATIONAL CHEMISTRY, 32, 1456 (2011). 
+ Effect of the damping function in dispersion corrected density functional theory.
+ https://doi.org/10.1002/jcc.21759
+
+ Grimme, S; Antony, J; Ehrlich, S; Krieg, H. 
+ JOURNAL OF CHEMICAL PHYSICS, 132 (15), 154104 (2010). 
+ A consistent and accurate ab initio parametrization of density
+ functional dispersion correction (DFT-D) for the 94 elements H-Pu.
+ https://doi.org/10.1063/1.3382344
+
+ Krack, M. 
+ THEORETICAL CHEMISTRY ACCOUNTS, 114 (1-3), 145-152 (2005). 
+ Pseudopotentials for H to Kr optimized for gradient-corrected
+ exchange-correlation functionals.
+ https://doi.org/10.1007/s00214-005-0655-y
+
+ VandeVondele, J; Krack, M; Mohamed, F; Parrinello, M; Chassaing, T;
+ Hutter, J. COMPUTER PHYSICS COMMUNICATIONS, 167 (2), 103-128 (2005). 
+ QUICKSTEP: Fast and accurate density functional calculations using a
+ mixed Gaussian and plane waves approach.
+ https://doi.org/10.1016/j.cpc.2004.12.014
+
+ Frigo, M; Johnson, SG. 
+ PROCEEDINGS OF THE IEEE, 93 (2), 216-231 (2005). 
+ The design and implementation of FFTW3.
+ https://doi.org/10.1109/JPROC.2004.840301
+
+ Iannuzzi, M; Chassaing, T; Wallman, T; Hutter, J. 
+ CHIMIA, 59 (7-8), 499-503 (2005). 
+ Ground and excited state density functional calculations with the
+ Gaussian and augmented-plane-wave method.
+ https://doi.org/10.2533/000942905777676164
+
+ Fattebert, JL; Gygi, F. J. Comput. Chem., 23 (6), (2002). 
+ Density functional theory for efficient ab initio molecular dynamics
+ simulations in solution.
+ https://doi.org/10.1002/jcc.10069
+
+ Hartwigsen, C; Goedecker, S; Hutter, J. 
+ PHYSICAL REVIEW B, 58 (7), 3641-3662 (1998). 
+ Relativistic separable dual-space Gaussian pseudopotentials from H to Rn.
+ https://doi.org/10.1103/PhysRevB.58.3641
+
+ Lippert, G; Hutter, J; Parrinello, M. 
+ MOLECULAR PHYSICS, 92 (3), 477-487 (1997). 
+ A hybrid Gaussian and plane wave density functional scheme.
+ https://doi.org/10.1080/002689797170220
+
+ Perdew, JP; Burke, K; Ernzerhof, M. 
+ PHYSICAL REVIEW LETTERS, 77 (18), 3865-3868 (1996). 
+ Generalized gradient approximation made simple.
+ https://doi.org/10.1103/PhysRevLett.77.3865
+
+ Goedecker, S; Teter, M; Hutter, J. 
+ PHYSICAL REVIEW B, 54 (3), 1703-1710 (1996). 
+ Separable dual-space Gaussian pseudopotentials.
+ https://doi.org/10.1103/PhysRevB.54.1703
+
+
+ -------------------------------------------------------------------------------
+ -                                                                             -
+ -                                T I M I N G                                  -
+ -                                                                             -
+ -------------------------------------------------------------------------------
+ SUBROUTINE                       CALLS  ASD         SELF TIME        TOTAL TIME
+                                MAXIMUM       AVERAGE  MAXIMUM  AVERAGE  MAXIMUM
+ CP2K                                 1  1.0    0.024    0.038  510.641  510.642
+ qs_energies                          1  2.0    0.001    0.006  510.220  510.225
+ qs_energies_properties               1  3.0    0.000    0.000  427.089  427.094
+ tddfpt                               1  4.0    0.000    0.003  427.089  427.094
+ tddfpt_energies                      1  5.0    0.000    0.003  426.077  426.083
+ tddfpt_davidson_solver               2  6.0    0.012    0.016  422.688  422.688
+ tddfpt_compute_Aop_evects            7  7.0    0.000    0.000  395.308  395.321
+ fhxc_kernel                          7  8.0    0.013    0.015  388.287  388.301
+ integrate_v_rspace                 380  9.0    0.014    0.029  187.924  188.068
+ qs_rho_update_rho_low              382  8.7    0.002    0.002  180.626  180.924
+ calculate_rho_elec                 382  9.7    0.075    0.099  180.624  180.922
+ grid_integrate_task_list           380 10.0  154.766  159.806  154.766  159.806
+ grid_collocate_task_list           382 10.7  148.991  154.143  148.991  154.143
+ scf_env_do_scf                       1  3.0    0.000    0.001   64.695   64.715
+ scf_env_do_scf_inner_loop           30  4.0    0.001    0.009   64.695   64.715
+ pw_transfer                       9199 11.1    0.661    0.722   49.880   50.198
+ fft_wrap_pw1pw2                   8439 12.2    0.086    0.100   49.057   49.492
+ rs_pw_transfer                    3137 11.3    0.041    0.051   38.811   44.072
+ fft_wrap_pw1pw2_200               6147 13.1    6.451    7.634   43.560   44.052
+ fft3d_ps                          8439 14.2   13.630   16.742   38.336   39.942
+ density_rs2pw                      382 10.7    0.016    0.019   29.841   35.057
+ dbcsr_multiply_generic            2086 10.3    0.110    0.128   32.772   34.298
+ qs_ks_update_qs_env                 30  5.0    0.000    0.001   32.014   32.032
+ rebuild_ks_matrix                   30  6.0    0.000    0.000   32.002   32.019
+ qs_ks_build_kohn_sham_matrix        30  7.0    0.004    0.005   32.002   32.019
+ cp_dbcsr_sm_fm_multiply           1356  8.5    0.035    0.039   31.368   31.434
+ cp_dbcsr_sm_fm_multiply_core      1356  9.5    0.003    0.004   24.268   25.789
+ mp_waitall_1                    314910 13.9   22.171   25.352   22.171   25.352
+ multiply_cannon                   2086 11.3    0.239    0.297   21.627   23.557
+ potential_pw2rs                    380 10.0    0.026    0.041   23.220   23.388
+ mp_alltoall_z22v                  8439 16.2   19.869   23.300   19.869   23.300
+ tddfpt_apply_xc_analytic           350  9.0    0.137    0.218   22.815   23.170
+ mp_waitany                       16460 13.3   15.946   21.579   15.946   21.579
+ multiply_cannon_loop              2086 12.3    0.388    0.440   19.124   20.739
+ xc_pw_derive                      2283 11.0    0.018    0.021   20.018   20.314
+ qs_scf_new_mos                      30  5.0    0.000    0.001   17.935   17.961
+ eigensolver                         31  6.0    0.002    0.003   17.796   17.804
+ rs_pw_transfer_RS2PW_200           445 12.5    1.754    2.319   12.186   17.452
+ mp_alltoall_d11v                 16497 11.8   10.963   17.222   10.963   17.222
+ multiply_cannon_metrocomm3       62580 13.3    0.079    0.089   13.765   17.031
+ qs_energies_init_hamiltonians        1  3.0    0.000    0.000   16.767   16.768
+ calculate_dispersion_pairpot         1  4.0   10.667   16.520   16.527   16.527
+ rs_gather_matrices                 380 10.0    0.135    0.167    9.924   15.985
+ sccs                                30  8.0    0.456    0.533   15.001   15.059
+ sum_up_and_integrate                30  8.0    0.016    0.022   14.395   14.413
+ pw_poisson_solve                   737  9.5    0.554    0.606   14.139   14.348
+ x_to_yz                           4224 14.7    1.760    2.199   12.457   14.334
+ cp_fm_diag_elpa                     38  7.2    0.000    0.000   13.878   13.907
+ cp_fm_diag_elpa_base                38  8.1   13.725   13.796   13.801   13.856
+ xc_pw_divergence                   380 10.9    0.010    0.011   12.998   13.261
+ xc_calc_2nd_deriv_analytical       350 10.0    0.765    0.914   13.113   13.202
+ parallel_gemm_fm                  1208  7.9    0.002    0.002   12.863   13.034
+ parallel_gemm_fm_cosma            1208  8.9   12.861   13.032   12.861   13.032
+ tddfpt_compute_residual_vects        5  7.0    0.010    0.011   10.277   10.494
+ cp_dbcsr_plus_fm_fm_t_native       380  8.8    0.006    0.006   10.124   10.382
+ yz_to_x                           2687 15.8    0.415    0.473    9.192   10.269
+ rs_pw_transfer_PW2RS_200           400 12.0    2.686    2.927    9.937   10.232
+ -------------------------------------------------------------------------------
+
+ The number of warnings for this run is : 40
+ 
+ -------------------------------------------------------------------------------
+  **** **** ******  **  PROGRAM ENDED AT                 2024-02-19 10:53:21.231
+ ***** ** ***  *** **   PROGRAM RAN ON                              192ef622c2f7
+ **    ****   ******    PROGRAM RAN BY                                 <unknown>
+ ***** **    ** ** **   PROGRAM PROCESS ID                                   538
+  **** **  *******  **  PROGRAM STOPPED IN                                  /mnt
