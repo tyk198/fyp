@@ -263,6 +263,9 @@
       EPS_SCCS 1.0E-8
       EPS_SCF 1.0E-2
       GAMMA [mN/m] 36.42
+      MAX_ITER 100
+      METHOD Fattebert-Gygi
+      MIXING 0.6
     &END SCCS
     &SCF
       MAX_SCF 128
