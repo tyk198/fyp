@@ -300,6 +300,11 @@
           MD 10
         &END
       &END MO_CUBES
+      &SCCS ON
+       &EACH
+        QS_SCF 1
+       &END EACH
+      &END SCCS
     &END PRINT
   &END DFT
   &PROPERTIES
