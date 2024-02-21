@@ -1,0 +1,9 @@
+&environ
+  verbose = 1
+  environ_thr = 1.d2
+  environ_type = 'water'
+/
+&boundary
+/
+&electrostatic
+/
