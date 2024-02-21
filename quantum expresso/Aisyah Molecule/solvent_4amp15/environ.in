@@ -6,13 +6,11 @@
   env_static_permittivity = 36.71D0
   env_surface_tension = 36.42D0
   env_pressure = -0.5D0
+  env_optical_permittivity = 36.71D0
 /
 &boundary
   solvent_mode = 'full'
 /
 &electrostatic
-   pbc_correction = 'parabolic'
-   pbc_dim = 2
-   pbc_axis = 3
-   tol = 5.D-13
+  tol = 1.D-10
 /
