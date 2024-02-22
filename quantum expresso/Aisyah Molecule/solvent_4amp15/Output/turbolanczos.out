@@ -1,0 +1,646 @@
+
+     Program turboTDDFT v.7.2 starts on 22Feb2024 at 19:16:57
+
+     This program is part of the open-source Quantum ESPRESSO suite
+     for quantum simulation of materials; please cite
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 21 395502 (2009);
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 29 465901 (2017);
+         "P. Giannozzi et al., J. Chem. Phys. 152 154105 (2020);
+          URL http://www.quantum-espresso.org",
+     in publications or presentations arising from this work. More details at
+     http://www.quantum-espresso.org/quote
+
+     Parallel version (MPI), running on   176 processors
+
+     MPI processes distributed on     1 nodes
+     R & G space division:  proc/nbgrp/npool/nimage =     176
+     1402499 MiB available memory on the printing compute node when the environment starts
+
+
+     Reading xml data from directory:
+
+     ./outdir/4amp15.save/
+
+     IMPORTANT: XC functional enforced from input :
+     Exchange-correlation= PBE
+                           (   1   4   3   4   0   0   0)
+     Any further DFT definition will be discarded
+     Please, verify this is what you really want
+
+
+     Parallelization info
+     --------------------
+     sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+     Min          88      34      7                17062     4288     524
+     Max          90      36     10                17114     4344     570
+     Sum       15643    6271   1569              3006229   760417   95069
+
+     Using Slab Decomposition
+
+
+     Check: negative core charge=   -0.000001
+     Reading collected, re-writing distributed wavefunctions
+ Symmetries are disabled for the gamma_only case
+
+     Reading input from environ.in:
+     * using electronic solvent mode
+     * setting boundary derivatives method to SCCS default
+
+
+     add environment contribution to local potential
+     Polarization accuracy = 8.7E-26, # of iterations =  46
+
+     the potential shift due to the Gaussian-smeared nuclei is    -0.9881 ev
+     Subspace diagonalization in iterative solution of the eigenvalue problem:
+     a serial algorithm will be used
+
+
+     ================================================================================
+
+                                  Environ Setup Summary
+
+     ================================================================================
+
+     Please cite
+
+          O. Andreussi, I. Dabo and N. Marzari, J. Chem. Phys. 136, 064102 (2012)
+          I. Timrov, O. Andreussi, A. Biancardi, N. Marzari, and S. Baroni, J. Chem. Phys. 142, 034111 (2015)
+
+     in publications or presentations arising from this work.
+
+     ================================================================================
+
+     Parameters
+     ==========
+
+     compensation onset threshold      =               0.1000E+01
+     static permittivity               =                    36.71
+     optical permittivity              =                  36.7100
+     surface tension in input (dyn/cm) =                    46.30
+     surface tension in internal units =               0.5948E-04
+     external pressure in input (GPa)  =                    -0.50
+     external pressure in inter. units =              -0.3399E-04
+
+     Solvent Boundary
+     ================
+
+     solvent mode                      =               electronic
+     derivatives method                =                    chain
+     numerical core for derivatives    =                      fft
+     switching function adopted        =                     SCCS
+     density limit for vacuum region   =               0.5000E-02
+     density limit for bulk solvent    =               0.1000E-03
+
+     Electrostatic Setup
+     ===================
+
+     electrostatic problem to solve    =              generalized
+     numerical solver adopted          =                       cg
+     type of auxiliary density adopted =                     none
+     numerical core for poisson        =                      fft
+
+     ================================================================================
+
+
+     Warning: There are virtual states in the input file, trying to disregard in response calculation
+
+     =-----------------------------------------------------------------=
+
+     Please cite the TDDFPT project as:
+       O. B. Malcioglu, R. Gebauer, D. Rocca, and S. Baroni,
+       Comput. Phys. Commun. 182, 1744 (2011)
+     and
+       X. Ge, S. J. Binnie, D. Rocca, R. Gebauer, and S. Baroni,
+       Comput. Phys. Commun. 185, 2080 (2014)
+     in publications and presentations arising from this work.
+
+     =-----------------------------------------------------------------=
+
+     Ultrasoft (Vanderbilt) Pseudopotentials
+
+     Normal read
+
+     Gamma point algorithm
+
+     LANCZOS LINEAR-RESPONSE SPECTRUM CALCULATION
+
+     Number of Lanczos iterations =   5000
+
+     Starting Lanczos loop        1
+
+     Lanczos iteration:      1   Pol:1
+     lr_apply_liouvillian: not applying interaction
+     alpha(00000001)=  0.000000
+     beta (00000001)= 16.972569
+     gamma(00000001)= 16.972569
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
+
+     Lanczos iteration:      2   Pol:1
+     Calculate Environ contribution to response potential
+     Polarization accuracy = 5.3E-26, # of iterations =  43
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000002)=  0.000000
+     beta (00000002)=  7.408823
+     gamma(00000002)=  7.408823
+     z1=       1  0.229085909035685E+01  0.000000000000000E+00
+     z1=       2 -0.127469980565741E-04  0.000000000000000E+00
+     z1=       3 -0.140365896555215E+01  0.000000000000000E+00
+
+     Lanczos iteration:      3   Pol:1
+     lr_apply_liouvillian: not applying interaction
+     alpha(00000003)=  0.000000
+     beta (00000003)= 32.182447
+     gamma(00000003)= 32.182447
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
+
+     Lanczos iteration:      4   Pol:1
+     Calculate Environ contribution to response potential
+     Polarization accuracy = 8.2E-26, # of iterations =  45
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000004)=  0.000000
+     beta (00000004)= 29.018664
+     gamma(00000004)= 29.018664
+     z1=       1 -0.254062183963633E+01  0.000000000000000E+00
+     z1=       2  0.149409889214054E-04  0.000000000000000E+00
+     z1=       3  0.155624224323522E+01  0.000000000000000E+00
+
+     Lanczos iteration:      5   Pol:1
+     lr_apply_liouvillian: not applying interaction
+     alpha(00000005)=  0.000000
+     beta (00000005)= 32.745037
+     gamma(00000005)= 32.745037
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
+
+     Lanczos iteration:      6   Pol:1
+     Calculate Environ contribution to response potential
+     Polarization accuracy = 6.2E-26, # of iterations =  46
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000006)=  0.000000
+     beta (00000006)= 28.454940
+     gamma(00000006)= 28.454940
+     z1=       1  0.292366676802690E+01  0.000000000000000E+00
+     z1=       2 -0.179550672106520E-04  0.000000000000000E+00
+     z1=       3 -0.179027493370959E+01  0.000000000000000E+00
+
+     Lanczos iteration:      7   Pol:1
+     lr_apply_liouvillian: not applying interaction
+     alpha(00000007)=  0.000000
+     beta (00000007)= 30.606113
+     gamma(00000007)= 30.606113
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
+
+     Lanczos iteration:      8   Pol:1
+     Calculate Environ contribution to response potential
+     Polarization accuracy = 9.2E-26, # of iterations =  46
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000008)=  0.000000
+     beta (00000008)= 31.467702
+     gamma(00000008)= 31.467702
+     z1=       1 -0.284361632368913E+01  0.000000000000000E+00
+     z1=       2  0.180550856461520E-04  0.000000000000000E+00
+     z1=       3  0.173952745680194E+01  0.000000000000000E+00
+
+     Lanczos iteration:      9   Pol:1
+     lr_apply_liouvillian: not applying interaction
+     alpha(00000009)=  0.000000
+     beta (00000009)= 28.684111
+     gamma(00000009)= 28.684111
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
+
+     Lanczos iteration:     10   Pol:1
+     Calculate Environ contribution to response potential
+     Polarization accuracy = 4.5E-26, # of iterations =  46
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000010)=  0.000000
+     beta (00000010)= 31.751336
+     gamma(00000010)= 31.751336
+     z1=       1  0.256891817900003E+01  0.000000000000000E+00
+     z1=       2 -0.171301992388075E-04  0.000000000000000E+00
+     z1=       3 -0.156769000847643E+01  0.000000000000000E+00
+
+     Lanczos iteration:     11   Pol:1
+     lr_apply_liouvillian: not applying interaction
+     alpha(00000011)=  0.000000
+     beta (00000011)= 29.466063
+     gamma(00000011)= 29.466063
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
+
+     Lanczos iteration:     12   Pol:1
+     Calculate Environ contribution to response potential
+     Polarization accuracy = 6.9E-26, # of iterations =  46
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000012)=  0.000000
+     beta (00000012)= 31.076643
+     gamma(00000012)= 31.076643
+     z1=       1 -0.243578072520297E+01  0.000000000000000E+00
+     z1=       2  0.169125917519298E-04  0.000000000000000E+00
+     z1=       3  0.148071137493203E+01  0.000000000000000E+00
+
+     Lanczos iteration:     13   Pol:1
+     lr_apply_liouvillian: not applying interaction
+     alpha(00000013)=  0.000000
+     beta (00000013)= 29.475442
+     gamma(00000013)= 29.475442
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
+
+     Lanczos iteration:     14   Pol:1
+     Calculate Environ contribution to response potential
+     Polarization accuracy = 9.1E-26, # of iterations =  45
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000014)=  0.000000
+     beta (00000014)= 31.624008
+     gamma(00000014)= 31.624008
+     z1=       1  0.227029102982809E+01  0.000000000000000E+00
+     z1=       2 -0.164868707233441E-04  0.000000000000000E+00
+     z1=       3 -0.137282372049062E+01  0.000000000000000E+00
+
+     Lanczos iteration:     15   Pol:1
+     lr_apply_liouvillian: not applying interaction
+     alpha(00000015)=  0.000000
+     beta (00000015)= 29.233989
+     gamma(00000015)= 29.233989
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
+
+     Lanczos iteration:     16   Pol:1
+     Calculate Environ contribution to response potential
+     Polarization accuracy = 2.8E-26, # of iterations =  45
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000016)=  0.000000
+     beta (00000016)= 31.177694
+     gamma(00000016)= 31.177694
+     z1=       1 -0.212875421505644E+01  0.000000000000000E+00
+     z1=       2  0.163783113971475E-04  0.000000000000000E+00
+     z1=       3  0.127823899298038E+01  0.000000000000000E+00
+
+     Lanczos iteration:     17   Pol:1
+     lr_apply_liouvillian: not applying interaction
+     alpha(00000017)=  0.000000
+     beta (00000017)= 30.236538
+     gamma(00000017)= 30.236538
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
+
+     Lanczos iteration:     18   Pol:1
+     Calculate Environ contribution to response potential
+     Polarization accuracy = 2.3E-26, # of iterations =  45
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000018)=  0.000000
+     beta (00000018)= 30.206265
+     gamma(00000018)= 30.206265
+     z1=       1  0.213088649842301E+01  0.000000000000000E+00
+     z1=       2 -0.175240585367384E-04  0.000000000000000E+00
+     z1=       3 -0.126915433217634E+01  0.000000000000000E+00
+
+     Lanczos iteration:     19   Pol:1
+     lr_apply_liouvillian: not applying interaction
+     alpha(00000019)=  0.000000
+     beta (00000019)= 30.792762
+     gamma(00000019)= 30.792762
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
+
+     Lanczos iteration:     20   Pol:1
+     Calculate Environ contribution to response potential
+     Polarization accuracy = 4.2E-26, # of iterations =  45
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000020)=  0.000000
+     beta (00000020)= 30.336933
+     gamma(00000020)= 30.336933
+     z1=       1 -0.216290184363666E+01  0.000000000000000E+00
+     z1=       2  0.183892780331953E-04  0.000000000000000E+00
+     z1=       3  0.127793716744756E+01  0.000000000000000E+00
+
+     Lanczos iteration:     21   Pol:1
+     lr_apply_liouvillian: not applying interaction
+     alpha(00000021)=  0.000000
+     beta (00000021)= 30.425642
+     gamma(00000021)= 30.425642
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
+
+     Lanczos iteration:     22   Pol:1
+     Calculate Environ contribution to response potential
+     Polarization accuracy = 9.5E-26, # of iterations =  45
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000022)=  0.000000
+     beta (00000022)= 30.838039
+     gamma(00000022)= 30.838039
+     z1=       1  0.213397371675228E+01  0.000000000000000E+00
+     z1=       2 -0.192880281676038E-04  0.000000000000000E+00
+     z1=       3 -0.125093480436028E+01  0.000000000000000E+00
+
+     Lanczos iteration:     23   Pol:1
+     lr_apply_liouvillian: not applying interaction
+     alpha(00000023)=  0.000000
+     beta (00000023)= 30.272382
+     gamma(00000023)= 30.272382
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
+
+     Lanczos iteration:     24   Pol:1
+     Calculate Environ contribution to response potential
+     Polarization accuracy = 4.5E-26, # of iterations =  46
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000024)=  0.000000
+     beta (00000024)= 30.769221
+     gamma(00000024)= 30.769221
+     z1=       1 -0.209951083288711E+01  0.000000000000000E+00
+     z1=       2  0.198099804153752E-04  0.000000000000000E+00
+     z1=       3  0.122112517851220E+01  0.000000000000000E+00
+
+     Lanczos iteration:     25   Pol:1
+     lr_apply_liouvillian: not applying interaction
+     alpha(00000025)=  0.000000
+     beta (00000025)= 30.409403
+     gamma(00000025)= 30.409403
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
+
+     Lanczos iteration:     26   Pol:1
+     Calculate Environ contribution to response potential
+     Polarization accuracy = 9.3E-26, # of iterations =  46
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000026)=  0.000000
+     beta (00000026)= 30.631101
+     gamma(00000026)= 30.631101
+     z1=       1  0.208430829144210E+01  0.000000000000000E+00
+     z1=       2 -0.210428859951678E-04  0.000000000000000E+00
+     z1=       3 -0.120280575460215E+01  0.000000000000000E+00
+
+     Lanczos iteration:     27   Pol:1
+     lr_apply_liouvillian: not applying interaction
+     alpha(00000027)=  0.000000
+     beta (00000027)= 30.355598
+     gamma(00000027)= 30.355598
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
+
+     Lanczos iteration:     28   Pol:1
+     Calculate Environ contribution to response potential
+     Polarization accuracy = 5.5E-26, # of iterations =  46
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000028)=  0.000000
+     beta (00000028)= 30.811099
+     gamma(00000028)= 30.811099
+     z1=       1 -0.205348524075447E+01  0.000000000000000E+00
+     z1=       2  0.211581297225386E-04  0.000000000000000E+00
+     z1=       3  0.117563591465972E+01  0.000000000000000E+00
+
+     Lanczos iteration:     29   Pol:1
+     lr_apply_liouvillian: not applying interaction
+     alpha(00000029)=  0.000000
+     beta (00000029)= 30.278546
+     gamma(00000029)= 30.278546
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
+
+     Lanczos iteration:     30   Pol:1
+     Calculate Environ contribution to response potential
+     Polarization accuracy = 4.5E-26, # of iterations =  46
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000030)=  0.000000
+     beta (00000030)= 30.944575
+     gamma(00000030)= 30.944575
+     z1=       1  0.200927466781518E+01  0.000000000000000E+00
+     z1=       2 -0.219740008039616E-04  0.000000000000000E+00
+     z1=       3 -0.114085254023300E+01  0.000000000000000E+00
+
+     Lanczos iteration:     31   Pol:1
+     lr_apply_liouvillian: not applying interaction
+     alpha(00000031)=  0.000000
+     beta (00000031)= 30.297453
+     gamma(00000031)= 30.297453
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
+
+     Lanczos iteration:     32   Pol:1
+     Calculate Environ contribution to response potential
+     Polarization accuracy = 4.5E-26, # of iterations =  46
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000032)=  0.000000
+     beta (00000032)= 30.768032
+     gamma(00000032)= 30.768032
+     z1=       1 -0.197852700518930E+01  0.000000000000000E+00
+     z1=       2  0.223205439735215E-04  0.000000000000000E+00
+     z1=       3  0.111393822795023E+01  0.000000000000000E+00
+
+     Lanczos iteration:     33   Pol:1
+     lr_apply_liouvillian: not applying interaction
+     alpha(00000033)=  0.000000
+     beta (00000033)= 30.362203
+     gamma(00000033)= 30.362203
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
+
+     Lanczos iteration:     34   Pol:1
+     Calculate Environ contribution to response potential
+     Polarization accuracy = 2.3E-26, # of iterations =  47
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000034)=  0.000000
+     beta (00000034)= 30.710032
+     gamma(00000034)= 30.710032
+     z1=       1  0.195609628092225E+01  0.000000000000000E+00
+     z1=       2 -0.233134026964713E-04  0.000000000000000E+00
+     z1=       3 -0.109220651183893E+01  0.000000000000000E+00
+
+     Lanczos iteration:     35   Pol:1
+     lr_apply_liouvillian: not applying interaction
+     alpha(00000035)=  0.000000
+     beta (00000035)= 30.397891
+     gamma(00000035)= 30.397891
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
+
+     Lanczos iteration:     36   Pol:1
+     Calculate Environ contribution to response potential
+     Polarization accuracy = 2.3E-26, # of iterations =  47
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000036)=  0.000000
+     beta (00000036)= 30.879839
+     gamma(00000036)= 30.879839
+     z1=       1 -0.192554135859252E+01  0.000000000000000E+00
+     z1=       2  0.240000436238983E-04  0.000000000000000E+00
+     z1=       3  0.106671203515524E+01  0.000000000000000E+00
+
+     Lanczos iteration:     37   Pol:1
+     lr_apply_liouvillian: not applying interaction
+     alpha(00000037)=  0.000000
+     beta (00000037)= 30.290465
+     gamma(00000037)= 30.290465
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
+
+     Lanczos iteration:     38   Pol:1
+     Calculate Environ contribution to response potential
+     Polarization accuracy = 2.3E-26, # of iterations =  47
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000038)=  0.000000
+     beta (00000038)= 30.867156
+     gamma(00000038)= 30.867156
+     z1=       1  0.188953635685953E+01  0.000000000000000E+00
+     z1=       2 -0.249276710791782E-04  0.000000000000000E+00
+     z1=       3 -0.103894863308554E+01  0.000000000000000E+00
+
+     Lanczos iteration:     39   Pol:1
+     lr_apply_liouvillian: not applying interaction
+     alpha(00000039)=  0.000000
+     beta (00000039)= 30.268831
+     gamma(00000039)= 30.268831
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
+
+     Lanczos iteration:     40   Pol:1
+     Calculate Environ contribution to response potential
+     Polarization accuracy = 4.5E-26, # of iterations =  46
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000040)=  0.000000
+     beta (00000040)= 30.857259
+     gamma(00000040)= 30.857259
+     z1=       1 -0.185346974893542E+01  0.000000000000000E+00
+     z1=       2  0.255410577806403E-04  0.000000000000000E+00
+     z1=       3  0.101188280940221E+01  0.000000000000000E+00
+
+     Lanczos iteration:     41   Pol:1
+     lr_apply_liouvillian: not applying interaction
+     alpha(00000041)=  0.000000
+     beta (00000041)= 30.366670
+     gamma(00000041)= 30.366670
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
+
+     Lanczos iteration:     42   Pol:1
+     Calculate Environ contribution to response potential
+     Polarization accuracy = 4.8E-26, # of iterations =  46
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000042)=  0.000000
+     beta (00000042)= 30.857794
+     gamma(00000042)= 30.857794
+     z1=       1  0.182393225485844E+01  0.000000000000000E+00
+     z1=       2 -0.262422537712052E-04  0.000000000000000E+00
+     z1=       3 -0.988975280962142E+00  0.000000000000000E+00
+
+     Lanczos iteration:     43   Pol:1
+     lr_apply_liouvillian: not applying interaction
+     alpha(00000043)=  0.000000
+     beta (00000043)= 30.260142
+     gamma(00000043)= 30.260142
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
+
+     Lanczos iteration:     44   Pol:1
+     Calculate Environ contribution to response potential
+     Polarization accuracy = 4.1E-26, # of iterations =  46
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000044)=  0.000000
+     beta (00000044)= 30.875877
+     gamma(00000044)= 30.875877
+     z1=       1 -0.178751720089426E+01  0.000000000000000E+00
+     z1=       2  0.271198673340165E-04  0.000000000000000E+00
+     z1=       3  0.962834488880531E+00  0.000000000000000E+00
+
+     Lanczos iteration:     45   Pol:1
+     lr_apply_liouvillian: not applying interaction
+     alpha(00000045)=  0.000000
+     beta (00000045)= 30.296914
+     gamma(00000045)= 30.296914
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
+
+     Lanczos iteration:     46   Pol:1
+     Calculate Environ contribution to response potential
+     Polarization accuracy = 3.9E-26, # of iterations =  46
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000046)=  0.000000
+     beta (00000046)= 30.871920
+     gamma(00000046)= 30.871920
+     z1=       1  0.175417886306393E+01  0.000000000000000E+00
+     z1=       2 -0.280849408915451E-04  0.000000000000000E+00
+     z1=       3 -0.938778818312285E+00  0.000000000000000E+00
+
+     Lanczos iteration:     47   Pol:1
+     lr_apply_liouvillian: not applying interaction
+     alpha(00000047)=  0.000000
+     beta (00000047)= 30.301877
+     gamma(00000047)= 30.301877
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
+
+     Lanczos iteration:     48   Pol:1
+     Calculate Environ contribution to response potential
+     Polarization accuracy = 2.0E-26, # of iterations =  47
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000048)=  0.000000
+     beta (00000048)= 30.815972
+     gamma(00000048)= 30.815972
+     z1=       1 -0.172486721526570E+01  0.000000000000000E+00
+     z1=       2  0.291801297007067E-04  0.000000000000000E+00
+     z1=       3  0.917404714200058E+00  0.000000000000000E+00
+
+     Lanczos iteration:     49   Pol:1
+     lr_apply_liouvillian: not applying interaction
+     alpha(00000049)=  0.000000
+     beta (00000049)= 30.348919
+     gamma(00000049)= 30.348919
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
+
+     Lanczos iteration:     50   Pol:1
+     Calculate Environ contribution to response potential
+     Polarization accuracy = 2.0E-26, # of iterations =  47
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000050)=  0.000000
+     beta (00000050)= 30.924306
+     gamma(00000050)= 30.924306
+     z1=       1  0.169272537821377E+01  0.000000000000000E+00
+     z1=       2 -0.304685285131077E-04  0.000000000000000E+00
+     z1=       3 -0.895123325768558E+00  0.000000000000000E+00
+
+     Lanczos iteration:     51   Pol:1
+     lr_apply_liouvillian: not applying interaction
+     alpha(00000051)=  0.000000
+     beta (00000051)= 30.262767
+     gamma(00000051)= 30.262767
+     z1=       1  0.000000000000000E+00  0.000000000000000E+00
+     z1=       2  0.000000000000000E+00  0.000000000000000E+00
+     z1=       3  0.000000000000000E+00  0.000000000000000E+00
+
+     Lanczos iteration:     52   Pol:1
+     Calculate Environ contribution to response potential
+     Polarization accuracy = 2.0E-26, # of iterations =  47
+     lr_apply_liouvillian:  applying interaction: normal
+     alpha(00000052)=  0.000000
+     beta (00000052)= 30.821192
+     gamma(00000052)= 30.821192
