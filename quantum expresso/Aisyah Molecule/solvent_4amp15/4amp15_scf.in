@@ -2,7 +2,7 @@
   calculation = 'scf'
   prefix = '4amp15'
   outdir = './outdir'
-  pseudo_dir = '/home/cyk/q-e-qe-7.1/pp/'
+  pseudo_dir = '/home/cyk/q-e-qe-7.2/pp/'
 /
 &SYSTEM
   ibrav = 0
