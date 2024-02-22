@@ -1,5 +1,5 @@
 &LR_INPUT
-  prefix = '4amp'
+  prefix = '4amp15'
   outdir = './outdir'
   itermax0 = 3000
   epsil = 0.0051449
