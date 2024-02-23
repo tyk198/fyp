@@ -119,6 +119,25 @@
       REL_CUTOFF  80
       NGRIDS 6
     &END MGRID
+    &SCCS ON
+      ALPHA [mN/m] 9.88
+      BETA [GPa] -0.5
+      DELTA_RHO 2.0E-5
+      DERIVATIVE_METHOD CD5
+      DIELECTRIC_CONSTANT 36.71
+      EPS_SCCS 1.0E-8
+      EPS_SCF 1.0E-2
+      GAMMA [mN/m] 36.42
+      MAX_ITER 100
+      METHOD Fattebert-Gygi
+      MIXING 0.6
+    &END SCCS
+    &AUXILIARY_DENSITY_MATRIX_METHOD      
+      METHOD BASIS_PROJECTION             
+      EXCH_SCALING_MODEL NONE            
+      EXCH_CORRECTION_FUNC NONE       
+      ADMM_PURIFICATION_METHOD NONE        
+    &END AUXILIARY_DENSITY_MATRIX_METHOD
     &SCF
       MAX_SCF 120
       EPS_SCF 1.0E-06 #Convergence threshold of density matrix of inner SCF
@@ -131,6 +150,7 @@
          PRECONDITIONER FULL_ALL
          MINIMIZER DIIS
       &END OT
+      ADDED_MOS    30
       &PRINT
         &RESTART #Note: Use "&RESTART OFF" can prevent generating .wfn file
           BACKUP_COPIES 0 #Maximum number of backup copies of wfn file. 0 means never
@@ -142,25 +162,27 @@
         NDIGITS 9 #Output orbital coefficients if absolute value is larger than 1E-9
       &END MO_MOLDEN
       &MO_CUBES
-        APPEND T
         NHOMO 1
         NLUMO 1
         WRITE_CUBE T
+        STRIDE 1 1 1
         &EACH
           MD 10
         &END
       &END MO_CUBES
+      &SCCS ON
+       &EACH
+        QS_SCF 1
+       &END EACH
+      &END SCCS
+      &DOS ON
+      &END DOS
     &END PRINT
   &END DFT
   &PROPERTIES
-    &TDDFPT #TDDFT calculation with Tamm-Dancoff approximation
-      KERNEL sTDA
-      &sTDA
-        FRACTION 0.20
-        DO_EWALD T
-      &END sTDA
+     &TDDFPT #TDDFT calculation with Tamm-Dancoff approximation
       MAX_ITER 100
-      NSTATES   50 #Number of excited states to solve
+      NSTATES   500 #Number of excited states to solve
       RKS_TRIPLETS F #If calculating triplet rather than singlet excited states
       CONVERGENCE [eV] 1E-4 #Convergence criterion of all excitation energies
       MIN_AMPLITUDE 0.01 #The smallest excitation amplitude to print
