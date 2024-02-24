@@ -103,8 +103,8 @@
     &QS
       METHOD GPW
       EPS_FILTER_MATRIX 0	
-      EPS_DEFAULT 1.0E-17
-      EPS_PGF_ORB 1.0E-20
+      EPS_DEFAULT 1.0E-10
+      EPS_PGF_ORB 1.0E-30
     &END QS
     &POISSON
       PERIODIC NONE #Direction(s) of PBC for calculating electrostatics
@@ -115,7 +115,7 @@
      &END XC_FUNCTIONAL
     &END XC
     &MGRID
-      CUTOFF  800
+      CUTOFF  600
       REL_CUTOFF  80
       NGRIDS 6
     &END MGRID
@@ -139,12 +139,12 @@
       ADMM_PURIFICATION_METHOD NONE        
     &END AUXILIARY_DENSITY_MATRIX_METHOD
     &SCF
-      MAX_SCF 120
-      EPS_SCF 1.0E-06 #Convergence threshold of density matrix of inner SCF
+      MAX_SCF 50
+      EPS_SCF 1.0E-05 #Convergence threshold of density matrix of inner SCF
   #   SCF_GUESS RESTART #Use wavefunction from WFN_RESTART_FILE_NAME file as initial guess
       &OUTER_SCF
          MAX_SCF 20
-         EPS_SCF 1.0E-6
+         EPS_SCF 1.0E-5
       &END OUTER_SCF
       &OT T
          PRECONDITIONER FULL_ALL
