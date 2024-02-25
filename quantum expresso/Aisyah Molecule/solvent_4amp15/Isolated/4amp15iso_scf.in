@@ -1,0 +1,41 @@
+&CONTROL
+  calculation = 'scf'
+  prefix = '4amp15iso'
+  outdir = './outdir'
+  pseudo_dir = '/home/cyk/q-e-qe-7.2/pp/'
+/
+&SYSTEM
+  ibrav = 1
+  A = 30
+  nat = 49
+  ntyp = 4
+  input_dft = 'pbe0'
+  occupations = 'fixed'
+  nbnd = 285
+  x_gamma_extrapolation = .true.
+  exxdiv_treatment = 'gygi-baldereschi'
+  assume_isolated	= 'mp'
+  ecutwfc = 80
+  ecutrho = 320
+  ecutfock = 80
+/
+&ELECTRONS
+  conv_thr = 1.0E-7
+  adaptive_thr = .TRUE.
+  mixing_mode = 'local-TF'
+  mixing_beta = 0.7
+  mixing_ndim = 8
+  diagonalization = 'david'
+  electron_maxstep = 200
+/
+
+ATOMIC_SPECIES
+  O   16.00  O_ONCV_PBE-1.2.upf
+  N   14.00  N_ONCV_PBE-1.2.upf
+  C   12.00  C_ONCV_PBE-1.2.upf
+  H    1.00  H_ONCV_PBE-1.2.upf
+
+ATOMIC_POSITIONS {angstrom}
+
+
+K_POINTS gamma
