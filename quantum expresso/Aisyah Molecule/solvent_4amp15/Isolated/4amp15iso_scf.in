@@ -11,7 +11,7 @@
   ntyp = 4
   input_dft = 'pbe0'
   occupations = 'fixed'
-  nbnd = 285
+  nbnd = 80
   x_gamma_extrapolation = .true.
   exxdiv_treatment = 'gygi-baldereschi'
   assume_isolated	= 'mp'
