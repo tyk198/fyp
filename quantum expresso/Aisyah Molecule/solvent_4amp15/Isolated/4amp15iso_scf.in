@@ -17,7 +17,7 @@
   assume_isolated	= 'mp'
   ecutwfc = 80
   ecutrho = 320
-  ecutfock = 80
+  ecutfock = 160
 /
 &ELECTRONS
   conv_thr = 1.0E-6
