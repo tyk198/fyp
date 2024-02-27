@@ -4,8 +4,8 @@
    disk_io = 'reduced'
  /
  &lr_dav
-   d0psi_rs = .true.
-   lshift_d0psi = .true.
+   d0psi_rs = .false.
+   lshift_d0psi = .false.
    lplot_drho=.true.
    p_nbnd_occ = 10
    p_nbnd_virt = 10
