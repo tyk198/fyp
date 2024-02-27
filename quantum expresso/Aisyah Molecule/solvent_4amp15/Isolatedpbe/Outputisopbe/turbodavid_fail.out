@@ -1,0 +1,654 @@
+
+     Program turboTDDFT v.7.2 starts on 27Feb2024 at 18:11:34
+
+     This program is part of the open-source Quantum ESPRESSO suite
+     for quantum simulation of materials; please cite
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 21 395502 (2009);
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 29 465901 (2017);
+         "P. Giannozzi et al., J. Chem. Phys. 152 154105 (2020);
+          URL http://www.quantum-espresso.org",
+     in publications or presentations arising from this work. More details at
+     http://www.quantum-espresso.org/quote
+
+     Parallel version (MPI), running on   120 processors
+
+     MPI processes distributed on     1 nodes
+     R & G space division:  proc/nbgrp/npool/nimage =     120
+     453217 MiB available memory on the printing compute node when the environment starts
+
+
+     Reading xml data from directory:
+
+     ./outdir/4amp15pbeiso.save/
+
+     IMPORTANT: XC functional enforced from input :
+     Exchange-correlation= PBE
+                           (   1   4   3   4   0   0   0)
+     Any further DFT definition will be discarded
+     Please, verify this is what you really want
+
+
+     Parallelization info
+     --------------------
+     sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+     Min        1288     514    127               196556    49718    6211
+     Max        1290     516    130               196570    49732    6218
+     Sum      154717   61901  15477             23587401  5967365  745749
+
+     Using Slab Decomposition
+
+
+     negative rho (up, down):  1.102E-02 0.000E+00
+     Reading collected, re-writing distributed wavefunctions
+ Symmetries are disabled for the gamma_only case
+
+     Reading input from environ.in:
+     * using full solvent mode
+     * setting boundary derivatives method to SCCS default
+
+
+     add environment contribution to local potential
+     Polarization accuracy = 5.7E-16, # of iterations =  55
+
+     the potential shift due to the Gaussian-smeared nuclei is    -0.0239 ev
+     Subspace diagonalization in iterative solution of the eigenvalue problem:
+     a serial algorithm will be used
+
+
+     ================================================================================
+
+                                  Environ Setup Summary
+
+     ================================================================================
+
+     Please cite
+
+          O. Andreussi, I. Dabo and N. Marzari, J. Chem. Phys. 136, 064102 (2012)
+          I. Timrov, O. Andreussi, A. Biancardi, N. Marzari, and S. Baroni, J. Chem. Phys. 142, 034111 (2015)
+
+     in publications or presentations arising from this work.
+
+     ================================================================================
+
+     Parameters
+     ==========
+
+     compensation onset threshold      =               0.1000E+01
+     static permittivity               =                    36.71
+     optical permittivity              =                  36.7100
+     surface tension in input (dyn/cm) =                    46.30
+     surface tension in internal units =               0.5948E-04
+     external pressure in input (GPa)  =                    -0.50
+     external pressure in inter. units =              -0.3399E-04
+
+     Solvent Boundary
+     ================
+
+     solvent mode                      =                     full
+     derivatives method                =                    chain
+     numerical core for derivatives    =                      fft
+     switching function adopted        =                     SCCS
+     density limit for vacuum region   =               0.5000E-02
+     density limit for bulk solvent    =               0.1000E-03
+
+     Electrostatic Setup
+     ===================
+
+     electrostatic problem to solve    =              generalized
+     numerical solver adopted          =                       cg
+     type of auxiliary density adopted =                     none
+     numerical core for poisson        =                      fft
+
+     ================================================================================
+
+     Allocating    10 extra bands for projection
+
+     =-----------------------------------------------------------------=
+
+     Please cite the TDDFPT project as:
+       X. Ge, S. J. Binnie, D. Rocca, R. Gebauer, and S. Baroni,
+       Comput. Phys. Commun. 185, 2080 (2014)
+     in publications and presentations arising from this work.
+
+     =-----------------------------------------------------------------=
+
+     Ultrasoft (Vanderbilt) Pseudopotentials
+
+     Virt read
+
+     Gamma point algorithm
+     Num of eigen values=             10
+     Allocating parameters for davidson ...
+
+     Estimating the RAM requirements:
+          For the basis sets:      796728.52     M
+          For the eigenvectors:       15934.57     M
+          Num_eign =   10     Num_basis_max =  500
+          Reference =  0.28  Ry
+     Do make sure that you have enough RAM.
+
+     poor_of_ram is set to .false.. This means that you would like to increase the speed of
+     your calculation with USPP by paying double memory.
+     Switch it to .true. if you need to save memory.
+
+     poor_of_ram2 is set to .false.. This means that you would like to increase the speed
+     by storing the D_basis and C_basis vectors which will cause three time of the memory cost.
+     Switch it to .true. if you need to save memory.
+
+     Finished allocating parameters.
+     Initiating variables for davidson ...
+     Lowest energy electron-hole pairs are used as initial vectors ...
+     Calculating the electron-hole pairs for initiating trial vectors ...
+
+              1        63         1           0.280139954017
+              2        65         2           0.275558142848
+              3        64         2           0.295465423021
+              4        70         3           0.296032472072
+              5        69         3           0.298930358310
+              6        62         1           0.301781435147
+              7        70         4           0.305644846599
+              8        69         4           0.308542732837
+              9        68         3           0.313941178669
+             10        70         5           0.315452788210
+             11        66         2           0.252909444044
+             12        70         6           0.317769002525
+             13        67         3           0.317998708333
+             14        69         5           0.318350674448
+             15        69         6           0.320666888763
+             16        64         1           0.248067057120
+             17        68         4           0.323553553196
+             18        63         2           0.327538319917
+             19        67         4           0.327611082860
+             20        61         1           0.330593252195
+             21        67         2           0.237918475860
+             22        66         3           0.332989676517
+             23        68         5           0.333361494807
+             24        68         6           0.335677709122
+             25        68         2           0.233860946196
+             26        67         5           0.337419024471
+             27        67         6           0.339735238786
+             28        65         1           0.228159776948
+             29        66         4           0.342602051044
+             30        62         2           0.349179801048
+             31        69         2           0.218850125837
+             32        66         5           0.352409992655
+             33        70         2           0.215952239599
+             34        66         6           0.354726206970
+             35        65         3           0.355638375322
+             36        70         7           0.364349169198
+             37        66         1           0.205511078144
+             38        65         4           0.365250749849
+             39        69         7           0.367247055436
+             40        70         8           0.371653497840
+             41        69         8           0.374551384078
+             42        65         5           0.375058691460
+             43        64         3           0.375545655494
+             44        65         6           0.377374905774
+             45        61         2           0.377991618095
+             46        67         1           0.190520109959
+             47        70         9           0.382164552241
+             48        68         7           0.382257875795
+             49        70        10           0.383438531844
+             50        68         1           0.186462580296
+             51        69         9           0.385062438479
+             52        64         4           0.385158030021
+             53        67         7           0.386315405459
+             54        69        10           0.386336418082
+             55        68         8           0.389562204437
+             56        67         8           0.393619734100
+             57        64         5           0.394965971632
+             58        64         6           0.397282185947
+             59        69         1           0.171451759937
+             60        68         9           0.400073258838
+             61        66         7           0.401306373643
+             62        68        10           0.401347238441
+             63        70         1           0.168553873699
+             64        67         9           0.404130788502
+             65        67        10           0.405404768105
+             66        63         3           0.407618552391
+             67        66         8           0.408610702285
+             68        63         4           0.417230926918
+             69        66         9           0.419121756686
+             70        66        10           0.420395736289
+             71        65         7           0.423955072448
+             72        63         5           0.427038868529
+             73        62         3           0.429260033521
+             74        63         6           0.429355082843
+             75        65         8           0.431259401089
+             76        62         4           0.438872408048
+             77        65         9           0.441770455491
+             78        65        10           0.443044435094
+             79        64         7           0.443862352620
+             80        62         5           0.448680349659
+             81        62         6           0.450996563974
+             82        64         8           0.451166681261
+             83        61         3           0.458071850568
+             84        64         9           0.461677735663
+             85        64        10           0.462951715266
+             86        61         4           0.467684225095
+             87        63         7           0.475935249517
+             88        61         5           0.477492166706
+             89        61         6           0.479808381021
+             90        63         8           0.483239578158
+             91        63         9           0.493750632560
+             92        63        10           0.495024612163
+             93        62         7           0.497576730647
+             94        62         8           0.504881059288
+             95        62         9           0.515392113690
+             96        62        10           0.516666093293
+             97        61         7           0.526388547694
+             98        61         8           0.533692876336
+             99        61         9           0.544203930738
+            100        61        10           0.545477910340
+     Finished calculating the cv couples.
+     Finished initiating.
+
+     Precondition is used in the algorithm,
+
+     total cpu time spent up to now is       91.0 secs
+
+       ==============================
+
+       Davidson iteration:        1
+       num of basis:   40   total built basis:   40
+     Polarization accuracy = 4.5E-16, # of iterations =  53
+     Polarization accuracy = 4.7E-16, # of iterations =  53
+     Polarization accuracy = 6.8E-16, # of iterations =  52
+     Polarization accuracy = 5.9E-16, # of iterations =  53
+     Polarization accuracy = 8.8E-16, # of iterations =  52
+     Polarization accuracy = 5.4E-16, # of iterations =  54
+     Polarization accuracy = 9.1E-16, # of iterations =  52
+     Polarization accuracy = 5.9E-16, # of iterations =  52
+     Polarization accuracy = 4.7E-16, # of iterations =  54
+     Polarization accuracy = 8.4E-16, # of iterations =  52
+     Polarization accuracy = 6.2E-16, # of iterations =  53
+     Polarization accuracy = 7.3E-16, # of iterations =  55
+     Polarization accuracy = 8.1E-16, # of iterations =  51
+     Polarization accuracy = 4.5E-16, # of iterations =  54
+     Polarization accuracy = 5.8E-16, # of iterations =  54
+     Polarization accuracy = 9.2E-16, # of iterations =  53
+     Polarization accuracy = 5.6E-16, # of iterations =  54
+     Polarization accuracy = 6.8E-16, # of iterations =  53
+     Polarization accuracy = 7.4E-16, # of iterations =  51
+     Polarization accuracy = 5.9E-16, # of iterations =  52
+     Polarization accuracy = 8.1E-16, # of iterations =  51
+     Polarization accuracy = 7.8E-16, # of iterations =  54
+     Polarization accuracy = 8.3E-16, # of iterations =  53
+     Polarization accuracy = 6.3E-16, # of iterations =  50
+     Polarization accuracy = 5.6E-16, # of iterations =  53
+     Polarization accuracy = 4.9E-16, # of iterations =  47
+     Polarization accuracy = 6.5E-16, # of iterations =  51
+     Polarization accuracy = 6.3E-16, # of iterations =  52
+     Polarization accuracy = 7.8E-16, # of iterations =  52
+     Polarization accuracy = 8.8E-16, # of iterations =  50
+     Polarization accuracy = 6.9E-16, # of iterations =  53
+     Polarization accuracy = 6.6E-16, # of iterations =  48
+     Polarization accuracy = 8.8E-16, # of iterations =  53
+     Polarization accuracy = 6.4E-16, # of iterations =  54
+     Polarization accuracy = 4.5E-16, # of iterations =  52
+     Polarization accuracy = 7.3E-16, # of iterations =  50
+     Polarization accuracy = 7.4E-16, # of iterations =  55
+     Polarization accuracy = 7.5E-16, # of iterations =  51
+     Polarization accuracy = 4.2E-16, # of iterations =  49
+     Polarization accuracy = 6.4E-16, # of iterations =  49
+        40     Transition energy    1  :                  0.2810366584
+        40     Transition energy    2  :                  0.2923532411
+        40     Transition energy    3  :                  0.2732270334
+        40     Transition energy    4  :                  0.2629751645
+        40     Transition energy    5  :                  0.3125619966
+        40     Transition energy    6  :                  0.3152372603
+        40     Transition energy    7  :                  0.2532987012
+        40     Transition energy    8  :                  0.3170797330
+        40     Transition energy    9  :                  0.2491410243
+        40     Transition energy   10  :                  0.3226429292
+     Residue(Squared modulus):    1        0.0600354      0.0001944
+     Residue(Squared modulus):    2        0.0758620      0.0001566
+     Residue(Squared modulus):    3        0.0682658      0.0000388
+     Residue(Squared modulus):    4        0.0849959      0.0000296
+     Residue(Squared modulus):    5        0.0561692      0.0001682
+     Residue(Squared modulus):    6        0.0226501      0.0000471
+     Residue(Squared modulus):    7        0.0082436      0.0000566
+     Residue(Squared modulus):    8        0.0136401      0.0000456
+     Residue(Squared modulus):    9        0.0147212      0.0001761
+     Residue(Squared modulus):   10        0.0230476      0.0000461
+       Largest residue:           0.084995894369
+
+     total cpu time spent up to now is      741.2 secs
+
+       ==============================
+
+       Davidson iteration:        2
+       num of basis:   50   total built basis:   50
+     Polarization accuracy = 4.3E-16, # of iterations =  54
+     Polarization accuracy = 8.4E-16, # of iterations =  53
+     Polarization accuracy = 6.7E-16, # of iterations =  54
+     Polarization accuracy = 9.8E-16, # of iterations =  53
+     Polarization accuracy = 5.4E-16, # of iterations =  54
+     Polarization accuracy = 6.7E-16, # of iterations =  53
+     Polarization accuracy = 3.2E-16, # of iterations =  55
+     Polarization accuracy = 5.5E-16, # of iterations =  53
+     Polarization accuracy = 6.8E-16, # of iterations =  54
+     Polarization accuracy = 5.4E-16, # of iterations =  54
+        50     Transition energy    1  :                  0.2814135100
+        50     Transition energy    2  :                  0.2730815386
+        50     Transition energy    3  :                  0.3051372690
+        50     Transition energy    4  :                  0.2634760716
+        50     Transition energy    5  :                  0.3112131204
+        50     Transition energy    6  :                  0.3148930063
+        50     Transition energy    7  :                  0.3161863053
+        50     Transition energy    8  :                  0.2524851404
+        50     Transition energy    9  :                  0.2510813135
+        50     Transition energy   10  :                  0.3215798980
+     Residue(Squared modulus):    1        0.0120032      0.0005085
+     Residue(Squared modulus):    2        0.0058693      0.0004525
+     Residue(Squared modulus):    3        0.0078439      0.0005565
+     Residue(Squared modulus):    4        0.0092573      0.0004100
+     Residue(Squared modulus):    5        0.0076390      0.0003340
+     Residue(Squared modulus):    6        0.0102425      0.0003641
+     Residue(Squared modulus):    7        0.0089663      0.0002978
+     Residue(Squared modulus):    8        0.0017322      0.0001190
+     Residue(Squared modulus):    9        0.0081838      0.0003924
+     Residue(Squared modulus):   10        0.0146645      0.0003615
+       Largest residue:           0.014664510210
+
+     total cpu time spent up to now is      957.9 secs
+
+       ==============================
+
+       Davidson iteration:        3
+       num of basis:   62   total built basis:   62
+     Polarization accuracy = 8.5E-16, # of iterations =  52
+     Polarization accuracy = 5.7E-16, # of iterations =  54
+     Polarization accuracy = 5.5E-16, # of iterations =  55
+     Polarization accuracy = 3.6E-16, # of iterations =  54
+     Polarization accuracy = 4.1E-16, # of iterations =  55
+     Polarization accuracy = 6.8E-16, # of iterations =  55
+     Polarization accuracy = 6.7E-16, # of iterations =  54
+     Polarization accuracy = 8.9E-16, # of iterations =  54
+     Polarization accuracy = 7.7E-16, # of iterations =  54
+     Polarization accuracy = 4.0E-16, # of iterations =  55
+     Polarization accuracy = 8.7E-16, # of iterations =  54
+     Polarization accuracy = 5.0E-16, # of iterations =  55
+        62     Transition energy    1  :                  0.2795687584
+        62     Transition energy    2  :                  0.2719988474
+        62     Transition energy    3  :                  0.3036286093
+        62     Transition energy    4  :                  0.2620382329
+        62     Transition energy    5  :                  0.3095375003
+        62     Transition energy    6  :                  0.3131260349
+        62     Transition energy    7  :                  0.3154507787
+        62     Transition energy    8  :                  0.2522604061
+        62     Transition energy    9  :                  0.3198222060
+        62     Transition energy   10  :                  0.2498119462
+     Residue(Squared modulus):    1        0.0031511      0.0002748
+     Residue(Squared modulus):    2        0.0023154      0.0004185
+     Residue(Squared modulus):    3        0.0028465      0.0004308
+     Residue(Squared modulus):    4        0.0033116      0.0003841
+     Residue(Squared modulus):    5        0.0033656      0.0004531
+     Residue(Squared modulus):    6        0.0022766      0.0003187
+     Residue(Squared modulus):    7        0.0008809      0.0001573
+     Residue(Squared modulus):    8        0.0005251      0.0000970
+     Residue(Squared modulus):    9        0.0025199      0.0003320
+     Residue(Squared modulus):   10        0.0027538      0.0003353
+       Largest residue:           0.003365564186
+
+     total cpu time spent up to now is     1202.4 secs
+
+       ==============================
+
+       Davidson iteration:        4
+       num of basis:   72   total built basis:   72
+     Polarization accuracy = 9.3E-16, # of iterations =  54
+     Polarization accuracy = 8.0E-16, # of iterations =  54
+     Polarization accuracy = 9.0E-16, # of iterations =  53
+     Polarization accuracy = 9.3E-16, # of iterations =  54
+     Polarization accuracy = 6.7E-16, # of iterations =  54
+     Polarization accuracy = 8.8E-16, # of iterations =  54
+     Polarization accuracy = 8.8E-16, # of iterations =  54
+     Polarization accuracy = 9.2E-16, # of iterations =  54
+     Polarization accuracy = 5.4E-16, # of iterations =  54
+     Polarization accuracy = 5.3E-16, # of iterations =  54
+        72     Transition energy    1  :                  0.2789578078
+        72     Transition energy    2  :                  0.2715023122
+        72     Transition energy    3  :                  0.3031391605
+        72     Transition energy    4  :                  0.2614106490
+        72     Transition energy    5  :                  0.3089033027
+        72     Transition energy    6  :                  0.3127369277
+        72     Transition energy    7  :                  0.3152476283
+        72     Transition energy    8  :                  0.2521572768
+        72     Transition energy    9  :                  0.3193143467
+        72     Transition energy   10  :                  0.2493139805
+     Residue(Squared modulus):    1        0.0014784      0.0003682
+     Residue(Squared modulus):    2        0.0012083      0.0004702
+     Residue(Squared modulus):    3        0.0014299      0.0005198
+     Residue(Squared modulus):    4        0.0016014      0.0004256
+     Residue(Squared modulus):    5        0.0014593      0.0005595
+     Residue(Squared modulus):    6        0.0008383      0.0003296
+     Residue(Squared modulus):    7        0.0004766      0.0002016
+     Residue(Squared modulus):    8        0.0002839      0.0001140
+     Residue(Squared modulus):    9        0.0012111      0.0004145
+     Residue(Squared modulus):   10        0.0013703      0.0003464
+       Largest residue:           0.001601406058
+
+     total cpu time spent up to now is     1419.8 secs
+
+       ==============================
+
+       Davidson iteration:        5
+       num of basis:   82   total built basis:   82
+     Polarization accuracy = 7.6E-16, # of iterations =  53
+     Polarization accuracy = 5.7E-16, # of iterations =  53
+     Polarization accuracy = 4.6E-16, # of iterations =  54
+     Polarization accuracy = 5.6E-16, # of iterations =  54
+     Polarization accuracy = 9.7E-16, # of iterations =  53
+     Polarization accuracy = 8.0E-16, # of iterations =  52
+     Polarization accuracy = 8.5E-16, # of iterations =  53
+     Polarization accuracy = 4.7E-16, # of iterations =  53
+     Polarization accuracy = 6.2E-16, # of iterations =  52
+     Polarization accuracy = 7.7E-16, # of iterations =  53
+        82     Transition energy    1  :                  0.2785882509
+        82     Transition energy    2  :                  0.2711684821
+        82     Transition energy    3  :                  0.3026089279
+        82     Transition energy    4  :                  0.3084085356
+        82     Transition energy    5  :                  0.2609929708
+        82     Transition energy    6  :                  0.3124745492
+        82     Transition energy    7  :                  0.3152232571
+        82     Transition energy    8  :                  0.2521174066
+        82     Transition energy    9  :                  0.3189308419
+        82     Transition energy   10  :                  0.2489780567
+     Residue(Squared modulus):    1        0.0009344      0.0005237
+     Residue(Squared modulus):    2        0.0006309      0.0005871
+     Residue(Squared modulus):    3        0.0011134      0.0006139
+     Residue(Squared modulus):    4        0.0007775      0.0003668
+     Residue(Squared modulus):    5        0.0008993      0.0005452
+     Residue(Squared modulus):    6        0.0004635      0.0003552
+     Residue(Squared modulus):    7        0.0004480      0.0002040
+     Residue(Squared modulus):    8        0.0002106      0.0001233
+     Residue(Squared modulus):    9        0.0007466      0.0006263
+     Residue(Squared modulus):   10        0.0007076      0.0004194
+       Largest residue:           0.001113362786
+
+     total cpu time spent up to now is     1653.9 secs
+
+       ==============================
+
+       Davidson iteration:        6
+       num of basis:   94   total built basis:   94
+     Polarization accuracy = 8.4E-16, # of iterations =  53
+     Polarization accuracy = 7.1E-16, # of iterations =  52
+     Polarization accuracy = 5.8E-16, # of iterations =  52
+     Polarization accuracy = 6.5E-16, # of iterations =  52
+     Polarization accuracy = 7.7E-16, # of iterations =  53
+     Polarization accuracy = 5.9E-16, # of iterations =  54
+     Polarization accuracy = 9.8E-16, # of iterations =  53
+     Polarization accuracy = 6.3E-16, # of iterations =  52
+     Polarization accuracy = 9.8E-16, # of iterations =  52
+     Polarization accuracy = 8.6E-16, # of iterations =  52
+     Polarization accuracy = 6.1E-16, # of iterations =  53
+     Polarization accuracy = 6.8E-16, # of iterations =  52
+        94     Transition energy    1  :                  0.2780317945
+        94     Transition energy    2  :                  0.2708544774
+        94     Transition energy    3  :                  0.3020797405
+        94     Transition energy    4  :                  0.3082017944
+        94     Transition energy    5  :                  0.2606167310
+        94     Transition energy    6  :                  0.3123506988
+        94     Transition energy    7  :                  0.3152061146
+        94     Transition energy    8  :                  0.2520854830
+        94     Transition energy    9  :                  0.3183997696
+        94     Transition energy   10  :                  0.2487042303
+     Residue(Squared modulus):    1        0.0012079      0.0008392
+     Residue(Squared modulus):    2        0.0004147      0.0003304
+     Residue(Squared modulus):    3        0.0018064      0.0013673
+     Residue(Squared modulus):    4        0.0004096      0.0003599
+     Residue(Squared modulus):    5        0.0007461      0.0004676
+     Residue(Squared modulus):    6        0.0005902      0.0005223
+     Residue(Squared modulus):    7        0.0004473      0.0002066
+     Residue(Squared modulus):    8        0.0002010      0.0001361
+     Residue(Squared modulus):    9        0.0010904      0.0008801
+     Residue(Squared modulus):   10        0.0005000      0.0004032
+       Largest residue:           0.001806399582
+
+     total cpu time spent up to now is     1904.8 secs
+
+       ==============================
+
+       Davidson iteration:        7
+       num of basis:  103   total built basis:  103
+     Polarization accuracy = 9.0E-16, # of iterations =  53
+     Polarization accuracy = 9.6E-16, # of iterations =  53
+     Polarization accuracy = 5.3E-16, # of iterations =  54
+     Polarization accuracy = 6.5E-16, # of iterations =  54
+     Polarization accuracy = 4.4E-16, # of iterations =  54
+     Polarization accuracy = 3.9E-16, # of iterations =  52
+     Polarization accuracy = 7.2E-16, # of iterations =  52
+     Polarization accuracy = 5.5E-16, # of iterations =  51
+     Polarization accuracy = 8.6E-16, # of iterations =  53
+       103     Transition energy    1  :                  0.2767903130
+       103     Transition energy    2  :                  0.2708433080
+       103     Transition energy    3  :                  0.3006932232
+       103     Transition energy    4  :                  0.3080663546
+       103     Transition energy    5  :                  0.2603278611
+       103     Transition energy    6  :                  0.3117245846
+       103     Transition energy    7  :                  0.3151546562
+       103     Transition energy    8  :                  0.3175606692
+       103     Transition energy    9  :                  0.2520431294
+       103     Transition energy   10  :                  0.2484861022
+     Residue(Squared modulus):    1        0.0049241      0.0042710
+     Residue(Squared modulus):    2        0.0004566      0.0003610
+     Residue(Squared modulus):    3        0.0091294      0.0085398
+     Residue(Squared modulus):    4        0.0010553      0.0009645
+     Residue(Squared modulus):    5        0.0010567      0.0009056
+     Residue(Squared modulus):    6        0.0041841      0.0038530
+     Residue(Squared modulus):    7        0.0009020      0.0005425
+     Residue(Squared modulus):    8        0.0047055      0.0043095
+     Residue(Squared modulus):    9        0.0002589      0.0001888
+     Residue(Squared modulus):   10        0.0008670      0.0007241
+       Largest residue:           0.009129436215
+
+     total cpu time spent up to now is     2168.7 secs
+
+       ==============================
+
+       Davidson iteration:        8
+       num of basis:  119   total built basis:  119
+     Polarization accuracy = 6.3E-16, # of iterations =  53
+     Polarization accuracy = 6.5E-16, # of iterations =  53
+     Polarization accuracy = 6.4E-16, # of iterations =  54
+     Polarization accuracy = 9.6E-16, # of iterations =  53
+     Polarization accuracy = 5.5E-16, # of iterations =  52
+     Polarization accuracy = 5.9E-16, # of iterations =  53
+     Polarization accuracy = 9.2E-16, # of iterations =  52
+     Polarization accuracy = 6.5E-16, # of iterations =  52
+     Polarization accuracy = 7.0E-16, # of iterations =  52
+     Polarization accuracy = 8.1E-16, # of iterations =  53
+     Polarization accuracy = 8.2E-16, # of iterations =  52
+     Polarization accuracy = 3.4E-16, # of iterations =  54
+     Polarization accuracy = 6.2E-16, # of iterations =  53
+     Polarization accuracy = 8.9E-16, # of iterations =  52
+     Polarization accuracy = 8.4E-16, # of iterations =  52
+     Polarization accuracy = 8.0E-16, # of iterations =  52
+       119     Transition energy    1  :                  0.2831104609
+       119     Transition energy    2  :                  0.2974960574
+       119     Transition energy    3  :                  0.2708787817
+       119     Transition energy    4  :                  0.2635431959
+       119     Transition energy    5  :                  0.3078782967
+       119     Transition energy    6  :                  0.3087780975
+       119     Transition energy    7  :                  0.2589440406
+       119     Transition energy    8  :                  0.3135858697
+       119     Transition energy    9  :                  0.3150355780
+       119     Transition energy   10  :                  0.2518665849
+     Residue(Squared modulus):    1        0.0260633      0.0242433
+     Residue(Squared modulus):    2        0.0643838      0.0629172
+     Residue(Squared modulus):    3        0.0007122      0.0006767
+     Residue(Squared modulus):    4        0.0553054      0.0541694
+     Residue(Squared modulus):    5        0.0108318      0.0105230
+     Residue(Squared modulus):    6        0.0345091      0.0328868
+     Residue(Squared modulus):    7        0.0178821      0.0173836
+     Residue(Squared modulus):    8        0.0121876      0.0116791
+     Residue(Squared modulus):    9        0.0008595      0.0006726
+     Residue(Squared modulus):   10        0.0014763      0.0013890
+       Largest residue:           0.064383765371
+
+     total cpu time spent up to now is     2594.5 secs
+
+       ==============================
+
+       Davidson iteration:        9
+       num of basis:  139   total built basis:  139
+     Polarization accuracy = 7.0E-16, # of iterations =  53
+     Polarization accuracy = 8.5E-16, # of iterations =  52
+     Polarization accuracy = 7.2E-16, # of iterations =  54
+     Polarization accuracy = 7.9E-16, # of iterations =  52
+     Polarization accuracy = 6.4E-16, # of iterations =  51
+     Polarization accuracy = 9.6E-16, # of iterations =  53
+     Polarization accuracy = 8.8E-16, # of iterations =  53
+     Polarization accuracy = 4.7E-16, # of iterations =  53
+     Polarization accuracy = 6.6E-16, # of iterations =  52
+     Polarization accuracy = 1.0E-15, # of iterations =  52
+     Polarization accuracy = 8.0E-16, # of iterations =  53
+     Polarization accuracy = 7.6E-16, # of iterations =  52
+     Polarization accuracy = 7.1E-16, # of iterations =  53
+     Polarization accuracy = 7.7E-16, # of iterations =  52
+     Polarization accuracy = 9.6E-16, # of iterations =  52
+     Polarization accuracy = 5.6E-16, # of iterations =  53
+     Polarization accuracy = 6.9E-16, # of iterations =  53
+     Polarization accuracy = 5.4E-16, # of iterations =  53
+     Polarization accuracy = 3.6E-16, # of iterations =  52
+     Polarization accuracy = 6.6E-16, # of iterations =  53
+       139     Transition energy    1  :                  0.2834712818
+       139     Transition energy    2  :                  0.2798446706
+       139     Transition energy    3  :                  0.2707491660
+       139     Transition energy    4  :                  0.3036903623
+       139     Transition energy    5  :                  0.2622349187
+       139     Transition energy    6  :                  0.3080406585
+       139     Transition energy    7  :                  0.3125345414
+       139     Transition energy    8  :                  0.3148853281
+       139     Transition energy    9  :                  0.2526153358
+       139     Transition energy   10  :                  0.2503470685
+     Residue(Squared modulus):    1        0.1196118      0.1060527
+     Residue(Squared modulus):    2        0.0048182      0.0042994
+     Residue(Squared modulus):    3        0.0003800      0.0003519
+     Residue(Squared modulus):    4        0.0030091      0.0029444
+     Residue(Squared modulus):    5        0.0134099      0.0129659
+     Residue(Squared modulus):    6        0.0003172      0.0002760
+     Residue(Squared modulus):    7        0.0003872      0.0003854
+     Residue(Squared modulus):    8        0.0007366      0.0006424
+     Residue(Squared modulus):    9        0.0121577      0.0125398
+     Residue(Squared modulus):   10        0.0397723      0.0405710
+       Largest residue:           0.119611787923
+
+     total cpu time spent up to now is     3037.6 secs
+
+       ==============================
+
+       Davidson iteration:       10
+       num of basis:  153   total built basis:  153
+     Polarization accuracy = 7.0E-16, # of iterations =  52
+     Polarization accuracy = 6.6E-16, # of iterations =  53
+     Polarization accuracy = 8.0E-16, # of iterations =  53
+--------------------------------------------------------------------------
+Primary job  terminated normally, but 1 process returned
+a non-zero exit code. Per user-direction, the job has been aborted.
+--------------------------------------------------------------------------
+--------------------------------------------------------------------------
+mpirun noticed that process rank 75 with PID 0 on node midcomputer120 exited on signal 9 (Killed).
+--------------------------------------------------------------------------
