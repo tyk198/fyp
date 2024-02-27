@@ -1,5 +1,5 @@
  &lr_input
-   prefix = '4amp15pbeiso',
+   prefix = '4amp15iso',
    outdir = './outdir',
    disk_io = 'reduced'
  /
@@ -17,7 +17,7 @@
    finish = 0.365,
    step   = 0.001,
    broadening = 0.005,
-   reference = 0.285,
+   reference = 0.26,
    poor_of_ram = .false.
    poor_of_ram2 = .false.
 /
