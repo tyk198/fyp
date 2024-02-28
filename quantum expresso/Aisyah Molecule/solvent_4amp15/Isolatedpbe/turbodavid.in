@@ -8,12 +8,12 @@
    lshift_d0psi = .false.
    lplot_drho=.true.
    p_nbnd_occ = 10
-   p_nbnd_virt = 10
-   num_eign = 10,
+   p_nbnd_virt = 8
+   num_eign = 8,
    num_init = 40,
-   num_basis_max = 500,
+   num_basis_max = 300,
    residue_conv_thr = 5.0D-4,
-   start  = 0.183,
+   start  = 0.243,
    finish = 0.365,
    step   = 0.001,
    broadening = 0.005,
