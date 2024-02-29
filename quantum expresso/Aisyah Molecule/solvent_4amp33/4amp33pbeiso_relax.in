@@ -18,7 +18,7 @@
   dftd3_version = 4
 /
 &ELECTRONS
-  conv_thr = 1.0E-6
+  conv_thr = 1.0E-5
   mixing_mode = 'local-TF'
   mixing_beta = 0.7
   mixing_ndim = 8
