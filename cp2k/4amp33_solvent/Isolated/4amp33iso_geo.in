@@ -66,8 +66,8 @@
       &END XC_FUNCTIONAL
     &END XC
     &MGRID
-      CUTOFF  600
-      REL_CUTOFF  80
+      CUTOFF  500
+      REL_CUTOFF  70
     &END MGRID
   &END DFT
 
