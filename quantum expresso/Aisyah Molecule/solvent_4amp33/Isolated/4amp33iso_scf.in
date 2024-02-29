@@ -1,6 +1,6 @@
 &CONTROL
   calculation = 'scf'
-  prefix = '4amp33pbeiso'
+  prefix = '4amp33iso'
   outdir = './outdir'
   pseudo_dir = '/home/cyk/q-e-qe-7.2/pp/'
 /
