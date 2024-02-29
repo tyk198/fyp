@@ -12,5 +12,5 @@
   solvent_mode = 'full'
 /
 &electrostatic
-  tol = 1.D-14
+  tol = 1.D-15
 /
