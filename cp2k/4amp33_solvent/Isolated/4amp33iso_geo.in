@@ -30,7 +30,7 @@
       METHOD GPW
       EPS_FILTER_MATRIX 0	
       EPS_DEFAULT 1.0E-10
-      EPS_PGF_ORB 1.0E-25
+      EPS_PGF_ORB 1.0E-30
     &END QS
     &POISSON                    ! Solver requested for non periodic calculations
       PERIODIC NONE 
@@ -73,7 +73,7 @@
 
   &SUBSYS
     &CELL
-      ABC 30 30 30
+      ABC 26 26 26
       PERIODIC NONE #Direction(s) of applied PBC (geometry aspect)
     &END CELL
     &TOPOLOGY                    #Section used to center the atomic coordinates in the given box. Useful for big molecules
