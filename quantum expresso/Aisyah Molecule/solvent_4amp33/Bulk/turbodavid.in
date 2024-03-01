@@ -11,7 +11,7 @@
    p_nbnd_virt = 8
    num_eign = 8,
    num_init = 40,
-   num_basis_max = 300,
+   num_basis_max = 500,
    residue_conv_thr = 5.0D-4,
    start  = 0.304,
    finish = 0.365,
