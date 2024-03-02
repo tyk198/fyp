@@ -10,7 +10,7 @@
   ntyp = 5
   input_dft = 'pbe'
   occupations = 'fixed'
-  nbnd = 80
+  nbnd = 92
   assume_isolated	= 'mt'
   ecutwfc = 50
   ecutrho = 500
