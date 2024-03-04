@@ -1,5 +1,5 @@
 &GLOBAL
-  PROJECT 4amp33solvent
+  PROJECT 4amp34solvent
   PRINT_LEVEL LOW
   RUN_TYPE ENERGY
   PREFERRED_DIAG_LIBRARY SL
@@ -287,7 +287,7 @@
     &SCF
       MAX_SCF 128
       EPS_SCF 1.0E-06 #Convergence threshold of density matrix of inner SCF
-      SCF_GUESS RESTART #Use wavefunction from WFN_RESTART_FILE_NAME file as initial guess
+ #    SCF_GUESS RESTART #Use wavefunction from WFN_RESTART_FILE_NAME file as initial guess
       &DIAGONALIZATION
         ALGORITHM STANDARD #Algorithm for diagonalization
       &END DIAGONALIZATION
