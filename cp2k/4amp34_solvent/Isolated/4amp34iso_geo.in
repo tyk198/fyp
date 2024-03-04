@@ -73,7 +73,7 @@
 
   &SUBSYS
     &CELL
-      ABC 30 18 24
+      ABC 30 30 30
       PERIODIC NONE #Direction(s) of applied PBC (geometry aspect)
     &END CELL
     &TOPOLOGY                    #Section used to center the atomic coordinates in the given box. Useful for big molecules
