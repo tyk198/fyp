@@ -9,7 +9,7 @@
   METHOD Quickstep
   &SUBSYS
     &CELL
-      ABC [angstrom] 20.7553 5.76339 17.1143
+      ABC [angstrom] 20.8453 5.83339 17.1643
       PERIODIC XYZ #Direction(s) of applied PBC (geometry aspect)
       ALPHA_BETA_GAMMA [deg] 90 90.9064 90
     &END CELL
