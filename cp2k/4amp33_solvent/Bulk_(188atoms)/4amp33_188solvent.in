@@ -1,0 +1,335 @@
+&GLOBAL
+  PROJECT 4amp33_188solvent
+  PRINT_LEVEL LOW
+  RUN_TYPE ENERGY
+  PREFERRED_DIAG_LIBRARY SL
+&END GLOBAL
+
+&FORCE_EVAL
+  METHOD Quickstep
+  &SUBSYS
+    &CELL
+      ABC [angstrom] 5.6423 20.3530 17.4919
+      PERIODIC XYZ #Direction(s) of applied PBC (geometry aspect)
+      ALPHA_BETA_GAMMA [deg] 75.8031 82.6641 83.6431
+    &END CELL
+    &COORD
+      O       6.527181   5.934632   5.444565
+      O       2.475338   8.246989  11.420550
+      N       4.333115  10.459601   9.067192
+      N       4.669403   3.722019   7.797923
+      C       2.714088   4.776676   2.319628
+      C       6.288431   9.404945  14.545487
+      H       2.400758   5.555835   2.716413
+      H       6.601760   8.625785  14.148701
+      C       2.008781   4.211409   1.317840
+      C       6.993737   9.970211  15.547275
+      H       1.222346   4.613632   1.026495
+      H       7.780172   9.567988  15.838619
+      C       2.425949   3.076371   0.737680
+      C       6.576569  11.105250  16.127434
+      C       3.556386   2.490509   1.198266
+      C       5.446133  11.691112  15.666848
+      H       3.840997   1.684611   0.828752
+      H       5.161521  12.497009  16.036363
+      C       4.271043   3.061374   2.181334
+      C       4.731475  11.120246  14.683781
+      H       5.052786   2.651454   2.475529
+      H       3.949733  11.530167  14.389586
+      C       3.871712   4.222758   2.752893
+      C       5.130806   9.958863  14.112222
+      C       4.688077   4.846800   3.734611
+      C       4.314442   9.334820  13.130504
+      H       5.526938   4.463320   3.854792
+      H       3.475580   9.718300  13.010323
+      C       4.435791   5.865403   4.481567
+      C       4.566727   8.316217  12.383548
+      H       3.606146   6.280734   4.421443
+      H       5.396372   7.900887  12.443672
+      C       5.421090   6.373984   5.416063
+      C       3.581428   7.807636  11.449052
+      C       5.037523   7.454723   6.345162
+      C       3.964995   6.726898  10.519953
+      C       5.914210   7.747954   7.338686
+      C       3.088308   6.433666   9.526429
+      H       6.707600   7.267402   7.407209
+      H       2.294919   6.914219   9.457906
+      C       5.647671   8.730477   8.229164
+      C       3.354848   5.451144   8.635951
+      H       6.259018   8.918993   8.902504
+      H       2.743501   5.262627   7.962611
+      C       4.499892   9.439054   8.148211
+      C       4.502626   4.742567   8.716903
+      C       3.633357   9.151547   7.170035
+      C       5.369161   5.030074   9.695080
+      H       2.847589   9.642577   7.090819
+      H       6.154929   4.539043   9.774295
+      C       3.888398   8.145467   6.286303
+      C       5.114120   6.036153  10.578812
+      H       3.258774   7.934672   5.633522
+      H       5.743744   6.246948  11.231593
+      C       3.243442  10.638654   9.603671
+      C       5.759077   3.542966   7.261444
+      H       2.534776  10.083854   9.365906
+      H       6.467742   4.097766   7.499208
+      C       3.018659  11.645031  10.559923
+      C       5.983860   2.536590   6.305192
+      C       3.919714  12.616379  10.796034
+      C       5.082804   1.565242   6.069080
+      H       3.567686   2.529233  10.281817
+      H       5.434833  11.652387   6.583297
+      C       2.613444   3.433672  11.747227
+      C       6.389075  10.747948   5.117888
+      H       3.254694   4.092583  11.877510
+      H       5.747824  10.089037   4.987605
+      C       7.139870   3.411924  12.516276
+      C       1.862649  10.769696   4.348838
+      C       7.350026  12.578474  12.278478
+      C       1.652492   1.603146   4.586637
+      H       6.566347  12.556386  12.778917
+      H       2.436171   1.625234   4.086198
+      C       7.555721  11.655636  11.320540
+      C       1.446798   2.525984   5.544575
+      H       6.908263  11.001677  11.178502
+      H       2.094255   3.179943   5.686613
+      C       3.974938   6.537979  16.526800
+      C       5.027580   7.643642   0.338314
+      C       6.956018   4.367253  13.540157
+      C       2.046501   9.814367   3.324957
+      F       2.879374   7.011561  16.247008
+      F       6.123144   7.170060   0.618106
+      F       4.512867   6.611767  15.429387
+      F       4.489651   7.569854   1.435727
+      F       3.755545   5.357419  16.603031
+      F       5.246974   8.824202   0.262084
+      F       5.744332   4.582864  13.865485
+      F       3.258186   9.598756   2.999629
+      F       7.364473   5.547246  13.293589
+      F       1.638045   8.634375   3.571525
+      F       7.507227   4.059431  14.639425
+      F       1.495292  10.122189   2.225689
+      O       7.653933  16.048562   5.444565
+      O       3.602090  18.360919  11.420550
+      N       5.459867  20.573532   9.067192
+      N       5.796156  13.835949   7.797923
+      C       3.840840  14.890606   2.319628
+      C       7.415183  19.518875  14.545487
+      H       3.527510  15.669765   2.716413
+      H       7.728513  18.739715  14.148701
+      C       3.135533  14.325339   1.317840
+      C       8.120490  20.084141  15.547275
+      H       2.349099  14.727562   1.026495
+      H       8.906924  19.681918  15.838619
+      C       3.552701  13.190301   0.737680
+      C       7.703322  21.219180  16.127434
+      C       4.683138  12.604439   1.198266
+      C       6.572885  21.805042  15.666848
+      H       4.967750  11.798541   0.828752
+      H       6.288273  22.610939  16.036363
+      C       5.397796  13.175304   2.181334
+      C       5.858227  21.234177  14.683781
+      H       6.179538  12.765384   2.475529
+      H       5.076485  21.644097  14.389586
+      C       4.998465  14.336688   2.752893
+      C       6.257558  20.072793  14.112222
+      C       5.814829  14.960730   3.734611
+      C       5.441194  19.448750  13.130504
+      H       6.653691  14.577250   3.854792
+      H       4.602332  19.832230  13.010323
+      C       5.562544  15.979333   4.481567
+      C       5.693479  18.430147  12.383548
+      H       4.732899  16.394664   4.421443
+      H       6.523124  18.014817  12.443672
+      C       6.547843  16.487914   5.416063
+      C       4.708180  17.921567  11.449052
+      C       6.164276  17.568653   6.345162
+      C       5.091747  16.840828  10.519953
+      C       7.040962  17.861884   7.338686
+      C       4.215061  16.547596   9.526429
+      H       7.834352  17.381332   7.407209
+      H       3.421671  17.028149   9.457906
+      C       6.774423  18.844407   8.229164
+      C       4.481600  15.565074   8.635951
+      H       7.385770  19.032924   8.902504
+      H       3.870253  15.376557   7.962611
+      C       5.626645  19.552984   8.148211
+      C       5.629378  14.856497   8.716903
+      C       4.760110  19.265477   7.170035
+      C       6.495913  15.144004   9.695080
+      H       3.974342  19.756507   7.090819
+      H       7.281681  14.652973   9.774295
+      C       5.015150  18.259398   6.286303
+      C       6.240873  16.150083  10.578812
+      H       4.385526  18.048603   5.633522
+      H       6.870497  16.360878  11.231593
+      C       4.370194  20.752584   9.603671
+      C       6.885829  13.656896   7.261444
+      H       3.661528  20.197784   9.365906
+      H       7.594495  14.211696   7.499208
+      C       4.145411  21.758961  10.559923
+      C       7.110612  12.650520   6.305192
+      C       5.046466  22.730309  10.796034
+      C       6.209557  11.679172   6.069080
+      H       4.694438  12.643164  10.281817
+      H       6.561585  21.766317   6.583297
+      C       3.740196  13.547602  11.747227
+      C       7.515827  20.861879   5.117888
+      H       4.381446  14.206513  11.877510
+      H       6.874577  20.202967   4.987605
+      C       8.266622  13.525854  12.516276
+      C       2.989401  20.883626   4.348838
+      C       8.476778  22.692404  12.278478
+      C       2.779245  11.717077   4.586637
+      H       7.693100  22.670316  12.778917
+      H       3.562923  11.739164   4.086198
+      C       8.682473  21.769566  11.320540
+      C       2.573550  12.639914   5.544575
+      H       8.035015  21.115608  11.178502
+      H       3.221008  13.293873   5.686613
+      C       5.101691  16.651909  16.526800
+      C       6.154332  17.757572   0.338314
+      C       8.082770  14.481183  13.540157
+      C       3.173253  19.928297   3.324957
+      F       4.006126  17.125491  16.247008
+      F       7.249897  17.283990   0.618106
+      F       5.639619  16.725697  15.429387
+      F       5.616404  17.683784   1.435727
+      F       4.882297  15.471349  16.603031
+      F       6.373726  18.938132   0.262084
+      F       6.871085  14.696794  13.865485
+      F       4.384938  19.712687   2.999629
+      F       8.491226  15.661176  13.293589
+      F       2.764797  18.748305   3.571525
+      F       8.633979  14.173361  14.639425
+      F       2.622044  20.236119   2.225689
+    &END COORD
+    &KIND O
+      ELEMENT O
+      BASIS_SET TZVP-GTH-q6
+      POTENTIAL GTH-PBE
+    &END KIND
+    &KIND N
+      ELEMENT N
+      BASIS_SET TZVP-GTH-q5
+      POTENTIAL GTH-PBE
+    &END KIND
+    &KIND C
+      ELEMENT C
+      BASIS_SET TZVP-GTH-q4
+      POTENTIAL GTH-PBE
+    &END KIND
+    &KIND H
+      ELEMENT H
+      BASIS_SET TZVP-GTH-q1
+      POTENTIAL GTH-PBE
+    &END KIND
+    &KIND F
+      ELEMENT F
+      BASIS_SET TZVP-GTH-q7
+      POTENTIAL GTH-PBE
+    &END KIND
+  &END SUBSYS
+
+  &DFT
+    BASIS_SET_FILE_NAME  GTH_BASIS_SETS
+    POTENTIAL_FILE_NAME  POTENTIAL
+#   WFN_RESTART_FILE_NAME 4amp33solvent-RESTART.wfn
+    CHARGE    0 #Net charge
+    MULTIPLICITY    1 #Spin multiplicity
+    &QS
+      EPS_DEFAULT 1.0E-12 #Set all EPS_xxx to values such that the energy will be correct up to this value
+    &END QS
+    &POISSON
+      PERIODIC XYZ #Direction(s) of PBC for calculating electrostatics
+      PSOLVER PERIODIC #The way to solve Poisson equation
+    &END POISSON
+    &XC
+      &VDW_POTENTIAL
+        DISPERSION_FUNCTIONAL PAIR_POTENTIAL
+        &PAIR_POTENTIAL
+          CALCULATE_C9_TERM .TRUE.
+          PARAMETER_FILE_NAME dftd3.dat
+          REFERENCE_C9_TERM .TRUE.
+          REFERENCE_FUNCTIONAL PBE
+          R_CUTOFF 16
+          TYPE DFTD3(BJ)
+          VERBOSE_OUTPUT T
+        &END PAIR_POTENTIAL
+      &END VDW_POTENTIAL
+      &XC_FUNCTIONAL PBE
+      &END XC_FUNCTIONAL
+    &END XC
+    &MGRID
+      CUTOFF  400
+      REL_CUTOFF  60
+    &END MGRID
+    &SCCS ON
+      ALPHA [mN/m] 9.88
+      BETA [GPa] -0.5
+      DELTA_RHO 2.0E-5
+      DERIVATIVE_METHOD CD5
+      DIELECTRIC_CONSTANT 36.71
+      EPS_SCCS 1.0E-8
+      EPS_SCF 1.0E-2
+      GAMMA [mN/m] 36.42
+      MAX_ITER 100
+      METHOD Fattebert-Gygi
+      MIXING 0.6
+    &END SCCS
+    &SCF
+      MAX_SCF 128
+      EPS_SCF 1.0E-06 #Convergence threshold of density matrix of inner SCF
+      SCF_GUESS RESTART #Use wavefunction from WFN_RESTART_FILE_NAME file as initial guess
+      &DIAGONALIZATION
+        ALGORITHM STANDARD #Algorithm for diagonalization
+      &END DIAGONALIZATION
+      &MIXING #How to mix old and new density matrices
+        METHOD BROYDEN_MIXING #PULAY_MIXING is also a good alternative
+        ALPHA 0.4 #Default. Mixing 40% of new density matrix with the old one
+        NBROYDEN 8 #Default is 4. Number of previous steps stored for the actual mixing scheme
+      &END MIXING
+      ADDED_MOS    30 #Number of virtual MOs to solve
+      &PRINT
+        &RESTART #Note: Use "&RESTART OFF" can prevent generating .wfn file
+          BACKUP_COPIES 0 #Maximum number of backup copies of wfn file. 0 means never
+        &END RESTART
+      &END PRINT
+    &END SCF
+    &PRINT
+      &MO_MOLDEN #Exporting .molden file containing wavefunction information
+        NDIGITS 9 #Output orbital coefficients if absolute value is larger than 1E-9
+      &END MO_MOLDEN
+      &MO_CUBES
+        NHOMO 1
+        NLUMO 1
+        WRITE_CUBE T
+        STRIDE 1 1 1
+        &EACH
+          MD 10
+        &END
+      &END MO_CUBES
+      &SCCS ON
+       &EACH
+        QS_SCF 1
+       &END EACH
+      &END SCCS
+      &DOS ON
+      &END DOS
+    &END PRINT
+  &END DFT
+  &PROPERTIES
+     &TDDFPT #TDDFT calculation with Tamm-Dancoff approximation
+      MAX_ITER 100
+      NSTATES   500 #Number of excited states to solve
+      RKS_TRIPLETS F #If calculating triplet rather than singlet excited states
+      CONVERGENCE [eV] 1E-4 #Convergence criterion of all excitation energies
+      MIN_AMPLITUDE 0.01 #The smallest excitation amplitude to print
+ #    RESTART T #If restarting TDDFT calculation. If true, WFN_RESTART_FILE_NAME should be set to previous .tdwfn file
+ #    WFN_RESTART_FILE_NAME 4amp15pbedft-RESTART.tdwfn
+      &PRINT
+        #&DETAILED_ENERGY #Print excitation energies at every Davidson iteration
+        #&END DETAILED_ENERGY
+      &END PRINT
+    &END TDDFPT
+  &END PROPERTIES
+&END FORCE_EVAL
