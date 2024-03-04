@@ -1,0 +1,165 @@
+&GLOBAL
+  PROJECT 4amp34isogeo
+  RUN_TYPE GEO_OPT
+  PRINT_LEVEL MEDIUM
+  PREFERRED_DIAG_LIBRARY SL
+&END GLOBAL
+
+&MOTION
+  &GEO_OPT
+    MAX_ITER 3000
+    OPTIMIZER LBFGS    #Most efficient minimizer, but only for 'small' systems
+    MAX_DR    5.0E-03
+    MAX_FORCE 6.5E-04
+    RMS_DR    3.5E-03
+    RMS_FORCE 5.0E-04
+  &END GEO_OPT
+&END MOTION
+
+
+&FORCE_EVAL
+  METHOD Quickstep              ! Electronic structure method (DFT,...)
+  &DFT
+    POTENTIAL_FILE_NAME POTENTIAL_UZH
+    BASIS_SET_FILE_NAME BASIS_MOLOPT_UZH
+    BASIS_SET_FILE_NAME BASIS_ADMM_UZH
+    CHARGE    0 #Net charge
+    MULTIPLICITY    1 #Spin multiplicity
+
+    &QS
+      METHOD GPW
+      EPS_FILTER_MATRIX 0	
+      EPS_DEFAULT 1.0E-10
+      EPS_PGF_ORB 1.0E-30
+    &END QS
+    &POISSON                    ! Solver requested for non periodic calculations
+      PERIODIC NONE 
+      PSOLVER WAVELET #The way to solve Poisson equation
+    &END POISSON
+    &AUXILIARY_DENSITY_MATRIX_METHOD      
+      METHOD BASIS_PROJECTION             
+      EXCH_SCALING_MODEL NONE            
+      EXCH_CORRECTION_FUNC NONE       
+      ADMM_PURIFICATION_METHOD NONE        
+    &END AUXILIARY_DENSITY_MATRIX_METHOD
+    &SCF
+      MAX_SCF 120
+      EPS_SCF 1.0E-05 #Convergence threshold of density matrix of inner SCF
+  #   SCF_GUESS RESTART #Use wavefunction from WFN_RESTART_FILE_NAME file as initial guess
+      &OUTER_SCF
+         MAX_SCF 20
+         EPS_SCF 1.0E-05
+      &END OUTER_SCF
+      &OT T
+         PRECONDITIONER FULL_ALL
+         MINIMIZER DIIS
+      &END OT
+      
+      &PRINT
+        &RESTART #Note: Use "&RESTART OFF" can prevent generating .wfn file
+          BACKUP_COPIES 0 #Maximum number of backup copies of wfn file. 0 means never
+        &END RESTART
+      &END PRINT
+    &END SCF
+    &XC                        ! Parameters needed to compute the electronic exchange potential 
+      &XC_FUNCTIONAL PBE0
+      &END XC_FUNCTIONAL
+    &END XC
+    &MGRID
+      CUTOFF  500
+      REL_CUTOFF  70
+    &END MGRID
+  &END DFT
+
+  &SUBSYS
+    &CELL
+      ABC 30 18 24
+      PERIODIC NONE #Direction(s) of applied PBC (geometry aspect)
+    &END CELL
+    &TOPOLOGY                    #Section used to center the atomic coordinates in the given box. Useful for big molecules
+      &CENTER_COORDINATES
+      &END
+    &END
+    &COORD
+      O      13.336276   5.333777   9.541132
+      O       7.574462  10.547329   6.417514
+      O      22.519713   9.872812  17.079158
+      N      17.764981   7.606191  13.470603
+      C      10.367430   9.463983   8.523813
+      H      11.091543   9.902585   9.197815
+      C       9.415858  10.279265   7.941955
+      H       9.383247  11.340829   8.145281
+      C       8.492395   9.720974   7.073176
+      C       8.499456   8.372291   6.779342
+      H       7.766829   7.970936   6.092320
+      C       9.460583   7.566890   7.367247
+      H       9.483202   6.508131   7.139258
+      C      10.410277   8.094690   8.243827
+      C      11.421984   7.196814   8.800046
+      H      11.357963   6.155595   8.496380
+      C      12.431903   7.506670   9.614016
+      H      12.595194   8.518115   9.960671
+      C      13.407313   6.455905  10.001058
+      C      14.515554   6.817249  10.933048
+      C      15.642296   5.993620  10.955620
+      H      15.659291   5.133161  10.299771
+      C      16.698323   6.268138  11.797682
+      H      17.577607   5.637498  11.820390
+      C      16.656963   7.379991  12.641390
+      C      15.514570   8.180593  12.656127
+      H      15.440857   9.001696  13.358070
+      C      14.460746   7.905125  11.800551
+      H      13.578539   8.530944  11.841217
+      C      18.159346   8.787839  13.701198
+      H      17.679790   9.659822  13.239306
+      C      19.299606   9.071912  14.579890
+      C      20.059785   8.034858  15.122519
+      H      19.788018   7.015036  14.885301
+      C      21.141277   8.316150  15.932536
+      H      21.752948   7.531801  16.357762
+      C      21.452661   9.637605  16.208908
+      C      20.706295  10.684749  15.701248
+      H      20.963867  11.704834  15.947834
+      C      19.633082  10.390662  14.874375
+      H      19.043015  11.199563  14.459082
+      C      23.630639  10.440109  16.575773
+      F      23.442543  11.725193  16.232704
+      F      24.568934  10.395550  17.507409
+      F      24.073607   9.806982  15.485193
+      C       6.443755  10.861016   7.075824
+      F       5.738053   9.776815   7.420297
+      F       5.700465  11.613878   6.280634
+      F       6.684182  11.547201   8.202384
+    &END COORD
+    &KIND O
+      ELEMENT O
+      BASIS_SET ORB TZVP-MOLOPT-PBE0-GTH-q6
+      BASIS_SET AUX_FIT admm-tzp-q6
+      POTENTIAL GTH-PBE0-q6
+    &END KIND
+    &KIND N
+      ELEMENT N
+      BASIS_SET ORB TZVP-MOLOPT-PBE0-GTH-q5
+      BASIS_SET AUX_FIT admm-tzp-q5
+      POTENTIAL GTH-PBE0-q5
+    &END KIND
+    &KIND C
+      ELEMENT C
+      BASIS_SET ORB TZVP-MOLOPT-PBE0-GTH-q4
+      BASIS_SET AUX_FIT admm-tzp-q4
+      POTENTIAL GTH-PBE0-q4
+    &END KIND
+    &KIND H
+      ELEMENT H
+      BASIS_SET ORB TZVP-MOLOPT-PBE0-GTH-q1  
+      BASIS_SET AUX_FIT admm-tzp-q1          
+      POTENTIAL GTH-PBE0-q1
+    &END KIND
+    &KIND F
+      ELEMENT F
+      BASIS_SET ORB TZVP-MOLOPT-PBE0-GTH-q7
+      BASIS_SET AUX_FIT admm-tzp-q7          
+      POTENTIAL GTH-PBE0-q7
+    &END KIND
+  &END SUBSYS
+&END FORCE_EVAL
