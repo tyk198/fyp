@@ -260,8 +260,8 @@
       &END XC_FUNCTIONAL
     &END XC
     &MGRID
-      CUTOFF  400
-      REL_CUTOFF  60
+      CUTOFF  500
+      REL_CUTOFF  70
     &END MGRID
     &SCCS ON
       ALPHA [mN/m] 9.88
@@ -269,11 +269,11 @@
       DELTA_RHO 2.0E-5
       DERIVATIVE_METHOD CD5
       DIELECTRIC_CONSTANT 36.71
-      EPS_SCCS 1.0E-8
-      EPS_SCF 1.0E-2
+      EPS_SCCS 1.0E-15
+      EPS_SCF 1.0
       GAMMA [mN/m] 36.42
-      MAX_ITER 100
-      METHOD Fattebert-Gygi
+      MAX_ITER 500
+      METHOD ANDREUSSI
       MIXING 0.6
     &END SCCS
     &SCF
