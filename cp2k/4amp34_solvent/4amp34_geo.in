@@ -71,9 +71,9 @@
 
   &SUBSYS
     &CELL
-      ABC [angstrom] 5.6423 10.1765 17.4919
+      ABC [angstrom] 20.7553 5.76339 17.1143
       PERIODIC XYZ #Direction(s) of applied PBC (geometry aspect)
-      ALPHA_BETA_GAMMA [deg] 75.803 82.664 83.643
+      ALPHA_BETA_GAMMA [deg] 90 90.9064 90
     &END CELL
     &COORD
       O       7.645074   0.807993   8.014000
