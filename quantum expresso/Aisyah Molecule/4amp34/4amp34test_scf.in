@@ -6,7 +6,7 @@
 /
 &SYSTEM
   ibrav = 0
-  nat = 47
+  nat = 49
   ntyp = 5
   input_dft = 'pbe'
   occupations = 'fixed'
