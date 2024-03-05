@@ -188,7 +188,7 @@
   &PROPERTIES
      &TDDFPT #TDDFT calculation with Tamm-Dancoff approximation
       MAX_ITER 100
-      NSTATES   30 #Number of excited states to solve
+      NSTATES   50 #Number of excited states to solve
       RKS_TRIPLETS F #If calculating triplet rather than singlet excited states
       CONVERGENCE [eV] 1E-4 #Convergence criterion of all excitation energies
       MIN_AMPLITUDE 0.01 #The smallest excitation amplitude to print
