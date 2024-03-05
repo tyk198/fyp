@@ -9,7 +9,7 @@
    lplot_drho=.true.
    p_nbnd_occ = 10
    p_nbnd_virt = 8
-   num_eign = 8,
+   num_eign = 5,
    num_init = 40,
    num_basis_max = 500,
    residue_conv_thr = 5.0D-4,
