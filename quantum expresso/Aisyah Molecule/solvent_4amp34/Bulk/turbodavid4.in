@@ -4,11 +4,12 @@
    disk_io = 'reduced'
  /
  &lr_dav
+   max_iter = 5
    d0psi_rs = .false.
    lshift_d0psi = .false.
    lplot_drho=.true.
-   p_nbnd_occ = 10
-   p_nbnd_virt = 8
+   p_nbnd_occ = 15
+   p_nbnd_virt = 13
    num_eign = 8,
    num_init = 40,
    num_basis_max = 500,
