@@ -4,7 +4,7 @@
    disk_io = 'reduced'
  /
  &lr_dav
-   max_iter = 5
+   max_iter = 4
    d0psi_rs = .false.
    lshift_d0psi = .false.
    lplot_drho=.true.
