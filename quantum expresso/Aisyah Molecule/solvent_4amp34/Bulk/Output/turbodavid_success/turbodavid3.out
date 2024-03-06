@@ -1,0 +1,2637 @@
+
+     Program turboTDDFT v.7.2 starts on  6Mar2024 at  3:58: 8
+
+     This program is part of the open-source Quantum ESPRESSO suite
+     for quantum simulation of materials; please cite
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 21 395502 (2009);
+         "P. Giannozzi et al., J. Phys.:Condens. Matter 29 465901 (2017);
+         "P. Giannozzi et al., J. Chem. Phys. 152 154105 (2020);
+          URL http://www.quantum-espresso.org",
+     in publications or presentations arising from this work. More details at
+     http://www.quantum-espresso.org/quote
+
+     Parallel version (MPI), running on   120 processors
+
+     MPI processes distributed on     1 nodes
+     R & G space division:  proc/nbgrp/npool/nimage =     120
+     450436 MiB available memory on the printing compute node when the environment starts
+
+
+     Reading xml data from directory:
+
+     ./outdir/4amp34.save/
+     file F.pbe-n-rrkjus_psl.1.0.0.UPF: wavefunction(s)  2S renormalized
+
+     IMPORTANT: XC functional enforced from input :
+     Exchange-correlation= PBE
+                           (   1   4   3   4   0   0   0)
+     Any further DFT definition will be discarded
+     Please, verify this is what you really want
+
+
+     Parallelization info
+     --------------------
+     sticks:   dense  smooth     PW     G-vecs:    dense   smooth      PW
+     Min         169      66     16                28546     7200     892
+     Max         174      68     18                28580     7240     918
+     Sum       20405    8153   2047              3428433   867327  108457
+
+     Using Slab Decomposition
+
+
+     Check: negative core charge=   -0.000001
+     Reading collected, re-writing distributed wavefunctions
+ Symmetries are disabled for the gamma_only case
+
+     Reading input from environ.in:
+     * using electronic solvent mode
+     * setting boundary derivatives method to SCCS default
+
+
+     add environment contribution to local potential
+     Polarization accuracy = 4.5E-09, # of iterations =  53
+
+     the potential shift due to the Gaussian-smeared nuclei is    -1.0892 ev
+     Subspace diagonalization in iterative solution of the eigenvalue problem:
+     a serial algorithm will be used
+
+
+     ================================================================================
+
+                                  Environ Setup Summary
+
+     ================================================================================
+
+     Please cite
+
+          O. Andreussi, I. Dabo and N. Marzari, J. Chem. Phys. 136, 064102 (2012)
+          I. Timrov, O. Andreussi, A. Biancardi, N. Marzari, and S. Baroni, J. Chem. Phys. 142, 034111 (2015)
+
+     in publications or presentations arising from this work.
+
+     ================================================================================
+
+     Parameters
+     ==========
+
+     compensation onset threshold      =               0.5000E+01
+     static permittivity               =                    36.71
+     optical permittivity              =                  36.7100
+     surface tension in input (dyn/cm) =                    46.30
+     surface tension in internal units =               0.5948E-04
+     external pressure in input (GPa)  =                    -0.50
+     external pressure in inter. units =              -0.3399E-04
+
+     Solvent Boundary
+     ================
+
+     solvent mode                      =               electronic
+     derivatives method                =                    chain
+     numerical core for derivatives    =                      fft
+     switching function adopted        =                     SCCS
+     density limit for vacuum region   =               0.5000E-02
+     density limit for bulk solvent    =               0.1000E-03
+
+     Electrostatic Setup
+     ===================
+
+     electrostatic problem to solve    =              generalized
+     numerical solver adopted          =                       cg
+     type of auxiliary density adopted =                     none
+     numerical core for poisson        =                      fft
+
+     ================================================================================
+
+     Allocating    13 extra bands for projection
+
+     =-----------------------------------------------------------------=
+
+     Please cite the TDDFPT project as:
+       X. Ge, S. J. Binnie, D. Rocca, R. Gebauer, and S. Baroni,
+       Comput. Phys. Commun. 185, 2080 (2014)
+     in publications and presentations arising from this work.
+
+     =-----------------------------------------------------------------=
+
+     Ultrasoft (Vanderbilt) Pseudopotentials
+
+     Virt read
+
+     Gamma point algorithm
+     Num of eigen values=              8
+     Allocating parameters for davidson ...
+
+     Estimating the RAM requirements:
+          For the basis sets:      590390.62     M
+          For the eigenvectors:        9446.25     M
+          Num_eign =    8     Num_basis_max =  500
+          Reference =  0.25  Ry
+     Do make sure that you have enough RAM.
+
+     poor_of_ram is set to .false.. This means that you would like to increase the speed of
+     your calculation with USPP by paying double memory.
+     Switch it to .true. if you need to save memory.
+
+     poor_of_ram2 is set to .false.. This means that you would like to increase the speed
+     by storing the D_basis and C_basis vectors which will cause three time of the memory cost.
+     Switch it to .true. if you need to save memory.
+
+     Finished allocating parameters.
+     Initiating variables for davidson ...
+     Lowest energy electron-hole pairs are used as initial vectors ...
+     Calculating the electron-hole pairs for initiating trial vectors ...
+
+              1       345         8           0.245696804125
+              2       344         7           0.245606774166
+              3       343         6           0.244802336332
+              4       342         6           0.247592308856
+              5       346         8           0.243474349616
+              6       341         6           0.248611048065
+              7       347         8           0.243281314293
+              8       343         7           0.249906333713
+              9       348         8           0.242066369857
+             10       341         5           0.241634349172
+             11       349         8           0.241286435945
+             12       342         5           0.240615609963
+             13       344         6           0.240502776785
+             14       342         7           0.252696306237
+             15       340         5           0.252902045339
+             16       344         8           0.253533903614
+             17       341         7           0.253715045446
+             18       350         8           0.237973584912
+             19       343         5           0.237825637439
+             20       345         7           0.237769674677
+             21       346         7           0.235547220168
+             22       347         7           0.235354184844
+             23       352         9           0.256963024844
+             24       339         5           0.257298557443
+             25       352        10           0.257307365377
+             26       343         8           0.257833463161
+             27       348         7           0.234139240409
+             28       344         5           0.233526077892
+             29       352        11           0.258502368628
+             30       349         7           0.233359306497
+             31       338         5           0.258879993151
+             32       345         6           0.232665677296
+             33       352        12           0.259870078380
+             34       340         6           0.259878744232
+             35       342         8           0.260623435685
+             36       346         6           0.230443222787
+             37       341         8           0.261642174894
+             38       347         6           0.230250187463
+             39       350         7           0.230046455464
+             40       348         6           0.229035243028
+             41       349         6           0.228255309116
+             42       339         6           0.264275256336
+             43       340         7           0.264982741613
+             44       338         6           0.265856692044
+             45       352        13           0.266110903174
+             46       338         4           0.225853671170
+             47       345         5           0.225688978403
+             48       350         6           0.224942458083
+             49       351         9           0.267082791792
+             50       351         8           0.224852560003
+             51       351        10           0.267427132325
+             52       338         3           0.224404783657
+             53       339         4           0.224272235463
+             54       346         5           0.223466523894
+             55       351        11           0.268622135576
+             56       347         5           0.223273488570
+             57       339         3           0.222823347950
+             58       339         7           0.269379253717
+             59       348         5           0.222058544135
+             60       351        12           0.269989845329
+             61       349         5           0.221278610223
+             62       338         7           0.270960689425
+             63       340         4           0.219875723358
+             64       340         8           0.272909871061
+             65       340         3           0.218426835845
+             66       350         5           0.217965759190
+             67       351         7           0.216925430554
+             68       351        13           0.276230670123
+             69       352         8           0.214732793054
+             70       339         8           0.277306383166
+             71       338         8           0.278887818873
+             72       351         6           0.211821433173
+             73       350         9           0.280203816702
+             74       350        10           0.280548157234
+             75       338         2           0.210777355798
+             76       350        11           0.281743160485
+             77       339         2           0.209195920090
+             78       338         1           0.209028037929
+             79       350        12           0.283110870238
+             80       341         4           0.208608027192
+             81       349         9           0.283516667735
+             82       349        10           0.283861008268
+             83       348         9           0.284296601647
+             84       342         4           0.207589287982
+             85       339         1           0.207446602222
+             86       348        10           0.284640942180
+             87       341         3           0.207159139679
+             88       349        11           0.285056011519
+             89       352         7           0.206805663606
+             90       347         9           0.285511546082
+             91       346         9           0.285704581405
+             92       348        11           0.285835945431
+             93       347        10           0.285855886615
+             94       342         3           0.206140400470
+             95       346        10           0.286048921938
+             96       349        12           0.286423721271
+             97       347        11           0.287050889866
+             98       351         5           0.204844734281
+             99       340         2           0.204799407986
+            100       343         4           0.204799315458
+            101       348        12           0.287203655183
+            102       346        11           0.287243925189
+            103       345         9           0.287927035915
+            104       345        10           0.288271376447
+            105       347        12           0.288418599619
+            106       346        12           0.288611634942
+            107       343         3           0.203350427945
+            108       340         1           0.203050090117
+            109       350        13           0.289351695032
+            110       345        11           0.289466379698
+            111       352         6           0.201701666225
+            112       345        12           0.290834089451
+            113       344         4           0.200499755911
+            114       349        13           0.292664546065
+            115       344         3           0.199050868399
+            116       348        13           0.293444479977
+            117       347        13           0.294659424413
+            118       346        13           0.294852459736
+            119       344         9           0.295764135404
+            120       344        10           0.296108475937
+            121       345        13           0.297074914245
+            122       352         5           0.194724967332
+            123       344        11           0.297303479187
+            124       341         2           0.193531711819
+            125       344        12           0.298671188940
+            126       345         4           0.192662656422
+            127       342         2           0.192512972610
+            128       343         9           0.300063694951
+            129       341         1           0.191782393950
+            130       343        10           0.300408035483
+            131       345         3           0.191213768909
+            132       342         1           0.190763654741
+            133       346         4           0.190440201913
+            134       343        11           0.301603038734
+            135       347         4           0.190247166590
+            136       343         2           0.189723000086
+            137       342         9           0.302853667475
+            138       348         4           0.189032222154
+            139       343        12           0.302970748487
+            140       346         3           0.188991314400
+            141       342        10           0.303198008008
+            142       347         3           0.188798279077
+            143       349         4           0.188252288243
+            144       341         9           0.303872406684
+            145       343         1           0.187973682217
+            146       341        10           0.304216747217
+            147       342        11           0.304393011258
+            148       348         3           0.187583334642
+            149       344        13           0.304912013734
+            150       349         3           0.186803400730
+            151       341        11           0.305411750468
+            152       342        12           0.305760721011
+            153       344         2           0.185423440539
+            154       341        12           0.306779460220
+            155       350         4           0.184939437209
+            156       344         1           0.183674122670
+            157       350         3           0.183490549696
+            158       343        13           0.309211573281
+            159       342        13           0.312001545805
+            160       341        13           0.313020285014
+            161       345         2           0.177586341050
+            162       340         9           0.315140102850
+            163       340        10           0.315484443383
+            164       345         1           0.175837023181
+            165       346         2           0.175363886541
+            166       340        11           0.316679446634
+            167       347         2           0.175170851218
+            168       348         2           0.173955906782
+            169       340        12           0.318047156387
+            170       346         1           0.173614568672
+            171       347         1           0.173421533349
+            172       349         2           0.173175972870
+            173       339         9           0.319536614955
+            174       348         1           0.172206588913
+            175       339        10           0.319880955488
+            176       351         4           0.171818412300
+            177       349         1           0.171426655001
+            178       339        11           0.321075958739
+            179       338         9           0.321118050663
+            180       338        10           0.321462391195
+            181       351         3           0.170369524787
+            182       350         2           0.169863121837
+            183       339        12           0.322443668491
+            184       338        11           0.322657394446
+            185       350         1           0.168113803968
+            186       338        12           0.324025104199
+            187       340        13           0.324287981181
+            188       339        13           0.328684493285
+            189       338        13           0.330265928993
+            190       352         4           0.161698645352
+            191       352         3           0.160249757839
+            192       351         2           0.156742096928
+            193       351         1           0.154992779059
+            194       352         2           0.146622329979
+            195       352         1           0.144873012110
+     Finished calculating the cv couples.
+     Finished initiating.
+
+     Precondition is used in the algorithm,
+
+     total cpu time spent up to now is       95.9 secs
+
+       ==============================
+
+       Davidson iteration:        1
+       num of basis:   40   total built basis:   40
+     Polarization accuracy = 8.9E-09, # of iterations =  35
+     Polarization accuracy = 6.6E-09, # of iterations =  43
+     Polarization accuracy = 7.5E-09, # of iterations =  36
+     Polarization accuracy = 8.1E-09, # of iterations =  43
+     Polarization accuracy = 9.2E-09, # of iterations =  34
+     Polarization accuracy = 6.1E-09, # of iterations =  45
+     Polarization accuracy = 5.3E-09, # of iterations =  36
+     Polarization accuracy = 5.7E-09, # of iterations =  42
+     Polarization accuracy = 7.7E-09, # of iterations =  39
+     Polarization accuracy = 6.1E-09, # of iterations =  36
+     Polarization accuracy = 5.3E-09, # of iterations =  41
+     Polarization accuracy = 9.5E-09, # of iterations =  36
+     Polarization accuracy = 7.5E-09, # of iterations =  34
+     Polarization accuracy = 4.6E-09, # of iterations =  34
+     Polarization accuracy = 7.2E-09, # of iterations =  36
+     Polarization accuracy = 7.8E-09, # of iterations =  35
+     Polarization accuracy = 6.8E-09, # of iterations =  38
+     Polarization accuracy = 6.9E-09, # of iterations =  44
+     Polarization accuracy = 6.0E-09, # of iterations =  43
+     Polarization accuracy = 4.7E-09, # of iterations =  44
+     Polarization accuracy = 7.8E-09, # of iterations =  34
+     Polarization accuracy = 4.9E-09, # of iterations =  42
+     Polarization accuracy = 8.4E-09, # of iterations =  35
+     Polarization accuracy = 4.5E-09, # of iterations =  41
+     Polarization accuracy = 7.9E-09, # of iterations =  38
+     Polarization accuracy = 7.6E-09, # of iterations =  33
+     Polarization accuracy = 9.8E-09, # of iterations =  29
+     Polarization accuracy = 8.1E-09, # of iterations =  42
+     Polarization accuracy = 8.6E-09, # of iterations =  31
+     Polarization accuracy = 6.2E-09, # of iterations =  38
+     Polarization accuracy = 8.6E-09, # of iterations =  45
+     Polarization accuracy = 9.3E-09, # of iterations =  35
+     Polarization accuracy = 4.2E-09, # of iterations =  43
+     Polarization accuracy = 8.0E-09, # of iterations =  45
+     Polarization accuracy = 8.2E-09, # of iterations =  43
+     Polarization accuracy = 6.6E-09, # of iterations =  38
+     Polarization accuracy = 8.2E-09, # of iterations =  42
+     Polarization accuracy = 7.0E-09, # of iterations =  37
+     Polarization accuracy = 4.9E-09, # of iterations =  34
+     Polarization accuracy = 4.0E-09, # of iterations =  41
+        40     Transition energy    1  :                  0.2441428026
+        40     Transition energy    2  :                  0.2440473047
+        40     Transition energy    3  :                  0.2486222070
+        40     Transition energy    4  :                  0.2432740308
+        40     Transition energy    5  :                  0.2426898309
+        40     Transition energy    6  :                  0.2416677746
+        40     Transition energy    7  :                  0.2411517030
+        40     Transition energy    8  :                  0.2510095457
+     Residue(Squared modulus):    1        0.0050986      0.0006523
+     Residue(Squared modulus):    2        0.0040987      0.0005478
+     Residue(Squared modulus):    3        0.0060397      0.0000705
+     Residue(Squared modulus):    4        0.0031269      0.0003232
+     Residue(Squared modulus):    5        0.0036184      0.0006248
+     Residue(Squared modulus):    6        0.0038404      0.0005966
+     Residue(Squared modulus):    7        0.0196839      0.0006354
+     Residue(Squared modulus):    8        0.0298584      0.0004638
+       Largest residue:           0.029858401469
+
+     total cpu time spent up to now is      378.2 secs
+
+       ==============================
+
+       Davidson iteration:        2
+       num of basis:   53   total built basis:   53
+     Polarization accuracy = 5.6E-09, # of iterations =  37
+     Polarization accuracy = 7.6E-09, # of iterations =  37
+     Polarization accuracy = 7.7E-09, # of iterations =  31
+     Polarization accuracy = 8.3E-09, # of iterations =  39
+     Polarization accuracy = 7.1E-09, # of iterations =  37
+     Polarization accuracy = 8.7E-09, # of iterations =  40
+     Polarization accuracy = 9.1E-09, # of iterations =  39
+     Polarization accuracy = 7.9E-09, # of iterations =  37
+     Polarization accuracy = 9.1E-09, # of iterations =  37
+     Polarization accuracy = 6.8E-09, # of iterations =  42
+     Polarization accuracy = 8.0E-09, # of iterations =  36
+     Polarization accuracy = 4.5E-09, # of iterations =  40
+     Polarization accuracy = 9.7E-09, # of iterations =  38
+        53     Transition energy    1  :                  0.2441416230
+        53     Transition energy    2  :                  0.2440470659
+        53     Transition energy    3  :                  0.2485980429
+        53     Transition energy    4  :                  0.2432709593
+        53     Transition energy    5  :                  0.2426903636
+        53     Transition energy    6  :                  0.2416528771
+        53     Transition energy    7  :                  0.2411177455
+        53     Transition energy    8  :                  0.2508922437
+     Residue(Squared modulus):    1        0.0044922      0.0000937
+     Residue(Squared modulus):    2        0.0036013      0.0000996
+     Residue(Squared modulus):    3        0.0059707      0.0000871
+     Residue(Squared modulus):    4        0.0031449      0.0003104
+     Residue(Squared modulus):    5        0.0030581      0.0000988
+     Residue(Squared modulus):    6        0.0030539      0.0001081
+     Residue(Squared modulus):    7        0.0176331      0.0001272
+     Residue(Squared modulus):    8        0.0293037      0.0004665
+       Largest residue:           0.029303709880
+
+     total cpu time spent up to now is      498.6 secs
+
+       ==============================
+
+       Davidson iteration:        3
+       num of basis:   61   total built basis:   61
+     Polarization accuracy = 7.1E-09, # of iterations =  42
+     Polarization accuracy = 8.8E-09, # of iterations =  42
+     Polarization accuracy = 5.6E-09, # of iterations =  43
+     Polarization accuracy = 5.5E-09, # of iterations =  41
+     Polarization accuracy = 8.8E-09, # of iterations =  42
+     Polarization accuracy = 6.9E-09, # of iterations =  42
+     Polarization accuracy = 7.0E-09, # of iterations =  40
+     Polarization accuracy = 6.2E-09, # of iterations =  40
+        61     Transition energy    1  :                  0.2441024185
+        61     Transition energy    2  :                  0.2440285026
+        61     Transition energy    3  :                  0.2485362195
+        61     Transition energy    4  :                  0.2432604970
+        61     Transition energy    5  :                  0.2426858104
+        61     Transition energy    6  :                  0.2416203499
+        61     Transition energy    7  :                  0.2507046917
+        61     Transition energy    8  :                  0.2410155255
+     Residue(Squared modulus):    1        0.0037121      0.0000993
+     Residue(Squared modulus):    2        0.0035727      0.0001081
+     Residue(Squared modulus):    3        0.0062050      0.0001637
+     Residue(Squared modulus):    4        0.0032245      0.0003524
+     Residue(Squared modulus):    5        0.0030173      0.0001019
+     Residue(Squared modulus):    6        0.0026315      0.0001125
+     Residue(Squared modulus):    7        0.0282809      0.0005776
+     Residue(Squared modulus):    8        0.0119890      0.0001616
+       Largest residue:           0.028280876392
+
+     total cpu time spent up to now is      615.7 secs
+
+       ==============================
+
+       Davidson iteration:        4
+       num of basis:   70   total built basis:   70
+     Polarization accuracy = 7.7E-09, # of iterations =  44
+     Polarization accuracy = 7.7E-09, # of iterations =  41
+     Polarization accuracy = 8.3E-09, # of iterations =  47
+     Polarization accuracy = 9.2E-09, # of iterations =  40
+     Polarization accuracy = 8.7E-09, # of iterations =  45
+     Polarization accuracy = 9.5E-09, # of iterations =  41
+     Polarization accuracy = 5.6E-09, # of iterations =  46
+     Polarization accuracy = 8.0E-09, # of iterations =  44
+     Polarization accuracy = 8.3E-09, # of iterations =  42
+        70     Transition energy    1  :                  0.2440957421
+        70     Transition energy    2  :                  0.2440233592
+        70     Transition energy    3  :                  0.2485177601
+        70     Transition energy    4  :                  0.2432593590
+        70     Transition energy    5  :                  0.2426801624
+        70     Transition energy    6  :                  0.2416134034
+        70     Transition energy    7  :                  0.2505718864
+        70     Transition energy    8  :                  0.2409889164
+     Residue(Squared modulus):    1        0.0037234      0.0011514
+     Residue(Squared modulus):    2        0.0035566      0.0001324
+     Residue(Squared modulus):    3        0.0065536      0.0027374
+     Residue(Squared modulus):    4        0.0042558      0.0019802
+     Residue(Squared modulus):    5        0.0038415      0.0049331
+     Residue(Squared modulus):    6        0.0026799      0.0008543
+     Residue(Squared modulus):    7        0.0331965      0.1146830
+     Residue(Squared modulus):    8        0.0119785      0.0039144
+       Largest residue:           0.114683000686
+One residue is eliminated:       0.157491146811E-03
+One residue is eliminated:       0.373063620105E-03
+
+     total cpu time spent up to now is      812.0 secs
+
+       ==============================
+
+       Davidson iteration:        5
+       num of basis:   83   total built basis:   83
+     Polarization accuracy = 9.9E-09, # of iterations =  44
+     Polarization accuracy = 4.7E-09, # of iterations =  49
+     Polarization accuracy = 7.8E-09, # of iterations =  45
+     Polarization accuracy = 7.9E-09, # of iterations =  42
+     Polarization accuracy = 7.7E-09, # of iterations =  48
+     Polarization accuracy = 8.0E-09, # of iterations =  45
+     Polarization accuracy = 9.1E-09, # of iterations =  44
+     Polarization accuracy = 5.6E-09, # of iterations =  43
+     Polarization accuracy = 9.6E-09, # of iterations =  47
+     Polarization accuracy = 8.5E-09, # of iterations =  42
+     Polarization accuracy = 6.3E-09, # of iterations =  49
+     Polarization accuracy = 7.8E-09, # of iterations =  49
+     Polarization accuracy = 8.2E-09, # of iterations =  44
+        83     Transition energy    1  :                  0.2440527528
+        83     Transition energy    2  :                  0.2439750332
+        83     Transition energy    3  :                  0.2484788734
+        83     Transition energy    4  :                  0.2432342465
+        83     Transition energy    5  :                  0.2426493819
+        83     Transition energy    6  :                  0.2501501214
+        83     Transition energy    7  :                  0.2415997429
+        83     Transition energy    8  :                  0.2409268998
+     Residue(Squared modulus):    1        0.0056563      0.0022649
+     Residue(Squared modulus):    2        0.0169005      0.0336897
+     Residue(Squared modulus):    3        0.0072400      0.0100385
+     Residue(Squared modulus):    4        0.0047450      0.0118292
+     Residue(Squared modulus):    5        0.0030036      0.0011122
+     Residue(Squared modulus):    6        0.0530952      0.1351203
+     Residue(Squared modulus):    7        0.0030373      0.0014219
+     Residue(Squared modulus):    8        0.0204232      0.0522545
+       Largest residue:           0.135120267526
+One residue is eliminated:       0.117486123538E-03
+One residue is eliminated:       0.387700539491E-04
+
+       ================================================================
+
+       Davidson diagonalization has finished in    5 steps.
+          the number of current basis is   97
+          the number of total basis built is   97
+
+       Now print out information of eigenstates
+
+
+     K-S Oscillator strengths
+     occ con        R-x              R-y              R-z
+     338   1    -0.13722274E+00    0.86184327E-02   -0.32674533E+00
+     338   2     0.24943918E-02   -0.64782552E+00   -0.31107634E-02
+     338   3    -0.39478233E-02   -0.14055582E-03    0.72932996E-03
+     338   4     0.50895913E-04    0.24272918E-02   -0.68289214E-06
+     338   5     0.14402457E-03    0.22409353E-02    0.64663535E-04
+     338   6    -0.23389399E-02    0.24951688E+00   -0.21844679E-02
+     338   7    -0.38884355E-02   -0.84676977E-05   -0.22321821E-02
+     338   8    -0.11562204E+01    0.19563542E-02   -0.81061928E+00
+     338   9     0.69389500E-03   -0.18700462E-02   -0.92051302E-04
+     338  10     0.46838823E+00    0.13346632E-02   -0.19944108E-01
+     338  11     0.17031663E-02    0.67234214E-03    0.12338675E-02
+     338  12    -0.40638350E-02    0.77460600E+00   -0.75682898E-03
+     338  13     0.96679695E-01    0.12245423E-02    0.44698208E+00
+     339   1     0.80642060E-03   -0.99622250E-04    0.17814469E-02
+     339   2     0.30223422E-03    0.37904830E-02    0.11088960E-03
+     339   3    -0.74128381E+00   -0.11685169E-01    0.15253722E+00
+     339   4    -0.89159757E-02    0.54201596E+00    0.38366608E-02
+     339   5     0.30708521E-02    0.42291914E+00    0.17747174E-02
+     339   6    -0.48861295E-04   -0.18550874E-02   -0.10065587E-03
+     339   7    -0.77292396E+00   -0.14840048E-02   -0.47559880E+00
+     339   8     0.70001061E-02    0.11416631E-03    0.47255948E-02
+     339   9     0.85361168E-03   -0.45455998E+00    0.60110542E-03
+     339  10    -0.65372802E-02    0.33750978E-03   -0.30179013E-02
+     339  11     0.32605336E+00    0.16343649E-02    0.16520277E+00
+     339  12     0.11777889E-04   -0.40401535E-02    0.21701808E-03
+     339  13    -0.49009198E-02    0.14047327E-02   -0.93981900E-02
+     340   1    -0.63717827E-04   -0.17454925E-03   -0.16173767E-05
+     340   2     0.16173965E-02    0.10045827E-03    0.62533756E-03
+     340   3    -0.18033875E-01   -0.37838950E+00   -0.33928827E-02
+     340   4     0.10470629E+01   -0.74237128E-02    0.15787354E+00
+     340   5     0.10249749E+01   -0.14679336E-02    0.51355135E+00
+     340   6    -0.12555890E-02    0.34672689E-04   -0.73472198E-03
+     340   7     0.14072624E-02   -0.36279963E+00    0.87688582E-03
+     340   8     0.20030797E-03    0.10850602E-02    0.15494678E-03
+     340   9    -0.11557235E+00   -0.22488181E-02    0.72436997E-01
+     340  10     0.24316802E-03   -0.25714708E-02    0.14046004E-03
+     340  11    -0.69873828E-03   -0.45361301E+00   -0.13273585E-02
+     340  12     0.55829720E-03    0.42590351E-03    0.97561709E-03
+     340  13    -0.31230286E-03    0.14431853E-03   -0.10668697E-02
+     341   1    -0.35810419E-03    0.30694275E-04   -0.65464209E-04
+     341   2     0.90449198E-04    0.75720252E-03    0.54205172E-04
+     341   3     0.13302902E+01    0.48098725E-01    0.65798806E+00
+     341   4    -0.77410938E-02   -0.10469093E+01   -0.56135470E-02
+     341   5     0.26311816E-01    0.30130210E+00    0.18089893E-01
+     341   6     0.25330558E-04   -0.15197354E-03    0.90283782E-04
+     341   7     0.34583921E-01   -0.11064416E-02   -0.79862376E-01
+     341   8     0.84024719E-03    0.54783837E-04    0.28392949E-03
+     341   9     0.34776899E-02   -0.32160862E+00    0.17822954E-01
+     341  10     0.99933711E-03    0.54552537E-03    0.25863717E-02
+     341  11     0.44260774E-01   -0.59301727E-03    0.50338645E+00
+     341  12    -0.17820608E-03   -0.83862319E-03   -0.44536017E-03
+     341  13     0.21456071E-02   -0.12482462E-02   -0.31597962E-02
+     342   1     0.18235127E-03    0.24306756E-04    0.90127759E-04
+     342   2    -0.74943099E-04   -0.12863380E-03   -0.10640329E-03
+     342   3    -0.89071536E-02    0.11112843E+01   -0.28205966E-02
+     342   4    -0.12477615E+01    0.45995465E-01   -0.69074659E+00
+     342   5     0.99440293E+00   -0.70288109E-02    0.69203961E+00
+     342   6    -0.94274145E-03   -0.10712443E-03   -0.76430100E-03
+     342   7    -0.13655406E-02   -0.34847868E-01    0.15031479E-02
+     342   8    -0.11268092E-05    0.23568592E-03    0.59692685E-04
+     342   9     0.92069092E-01    0.53854489E-02    0.47253891E+00
+     342  10    -0.42757021E-03   -0.33830258E-02   -0.11639610E-02
+     342  11    -0.16787297E-02   -0.10329341E+00   -0.15956871E-01
+     342  12    -0.29618278E-03    0.24926206E-03    0.66752569E-03
+     342  13     0.19946951E-02    0.71519460E-03    0.33810884E-02
+     343   1    -0.15875717E+01   -0.19817486E-01   -0.86993200E+00
+     343   2    -0.14879051E-01    0.86195499E+00   -0.86716732E-02
+     343   3    -0.56269624E-03    0.18164297E-03   -0.50717070E-03
+     343   4    -0.22446805E-03    0.14795926E-03   -0.11512459E-03
+     343   5    -0.22982091E-04    0.16063785E-03   -0.10663745E-04
+     343   6     0.99190456E-02    0.57890924E+00    0.63646573E-02
+     343   7     0.65739044E-03    0.76182351E-04    0.29853917E-03
+     343   8     0.60241775E+00    0.63548820E-03    0.11285827E+00
+     343   9    -0.34767050E-03   -0.18246158E-02   -0.52093893E-03
+     343  10    -0.14071340E+00    0.60994368E-02   -0.31125050E+00
+     343  11    -0.78315043E-03    0.15473549E-02   -0.68243687E-03
+     343  12     0.13366282E-02    0.62326425E-01   -0.20869522E-03
+     343  13     0.62404762E+00   -0.73409798E-03    0.27929771E+00
+     344   1     0.80006477E-02    0.11568027E+01    0.36878451E-02
+     344   2    -0.10665848E+01    0.20038441E-01   -0.54364853E+00
+     344   3    -0.12321555E-04   -0.18296504E-03    0.20624893E-04
+     344   4     0.18049209E-03    0.55457437E-04    0.31580455E-04
+     344   5    -0.80318368E-03    0.14278793E-04   -0.58861473E-03
+     344   6    -0.14292890E+01    0.25679704E-02   -0.95072077E+00
+     344   7    -0.12833538E-03   -0.35907935E-03   -0.13277043E-03
+     344   8     0.36275881E-02   -0.14895190E+00    0.10714021E-02
+     344   9    -0.19519982E-02   -0.92406750E-03   -0.42247770E-02
+     344  10    -0.35071523E-03   -0.57139654E+00    0.34384935E-02
+     344  11     0.11413417E-02    0.88352810E-03    0.29278640E-02
+     344  12    -0.21211183E+00    0.32192755E-02    0.24957174E+00
+     344  13     0.91157621E-03   -0.22473118E+00   -0.24909788E-02
+     345   1    -0.28146915E-01    0.49156794E+00   -0.18149240E-01
+     345   2     0.19514668E+01    0.73795391E-02    0.12193699E+01
+     345   3     0.35456246E-04   -0.10010685E-03    0.38351392E-04
+     345   4    -0.23664686E-02    0.84930759E-04   -0.17100970E-02
+     345   5    -0.21238289E-02   -0.57875315E-04   -0.10767252E-02
+     345   6    -0.85472543E+00    0.48131341E-03   -0.50798566E+00
+     345   7    -0.78740231E-04    0.16191665E-02   -0.34275993E-04
+     345   8     0.12340438E-03    0.63757825E+00   -0.29710194E-03
+     345   9     0.71574708E-03   -0.10366446E-02    0.16264084E-02
+     345  10     0.80258776E-03   -0.38595419E+00   -0.52730436E-03
+     345  11    -0.11563824E-03    0.12877775E-02   -0.45808903E-03
+     345  12     0.29014280E+00    0.11574090E-02    0.35550457E+00
+     345  13     0.10699221E-02    0.68364765E+00    0.21742894E-02
+     346   1    -0.25467059E+00    0.65031032E-01   -0.97191527E-01
+     346   2     0.17641126E+00   -0.14791729E+00    0.98078158E-01
+     346   3     0.20355418E-02   -0.23702055E-03    0.27530506E-02
+     346   4    -0.28716328E-03    0.10715432E-02   -0.18897863E-03
+     346   5    -0.28081763E-03   -0.13079777E-02   -0.28028732E-03
+     346   6    -0.38554307E-01    0.93238204E-01    0.68711236E-03
+     346   7     0.13686704E-03    0.18695261E-03   -0.20072355E-02
+     346   8     0.55336954E-01    0.67816878E-01    0.54154186E-01
+     346   9    -0.64455993E-04    0.44123577E-03    0.59132042E-04
+     346  10     0.11608591E+00   -0.37562472E-01    0.15675349E+00
+     346  11     0.17301040E-02   -0.18580745E-03    0.10730046E-02
+     346  12     0.12553486E-01   -0.77261211E-01    0.15122029E-01
+     346  13     0.53569966E-01    0.68593270E-01   -0.40236220E-01
+     347   1     0.39601714E-01    0.29248022E+00    0.12916265E-01
+     347   2     0.81953597E+00    0.34517291E-01    0.44916945E+00
+     347   3    -0.72553401E-03   -0.18287306E-02   -0.10046628E-02
+     347   4    -0.19905100E-02   -0.38511947E-03   -0.15196972E-02
+     347   5    -0.16820063E-02    0.45582232E-03   -0.23709449E-02
+     347   6    -0.16533305E+00   -0.18861757E-01    0.16658436E-01
+     347   7    -0.60574865E-04    0.10578009E-02    0.77223010E-03
+     347   8    -0.11150257E-01    0.31216103E+00   -0.11124260E-01
+     347   9    -0.17774992E-02   -0.63071672E-03   -0.21378781E-02
+     347  10    -0.22988514E-01   -0.16893870E+00   -0.32351335E-01
+     347  11    -0.37432710E-03    0.13467375E-02   -0.72175017E-03
+     347  12     0.56269433E-01    0.16214192E-01    0.67275365E-01
+     347  13    -0.11134946E-01    0.31295266E+00    0.90471537E-02
+     348   1    -0.33188710E-02   -0.36492732E-03   -0.12306821E-02
+     348   2    -0.96584221E-03   -0.19972253E-02   -0.48707918E-03
+     348   3    -0.17132473E+00    0.10779263E-01   -0.22841998E+00
+     348   4     0.59612700E-02   -0.75779192E-01    0.26950261E-02
+     348   5     0.73607927E-02    0.92808724E-01    0.12032808E-01
+     348   6     0.12406337E-03    0.11731649E-02   -0.13916819E-03
+     348   7     0.26022219E-02   -0.40446880E-02    0.16432494E+00
+     348   8     0.86260833E-03   -0.38867348E-03    0.70232882E-03
+     348   9     0.65315780E-02   -0.15199977E-01    0.12923557E-01
+     348  10     0.24714600E-02    0.21688319E-03    0.17783723E-02
+     348  11    -0.14062651E+00   -0.61108102E-02   -0.11734164E+00
+     348  12    -0.61090139E-04   -0.13618719E-02    0.30251499E-04
+     348  13     0.24851547E-02   -0.68030698E-03   -0.42921186E-03
+     349   1     0.32371463E-03    0.23772783E-02    0.94256294E-04
+     349   2     0.64731518E-02    0.28560126E-03    0.35049238E-02
+     349   3     0.39496519E-02    0.19674822E+00    0.81111754E-02
+     349   4     0.24592714E+00    0.73266370E-02    0.18734914E+00
+     349   5     0.20158316E+00   -0.44848398E-02    0.27139682E+00
+     349   6    -0.10301250E-02   -0.15911113E-03    0.43701243E-03
+     349   7    -0.37212299E-03   -0.11642183E+00   -0.83621084E-02
+     349   8    -0.12130127E-03    0.26985727E-02   -0.10801938E-03
+     349   9     0.14484271E+00   -0.81027562E-03    0.27626639E+00
+     349  10    -0.53649785E-03   -0.14343291E-02   -0.68775389E-03
+     349  11     0.59218039E-02   -0.15404957E+00    0.37268703E-02
+     349  12    -0.37751582E-04    0.25527841E-03   -0.28128750E-03
+     349  13     0.17930908E-03    0.44945250E-02   -0.54795209E-04
+     350   1     0.25572514E-03   -0.81899443E-03    0.20383223E-03
+     350   2    -0.24598433E-02    0.26102155E-04   -0.15728834E-02
+     350   3     0.31971696E-01   -0.32417382E+00    0.25030942E-01
+     350   4    -0.16155067E+01   -0.59334122E-02   -0.12546327E+01
+     350   5    -0.13428641E+01    0.54686501E-03   -0.73826183E+00
+     350   6     0.21986882E-02   -0.17797393E-03    0.11497776E-02
+     350   7    -0.14952304E-03    0.88052405E+00   -0.63499122E-03
+     350   8     0.31456188E-04   -0.16588493E-02   -0.17642743E-04
+     350   9     0.36191155E-01    0.48379771E-02    0.78065278E-02
+     350  10    -0.93604496E-04   -0.26178124E-02   -0.20249145E-03
+     350  11    -0.18802046E-03    0.73860293E+00    0.48429537E-03
+     350  12     0.64031063E-03   -0.26767256E-03    0.75363068E-03
+     350  13     0.75895546E-03   -0.85719151E-02    0.19664971E-02
+     351   1     0.22770148E+01   -0.79646076E-02    0.19046387E+01
+     351   2     0.31190727E-01    0.60504150E+00    0.25947843E-01
+     351   3    -0.16463822E-02    0.94891524E-04   -0.18771076E-02
+     351   4     0.77556794E-04   -0.10584727E-03    0.83433418E-04
+     351   5     0.90466196E-04   -0.13323634E-02    0.48441654E-04
+     351   6    -0.10108879E-02   -0.87123159E+00   -0.50168973E-03
+     351   7     0.11188089E-02   -0.46996564E-04    0.97263228E-03
+     351   8     0.51697562E+00    0.60913660E-03    0.55245286E+00
+     351   9     0.52405173E-04    0.20457579E-02    0.50909398E-03
+     351  10    -0.15867505E+00   -0.28895839E-02    0.44296167E+00
+     351  11     0.11005516E-02   -0.83149648E-03   -0.10909908E-02
+     351  12     0.68534132E-03   -0.23035810E+00   -0.24237599E-02
+     351  13     0.96805877E-01    0.13801673E-02    0.32248519E+00
+     352   1    -0.18994169E-02    0.29157476E-04   -0.15400490E-02
+     352   2     0.14239265E-05   -0.62460696E-03    0.15394220E-05
+     352   3    -0.17754516E+01    0.40869000E-02   -0.19528636E+01
+     352   4    -0.31811075E-01   -0.26096238E+00   -0.35218355E-01
+     352   5    -0.11340288E-02   -0.11282869E+01   -0.76582950E-03
+     352   6    -0.72248961E-04    0.17890633E-02   -0.10722177E-03
+     352   7     0.10206763E+01    0.49432066E-03    0.84877603E+00
+     352   8    -0.11081612E-02   -0.12985192E-03   -0.91571561E-03
+     352   9     0.19276867E-02    0.48847128E+00   -0.14116543E-02
+     352  10     0.24460057E-02   -0.87189451E-03   -0.39332181E-02
+     352  11     0.24023858E+00   -0.30492856E-02   -0.19018389E-01
+     352  12    -0.55958902E-03   -0.41669899E-03    0.20171748E-03
+     352  13     0.64145228E-02    0.89407403E-03    0.66443540E-03
+
+       ! The    1 -th eigen state. The transition energy is:        0.24405275
+
+     The two digitals below indicate the importance of doing beyong TDA:
+
+     Components: X       1.00004;    Y      -0.00004
+
+     In the occ-virt project subspace the total Fxy is:
+
+     X       0.99997;    Y      -0.00002    total       0.99995  /      1.00000
+
+     The Chi_i_i is     Total          1               2               3
+
+                     0.17288230E-02    0.11979416E-03    0.16044024E-02    0.46264248E-05
+
+     Now is the components analysis of this transition.
+
+     First we print out only the principle components.
+
+     occ     virt       FX              FY
+
+     341    5        0.17919       -0.00095
+     345    8        0.27433        0.00083
+     346    8       -0.76633        0.00120
+     347    8       -0.52828        0.00104
+
+     Now for all the calculated particle and hole pairs :
+
+     occ     virt       FX              FY
+
+     338    1      0.98193601E-04      0.65286838E-04
+     338    2      0.44493072E-05      0.58852317E-05
+     338    3      0.43572325E-05      0.16487408E-05
+     338    4     -0.79540890E-05     -0.27762435E-05
+     338    5      0.85289735E-04      0.24027590E-05
+     338    6     -0.17808712E-04     -0.10044340E-04
+     338    7     -0.17160876E-05     -0.73682973E-06
+     338    8     -0.69449036E-05     -0.91651640E-05
+     338    9     -0.71505802E-05     -0.25871459E-05
+     338   10      0.38050090E-05      0.16073965E-05
+     338   11      0.23945209E-05      0.90924961E-06
+     338   12     -0.13707499E-04     -0.88123506E-05
+     338   13      0.14854999E-04     -0.24195307E-07
+     339    1     -0.24079746E-05     -0.12237187E-05
+     339    2      0.43934677E-05      0.10538626E-05
+     339    3     -0.58582696E-04     -0.33554994E-04
+     339    4     -0.19477961E-04     -0.92654721E-05
+     339    5     -0.42712835E-03     -0.11186929E-04
+     339    6      0.59674386E-06      0.26575760E-06
+     339    7      0.20361499E-04      0.59977113E-05
+     339    8      0.24567782E-05      0.15138718E-05
+     339    9     -0.18407424E-06      0.20559071E-07
+     339   10      0.59549307E-06      0.31689301E-06
+     339   11     -0.24311430E-04     -0.25446806E-04
+     339   12     -0.40290906E-06      0.68646664E-07
+     339   13     -0.69387073E-06     -0.13881943E-06
+     340    1      0.70125061E-05      0.24863101E-05
+     340    2      0.56112741E-05      0.41212181E-05
+     340    3     -0.11773293E-04     -0.34453507E-05
+     340    4      0.38549117E-04      0.20636830E-04
+     340    5     -0.38901147E-01     -0.68103884E-03
+     340    6     -0.88181553E-04     -0.50767690E-05
+     340    7      0.20933256E-04      0.10673608E-04
+     340    8      0.28133664E-05      0.86792369E-06
+     340    9      0.10129965E-04     -0.37591886E-05
+     340   10     -0.87397932E-05     -0.28376241E-05
+     340   11      0.38608072E-05      0.61740306E-05
+     340   12     -0.58265421E-06     -0.14100677E-05
+     340   13     -0.26036873E-05     -0.12247808E-05
+     341    1      0.11839347E-04      0.50455176E-05
+     341    2     -0.45035731E-05      0.43346859E-06
+     341    3      0.10994941E-03      0.84023539E-04
+     341    4     -0.40317979E-04     -0.28395890E-04
+     341    5      0.17918787E+00     -0.94827585E-03
+     341    6      0.50566632E-04      0.13438404E-04
+     341    7     -0.11892751E-01     -0.21847776E-03
+     341    8      0.11879159E-03      0.44150854E-05
+     341    9     -0.10204832E-04     -0.14647025E-04
+     341   10     -0.65758202E-05     -0.18145912E-05
+     341   11      0.11061617E-04      0.81690944E-05
+     341   12     -0.66636186E-05     -0.41007817E-05
+     341   13      0.10927640E-04      0.53192182E-05
+     342    1      0.11555580E-04      0.33836429E-05
+     342    2     -0.44383068E-05     -0.43132372E-05
+     342    3      0.28745839E-04      0.80582336E-05
+     342    4     -0.14985860E-03     -0.10031682E-03
+     342    5      0.20858797E-01     -0.15465767E-03
+     342    6      0.51939557E-03      0.63353644E-05
+     342    7     -0.15089511E-02     -0.24776869E-04
+     342    8      0.25783281E-04      0.20146257E-05
+     342    9     -0.70052698E-04     -0.46996532E-04
+     342   10      0.66989640E-06      0.69980630E-06
+     342   11      0.95311908E-05      0.15014089E-05
+     342   12     -0.16787109E-05      0.69328537E-06
+     342   13      0.21106834E-05      0.22223557E-05
+     343    1     -0.14262413E-03     -0.94654936E-04
+     343    2      0.17191460E-04      0.14182818E-04
+     343    3     -0.70938023E-05     -0.26205297E-05
+     343    4      0.12530259E-04      0.45874019E-05
+     343    5     -0.14332573E-02      0.13605759E-04
+     343    6     -0.84459818E-01     -0.11455406E-03
+     343    7      0.30041389E-04      0.88603539E-06
+     343    8      0.72598394E-02      0.19822319E-03
+     343    9      0.12876902E-04      0.48382594E-05
+     343   10      0.98350129E-05     -0.69786923E-06
+     343   11     -0.25978091E-05     -0.82715851E-06
+     343   12      0.88476675E-05     -0.10645616E-04
+     343   13     -0.76328772E-04     -0.47975082E-04
+     344    1      0.28427174E-04      0.12000624E-04
+     344    2     -0.10911320E-03     -0.90625714E-04
+     344    3      0.59632158E-06     -0.46403246E-06
+     344    4      0.47885748E-05     -0.45464219E-06
+     344    5     -0.24819523E-03      0.65902135E-05
+     344    6      0.15390199E-01     -0.10671839E-03
+     344    7      0.11956548E-03     -0.61285184E-06
+     344    8     -0.18834900E-01     -0.34625576E-03
+     344    9      0.53949562E-05      0.97934156E-06
+     344   10     -0.86954675E-05      0.30449784E-05
+     344   11     -0.95561522E-05     -0.42307061E-05
+     344   12     -0.43335925E-04     -0.18012216E-05
+     344   13      0.68456454E-04     -0.59634841E-05
+     345    1      0.24052487E-04      0.17808397E-05
+     345    2     -0.36189063E-04     -0.34496820E-04
+     345    3     -0.62446551E-05     -0.30641018E-05
+     345    4     -0.31680453E-05     -0.17007928E-05
+     345    5     -0.89947808E-05     -0.42168865E-05
+     345    6     -0.94347771E-01      0.22655711E-02
+     345    7      0.20017583E-02     -0.71038874E-05
+     345    8      0.27433437E+00      0.82668547E-03
+     345    9     -0.46934693E-05     -0.29356620E-05
+     345   10     -0.64750539E-04     -0.12199600E-04
+     345   11      0.18335390E-05      0.14492153E-05
+     345   12     -0.19195365E-04     -0.13038473E-04
+     345   13      0.14692518E-03      0.11316019E-03
+     346    1     -0.55424379E-04      0.11269790E-04
+     346    2     -0.50476331E-05      0.26484608E-05
+     346    3     -0.10563373E-05      0.50778804E-05
+     346    4     -0.14786487E-04     -0.39524247E-05
+     346    5     -0.50073069E-05     -0.12996121E-05
+     346    6     -0.46006712E-01      0.13668216E-02
+     346    7     -0.37533424E-02      0.12687211E-04
+     346    8     -0.76633225E+00      0.11951694E-02
+     346    9     -0.32260555E-04     -0.86920935E-05
+     346   10      0.18628468E-03      0.23147469E-04
+     346   11     -0.45190515E-05     -0.55408125E-05
+     346   12     -0.29650213E-04     -0.93135353E-05
+     346   13      0.30220467E-04     -0.11340701E-03
+     347    1     -0.17979266E-04      0.19362982E-04
+     347    2      0.42076917E-05      0.30789135E-05
+     347    3     -0.34106245E-05      0.24915364E-05
+     347    4      0.96468321E-05      0.55494735E-05
+     347    5      0.10780787E-05      0.90135390E-06
+     347    6     -0.46853750E-01      0.14013663E-02
+     347    7     -0.21079686E-02      0.89139341E-06
+     347    8     -0.52828031E+00      0.10359481E-02
+     347    9      0.23335584E-04      0.13694478E-04
+     347   10      0.90157145E-04     -0.11174295E-04
+     347   11      0.78613840E-05      0.10944830E-05
+     347   12     -0.42680367E-04     -0.21192958E-04
+     347   13      0.59784416E-04     -0.63711005E-04
+     348    1      0.30529616E-04     -0.28678385E-06
+     348    2     -0.60149285E-06     -0.58291748E-06
+     348    3     -0.18241581E-04     -0.13853888E-04
+     348    4      0.11063207E-03      0.53474467E-04
+     348    5      0.34862035E-04      0.16445758E-04
+     348    6     -0.33130896E-03      0.99928472E-05
+     348    7      0.14006300E-01     -0.29530331E-03
+     348    8      0.35940695E-02     -0.16230917E-04
+     348    9      0.24936951E-03      0.12184327E-03
+     348   10     -0.50812377E-04      0.24711783E-05
+     348   11     -0.10867854E-03     -0.56065717E-04
+     348   12      0.74537773E-05      0.31575817E-06
+     348   13     -0.11372639E-03     -0.41690947E-05
+     349    1     -0.26573993E-04     -0.28215771E-05
+     349    2     -0.90490184E-06     -0.28020452E-06
+     349    3      0.24228091E-06      0.51762326E-05
+     349    4      0.18387348E-03      0.99424258E-04
+     349    5      0.41490702E-04      0.21898574E-04
+     349    6      0.95578301E-05      0.43078231E-05
+     349    7      0.11320255E-01     -0.25790561E-03
+     349    8     -0.13786399E-02      0.10409853E-04
+     349    9      0.35131544E-03      0.18831663E-03
+     349   10      0.27636446E-04     -0.38389743E-06
+     349   11     -0.60306154E-04     -0.33284110E-04
+     349   12     -0.11310837E-04     -0.34386984E-05
+     349   13      0.10481648E-03      0.14127920E-04
+     350    1      0.20842000E-04      0.87853603E-05
+     350    2     -0.10582039E-05      0.17590119E-06
+     350    3      0.13303203E-04     -0.51432300E-05
+     350    4     -0.98322893E-04     -0.59788723E-04
+     350    5      0.74279054E-04      0.41824923E-04
+     350    6     -0.65654459E-05     -0.31774219E-05
+     350    7     -0.52854729E-01      0.15820578E-02
+     350    8      0.12814962E-03     -0.66233750E-05
+     350    9     -0.41122742E-04     -0.49225956E-04
+     350   10      0.41055063E-05     -0.54508910E-06
+     350   11     -0.38086368E-04     -0.27125521E-05
+     350   12      0.48608696E-05      0.20835348E-05
+     350   13     -0.45929566E-04     -0.22328508E-04
+     351    1     -0.42571079E-04     -0.35903206E-04
+     351    2      0.11442720E-04      0.58160015E-05
+     351    3     -0.48602129E-05     -0.21155905E-05
+     351    4      0.31993481E-05      0.30180915E-05
+     351    5      0.99697891E-05      0.47202343E-05
+     351    6     -0.23603708E-04     -0.10484838E-04
+     351    7      0.45590839E-05      0.25876530E-05
+     351    8     -0.18445758E-03     -0.10269502E-03
+     351    9      0.22516872E-04      0.10356876E-04
+     351   10     -0.15307714E-03     -0.80020068E-04
+     351   11      0.61142248E-05      0.25736680E-05
+     351   12      0.23319404E-04      0.13497201E-04
+     351   13     -0.82523788E-04     -0.40359341E-04
+     352    1      0.38742124E-04      0.11184262E-04
+     352    2      0.16912344E-04      0.50254276E-05
+     352    3     -0.96054281E-04     -0.42487062E-04
+     352    4     -0.73376716E-05     -0.88346953E-05
+     352    5     -0.52191249E-04     -0.22864531E-04
+     352    6      0.31527165E-05      0.63203056E-06
+     352    7     -0.57887813E-04     -0.24147238E-04
+     352    8      0.57035976E-05      0.16879708E-05
+     352    9     -0.41037142E-03     -0.98494889E-05
+     352   10      0.13041416E-03      0.52241118E-05
+     352   11     -0.33808018E-02     -0.96367985E-04
+     352   12     -0.18408313E-03     -0.49053178E-05
+     352   13     -0.45927210E-04     -0.11112291E-04
+
+       **************
+
+
+       ! The    2 -th eigen state. The transition energy is:        0.24397503
+
+     The two digitals below indicate the importance of doing beyong TDA:
+
+     Components: X       1.00013;    Y      -0.00013
+
+     In the occ-virt project subspace the total Fxy is:
+
+     X       1.00004;    Y      -0.00002    total       1.00002  /      1.00000
+
+     The Chi_i_i is     Total          1               2               3
+
+                     0.13059219E-02    0.13121261E-03    0.11623784E-02    0.12330895E-04
+
+     Now is the components analysis of this transition.
+
+     First we print out only the principle components.
+
+     occ     virt       FX              FY
+
+     341    5       -0.16066        0.00082
+     345    6       -0.10581        0.00256
+     345    8       -0.23164       -0.00072
+     346    8       -0.60974        0.00085
+     347    8        0.72136       -0.00128
+
+     Now for all the calculated particle and hole pairs :
+
+     occ     virt       FX              FY
+
+     338    1      0.97411230E-04      0.11365162E-03
+     338    2     -0.14303493E-04     -0.17843024E-05
+     338    3      0.41239660E-05      0.13911772E-05
+     338    4     -0.61445341E-05     -0.11407232E-05
+     338    5      0.15033258E-03      0.43311739E-05
+     338    6      0.21443894E-04      0.12419940E-04
+     338    7     -0.19366690E-05     -0.95698957E-06
+     338    8     -0.26746780E-05     -0.21927153E-04
+     338    9     -0.67061971E-05     -0.23122213E-05
+     338   10      0.45239374E-05      0.43238625E-05
+     338   11      0.21654248E-05      0.72270627E-06
+     338   12      0.19006192E-04      0.91523677E-05
+     338   13      0.24874189E-04     -0.22762622E-04
+     339    1     -0.27327106E-05     -0.17263335E-05
+     339    2      0.36462578E-05     -0.16289205E-05
+     339    3     -0.61901185E-04     -0.45727687E-04
+     339    4      0.17081701E-04      0.13942803E-04
+     339    5      0.46476874E-03      0.12123812E-04
+     339    6      0.11731420E-05      0.27217940E-06
+     339    7      0.27830701E-04     -0.76099699E-05
+     339    8      0.24343749E-05      0.26617406E-05
+     339    9      0.21737403E-05      0.21221538E-05
+     339   10      0.31754308E-06      0.50876788E-06
+     339   11     -0.16556838E-04     -0.65893511E-04
+     339   12      0.22823550E-05      0.22914874E-05
+     339   13     -0.64670018E-06      0.47193303E-06
+     340    1      0.31311311E-05     -0.70090498E-06
+     340    2      0.53211225E-05      0.88453409E-05
+     340    3      0.14534766E-04      0.23618390E-04
+     340    4      0.40333468E-04      0.24798726E-04
+     340    5     -0.42999467E-01     -0.75901456E-03
+     340    6     -0.99619229E-04     -0.59009542E-05
+     340    7     -0.25170473E-04     -0.19085556E-04
+     340    8      0.20517981E-05     -0.41361023E-06
+     340    9      0.16907251E-04     -0.27825886E-04
+     340   10     -0.48559257E-05      0.12663677E-05
+     340   11     -0.97942471E-05      0.83984315E-05
+     340   12      0.44863051E-06     -0.46536428E-05
+     340   13     -0.17238797E-05     -0.18796015E-05
+     341    1      0.13082923E-04      0.49739455E-05
+     341    2     -0.10944779E-04      0.70254573E-06
+     341    3      0.97074343E-04      0.15565439E-03
+     341    4      0.39304504E-04      0.49008813E-05
+     341    5     -0.16066384E+00      0.82466664E-03
+     341    6      0.74431917E-03     -0.16099012E-05
+     341    7     -0.12606580E-01     -0.24928284E-03
+     341    8      0.14900501E-03      0.57704526E-05
+     341    9      0.13087567E-04     -0.15343670E-04
+     341   10     -0.63817031E-05     -0.28352762E-06
+     341   11      0.10461026E-04      0.68558562E-05
+     341   12     -0.32288706E-05     -0.44064141E-05
+     341   13      0.10788005E-04      0.70980502E-05
+     342    1      0.12134654E-04      0.62788482E-06
+     342    2     -0.46994341E-05     -0.10853296E-04
+     342    3     -0.21160541E-04     -0.40665231E-04
+     342    4     -0.15015815E-03     -0.17841196E-03
+     342    5      0.30865697E-01     -0.22445868E-03
+     342    6      0.73659987E-03      0.89273699E-05
+     342    7      0.17767280E-02      0.32044793E-04
+     342    8     -0.95084346E-04     -0.14765342E-05
+     342    9     -0.67595526E-04     -0.85763070E-04
+     342   10     -0.14416310E-05      0.31036332E-06
+     342   11     -0.58993071E-05     -0.17840263E-04
+     342   12     -0.18570106E-05      0.51786543E-05
+     342   13     -0.21353136E-06      0.56001364E-05
+     343    1     -0.13783128E-03     -0.18230413E-03
+     343    2     -0.24701175E-04     -0.11130327E-04
+     343    3     -0.93858728E-05     -0.14211246E-05
+     343    4      0.14395382E-04      0.39148493E-05
+     343    5      0.32128258E-03      0.69714440E-06
+     343    6      0.76400646E-01      0.10825990E-03
+     343    7     -0.32562755E-04      0.65309674E-07
+     343    8      0.83538835E-02      0.22437862E-03
+     343    9      0.12286067E-04      0.41849024E-05
+     343   10      0.12955623E-04      0.60408646E-05
+     343   11     -0.29158952E-05     -0.60826179E-06
+     343   12      0.16004263E-04     -0.15660766E-04
+     343   13     -0.78557539E-04     -0.98024410E-04
+     344    1     -0.13470562E-04     -0.18764933E-04
+     344    2     -0.93434163E-04     -0.18961743E-03
+     344    3      0.27543490E-05     -0.19273631E-05
+     344    4      0.18586445E-05     -0.67638526E-05
+     344    5     -0.36758038E-03      0.93782265E-05
+     344    6      0.18354978E-01     -0.96757980E-04
+     344    7     -0.16594767E-03      0.94954444E-06
+     344    8      0.16271158E-01      0.33510094E-03
+     344    9      0.45013580E-05     -0.21851895E-05
+     344   10     -0.97224717E-05      0.19861458E-04
+     344   11     -0.63056396E-05     -0.42985677E-05
+     344   12     -0.68361585E-04      0.54452409E-04
+     344   13     -0.42782175E-04     -0.20548625E-03
+     345    1     -0.23674766E-04     -0.66473659E-04
+     345    2     -0.35515528E-04     -0.84107608E-04
+     345    3     -0.23076169E-05     -0.65234152E-06
+     345    4     -0.36146180E-05     -0.17075761E-05
+     345    5     -0.12083366E-04     -0.39371357E-05
+     345    6     -0.10580603E+00      0.25560079E-02
+     345    7     -0.14156907E-02      0.23792360E-05
+     345    8     -0.23164243E+00     -0.71750580E-03
+     345    9     -0.55146197E-05     -0.32161390E-05
+     345   10      0.36406900E-04      0.10576488E-03
+     345   11     -0.22709851E-05     -0.17147033E-06
+     345   12     -0.92002339E-05     -0.30545505E-04
+     345   13     -0.17290355E-03      0.68370387E-04
+     346    1     -0.62592881E-04      0.61932905E-04
+     346    2     -0.59802279E-05      0.13414548E-05
+     346    3     -0.14435752E-05      0.13612874E-04
+     346    4     -0.84250276E-05      0.43494064E-05
+     346    5     -0.31116818E-05      0.11729140E-05
+     346    6      0.18263563E-01     -0.49606904E-03
+     346    7     -0.32872347E-02      0.14903918E-04
+     346    8     -0.60974110E+00      0.85338425E-03
+     346    9     -0.16645222E-04      0.88500655E-05
+     346   10      0.17542249E-03     -0.85876650E-04
+     346   11     -0.67808237E-05     -0.12590000E-04
+     346   12      0.10271100E-04      0.28916898E-04
+     346   13      0.45403812E-04     -0.30525521E-03
+     347    1     -0.33559620E-04      0.51208020E-04
+     347    2      0.18202344E-04     -0.33751568E-05
+     347    3     -0.57225982E-05      0.91456507E-05
+     347    4      0.81195798E-05      0.81987620E-05
+     347    5     -0.49897133E-06      0.21155189E-05
+     347    6     -0.69948843E-01      0.20143560E-02
+     347    7      0.31810665E-02     -0.62804013E-05
+     347    8      0.72136036E+00     -0.12802526E-02
+     347    9      0.18638456E-04      0.20648761E-04
+     347   10     -0.15273944E-04     -0.18313404E-03
+     347   11      0.38229860E-05     -0.44644501E-05
+     347   12     -0.69651602E-04     -0.31732231E-04
+     347   13      0.17765927E-03     -0.19670212E-03
+     348    1      0.50714505E-04     -0.16948008E-04
+     348    2     -0.48106653E-06     -0.37666067E-06
+     348    3     -0.13373410E-04     -0.21938660E-04
+     348    4     -0.74044052E-04     -0.60102524E-04
+     348    5     -0.22962901E-04     -0.19924706E-04
+     348    6      0.28136585E-03     -0.10426221E-04
+     348    7      0.15070392E-01     -0.31522995E-03
+     348    8      0.49162393E-02     -0.22888641E-04
+     348    9     -0.17859036E-03     -0.13886102E-03
+     348   10     -0.82545524E-04      0.34110932E-04
+     348   11     -0.11180068E-03     -0.56720238E-04
+     348   12      0.12104291E-04     -0.40659433E-05
+     348   13     -0.18448599E-03      0.52087364E-04
+     349    1     -0.31992865E-04      0.84484094E-05
+     349    2     -0.16898616E-05     -0.86809800E-06
+     349    3     -0.24556919E-04     -0.27123795E-05
+     349    4      0.20857044E-03      0.13093169E-03
+     349    5      0.49346605E-04      0.25296845E-04
+     349    6      0.11196681E-04      0.54413461E-05
+     349    7     -0.11387807E-01      0.25757634E-03
+     349    8      0.65378082E-03     -0.25562685E-05
+     349    9      0.40156530E-03      0.25456476E-03
+     349   10      0.38834104E-04     -0.16899416E-04
+     349   11      0.70056984E-04      0.39895757E-04
+     349   12     -0.13511810E-04     -0.14588967E-05
+     349   13      0.13021405E-03     -0.28056365E-04
+     350    1      0.10125055E-04      0.97337344E-05
+     350    2      0.34203240E-06      0.15428745E-05
+     350    3      0.22302941E-04     -0.15953667E-04
+     350    4     -0.10326260E-03     -0.84223621E-04
+     350    5      0.79997538E-04      0.62570251E-04
+     350    6     -0.75509025E-05     -0.41868112E-05
+     350    7      0.45894617E-01     -0.13661661E-02
+     350    8     -0.62977560E-03      0.10668963E-04
+     350    9     -0.22596856E-04     -0.12926728E-03
+     350   10      0.87104963E-05     -0.10643825E-05
+     350   11     -0.55903724E-05      0.41199877E-04
+     350   12      0.36380907E-05      0.20495317E-05
+     350   13     -0.19836795E-04     -0.37066513E-04
+     351    1     -0.46432306E-04     -0.64492097E-04
+     351    2     -0.16322149E-04     -0.11277346E-04
+     351    3     -0.66217489E-05     -0.26909713E-05
+     351    4      0.92253682E-05      0.57214269E-05
+     351    5      0.13125287E-04      0.41118371E-05
+     351    6      0.15289292E-04      0.14356396E-04
+     351    7      0.50797873E-05      0.38924957E-05
+     351    8     -0.20679408E-03     -0.12000838E-03
+     351    9      0.35534463E-04      0.85211673E-05
+     351   10     -0.16350670E-03     -0.99633326E-04
+     351   11      0.80158718E-05      0.30523249E-05
+     351   12     -0.22790024E-04     -0.11643900E-04
+     351   13     -0.81990386E-04     -0.72457877E-04
+     352    1      0.41385061E-04      0.90341147E-06
+     352    2      0.18132083E-04      0.16239240E-05
+     352    3     -0.10794892E-03     -0.32482727E-04
+     352    4      0.25661600E-04      0.70951427E-05
+     352    5      0.33622836E-04      0.29100162E-04
+     352    6      0.27102119E-05     -0.13881558E-05
+     352    7     -0.64476546E-04     -0.20353740E-04
+     352    8      0.81578033E-05      0.74576629E-06
+     352    9      0.45953039E-03      0.12725381E-04
+     352   10      0.17583828E-03      0.71367382E-05
+     352   11     -0.35805483E-02     -0.10287881E-03
+     352   12     -0.11698943E-03     -0.25163690E-05
+     352   13     -0.46742020E-04      0.65938620E-05
+
+       **************
+
+
+       ! The    3 -th eigen state. The transition energy is:        0.24847887
+
+     The two digitals below indicate the importance of doing beyong TDA:
+
+     Components: X       1.00016;    Y      -0.00016
+
+     In the occ-virt project subspace the total Fxy is:
+
+     X       0.99999;    Y      -0.00009    total       0.99990  /      1.00000
+
+     The Chi_i_i is     Total          1               2               3
+
+                     0.51960560E-04    0.29558490E-04    0.31990125E-07    0.22370080E-04
+
+     Now is the components analysis of this transition.
+
+     First we print out only the principle components.
+
+     occ     virt       FX              FY
+
+     338    5       -0.27463       -0.00555
+     341    6        0.17575        0.00001
+     342    8        0.18107        0.00426
+     344    7        0.91235       -0.00563
+     352   12        0.12238        0.00272
+
+     Now for all the calculated particle and hole pairs :
+
+     occ     virt       FX              FY
+
+     338    1      0.21283001E-04      0.36014244E-05
+     338    2     -0.13932596E-04      0.85942841E-05
+     338    3      0.51370342E-05      0.45050678E-05
+     338    4     -0.26314345E-04     -0.21293219E-04
+     338    5     -0.27463424E+00     -0.55501942E-02
+     338    6      0.65024069E-05     -0.37752036E-05
+     338    7     -0.38243557E-05     -0.15699116E-05
+     338    8     -0.25761368E-04     -0.10276798E-04
+     338    9      0.68142678E-04      0.34797767E-04
+     338   10      0.10181914E-04      0.55493816E-05
+     338   11     -0.90126243E-06      0.84346975E-06
+     338   12      0.74734007E-05     -0.64433885E-05
+     338   13     -0.18691865E-04     -0.23630659E-05
+     339    1     -0.33977107E-05     -0.11412924E-05
+     339    2      0.26084007E-04      0.19466662E-04
+     339    3     -0.94826991E-05     -0.51006919E-05
+     339    4      0.12942398E-05     -0.18207908E-06
+     339    5      0.23026875E-02      0.39393727E-04
+     339    6     -0.58839166E-04     -0.33657964E-04
+     339    7     -0.26018082E-04     -0.84038726E-05
+     339    8      0.68493233E-06     -0.39328491E-06
+     339    9      0.13983583E-05      0.53784089E-07
+     339   10      0.74773212E-06      0.43651454E-06
+     339   11     -0.26025783E-04     -0.70710531E-05
+     339   12     -0.13387607E-03     -0.78973012E-04
+     339   13     -0.21191722E-05     -0.69478962E-06
+     340    1      0.96830381E-04      0.62130874E-04
+     340    2      0.61865047E-05      0.78166989E-06
+     340    3      0.79468383E-05     -0.49003908E-05
+     340    4      0.23360044E-04      0.11191279E-04
+     340    5      0.42534934E-02      0.36101700E-04
+     340    6      0.63833959E-03      0.14352333E-04
+     340    7     -0.69084274E-05      0.34563054E-05
+     340    8      0.60204616E-05      0.61256320E-05
+     340    9     -0.11059936E-04     -0.74572486E-06
+     340   10     -0.12489002E-03     -0.80167075E-04
+     340   11     -0.52426219E-05      0.29023007E-05
+     340   12      0.32487914E-05      0.20531198E-05
+     340   13     -0.71712094E-04     -0.42251619E-04
+     341    1      0.45266042E-05      0.22403050E-05
+     341    2      0.23908161E-03      0.14186397E-03
+     341    3      0.33418726E-04      0.26465331E-04
+     341    4      0.91905803E-05     -0.13793981E-04
+     341    5      0.14285819E-03      0.10028090E-04
+     341    6      0.17575412E+00      0.56838806E-05
+     341    7      0.14302808E-02      0.14324630E-04
+     341    8      0.36904788E-02      0.84901721E-04
+     341    9      0.92551956E-05     -0.18303982E-04
+     341   10     -0.53865901E-05     -0.54340834E-05
+     341   11     -0.17483974E-04      0.41933852E-05
+     341   12     -0.56102451E-04     -0.42472247E-04
+     341   13      0.13198023E-04      0.63320430E-05
+     342    1     -0.10113704E-03     -0.49571514E-04
+     342    2     -0.14058289E-04     -0.15650466E-05
+     342    3      0.46865280E-06      0.11441951E-06
+     342    4     -0.45991604E-04     -0.14925268E-04
+     342    5     -0.70561068E-02      0.11514505E-03
+     342    6     -0.60272571E-02      0.21117448E-05
+     342    7     -0.26369450E-02     -0.93382288E-05
+     342    8      0.18107175E+00      0.42556365E-02
+     342    9     -0.24377934E-04     -0.54489772E-05
+     342   10      0.26498571E-05      0.30827189E-05
+     342   11      0.10059246E-05      0.13884927E-05
+     342   12      0.22595433E-05     -0.29795559E-05
+     342   13      0.13535159E-03      0.77360086E-04
+     343    1     -0.68736139E-04     -0.12369431E-05
+     343    2     -0.14639366E-04      0.19217179E-04
+     343    3     -0.24640957E-05      0.84120329E-06
+     343    4     -0.16889915E-03     -0.87800934E-04
+     343    5     -0.33779682E-01      0.75068938E-03
+     343    6     -0.10448551E-02     -0.16428872E-04
+     343    7      0.26952314E-02      0.54306734E-05
+     343    8      0.35129738E-02      0.46999542E-04
+     343    9     -0.64135327E-04     -0.28998306E-04
+     343   10      0.29089404E-04     -0.10676221E-04
+     343   11     -0.20067298E-05      0.11316268E-05
+     343   12      0.33433128E-04     -0.41457756E-04
+     343   13     -0.15864194E-04      0.38957259E-04
+     344    1      0.50741770E-05      0.37241100E-05
+     344    2     -0.22221473E-04     -0.52540694E-05
+     344    3     -0.73587664E-04     -0.41832270E-04
+     344    4     -0.10230273E-05      0.13808341E-04
+     344    5      0.13167322E-02      0.22945646E-05
+     344    6      0.90870519E-02     -0.15410549E-03
+     344    7      0.91235148E+00     -0.56347345E-02
+     344    8     -0.44113315E-02      0.18587926E-04
+     344    9      0.33029564E-05      0.89194996E-05
+     344   10     -0.95550111E-05      0.27659127E-05
+     344   11     -0.72192083E-04     -0.48202666E-04
+     344   12     -0.17208910E-04     -0.24155081E-04
+     344   13     -0.14872686E-04      0.19381244E-04
+     345    1     -0.16108215E-04      0.95734749E-05
+     345    2      0.15543910E-05      0.43723574E-05
+     345    3     -0.10686805E-03     -0.70971528E-04
+     345    4     -0.42893263E-05     -0.27743522E-05
+     345    5     -0.84931160E-05     -0.16773140E-05
+     345    6     -0.12065987E-02      0.39404829E-04
+     345    7     -0.72556499E-01      0.16250494E-02
+     345    8     -0.90481342E-04     -0.65098960E-05
+     345    9     -0.69699803E-06      0.99795077E-07
+     345   10      0.14910586E-05     -0.10831798E-04
+     345   11      0.19594913E-03      0.11610075E-03
+     345   12     -0.16785196E-04      0.75336307E-06
+     345   13     -0.63657469E-05      0.61546616E-05
+     346    1     -0.48649043E-04      0.40278475E-05
+     346    2     -0.11995128E-05     -0.27511445E-06
+     346    3     -0.17880754E-04     -0.60751863E-05
+     346    4      0.98631315E-04      0.41324673E-04
+     346    5      0.50799326E-04      0.24130127E-04
+     346    6     -0.18465071E-03      0.79956169E-05
+     346    7     -0.57917996E-02      0.15695538E-03
+     346    8      0.10443676E-04      0.16976889E-05
+     346    9      0.19355370E-03      0.76891218E-04
+     346   10      0.88189580E-04     -0.62510154E-05
+     346   11      0.68061135E-05      0.86034376E-05
+     346   12     -0.15446064E-04      0.82305617E-06
+     346   13      0.16919172E-03     -0.22368525E-04
+     347    1     -0.47373923E-04      0.21296448E-04
+     347    2      0.61349680E-05      0.13192567E-05
+     347    3     -0.47903473E-04     -0.22396069E-04
+     347    4     -0.15187505E-04     -0.10208217E-04
+     347    5     -0.10725225E-04     -0.56514698E-05
+     347    6     -0.33990355E-03      0.17604451E-04
+     347    7     -0.25604004E-01      0.70425097E-03
+     347    8      0.27440358E-03      0.59268452E-06
+     347    9     -0.27382776E-04     -0.18579129E-04
+     347   10      0.77430528E-04     -0.36201933E-04
+     347   11      0.64081888E-04      0.39553041E-04
+     347   12     -0.28301038E-04      0.68419694E-05
+     347   13      0.16456847E-03     -0.82863291E-04
+     348    1      0.88048404E-04      0.11335413E-04
+     348    2      0.54115893E-04      0.28413637E-04
+     348    3      0.82158269E-05      0.49983541E-06
+     348    4      0.46358231E-05      0.66163709E-05
+     348    5      0.34477331E-05      0.20040838E-05
+     348    6      0.13476524E-01     -0.55274353E-03
+     348    7      0.22780424E-03     -0.67352227E-05
+     348    8      0.18473783E-02     -0.28014055E-04
+     348    9      0.41329321E-05      0.17847698E-04
+     348   10     -0.14727860E-03     -0.20906349E-04
+     348   11     -0.73412528E-05     -0.41903802E-05
+     348   12      0.35336227E-04      0.11898282E-04
+     348   13     -0.33026989E-03     -0.54075274E-04
+     349    1     -0.68416977E-04     -0.42520969E-04
+     349    2     -0.40902787E-05      0.27149318E-06
+     349    3     -0.15668108E-04      0.41240059E-05
+     349    4      0.13772631E-04      0.72363160E-05
+     349    5      0.54240833E-05      0.40456404E-05
+     349    6      0.79207173E-05      0.16210717E-05
+     349    7     -0.18908550E-03      0.81793841E-05
+     349    8      0.30239454E-01     -0.45587295E-03
+     349    9      0.29614428E-04      0.11914106E-04
+     349   10      0.20153074E-03      0.10911485E-03
+     349   11      0.11131581E-04     -0.68120731E-05
+     349   12     -0.12188129E-04     -0.76207583E-05
+     349   13     -0.12642651E-03     -0.48472098E-04
+     350    1     -0.57502578E-04     -0.14070565E-04
+     350    2     -0.26264230E-05     -0.60345181E-05
+     350    3      0.31535221E-04     -0.14848032E-04
+     350    4     -0.11189248E-04     -0.75016708E-05
+     350    5     -0.13330952E-04     -0.82756191E-05
+     350    6     -0.79895674E-05     -0.20923052E-05
+     350    7      0.15045353E-03     -0.11000726E-04
+     350    8     -0.71233375E-01      0.15660668E-02
+     350    9     -0.45810952E-04     -0.12036751E-04
+     350   10     -0.75219907E-04     -0.47045912E-04
+     350   11     -0.38064866E-04      0.17959666E-04
+     350   12      0.42022606E-05      0.51303263E-05
+     350   13      0.45810419E-03      0.22799810E-03
+     351    1      0.11455680E-04     -0.31649496E-05
+     351    2     -0.41280327E-05      0.17248414E-05
+     351    3     -0.67376617E-05     -0.92633562E-06
+     351    4     -0.11152468E-04     -0.14379658E-04
+     351    5      0.27883522E-04      0.18047144E-04
+     351    6     -0.39906404E-05      0.15972907E-05
+     351    7      0.40971679E-05     -0.20174552E-06
+     351    8      0.25026379E-04      0.59423370E-05
+     351    9      0.15024479E-04     -0.55406492E-06
+     351   10     -0.11172394E-04      0.32214683E-05
+     351   11      0.10047991E-04      0.25509249E-05
+     351   12     -0.56684320E-05      0.39789622E-05
+     351   13     -0.39856117E-04     -0.53140019E-05
+     352    1      0.51382086E-04      0.41409776E-04
+     352    2     -0.76133478E-04     -0.35132483E-04
+     352    3     -0.25702787E-05      0.22081746E-05
+     352    4      0.23465583E-04     -0.72684504E-05
+     352    5     -0.14314043E-04      0.95076615E-05
+     352    6     -0.16396859E-04     -0.63034219E-05
+     352    7      0.35159623E-05      0.80134421E-06
+     352    8      0.10798669E-04      0.36837414E-05
+     352    9      0.21652772E-03      0.61958335E-05
+     352   10      0.84624241E-03     -0.12765046E-04
+     352   11     -0.10970175E-02     -0.21134758E-04
+     352   12      0.12238404E+00      0.27172310E-02
+     352   13     -0.64900668E-04     -0.60674612E-04
+
+       **************
+
+
+       ! The    4 -th eigen state. The transition energy is:        0.24323425
+
+     The two digitals below indicate the importance of doing beyong TDA:
+
+     Components: X       1.00004;    Y      -0.00004
+
+     In the occ-virt project subspace the total Fxy is:
+
+     X       0.99995;    Y      -0.00002    total       0.99994  /      1.00000
+
+     The Chi_i_i is     Total          1               2               3
+
+                     0.16174707E-03    0.85655061E-05    0.14787666E-03    0.53049002E-05
+
+     Now is the components analysis of this transition.
+
+     First we print out only the principle components.
+
+     occ     virt       FX              FY
+
+     341    5       -0.78949        0.00285
+     343    6        0.54100        0.00164
+     347    8       -0.26649        0.00007
+
+     Now for all the calculated particle and hole pairs :
+
+     occ     virt       FX              FY
+
+     338    1      0.31437408E-05      0.13987938E-04
+     338    2     -0.84343427E-04     -0.60833183E-04
+     338    3      0.32610668E-05     -0.59665251E-06
+     338    4     -0.12219144E-04      0.23273363E-05
+     338    5     -0.26995242E-03     -0.85010516E-05
+     338    6      0.55669686E-04      0.37268783E-04
+     338    7      0.46126489E-06     -0.23181536E-06
+     338    8     -0.39612159E-05     -0.83295413E-05
+     338    9     -0.29231311E-05      0.12264923E-05
+     338   10      0.39476622E-05      0.23059830E-05
+     338   11      0.22542846E-05     -0.50061845E-06
+     338   12      0.58091686E-04      0.41600198E-04
+     338   13      0.31792776E-05     -0.96338413E-05
+     339    1      0.51557072E-06     -0.41980465E-06
+     339    2      0.10748171E-04     -0.11876568E-05
+     339    3     -0.41176645E-05     -0.28215594E-05
+     339    4      0.37774820E-04      0.21522710E-04
+     339    5      0.60295351E-01      0.16766488E-02
+     339    6     -0.35379226E-05      0.31623155E-06
+     339    7     -0.11768131E-05     -0.91250618E-05
+     339    8     -0.58811419E-06      0.65278374E-06
+     339    9      0.19051406E-04      0.10941476E-04
+     339   10     -0.16056280E-06     -0.89618609E-07
+     339   11     -0.43830870E-05     -0.14292050E-04
+     339   12     -0.10564700E-04      0.22354795E-05
+     339   13      0.13272361E-05      0.29840770E-06
+     340    1      0.13823719E-04     -0.44974109E-05
+     340    2     -0.19736348E-05      0.20883049E-05
+     340    3      0.38232496E-04      0.31049401E-04
+     340    4      0.47409515E-05      0.44673147E-05
+     340    5      0.26416010E-02      0.50936484E-04
+     340    6     -0.56483336E-05      0.59112344E-07
+     340    7     -0.63637145E-04     -0.41737475E-04
+     340    8      0.53480771E-05     -0.84029491E-06
+     340    9     -0.15411338E-05     -0.95820753E-05
+     340   10     -0.19536704E-04      0.50333014E-05
+     340   11     -0.40970461E-04     -0.26475513E-04
+     340   12     -0.24468437E-06     -0.77675865E-06
+     340   13     -0.53477457E-05      0.10529787E-05
+     341    1      0.15730328E-05      0.39496953E-06
+     341    2      0.14327824E-04     -0.54983969E-05
+     341    3      0.26430465E-04      0.13895163E-04
+     341    4      0.10184349E-05      0.18181167E-04
+     341    5     -0.78948939E+00      0.28498287E-02
+     341    6     -0.34319174E-03     -0.49189127E-04
+     341    7      0.14344855E-02     -0.60703594E-05
+     341    8     -0.96702518E-04      0.60520035E-06
+     341    9     -0.38702497E-04      0.89603940E-06
+     341   10     -0.52161216E-05      0.10742045E-05
+     341   11      0.10754903E-04     -0.83099972E-05
+     341   12     -0.17163444E-04      0.42670540E-05
+     341   13      0.46117507E-06      0.94014236E-06
+     342    1      0.11099104E-04     -0.12334942E-05
+     342    2      0.69245325E-05     -0.37477346E-05
+     342    3      0.10261084E-04      0.30960390E-05
+     342    4     -0.92609176E-05     -0.22176635E-04
+     342    5      0.86349591E-02     -0.50673025E-04
+     342    6     -0.23910943E-03      0.16965653E-05
+     342    7     -0.20073255E-01     -0.37557371E-03
+     342    8     -0.61545828E-03     -0.19519861E-04
+     342    9     -0.10613661E-06     -0.11537154E-04
+     342   10      0.44453329E-06     -0.12522107E-05
+     342   11      0.79837773E-05      0.21501026E-05
+     342   12     -0.50808509E-05      0.25129669E-05
+     342   13      0.22322880E-05     -0.24797841E-05
+     343    1      0.15091600E-04     -0.36360671E-04
+     343    2      0.22863835E-04     -0.14940988E-04
+     343    3      0.20741430E-05     -0.84524572E-06
+     343    4      0.80626626E-05     -0.55648289E-06
+     343    5      0.68848861E-02     -0.45070282E-04
+     343    6      0.54100199E+00      0.16392714E-02
+     343    7      0.10241781E-03      0.90703641E-06
+     343    8     -0.22958863E-03     -0.13342615E-04
+     343    9      0.98755986E-05     -0.19594000E-05
+     343   10     -0.22168703E-04      0.14655265E-04
+     343   11      0.26877770E-05     -0.76117514E-06
+     343   12     -0.58324293E-04      0.26551094E-04
+     343   13      0.47499347E-04     -0.26352893E-04
+     344    1      0.45774484E-04      0.21826748E-04
+     344    2     -0.87031154E-05     -0.22621741E-04
+     344    3     -0.93096960E-06      0.13350257E-05
+     344    4      0.20650336E-04     -0.65141315E-05
+     344    5      0.59560643E-04     -0.13808315E-05
+     344    6     -0.17471880E-02      0.13085915E-04
+     344    7      0.12734717E-02      0.11445528E-04
+     344    8      0.69048242E-01      0.14108171E-02
+     344    9      0.10922496E-04     -0.31234941E-05
+     344   10     -0.27138426E-04     -0.19894859E-04
+     344   11     -0.15402882E-04      0.29653057E-05
+     344   12     -0.19787969E-04      0.12067321E-04
+     344   13     -0.13223160E-03     -0.11387409E-03
+     345    1     -0.62670711E-04     -0.56368905E-04
+     345    2     -0.61287891E-05     -0.11649123E-04
+     345    3     -0.20627197E-04      0.45909235E-05
+     345    4     -0.80956542E-06     -0.59689417E-07
+     345    5      0.29628614E-05     -0.16188446E-05
+     345    6      0.59069397E-02     -0.13272344E-03
+     345    7     -0.32215830E-03      0.60876607E-05
+     345    8      0.33404462E-01      0.15832596E-03
+     345    9      0.13262702E-05     -0.47024700E-06
+     345   10      0.15197801E-03      0.10071486E-03
+     345   11      0.13644956E-04     -0.43481593E-05
+     345   12      0.91676866E-05     -0.66048074E-05
+     345   13     -0.20975889E-03     -0.11010542E-03
+     346    1      0.30749870E-04     -0.31938270E-05
+     346    2      0.66246390E-05      0.37030159E-05
+     346    3      0.47344294E-05      0.66933766E-06
+     346    4     -0.18765837E-04      0.53618215E-05
+     346    5     -0.62070023E-05      0.12051597E-05
+     346    6     -0.89496256E-03      0.25921332E-04
+     346    7     -0.22341805E-03     -0.47334904E-07
+     346    8     -0.51327818E-01     -0.81176756E-05
+     346    9     -0.44005544E-04      0.11779365E-04
+     346   10     -0.79521380E-04     -0.10380332E-04
+     346   11      0.57255799E-05     -0.36372469E-05
+     346   12      0.33973730E-04      0.11834364E-04
+     346   13     -0.15077607E-03     -0.37105183E-05
+     347    1      0.11896855E-04     -0.34075059E-04
+     347    2     -0.51124290E-05     -0.94474247E-06
+     347    3      0.32599249E-05     -0.15015145E-06
+     347    4     -0.16578480E-05      0.16484130E-05
+     347    5      0.58518714E-06      0.21109575E-06
+     347    6      0.28981801E-02     -0.71685404E-04
+     347    7     -0.10972314E-02     -0.76769137E-06
+     347    8     -0.26649157E+00      0.67339208E-04
+     347    9     -0.26305581E-05      0.37119010E-05
+     347   10     -0.13569075E-03     -0.93230223E-05
+     347   11      0.88410153E-05     -0.24652315E-05
+     347   12      0.19550255E-04     -0.11651801E-04
+     347   13     -0.20290780E-03      0.40359684E-04
+     348    1     -0.33408322E-04      0.11284539E-04
+     348    2      0.60400629E-06     -0.78505068E-07
+     348    3     -0.94167716E-05     -0.24529855E-05
+     348    4     -0.53609063E-04     -0.35154711E-04
+     348    5     -0.13993084E-04     -0.84944792E-05
+     348    6      0.21942990E-03     -0.58492880E-05
+     348    7     -0.11718359E-02      0.22718674E-04
+     348    8     -0.73829171E-03      0.37130676E-05
+     348    9     -0.16537484E-03     -0.10916859E-03
+     348   10      0.53014602E-04     -0.17814652E-04
+     348   11      0.61350034E-05      0.49965029E-05
+     348   12     -0.69600490E-05      0.29523968E-05
+     348   13      0.11708144E-03     -0.42235473E-04
+     349    1     -0.20838552E-04      0.44261808E-05
+     349    2      0.20736787E-05     -0.89567474E-06
+     349    3     -0.61760683E-04     -0.43710434E-04
+     349    4      0.37946776E-05      0.21952892E-05
+     349    5      0.12304596E-05     -0.48940854E-06
+     349    6     -0.18188804E-05      0.14207177E-05
+     349    7     -0.13000275E-01      0.27435553E-03
+     349    8      0.17799164E-02     -0.68955858E-05
+     349    9      0.59310587E-05      0.72807625E-05
+     349   10      0.14968889E-04     -0.50877957E-05
+     349   11      0.84119794E-04      0.57619204E-04
+     349   12     -0.39650039E-05      0.44548531E-06
+     349   13      0.71043923E-04     -0.15149703E-04
+     350    1      0.26467344E-04     -0.42653591E-05
+     350    2     -0.67211706E-05      0.20639112E-05
+     350    3      0.12038767E-03      0.93885758E-04
+     350    4     -0.25868734E-05     -0.20796253E-05
+     350    5      0.38674929E-06      0.95369026E-06
+     350    6      0.20965943E-05     -0.12345436E-05
+     350    7      0.32412563E-03     -0.92180984E-05
+     350    8      0.18386717E-03     -0.44210537E-05
+     350    9     -0.91126725E-06     -0.24292285E-04
+     350   10     -0.59956314E-05      0.14805189E-05
+     350   11     -0.11201259E-03     -0.94525670E-04
+     350   12      0.48002313E-05     -0.84936335E-06
+     350   13     -0.28838058E-04      0.13509621E-05
+     351    1     -0.21965248E-04     -0.46215793E-05
+     351    2     -0.46921086E-04     -0.29307061E-04
+     351    3      0.27695726E-05     -0.12246548E-05
+     351    4     -0.18219715E-04      0.32240604E-05
+     351    5      0.20423150E-05     -0.92562495E-06
+     351    6     -0.53029328E-05     -0.59801266E-05
+     351    7     -0.29539517E-05      0.13430150E-05
+     351    8     -0.31374794E-05      0.63482397E-05
+     351    9     -0.24312846E-04      0.25241435E-05
+     351   10      0.11952694E-04     -0.28117368E-05
+     351   11     -0.24024645E-05      0.13081539E-05
+     351   12     -0.38494712E-04     -0.27622143E-04
+     351   13      0.18601681E-04     -0.81100690E-05
+     352    1      0.28398983E-04     -0.61489122E-05
+     352    2      0.11916803E-04     -0.25064454E-05
+     352    3      0.89855425E-05      0.40713397E-05
+     352    4      0.13482979E-03      0.91222038E-04
+     352    5     -0.16415518E-04     -0.25149325E-04
+     352    6      0.56192112E-05     -0.38045650E-06
+     352    7      0.49874707E-06      0.39334383E-05
+     352    8     -0.17667315E-05      0.71448399E-06
+     352    9     -0.66446464E-02     -0.18165183E-03
+     352   10     -0.44190857E-04      0.19394726E-05
+     352   11      0.66928483E-03      0.21455539E-04
+     352   12      0.11941681E-03      0.54233028E-05
+     352   13     -0.46980941E-04      0.11713458E-04
+
+       **************
+
+
+       ! The    5 -th eigen state. The transition energy is:        0.24264938
+
+     The two digitals below indicate the importance of doing beyong TDA:
+
+     Components: X       1.00002;    Y      -0.00002
+
+     In the occ-virt project subspace the total Fxy is:
+
+     X       0.99997;    Y      -0.00000    total       0.99997  /      1.00000
+
+     The Chi_i_i is     Total          1               2               3
+
+                     0.31389756E-05    0.13571695E-05    0.10290863E-08    0.17807770E-05
+
+     Now is the components analysis of this transition.
+
+     First we print out only the principle components.
+
+     occ     virt       FX              FY
+
+     348    8        0.99860       -0.00157
+
+     Now for all the calculated particle and hole pairs :
+
+     occ     virt       FX              FY
+
+     338    1      0.12200933E-05     -0.87598896E-05
+     338    2     -0.15164441E-05      0.29739700E-05
+     338    3     -0.17110450E-04     -0.92647409E-05
+     338    4     -0.17080077E-05     -0.14397499E-05
+     338    5     -0.14815611E-02     -0.47521247E-04
+     338    6      0.70168314E-06     -0.16509756E-05
+     338    7      0.27388768E-04      0.14947969E-04
+     338    8     -0.94747692E-05     -0.27855234E-05
+     338    9     -0.24673034E-05     -0.14075907E-05
+     338   10      0.23736901E-05      0.12930156E-05
+     338   11     -0.69513556E-06     -0.30011644E-06
+     338   12      0.99973620E-06     -0.21625112E-05
+     338   13     -0.91468894E-05      0.26144084E-06
+     339    1      0.18847513E-04      0.10449040E-04
+     339    2      0.19062365E-05      0.17033432E-05
+     339    3      0.16517032E-05      0.25184240E-05
+     339    4      0.39753881E-06     -0.49498111E-06
+     339    5      0.71143319E-04      0.20516712E-05
+     339    6      0.11268661E-05      0.61841102E-06
+     339    7     -0.11834946E-04     -0.36067800E-05
+     339    8     -0.21459014E-04     -0.11751886E-04
+     339    9      0.21160121E-06     -0.19241226E-06
+     339   10     -0.10270410E-04     -0.54591366E-05
+     339   11     -0.80496558E-05      0.35229614E-05
+     339   12      0.16993974E-05      0.41680928E-06
+     339   13      0.16714510E-04      0.90618789E-05
+     340    1      0.10072449E-05      0.14133841E-05
+     340    2     -0.44325500E-04     -0.25242116E-04
+     340    3      0.21039162E-05     -0.30824764E-05
+     340    4      0.46907131E-05      0.23682872E-05
+     340    5     -0.29213520E-03     -0.60302160E-05
+     340    6      0.12565115E-02      0.42860138E-04
+     340    7     -0.11674611E-05      0.19362114E-05
+     340    8      0.14796425E-05      0.11498302E-05
+     340    9     -0.59367695E-05      0.20417098E-05
+     340   10     -0.16567716E-06     -0.12774759E-05
+     340   11      0.29000269E-06      0.36876264E-06
+     340   12     -0.13089337E-04     -0.64234817E-05
+     340   13      0.15955850E-05      0.97251074E-06
+     341    1     -0.82216144E-04     -0.44721933E-04
+     341    2     -0.52305779E-05     -0.15305254E-05
+     341    3      0.67651116E-05     -0.54401565E-05
+     341    4      0.10047169E-05     -0.29656271E-05
+     341    5     -0.39584096E-03      0.10209864E-05
+     341    6     -0.18072520E-02     -0.21514241E-04
+     341    7     -0.22462054E-03     -0.49817134E-05
+     341    8      0.53151311E-03      0.19955438E-04
+     341    9      0.13775943E-05     -0.34721603E-05
+     341   10      0.70530955E-05      0.36137096E-05
+     341   11     -0.61502976E-05     -0.20338054E-06
+     341   12      0.16838465E-06     -0.11330150E-05
+     341   13     -0.80137437E-04     -0.44245772E-04
+     342    1      0.67915992E-05      0.41144961E-05
+     342    2      0.76707956E-04      0.43105295E-04
+     342    3     -0.19562482E-05      0.19496588E-05
+     342    4     -0.55949005E-05      0.11026163E-04
+     342    5      0.32718613E-04      0.26076502E-05
+     342    6      0.40936737E-01      0.40361747E-03
+     342    7     -0.73297859E-05     -0.20760961E-06
+     342    8     -0.19063283E-03     -0.85186941E-05
+     342    9     -0.35226356E-05      0.55121931E-05
+     342   10     -0.12922500E-05     -0.13538427E-06
+     342   11     -0.12032014E-05      0.10950056E-05
+     342   12     -0.23410016E-05     -0.21842073E-05
+     342   13     -0.29094512E-05     -0.21719074E-05
+     343    1     -0.12955689E-04      0.14874893E-04
+     343    2     -0.19594622E-05      0.60560951E-05
+     343    3      0.70201019E-04      0.37946658E-04
+     343    4      0.69564629E-05      0.45505063E-05
+     343    5      0.35815278E-02     -0.37477083E-04
+     343    6      0.50615870E-03     -0.31469216E-05
+     343    7     -0.87534742E-02     -0.12570187E-03
+     343    8     -0.87754414E-04     -0.77766210E-05
+     343    9      0.33950684E-05      0.22496359E-05
+     343   10      0.65227445E-05     -0.32770155E-05
+     343   11      0.26685407E-04      0.14740125E-04
+     343   12      0.51269076E-05     -0.11256396E-04
+     343   13      0.19317874E-05      0.20805474E-04
+     344    1     -0.52455005E-06      0.43839809E-06
+     344    2     -0.30823776E-05      0.15121411E-04
+     344    3      0.15932145E-05      0.11635458E-05
+     344    4      0.96882113E-04      0.54474084E-04
+     344    5     -0.46779362E-02      0.91143222E-04
+     344    6      0.55477935E-03     -0.78464845E-05
+     344    7     -0.59725962E-03     -0.35929495E-05
+     344    8      0.10806852E-03     -0.10969087E-05
+     344    9      0.32632933E-04      0.18493419E-04
+     344   10     -0.11095377E-05     -0.34390403E-06
+     344   11     -0.11924038E-05     -0.89127900E-06
+     344   12      0.18046272E-05     -0.12064269E-04
+     344   13     -0.89672553E-05      0.21077831E-04
+     345    1     -0.65701822E-05      0.69762997E-05
+     345    2      0.22576025E-05      0.10619902E-04
+     345    3     -0.18139044E-05     -0.25422587E-05
+     345    4      0.34878975E-04      0.18675219E-04
+     345    5      0.12127595E-03      0.65727438E-04
+     345    6     -0.26807687E-02      0.55681167E-04
+     345    7      0.29989382E-02     -0.31533757E-04
+     345    8      0.57106242E-03      0.23921666E-05
+     345    9      0.89581267E-04      0.47772218E-04
+     345   10      0.56054273E-05     -0.91587491E-05
+     345   11     -0.36619522E-05     -0.11931898E-05
+     345   12     -0.43232748E-05      0.23514456E-05
+     345   13      0.12920582E-04     -0.59224284E-05
+     346    1      0.15958906E-05     -0.23583503E-05
+     346    2      0.29968544E-06     -0.34473986E-07
+     346    3     -0.50913107E-06     -0.91923735E-06
+     346    4     -0.30661050E-04     -0.18045960E-04
+     346    5     -0.27025676E-05     -0.19025793E-05
+     346    6     -0.22331738E-03      0.56983578E-05
+     346    7     -0.24757046E-01      0.37747537E-03
+     346    8      0.66872710E-02      0.71430661E-05
+     346    9     -0.68067398E-04     -0.39550907E-04
+     346   10     -0.96979580E-05      0.90813238E-06
+     346   11      0.97667755E-04      0.54166738E-04
+     346   12     -0.32404038E-07     -0.55172284E-06
+     346   13      0.26837461E-05      0.12291700E-04
+     347    1     -0.29787921E-05      0.40579005E-05
+     347    2      0.89657808E-06      0.12240560E-05
+     347    3      0.23373318E-05      0.19059375E-05
+     347    4     -0.11142031E-03     -0.60640673E-04
+     347    5     -0.80243351E-06     -0.61903218E-06
+     347    6     -0.77182209E-03      0.21077367E-04
+     347    7      0.55495896E-02     -0.86940760E-04
+     347    8     -0.18597718E-02     -0.77866400E-06
+     347    9     -0.25419843E-03     -0.13838046E-03
+     347   10      0.39056278E-05     -0.17136032E-05
+     347   11     -0.16670748E-04     -0.87875657E-05
+     347   12     -0.24257449E-05      0.48150259E-05
+     347   13      0.72832590E-05     -0.15171341E-04
+     348    1      0.43943283E-04      0.13295216E-04
+     348    2      0.10372365E-04     -0.31138977E-06
+     348    3      0.31693586E-06      0.10373827E-05
+     348    4     -0.11801145E-05      0.23417197E-05
+     348    5     -0.18958486E-06      0.61934719E-06
+     348    6      0.28711127E-02     -0.13021905E-03
+     348    7      0.40255431E-02     -0.86997580E-06
+     348    8      0.99859917E+00     -0.15710463E-02
+     348    9     -0.33941757E-05      0.65066123E-05
+     348   10     -0.13829945E-03     -0.62491937E-04
+     348   11      0.72146994E-05      0.46903575E-05
+     348   12     -0.90507133E-05     -0.34559668E-06
+     348   13     -0.38309838E-04     -0.98197273E-05
+     349    1     -0.56394675E-05     -0.47588920E-05
+     349    2      0.17393663E-04      0.10014389E-04
+     349    3     -0.16870316E-05      0.18615295E-05
+     349    4     -0.10273334E-04     -0.84907011E-05
+     349    5     -0.48459252E-06      0.54909160E-06
+     349    6     -0.78804920E-04     -0.43184490E-04
+     349    7      0.25568226E-04     -0.15415534E-05
+     349    8     -0.14079455E-01      0.44727529E-04
+     349    9     -0.18155158E-04     -0.16142108E-04
+     349   10      0.56533894E-05      0.59461836E-05
+     349   11      0.12407687E-05     -0.32893434E-05
+     349   12      0.44271154E-04      0.23459425E-04
+     349   13      0.26407846E-04      0.22810192E-04
+     350    1      0.52299050E-05      0.15687233E-05
+     350    2     -0.36880372E-04     -0.20575373E-04
+     350    3      0.22611348E-05     -0.48589044E-05
+     350    4      0.36001141E-06      0.25669213E-05
+     350    5     -0.12791179E-04     -0.11784348E-04
+     350    6      0.68883203E-04      0.37896534E-04
+     350    7     -0.14239495E-03      0.42996742E-05
+     350    8      0.60273776E-02     -0.60978645E-04
+     350    9     -0.21686468E-04      0.16413747E-05
+     350   10      0.11891667E-05      0.64759662E-06
+     350   11     -0.24218758E-05      0.50118354E-05
+     350   12     -0.10317286E-04     -0.55272715E-05
+     350   13     -0.11249588E-04      0.13410725E-05
+     351    1      0.96588276E-05      0.93131363E-05
+     351    2     -0.22940658E-06      0.12164600E-05
+     351    3      0.47890621E-04      0.26771029E-04
+     351    4      0.17748294E-05      0.45796466E-06
+     351    5      0.22167936E-05      0.18996592E-05
+     351    6     -0.28391220E-06      0.31140453E-06
+     351    7     -0.67286187E-04     -0.36571473E-04
+     351    8      0.17413070E-04      0.11177950E-04
+     351    9      0.71382147E-05      0.45333203E-05
+     351   10      0.54168207E-05      0.73796145E-05
+     351   11     -0.47943727E-04     -0.27074860E-04
+     351   12     -0.89009765E-06      0.14701203E-05
+     351   13     -0.10306111E-04      0.86766430E-06
+     352    1     -0.72478003E-05     -0.62371934E-05
+     352    2      0.46413978E-05      0.27873611E-05
+     352    3      0.49061692E-05      0.92102875E-06
+     352    4      0.25262922E-05     -0.36698894E-05
+     352    5     -0.16652236E-05      0.26673916E-05
+     352    6      0.28729350E-05      0.14526929E-05
+     352    7      0.80638409E-05      0.36333202E-05
+     352    8     -0.89437495E-04     -0.48630263E-04
+     352    9      0.18369009E-04      0.65266295E-06
+     352   10      0.26059395E-02      0.76459843E-04
+     352   11     -0.50831522E-03     -0.15951113E-04
+     352   12      0.56505043E-03      0.19116781E-04
+     352   13     -0.57290375E-04     -0.29230736E-04
+
+       **************
+
+
+       ! The    6 -th eigen state. The transition energy is:        0.25015012
+
+     The two digitals below indicate the importance of doing beyong TDA:
+
+     Components: X       1.00085;    Y      -0.00085
+
+     In the occ-virt project subspace the total Fxy is:
+
+     X       0.99994;    Y      -0.00032    total       0.99962  /      1.00000
+
+     The Chi_i_i is     Total          1               2               3
+
+                     0.24685540E+00    0.13263034E+00    0.14561842E-04    0.11421050E+00
+
+     Now is the components analysis of this transition.
+
+     First we print out only the principle components.
+
+     occ     virt       FX              FY
+
+     340    5       -0.39130       -0.00203
+     341    7       -0.16831       -0.00113
+     342    5        0.52034       -0.01027
+     343    8       -0.29944       -0.00442
+     344    6       -0.66507        0.01315
+
+     Now for all the calculated particle and hole pairs :
+
+     occ     virt       FX              FY
+
+     338    1     -0.38991916E-03     -0.32810911E-03
+     338    2      0.36560159E-04      0.60217915E-05
+     338    3      0.17111506E-05      0.19041755E-05
+     338    4      0.14155089E-04      0.50706585E-05
+     338    5     -0.57678557E-02     -0.97191430E-04
+     338    6     -0.23141177E-04     -0.13545123E-04
+     338    7     -0.93808936E-05     -0.51189235E-05
+     338    8      0.48572999E-03      0.29690242E-03
+     338    9     -0.79210394E-05     -0.58914947E-05
+     338   10     -0.22985796E-03     -0.12526786E-03
+     338   11     -0.21110558E-05     -0.65968730E-06
+     338   12     -0.22815936E-04     -0.90948401E-05
+     338   13      0.22873966E-03      0.19183656E-03
+     339    1     -0.90052902E-06      0.56302627E-08
+     339    2     -0.20628747E-04     -0.46097557E-05
+     339    3      0.19269076E-03      0.12747650E-03
+     339    4     -0.63391155E-05     -0.13096174E-04
+     339    5      0.74328538E-03      0.10428428E-04
+     339    6      0.10100942E-04      0.66263615E-05
+     339    7      0.44381725E-03      0.27847918E-03
+     339    8     -0.85600772E-05     -0.71479508E-05
+     339    9     -0.55680927E-05     -0.48445419E-05
+     339   10      0.79959835E-05      0.34852078E-05
+     339   11      0.49979309E-03      0.37669605E-03
+     339   12      0.28813782E-04      0.14432688E-04
+     339   13     -0.97292968E-05     -0.68363343E-05
+     340    1     -0.22109910E-04     -0.92391236E-05
+     340    2     -0.26739763E-05     -0.13121242E-04
+     340    3     -0.66747727E-05     -0.34415265E-04
+     340    4     -0.44411229E-03     -0.24117902E-03
+     340    5     -0.39130406E+00     -0.20253303E-02
+     340    6      0.27221638E-02      0.28372202E-04
+     340    7      0.22850627E-04      0.22868433E-04
+     340    8     -0.96629696E-05     -0.25734284E-05
+     340    9      0.20107719E-03      0.17880494E-03
+     340   10      0.31390540E-04      0.11845274E-04
+     340   11      0.17156459E-04     -0.18687659E-04
+     340   12      0.86125333E-05      0.14340116E-04
+     340   13      0.12186897E-05      0.38599560E-05
+     341    1     -0.39883076E-05      0.12328208E-05
+     341    2     -0.29376647E-04     -0.31917448E-04
+     341    3     -0.87953592E-03     -0.67405408E-03
+     341    4     -0.11048766E-04      0.30023826E-04
+     341    5      0.10120092E-01     -0.18749822E-03
+     341    6      0.14916803E-02     -0.56132252E-05
+     341    7     -0.16831114E+00     -0.11319156E-02
+     341    8     -0.13061118E-03     -0.15480463E-04
+     341    9      0.50218899E-05      0.52673247E-04
+     341   10      0.79545809E-05     -0.64627497E-06
+     341   11      0.21132646E-03      0.10653930E-03
+     341   12      0.14842248E-04      0.16456388E-04
+     341   13      0.79476639E-05      0.12816510E-05
+     342    1     -0.56520527E-05      0.75542354E-05
+     342    2     -0.74128782E-05      0.11406365E-04
+     342    3     -0.80952965E-05      0.54158402E-04
+     342    4      0.95404503E-03      0.69923221E-03
+     342    5      0.52034088E+00     -0.10270022E-01
+     342    6     -0.71236400E-02      0.68653733E-04
+     342    7      0.27985646E-02      0.37171725E-04
+     342    8      0.35109147E-02      0.68752805E-04
+     342    9      0.38307552E-03      0.30184009E-03
+     342   10     -0.17111842E-05     -0.31823561E-05
+     342   11     -0.16130934E-04      0.20466702E-04
+     342   12      0.50092921E-05     -0.85563502E-05
+     342   13      0.88170255E-05     -0.90545288E-05
+     343    1      0.10547294E-02      0.76910543E-03
+     343    2      0.20326558E-04      0.23668681E-05
+     343    3      0.19659757E-05     -0.65011321E-05
+     343    4      0.13830373E-04      0.14322894E-04
+     343    5     -0.39213470E-03      0.11144824E-04
+     343    6      0.56165239E-02     -0.40177685E-04
+     343    7      0.88068721E-02     -0.27743628E-04
+     343    8     -0.29944356E+00     -0.44231676E-02
+     343    9      0.37139809E-05      0.52250350E-05
+     343   10     -0.28152192E-03     -0.14342022E-03
+     343   11     -0.32764738E-05     -0.40254854E-05
+     343   12     -0.33913784E-04      0.40377079E-04
+     343   13     -0.19922908E-03     -0.13261391E-05
+     344    1     -0.20513544E-04      0.12314920E-04
+     344    2      0.51670741E-03      0.55144595E-03
+     344    3      0.16090499E-05      0.87277775E-05
+     344    4     -0.16630221E-04      0.32767044E-05
+     344    5      0.18983982E-03     -0.49281383E-04
+     344    6     -0.66507070E+00      0.13149266E-01
+     344    7      0.11137553E-01     -0.10576676E-03
+     344    8     -0.28913450E-02     -0.46086719E-04
+     344    9     -0.14697504E-04     -0.42665698E-06
+     344   10      0.46633508E-04     -0.27034409E-04
+     344   11      0.19513219E-04      0.14730089E-04
+     344   12      0.66188241E-03      0.16775276E-03
+     344   13     -0.87594132E-04      0.31622608E-03
+     345    1      0.45651933E-06      0.10438015E-03
+     345    2      0.11263945E-03      0.19002407E-03
+     345    3      0.25473721E-04      0.13625529E-04
+     345    4     -0.15773406E-06     -0.63573369E-06
+     345    5     -0.76897155E-05     -0.99806082E-05
+     345    6      0.95250229E-01     -0.34917938E-02
+     345    7      0.12161610E-02     -0.31471644E-04
+     345    8      0.53434681E-03     -0.24999779E-04
+     345    9     -0.78112015E-05     -0.43151003E-05
+     345   10      0.17246805E-04     -0.15179541E-03
+     345   11     -0.27655601E-04     -0.18896103E-04
+     345   12      0.11715015E-03      0.10989805E-03
+     345   13      0.14004689E-03     -0.22452639E-03
+     346    1      0.18465794E-03     -0.95064078E-04
+     346    2     -0.81367926E-05     -0.81181828E-05
+     346    3      0.15865655E-04     -0.21598669E-04
+     346    4      0.32155725E-04      0.86675013E-06
+     346    5      0.10570390E-04      0.12702223E-06
+     346    6      0.80363496E-02     -0.33383908E-03
+     346    7      0.33608323E-03     -0.94500611E-05
+     346    8      0.85355173E-02     -0.12737245E-03
+     346    9      0.85796832E-04      0.13439403E-04
+     346   10     -0.31990821E-03      0.20104941E-03
+     346   11     -0.20238917E-04      0.61066203E-05
+     346   12      0.67368392E-04     -0.18388724E-04
+     346   13     -0.44491007E-03      0.46113633E-03
+     347    1      0.91608363E-04     -0.81846650E-04
+     347    2     -0.60772571E-04     -0.13278507E-04
+     347    3      0.32645473E-04     -0.38706510E-05
+     347    4      0.88007175E-05     -0.22283836E-05
+     347    5     -0.11110542E-05     -0.51042723E-05
+     347    6      0.35227768E-01     -0.14802844E-02
+     347    7      0.20334661E-03     -0.62493459E-05
+     347    8     -0.14495620E-02      0.18839761E-05
+     347    9      0.95152614E-05     -0.14539118E-04
+     347   10     -0.16487324E-03      0.23702462E-03
+     347   11     -0.39046105E-04     -0.94305405E-05
+     347   12      0.22285768E-03      0.11782945E-03
+     347   13     -0.31546771E-03      0.34635714E-03
+     348    1     -0.59424791E-04      0.60503691E-04
+     348    2     -0.87913269E-05     -0.56007485E-05
+     348    3      0.11460470E-03      0.90803182E-04
+     348    4     -0.25456611E-04      0.27929322E-04
+     348    5     -0.11112985E-04      0.96315133E-05
+     348    6     -0.66089417E-04      0.57096621E-05
+     348    7     -0.10928548E-01      0.36545942E-03
+     348    8      0.85640065E-03     -0.98262602E-05
+     348    9     -0.28019752E-04      0.71994175E-04
+     348   10      0.10939604E-03     -0.10522620E-03
+     348   11      0.34618826E-04      0.12630481E-04
+     348   12     -0.18324083E-04      0.13531964E-04
+     348   13      0.20097555E-03     -0.21363477E-03
+     349    1     -0.27557375E-04     -0.58138206E-04
+     349    2     -0.24068487E-05      0.22749866E-06
+     349    3      0.24419980E-04     -0.83349301E-05
+     349    4     -0.24089129E-03     -0.16727201E-03
+     349    5     -0.86687049E-04     -0.43953913E-04
+     349    6      0.63536240E-05      0.45453629E-05
+     349    7      0.19511650E-03     -0.69071301E-05
+     349    8     -0.62045116E-03      0.85218151E-05
+     349    9     -0.35244936E-03     -0.26849718E-03
+     349   10      0.76564324E-04      0.10726270E-03
+     349   11     -0.14047252E-04     -0.12499669E-04
+     349   12     -0.84454798E-05     -0.16692638E-04
+     349   13      0.12694711E-03      0.24612395E-03
+     350    1     -0.70323666E-04     -0.49185567E-04
+     350    2      0.62990685E-05      0.21760924E-05
+     350    3     -0.91188950E-04      0.99083403E-05
+     350    4      0.18696017E-03      0.15640439E-03
+     350    5      0.12802517E-03      0.27949485E-04
+     350    6     -0.65879589E-05     -0.34099332E-05
+     350    7      0.77566893E-03     -0.33074612E-04
+     350    8      0.13891415E-02     -0.34327921E-04
+     350    9      0.57260723E-03      0.53383097E-03
+     350   10      0.41374913E-04      0.32771776E-04
+     350   11      0.10519860E-03     -0.34616683E-04
+     350   12     -0.41215347E-05     -0.36052781E-05
+     350   13      0.11279985E-03      0.11770569E-03
+     351    1      0.27844834E-03      0.22427429E-03
+     351    2      0.17172804E-04      0.13834777E-04
+     351    3     -0.84864053E-05     -0.64661526E-05
+     351    4      0.53720356E-04      0.27528694E-04
+     351    5      0.21147470E-04      0.15629482E-04
+     351    6      0.13629318E-04     -0.57533251E-05
+     351    7      0.56826141E-05      0.11014945E-05
+     351    8     -0.15740839E-03     -0.62932818E-04
+     351    9      0.97532966E-04      0.71541173E-04
+     351   10      0.50982737E-04      0.52727208E-04
+     351   11      0.53380768E-05      0.55551133E-05
+     351   12      0.11807338E-04      0.47430363E-05
+     351   13      0.24526907E-03      0.18958885E-03
+     352    1     -0.42802637E-04      0.14237761E-04
+     352    2      0.41679475E-06      0.13897023E-04
+     352    3     -0.93725103E-04     -0.98694595E-04
+     352    4     -0.67876325E-04     -0.21239168E-04
+     352    5      0.37888469E-04     -0.45860624E-05
+     352    6     -0.20220440E-04     -0.49283344E-05
+     352    7     -0.35275169E-04     -0.45962597E-04
+     352    8      0.29877544E-04      0.22941107E-04
+     352    9      0.67889274E-04     -0.12988560E-04
+     352   10     -0.17537747E-02     -0.27506709E-04
+     352   11      0.68522924E-01      0.11147490E-02
+     352   12      0.32782442E-02      0.60720999E-04
+     352   13      0.63309380E-04     -0.21036778E-04
+
+       **************
+
+
+       ! The    7 -th eigen state. The transition energy is:        0.24159974
+
+     The two digitals below indicate the importance of doing beyong TDA:
+
+     Components: X       1.00003;    Y      -0.00003
+
+     In the occ-virt project subspace the total Fxy is:
+
+     X       0.99997;    Y      -0.00001    total       0.99996  /      1.00000
+
+     The Chi_i_i is     Total          1               2               3
+
+                     0.26254983E-06    0.10391083E-06    0.86241180E-07    0.72397814E-07
+
+     Now is the components analysis of this transition.
+
+     First we print out only the principle components.
+
+     occ     virt       FX              FY
+
+     343    5       -0.17108        0.00140
+     349    8       -0.95768        0.00098
+     350    8       -0.19061        0.00151
+
+     Now for all the calculated particle and hole pairs :
+
+     occ     virt       FX              FY
+
+     338    1     -0.51991585E-05      0.95658291E-05
+     338    2      0.10262680E-05     -0.17787232E-05
+     338    3     -0.14792548E-05     -0.14704814E-05
+     338    4      0.26603682E-04      0.16751957E-04
+     338    5      0.40916615E-01      0.14008360E-02
+     338    6     -0.91134600E-06      0.11789469E-05
+     338    7      0.62899283E-06      0.26582903E-06
+     338    8     -0.13374793E-05     -0.59344830E-05
+     338    9      0.17953865E-05      0.20018230E-05
+     338   10      0.15613899E-06      0.90750597E-06
+     338   11     -0.89732699E-06     -0.94549480E-06
+     338   12     -0.79251627E-06      0.15565474E-05
+     338   13      0.57643266E-06     -0.79670994E-05
+     339    1      0.19605862E-05      0.90496603E-06
+     339    2     -0.82884161E-04     -0.46750990E-04
+     339    3      0.17320457E-05     -0.14475638E-05
+     339    4     -0.82030999E-06      0.54972972E-06
+     339    5      0.79196433E-04      0.24780865E-05
+     339    6     -0.88742271E-05     -0.43338604E-05
+     339    7     -0.14341363E-05     -0.68390859E-05
+     339    8     -0.17244568E-05     -0.62309616E-06
+     339    9      0.23889248E-06      0.44802817E-06
+     339   10     -0.36071138E-07     -0.12809390E-06
+     339   11      0.21784321E-05     -0.10755495E-04
+     339   12      0.26485817E-04      0.15807424E-04
+     339   13      0.44677888E-06      0.31081865E-06
+     340    1     -0.23698136E-04     -0.15482152E-04
+     340    2     -0.35872721E-05     -0.37495083E-06
+     340    3     -0.12512852E-05      0.38582035E-05
+     340    4      0.60863325E-06      0.20711680E-05
+     340    5     -0.20388080E-03     -0.44074015E-05
+     340    6      0.30894057E-03      0.11174933E-04
+     340    7      0.11921611E-05     -0.17683986E-05
+     340    8     -0.46736663E-04     -0.26353557E-04
+     340    9      0.90339017E-06     -0.71368685E-05
+     340   10      0.36823816E-04      0.23583081E-04
+     340   11     -0.12157116E-06      0.11002495E-05
+     340   12      0.46220892E-06     -0.62095937E-06
+     340   13     -0.72791427E-04     -0.39296533E-04
+     341    1     -0.65839546E-05     -0.47387011E-05
+     341    2      0.58913067E-04      0.29818645E-04
+     341    3     -0.46599763E-05      0.14878676E-04
+     341    4     -0.99866119E-06      0.19237339E-06
+     341    5     -0.23464454E-02      0.62701170E-05
+     341    6      0.92270081E-01      0.12997726E-02
+     341    7     -0.10501891E-03     -0.26636455E-05
+     341    8      0.22565678E-03      0.54140990E-05
+     341    9     -0.17893203E-05     -0.49900353E-06
+     341   10     -0.24319207E-06      0.26114754E-05
+     341   11      0.35997499E-06     -0.27232813E-05
+     341   12     -0.20362084E-05      0.16417737E-05
+     341   13      0.11419057E-05      0.11989421E-05
+     342    1     -0.92970124E-04     -0.52781608E-04
+     342    2      0.11685331E-05     -0.23278911E-05
+     342    3      0.10301130E-05     -0.43413103E-05
+     342    4      0.74545818E-05     -0.15853813E-04
+     342    5      0.96591725E-03     -0.25282275E-05
+     342    6     -0.48704807E-03     -0.55752083E-05
+     342    7     -0.14233297E-03     -0.24281400E-05
+     342    8      0.10073214E-01      0.37866370E-03
+     342    9      0.37208427E-05     -0.86331009E-05
+     342   10      0.90813853E-06      0.68533215E-06
+     342   11      0.86114078E-06     -0.21563876E-05
+     342   12     -0.48987059E-06      0.19558468E-05
+     342   13      0.23098310E-03      0.12590179E-03
+     343    1      0.96455580E-05     -0.21903862E-04
+     343    2      0.23649644E-05     -0.36821714E-05
+     343    3      0.66535880E-05      0.36949178E-05
+     343    4     -0.82871676E-04     -0.46264075E-04
+     343    5     -0.17108383E+00      0.14010764E-02
+     343    6      0.24506330E-02      0.87063470E-05
+     343    7      0.34367371E-04     -0.73769065E-05
+     343    8     -0.25693951E-04      0.28318013E-05
+     343    9     -0.79643169E-05     -0.53788086E-05
+     343   10     -0.21374339E-05      0.45929077E-05
+     343   11      0.14914890E-05      0.52112207E-06
+     343   12     -0.47574521E-05      0.48476968E-05
+     343   13      0.74048948E-05     -0.13976075E-04
+     344    1      0.66719282E-06     -0.20044792E-05
+     344    2      0.68079038E-05     -0.21973651E-04
+     344    3     -0.89795717E-04     -0.48992958E-04
+     344    4      0.18313850E-05     -0.40474800E-05
+     344    5      0.33322001E-03     -0.56850722E-05
+     344    6      0.99721297E-03      0.47642117E-05
+     344    7     -0.16411953E-03     -0.11410371E-05
+     344    8      0.16525808E-03      0.89931268E-05
+     344    9      0.13328569E-05     -0.19029524E-05
+     344   10      0.14407940E-05      0.36295735E-05
+     344   11      0.16610443E-04      0.11315239E-04
+     344   12     -0.43237783E-05      0.15125905E-04
+     344   13      0.70219536E-05     -0.32255222E-04
+     345    1      0.35922672E-05     -0.10632530E-04
+     345    2      0.54228668E-05     -0.88801692E-05
+     345    3      0.91664579E-04      0.53398746E-04
+     345    4      0.16427124E-05      0.96109835E-06
+     345    5      0.47702553E-05      0.23071674E-05
+     345    6     -0.13355722E-02      0.27262201E-04
+     345    7     -0.70023679E-01      0.58576578E-03
+     345    8      0.19115638E-02      0.12169415E-04
+     345    9      0.35542309E-06     -0.45044901E-07
+     345   10     -0.26770146E-06      0.15301827E-04
+     345   11      0.11026373E-04      0.40162170E-05
+     345   12      0.24048953E-05     -0.48220470E-05
+     345   13     -0.10647591E-05      0.22116137E-04
+     346    1      0.75129218E-05      0.12369808E-04
+     346    2      0.21507377E-06      0.23780493E-06
+     346    3      0.26847513E-05      0.29874712E-05
+     346    4      0.19684166E-03      0.10981498E-03
+     346    5      0.87199743E-04      0.48606103E-04
+     346    6      0.13158337E-04     -0.41169629E-06
+     346    7     -0.38593837E-02      0.50537877E-04
+     346    8      0.11719223E-02      0.39274968E-05
+     346    9      0.44188386E-03      0.24520101E-03
+     346   10     -0.18499477E-04     -0.27301814E-04
+     346   11     -0.17782334E-04     -0.12079676E-04
+     346   12      0.26127200E-05      0.36330601E-05
+     346   13     -0.25000860E-04     -0.42830132E-04
+     347    1      0.75691498E-05      0.43508383E-05
+     347    2      0.83437827E-06     -0.68947219E-06
+     347    3      0.25547649E-04      0.14516839E-04
+     347    4     -0.45733835E-04     -0.23576956E-04
+     347    5     -0.18303242E-04     -0.96246690E-05
+     347    6     -0.51835754E-03      0.12633227E-04
+     347    7     -0.12016280E-01      0.16207063E-03
+     347    8      0.11911872E-02      0.30408142E-05
+     347    9     -0.10455398E-03     -0.53553625E-04
+     347   10     -0.11067128E-04     -0.15309528E-04
+     347   11     -0.94113819E-04     -0.52787048E-04
+     347   12      0.47341249E-05     -0.24415221E-05
+     347   13     -0.27497174E-04     -0.19503588E-04
+     348    1     -0.83167447E-05     -0.80561250E-06
+     348    2      0.95193828E-05      0.55401007E-05
+     348    3      0.20501026E-06     -0.12131029E-05
+     348    4      0.37524615E-05     -0.21014410E-05
+     348    5      0.17275889E-05     -0.34302317E-06
+     348    6     -0.37907416E-01      0.10217680E-02
+     348    7      0.77318581E-04     -0.19893830E-05
+     348    8     -0.11204038E-01     -0.46038970E-05
+     348    9      0.92267796E-05     -0.51238363E-05
+     348   10      0.18072788E-04      0.52889853E-05
+     348   11      0.27829915E-05      0.20232938E-05
+     348   12     -0.15742044E-04     -0.82518417E-05
+     348   13      0.17580940E-04     -0.37136962E-05
+     349    1     -0.23222240E-04      0.78477130E-05
+     349    2     -0.95911265E-05     -0.41127040E-06
+     349    3      0.23425094E-05      0.19900319E-05
+     349    4     -0.55704440E-05      0.69660435E-06
+     349    5      0.39949973E-06      0.12361015E-06
+     349    6     -0.83643130E-05     -0.46391112E-05
+     349    7     -0.42318364E-02      0.52428173E-05
+     349    8     -0.95767949E+00      0.97785962E-03
+     349    9     -0.10862638E-04      0.26406779E-05
+     349   10      0.18009839E-03      0.71058076E-04
+     349   11     -0.22588193E-05      0.26845682E-06
+     349   12      0.13902795E-04      0.57815397E-05
+     349   13     -0.16177357E-03     -0.13842644E-03
+     350    1     -0.53138458E-04     -0.24149712E-04
+     350    2     -0.44558407E-05      0.15290848E-06
+     350    3     -0.30905725E-05      0.94583677E-06
+     350    4      0.69144231E-06     -0.43238405E-05
+     350    5     -0.72266243E-05     -0.11763439E-05
+     350    6      0.29955171E-05      0.99046310E-06
+     350    7     -0.12681490E-02      0.17476434E-04
+     350    8     -0.19061475E+00      0.15126780E-02
+     350    9      0.59205584E-06     -0.23486621E-04
+     350   10      0.55324516E-04      0.25022032E-04
+     350   11      0.35478453E-05      0.39691431E-06
+     350   12      0.16171852E-05     -0.49391902E-06
+     350   13     -0.10917527E-03     -0.78630693E-04
+     351    1      0.34343469E-05     -0.23573876E-05
+     351    2      0.63336576E-06     -0.86161564E-06
+     351    3      0.12679522E-05      0.13125723E-06
+     351    4      0.78395730E-04      0.45816123E-04
+     351    5      0.18854879E-04      0.96545947E-05
+     351    6      0.41985423E-06      0.50375409E-06
+     351    7     -0.30504841E-05     -0.97329340E-06
+     351    8      0.48057052E-05      0.43015429E-05
+     351    9      0.14228045E-04      0.96347425E-05
+     351   10      0.51878564E-05     -0.10116737E-05
+     351   11     -0.29051761E-05     -0.10499568E-05
+     351   12      0.96171563E-06     -0.80958240E-06
+     351   13      0.52366932E-05     -0.67266691E-05
+     352    1     -0.61641181E-05     -0.98743125E-05
+     352    2     -0.20435542E-04     -0.15119040E-04
+     352    3      0.80864770E-06      0.39858906E-05
+     352    4     -0.24534671E-05      0.17554158E-05
+     352    5      0.90180753E-06     -0.12703210E-05
+     352    6     -0.76515685E-04     -0.40970282E-04
+     352    7      0.33580989E-05      0.45352621E-05
+     352    8     -0.18275403E-05     -0.20854124E-05
+     352    9     -0.10292093E-03     -0.34326369E-05
+     352   10     -0.11757207E-03      0.19207727E-06
+     352   11     -0.19694667E-03     -0.66843303E-05
+     352   12     -0.16076745E-01     -0.58216956E-03
+     352   13      0.40972056E-05      0.12452296E-04
+
+       **************
+
+
+       ! The    8 -th eigen state. The transition energy is:        0.24092690
+
+     The two digitals below indicate the importance of doing beyong TDA:
+
+     Components: X       1.00020;    Y      -0.00020
+
+     In the occ-virt project subspace the total Fxy is:
+
+     X       1.00007;    Y      -0.00005    total       1.00001  /      1.00000
+
+     The Chi_i_i is     Total          1               2               3
+
+                     0.12282018E-01    0.79180992E-02    0.72513255E-06    0.43631932E-02
+
+     Now is the components analysis of this transition.
+
+     First we print out only the principle components.
+
+     occ     virt       FX              FY
+
+     342    5        0.73502       -0.00071
+     344    6        0.55186       -0.00056
+     345    6       -0.34953        0.00619
+     346    8        0.10389        0.00051
+     347    6       -0.10822        0.00249
+
+     Now for all the calculated particle and hole pairs :
+
+     occ     virt       FX              FY
+
+     338    1      0.53843051E-04      0.10408767E-03
+     338    2     -0.10803824E-04      0.14157221E-05
+     338    3      0.70828448E-05      0.27052072E-05
+     338    4     -0.87808691E-05     -0.16322015E-05
+     338    5      0.20809213E-03      0.72984824E-05
+     338    6      0.43963230E-05      0.36345484E-05
+     338    7     -0.48021054E-05     -0.25506063E-05
+     338    8      0.86384619E-04      0.22046851E-04
+     338    9     -0.96018760E-05     -0.34764578E-05
+     338   10      0.18499862E-04      0.12408613E-04
+     338   11      0.20242961E-05      0.45829391E-06
+     338   12      0.61128472E-05      0.21645160E-05
+     338   13      0.35895538E-04     -0.25756158E-04
+     339    1     -0.35809384E-05     -0.22776633E-05
+     339    2      0.54355686E-05     -0.18552274E-05
+     339    3      0.15160994E-04     -0.61856035E-05
+     339    4      0.88534318E-06      0.64975113E-05
+     339    5      0.29453914E-03      0.94880301E-05
+     339    6      0.19059997E-05      0.72311379E-06
+     339    7      0.54822037E-04      0.15266631E-05
+     339    8      0.20455258E-05      0.28343298E-05
+     339    9      0.84470518E-06      0.15738826E-05
+     339   10      0.14845385E-05      0.12587577E-05
+     339   11     -0.46390621E-04     -0.95880135E-04
+     339   12      0.25361616E-05      0.31035980E-05
+     339   13     -0.32092388E-05     -0.76398701E-06
+     340    1      0.59424117E-05     -0.30981687E-06
+     340    2      0.57431852E-05      0.10579368E-04
+     340    3      0.10367583E-05      0.20221972E-04
+     340    4     -0.64557021E-04     -0.31930078E-04
+     340    5     -0.63796397E-01     -0.15270422E-02
+     340    6      0.10307916E-02      0.34705014E-04
+     340    7     -0.42873135E-05     -0.93266711E-05
+     340    8      0.32127605E-05     -0.33150912E-06
+     340    9     -0.36658458E-05     -0.47767744E-04
+     340   10     -0.80109776E-05      0.12080761E-05
+     340   11     -0.81682273E-05      0.12454188E-04
+     340   12      0.30412385E-05     -0.43542815E-05
+     340   13     -0.18660863E-05     -0.20073086E-05
+     341    1      0.18073384E-04      0.72432396E-05
+     341    2     -0.14534051E-04     -0.58107124E-08
+     341    3      0.81544657E-04      0.17190038E-03
+     341    4      0.91542369E-05     -0.15397106E-04
+     341    5      0.73952732E-02      0.85474040E-05
+     341    6      0.16379633E-02      0.28126703E-04
+     341    7     -0.24039413E-01     -0.61223391E-03
+     341    8      0.24576614E-03      0.10186018E-04
+     341    9      0.12754303E-04     -0.21703033E-04
+     341   10     -0.89275929E-05     -0.66539981E-06
+     341   11      0.34599152E-04      0.20545424E-04
+     341   12     -0.40295687E-05     -0.51702117E-05
+     341   13      0.15997693E-04      0.10266708E-04
+     342    1      0.16836063E-04      0.15108508E-05
+     342    2     -0.66292588E-05     -0.13910312E-04
+     342    3      0.85252453E-05     -0.31075101E-04
+     342    4     -0.11299505E-03     -0.18206049E-03
+     342    5      0.73502389E+00     -0.70617522E-03
+     342    6      0.13345326E-02      0.66578740E-04
+     342    7     -0.49745005E-03      0.21999348E-04
+     342    8      0.18059482E-03      0.82193158E-05
+     342    9     -0.64162914E-05     -0.65929961E-04
+     342   10     -0.13715722E-05      0.62589223E-06
+     342   11      0.31539757E-05     -0.16034836E-04
+     342   12     -0.27696899E-05      0.60778994E-05
+     342   13     -0.15810936E-05      0.60455703E-05
+     343    1     -0.82548936E-04     -0.17751176E-03
+     343    2     -0.68352425E-05     -0.11922722E-05
+     343    3     -0.12969772E-04     -0.26332153E-05
+     343    4      0.19445090E-04      0.56911702E-05
+     343    5     -0.42807206E-02      0.29425001E-04
+     343    6      0.41623373E-02      0.27751196E-04
+     343    7      0.59975090E-03      0.11420931E-04
+     343    8      0.13452407E-01      0.45192912E-03
+     343    9      0.16757959E-04      0.58135129E-05
+     343   10      0.13200326E-05     -0.37063254E-06
+     343   11     -0.48922646E-05     -0.15120068E-05
+     343   12      0.24598162E-04     -0.17180590E-04
+     343   13     -0.28921787E-04     -0.83795678E-04
+     344    1      0.12691772E-04     -0.87456780E-05
+     344    2     -0.58463268E-04     -0.20524495E-03
+     344    3      0.39277303E-05     -0.20292479E-05
+     344    4      0.29975545E-05     -0.89638061E-05
+     344    5      0.67833319E-02     -0.72171993E-04
+     344    6      0.55185653E+00     -0.56224260E-03
+     344    7     -0.50598223E-03     -0.45545781E-05
+     344    8      0.72240441E-03      0.29629577E-04
+     344    9      0.61041558E-05     -0.29570615E-05
+     344   10     -0.19718947E-04      0.21813804E-04
+     344   11     -0.86277096E-05     -0.53175869E-05
+     344   12     -0.50333992E-04      0.91155032E-04
+     344   13      0.60278032E-04     -0.19762263E-03
+     345    1      0.14832632E-04     -0.59567260E-04
+     345    2     -0.20273454E-03     -0.18894919E-03
+     345    3     -0.54847982E-05     -0.90547399E-06
+     345    4     -0.55766369E-05     -0.24676204E-05
+     345    5     -0.20101619E-04     -0.70609316E-05
+     345    6     -0.34953338E+00      0.61915686E-02
+     345    7      0.14649364E-02     -0.97046743E-05
+     345    8     -0.35495021E-03      0.22555764E-04
+     345    9     -0.10357763E-04     -0.55736747E-05
+     345   10     -0.22996221E-04      0.88933538E-04
+     345   11     -0.23343460E-05     -0.39134544E-06
+     345   12      0.27467767E-04     -0.21843111E-04
+     345   13     -0.85985967E-04      0.15078209E-03
+     346    1     -0.30680377E-04      0.10409352E-03
+     346    2     -0.15148965E-04     -0.66118902E-05
+     346    3     -0.67282292E-05      0.15311139E-04
+     346    4     -0.15199243E-04      0.36013970E-05
+     346    5     -0.58148141E-05      0.80371638E-06
+     346    6     -0.24721023E-01      0.55225406E-03
+     346    7      0.14307418E-03      0.57829066E-05
+     346    8      0.10388629E+00      0.51450507E-03
+     346    9     -0.30844760E-04      0.72891073E-05
+     346   10      0.13248120E-03     -0.16322518E-03
+     346   11     -0.10550132E-04     -0.17214102E-04
+     346   12     -0.13573992E-04      0.27149063E-04
+     346   13      0.16820041E-03     -0.34528287E-03
+     347    1     -0.46357222E-04      0.51968310E-04
+     347    2     -0.65251803E-04     -0.46463609E-04
+     347    3     -0.46800895E-05      0.10682451E-04
+     347    4      0.16031814E-04      0.13569928E-04
+     347    5      0.13376427E-06      0.30757448E-05
+     347    6     -0.10822027E+00      0.24864472E-02
+     347    7      0.48108916E-04     -0.21956857E-05
+     347    8     -0.22996806E-01     -0.88180032E-04
+     347    9      0.35061976E-04      0.32399568E-04
+     347   10      0.81223288E-04     -0.15143275E-03
+     347   11      0.71098797E-05     -0.42134704E-05
+     347   12     -0.61208367E-05     -0.61278965E-05
+     347   13      0.14905009E-03     -0.22123132E-03
+     348    1      0.73201854E-04     -0.15904808E-04
+     348    2     -0.69206398E-06     -0.69722510E-06
+     348    3      0.15279628E-04     -0.96829448E-05
+     348    4      0.78926755E-05     -0.22505046E-04
+     348    5      0.12273893E-05     -0.92264688E-05
+     348    6     -0.53888343E-04     -0.68304867E-07
+     348    7      0.36115836E-01     -0.52973032E-03
+     348    8     -0.22628029E-02     -0.55238957E-05
+     348    9      0.10929692E-04     -0.50410975E-04
+     348   10     -0.11977166E-03      0.33815498E-04
+     348   11     -0.22091050E-04     -0.56530480E-05
+     348   12      0.17023570E-04     -0.39631299E-05
+     348   13     -0.26127054E-03      0.47888595E-04
+     349    1     -0.47299168E-04      0.75883427E-05
+     349    2     -0.30154378E-05     -0.15492153E-05
+     349    3     -0.17457179E-04      0.36464715E-05
+     349    4      0.86786119E-05      0.25115297E-04
+     349    5     -0.54899487E-04     -0.32337804E-04
+     349    6      0.16214192E-04      0.81560149E-05
+     349    7     -0.17420694E-02      0.28617381E-04
+     349    8      0.28105457E-02      0.37686094E-05
+     349    9      0.15836284E-04      0.51506114E-04
+     349   10      0.59817104E-04     -0.16059449E-04
+     349   11      0.10569610E-04      0.92627361E-05
+     349   12     -0.19205932E-04     -0.30686734E-05
+     349   13      0.18841004E-03     -0.23859880E-04
+     350    1      0.12337427E-04      0.11553741E-04
+     350    2      0.99923202E-06      0.25069351E-05
+     350    3      0.25169763E-04     -0.20596025E-04
+     350    4      0.99958760E-04      0.21293909E-04
+     350    5      0.24341878E-03      0.15648040E-03
+     350    6     -0.12050682E-04     -0.68119760E-05
+     350    7     -0.11119920E-02      0.26414013E-04
+     350    8      0.92075671E-04     -0.18505674E-05
+     350    9      0.18371634E-03     -0.44220954E-04
+     350   10      0.11961361E-04     -0.76050197E-06
+     350   11     -0.36264816E-04      0.34088976E-04
+     350   12      0.50321688E-05      0.27077165E-05
+     350   13     -0.20243062E-04     -0.43924764E-04
+     351    1     -0.15344540E-03     -0.13106496E-03
+     351    2     -0.54809606E-05     -0.60812282E-05
+     351    3     -0.10185022E-04     -0.45233734E-05
+     351    4      0.11335673E-04      0.79477671E-05
+     351    5      0.17490533E-04      0.58828935E-05
+     351    6     -0.49506457E-05      0.51979429E-05
+     351    7      0.77941270E-05      0.58630029E-05
+     351    8     -0.30225754E-03     -0.17283920E-03
+     351    9      0.48015671E-04      0.14249519E-04
+     351   10     -0.10747172E-03     -0.71672737E-04
+     351   11      0.11248947E-04      0.45577183E-05
+     351   12     -0.34735970E-05     -0.14384148E-05
+     351   13     -0.15253499E-03     -0.11935735E-03
+     352    1      0.57926372E-04      0.32978972E-05
+     352    2      0.25369006E-04      0.32279849E-05
+     352    3     -0.12971915E-04      0.24894715E-04
+     352    4      0.17842887E-04      0.14859438E-05
+     352    5     -0.10063859E-04      0.83631595E-05
+     352    6      0.37381817E-05     -0.16821629E-05
+     352    7     -0.12832866E-03     -0.51576452E-04
+     352    8      0.17597388E-04      0.49697205E-05
+     352    9     -0.65773401E-03     -0.96270705E-05
+     352   10     -0.36057732E-03     -0.93328216E-05
+     352   11     -0.56099562E-01     -0.19654901E-02
+     352   12     -0.19915291E-03     -0.59289339E-05
+     352   13     -0.70737671E-04      0.34424827E-05
+
+       **************
+
+     Now generate the eigenvalues list...
+     Now generate the spectrum plot file...
+     Finished linear response calculation...
+
+     lr_dav_main  :   1031.13s CPU   1120.59s WALL (       1 calls)
+     read_wf      :      0.55s CPU      0.69s WALL (       1 calls)
+     lr_solve_e   :     75.64s CPU     79.02s WALL (       1 calls)
+     calc_residue :     57.61s CPU     59.79s WALL (       5 calls)
+     expan_basis  :    545.40s CPU    568.25s WALL (       5 calls)
+     matrix       :      0.01s CPU      0.02s WALL (       5 calls)
+     mGS_orth     :    427.95s CPU    445.13s WALL (      15 calls)
+     mGS_orth_pp  :     61.19s CPU     64.31s WALL (      15 calls)
+     one_step     :    270.10s CPU    325.15s WALL (       5 calls)
+
+     lr_apply     :    243.96s CPU    298.73s WALL (     166 calls)
+     lr_apply_int :    179.09s CPU    231.69s WALL (      83 calls)
+     lr_apply_no  :     64.87s CPU     67.04s WALL (      83 calls)
+
+     h_psi        :     96.34s CPU    100.38s WALL (     329 calls)
+     lr_calc_dens :     32.78s CPU     34.76s WALL (      99 calls)
+     lr_dvpsi_e   :     75.63s CPU     79.00s WALL (       3 calls)
+     lr_dv_setup  :      0.11s CPU      0.12s WALL (       1 calls)
+     dv_of_drho   :      6.05s CPU      8.95s WALL (      83 calls)
+     interaction  :     15.22s CPU     15.58s WALL (      83 calls)
+     lr_dot       :     70.70s CPU     71.28s WALL (   31812 calls)
+     ortho        :     12.69s CPU     13.15s WALL (     172 calls)
+     lr_ortho     :     10.08s CPU     10.43s WALL (     141 calls)
+
+
+     US routines
+     s_psi        :    262.95s CPU    263.40s WALL (    3431 calls)
+     lr_apply_s   :    511.45s CPU    536.47s WALL (    2935 calls)
+     lr_dot_us    :    503.77s CPU    528.10s WALL (    2838 calls)
+     lr_sm1_initi :      1.81s CPU      1.93s WALL (       3 calls)
+     lr_sm1_psi   :     43.49s CPU     44.97s WALL (     169 calls)
+
+     General routines
+     calbec       :    323.76s CPU    353.53s WALL (    3714 calls)
+     fft          :      5.11s CPU      9.41s WALL (    1207 calls)
+     ffts         :      0.66s CPU      0.69s WALL (     183 calls)
+     fftw         :     63.43s CPU     65.71s WALL (  124366 calls)
+     interpolate  :      1.48s CPU      2.46s WALL (     183 calls)
+     davcio       :      0.00s CPU      0.02s WALL (       5 calls)
+
+     Parallel routines
+     fft_scatter  :     50.51s CPU     56.52s WALL (  125756 calls)
+
+
+     Environ routines
+
+     turboTDDFT   :  17m11.13s CPU  18m40.59s WALL
+
+
+   This run was terminated on:   4:16:48   6Mar2024
+
+=------------------------------------------------------------------------------=
+   JOB DONE.
+=------------------------------------------------------------------------------=
