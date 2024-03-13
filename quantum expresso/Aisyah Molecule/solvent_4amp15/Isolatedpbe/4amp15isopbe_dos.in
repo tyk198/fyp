@@ -1,7 +1,7 @@
 &DOS
-    prefix='4amp15isopbe'
+    prefix='4amp15pbeiso'
     outdir='./outdir/'
-    fildos='4amp15isopbe.dos.dat'
+    fildos='4amp15pbeiso.dos.dat'
     emin= -26.8674
     emax=-0.3419
 /
