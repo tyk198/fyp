@@ -1,0 +1,17 @@
+&INPUTPP
+  prefix = '4amp34'
+  outdir = './outdir'
+  filplot = '4amp34_homo.dat'
+  plot_num = 7
+  kpoint = 1
+  kband = 352
+  lsign = .TRUE.
+/
+&PLOT
+  nfile = 1
+  filepp(1) = '4amp34_homo.dat'
+  weight(1) = 1
+  output_format = 6
+  fileout = '4amp34_homo.cub'
+  iflag = 3
+/
