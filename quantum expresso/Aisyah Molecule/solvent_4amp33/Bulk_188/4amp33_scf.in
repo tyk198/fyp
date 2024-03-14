@@ -20,7 +20,7 @@
   ecutwfc = 60
   ecutrho = 600
   occupations = 'fixed'
-  nbnd = 285 
+  nbnd = 343
 /
 &ELECTRONS
   conv_thr = 1.0E-7
