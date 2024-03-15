@@ -1,0 +1,7 @@
+&DOS
+    prefix='4amp33'
+    outdir='./outdir/'
+    fildos='4amp33_188.dos.dat'
+    emin=-26.0798
+    emax=5.0858
+/
