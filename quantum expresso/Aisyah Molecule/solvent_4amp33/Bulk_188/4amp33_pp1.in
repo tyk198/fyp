@@ -1,0 +1,9 @@
+  &INPUTPP
+  /
+  &PLOT
+   nfile=1,
+   iflag=3,
+   filepp(1)='outdir/drho-of-eign-5.1',
+   fileout='drho-of-eign-5.1.cub',
+   output_format=6,
+   /
