@@ -1,0 +1,10 @@
+&lr_input
+  prefix='4amp34iso',
+  outdir='./outdir',
+  td = "davidson"
+  epsil=0.005
+  start=0.101
+  increment=0.001
+  end=0.456
+  eign_file = "4amp34iso.eigen" 
+/
