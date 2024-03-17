@@ -1,0 +1,1712 @@
+ DBCSR| CPU Multiplication driver                                           XSMM (U)
+ DBCSR| Multrec recursion limit                                              512 (U)
+ DBCSR| Multiplication stack size                                           1000 (D)
+ DBCSR| Maximum elements for images                                    UNLIMITED (U)
+ DBCSR| Multiplicative factor virtual images                                   1 (U)
+ DBCSR| Use multiplication densification                                       T (D)
+ DBCSR| Multiplication size stacks                                             3 (U)
+ DBCSR| Use memory pool for CPU allocation                                     F (U)
+ DBCSR| Number of 3D layers                                               SINGLE (U)
+ DBCSR| Use MPI memory allocation                                              F (U)
+ DBCSR| Use RMA algorithm                                                      F (U)
+ DBCSR| Use Communication thread                                               T (U)
+ DBCSR| Communication thread load                                             83 (D)
+ DBCSR| MPI: My process id                                                     0
+ DBCSR| MPI: Number of processes                                              90
+ DBCSR| OMP: Current number of threads                                         2
+ DBCSR| OMP: Max number of threads                                             2
+ DBCSR| Split modifier for TAS multiplication algorithm                  1.0E+00 (U)
+
+
+  **** **** ******  **  PROGRAM STARTED AT               2024-03-17 08:46:18.291
+ ***** ** ***  *** **   PROGRAM STARTED ON                          fc60d7813613
+ **    ****   ******    PROGRAM STARTED BY                             <unknown>
+ ***** **    ** ** **   PROGRAM PROCESS ID                                   538
+  **** **  *******  **  PROGRAM STARTED IN                                  /mnt
+
+ CP2K| version string:                                       CP2K version 2023.2
+ CP2K| source code revision number:                                  git:65cca6c
+ CP2K| cp2kflags: omp libint fftw3 libxc pexsi elpa parallel scalapack cosma qui
+ CP2K|            p xsmm plumed2 spglib sirius libvori libbqb libtorch libvdwxc
+ CP2K| is freely available from                            https://www.cp2k.org/
+ CP2K| Program compiled at                          Wed Oct 18 11:40:41 UTC 2023
+ CP2K| Program compiled on                                          633bb7bf566f
+ CP2K| Program compiled for                                                local
+ CP2K| Data directory path                                        /opt/cp2k/data
+ CP2K| Input file name                                         4amp33_solvent.in
+
+ GLOBAL| Force Environment number                                              1
+ GLOBAL| Basis set file name                                      GTH_BASIS_SETS
+ GLOBAL| Potential file name                                           POTENTIAL
+ GLOBAL| MM Potential file name                                     MM_POTENTIAL
+ GLOBAL| Coordinate file name                                      __STD_INPUT__
+ GLOBAL| Method name                                                        CP2K
+ GLOBAL| Project name                                              4amp33solvent
+ GLOBAL| Run type                                                         ENERGY
+ GLOBAL| FFT library                                                       FFTW3
+ GLOBAL| Diagonalization library                                       ScaLAPACK
+ GLOBAL| DGEMM library                                                      BLAS
+ GLOBAL| Orthonormality check for eigenvectors                          DISABLED
+ GLOBAL| Matrix multiplication library                                     COSMA
+ GLOBAL| All-to-all communication in single precision                          F
+ GLOBAL| FFTs using library dependent lengths                                  F
+ GLOBAL| Grid backend                                                       AUTO
+ GLOBAL| Global print level                                                  LOW
+ GLOBAL| MPI I/O enabled                                                       T
+ GLOBAL| Total number of message passing processes                            90
+ GLOBAL| Number of threads for this process                                    2
+ GLOBAL| This output is from process                                           0
+ GLOBAL| Stack size for threads created by OpenMP (OMP_STACKSIZE)            16M
+ GLOBAL| CPU model name                                            AMD EPYC 9B14
+ GLOBAL| CPUID                                                              1003
+ GLOBAL| Compiled for CPUID                                                    0
+
+ *** HINT in environment.F:904 :: The compiler target flags (generic) used ***
+ *** to build this binary cannot exploit all extensions of this CPU model  ***
+ *** (x86_avx512). Consider compiler target flags as part of FCFLAGS and   ***
+ *** CFLAGS (ARCH file).                                                   ***
+
+
+ MEMORY| system memory details [Kb]
+ MEMORY|                        rank 0           min           max       average
+ MEMORY| MemTotal            365023368     365023368     365023368     365023368
+ MEMORY| MemFree             347272412     347270896     347273420     347273335
+ MEMORY| Buffers                 30400         30400         30400         30400
+ MEMORY| Cached                4792584       4792580       4792584       4792580
+ MEMORY| Slab                   632288        632288        632288        632288
+ MEMORY| SReclaimable           214968        214968        214968        214968
+ MEMORY| MemLikelyFree       352310364     352308844     352311368     352311283
+
+
+ GENERATE|  Preliminary Number of Bonds generated:                             0
+ GENERATE|  Achieved consistency in connectivity generation.
+
+ *******************************************************************************
+ *******************************************************************************
+ **                                                                           **
+ **     #####                         ##              ##                      **
+ **    ##   ##            ##          ##              ##                      **
+ **   ##     ##                       ##            ######                    **
+ **   ##     ##  ##   ##  ##   #####  ##  ##   ####   ##    #####    #####    **
+ **   ##     ##  ##   ##  ##  ##      ## ##   ##      ##   ##   ##  ##   ##   **
+ **   ##  ## ##  ##   ##  ##  ##      ####     ###    ##   ######   ######    **
+ **    ##  ###   ##   ##  ##  ##      ## ##      ##   ##   ##       ##        **
+ **     #######   #####   ##   #####  ##  ##  ####    ##    #####   ##        **
+ **           ##                                                    ##        **
+ **                                                                           **
+ **                                                ... make the atoms dance   **
+ **                                                                           **
+ **            Copyright (C) by CP2K developers group (2000-2023)             **
+ **                      J. Chem. Phys. 152, 194103 (2020)                    **
+ **                                                                           **
+ *******************************************************************************
+
+
+ TOTAL NUMBERS AND MAXIMUM NUMBERS
+
+  Total number of            - Atomic kinds:                                   5
+                             - Atoms:                                         94
+                             - Shell sets:                                   188
+                             - Shells:                                       568
+                             - Primitive Cartesian functions:                564
+                             - Cartesian basis functions:                   1332
+                             - Spherical basis functions:                   1268
+
+  Maximum angular momentum of- Orbital basis functions:                        2
+                             - Local part of the GTH pseudopotential:          2
+                             - Non-local part of the GTH pseudopotential:      0
+
+
+ SCF PARAMETERS         Density guess:                                   RESTART
+                        --------------------------------------------------------
+                        max_scf:                                             128
+                        max_scf_history:                                       0
+                        max_diis:                                              4
+                        --------------------------------------------------------
+                        eps_scf:                                        1.00E-06
+                        eps_scf_history:                                0.00E+00
+                        eps_diis:                                       1.00E-01
+                        eps_eigval:                                     1.00E-05
+                        --------------------------------------------------------
+                        level_shift [a.u.]:                             0.000000
+                        added MOs                                        70    0
+                        --------------------------------------------------------
+                        Mixing method:                            BROYDEN_MIXING
+                                                charge density mixing in g-space
+                        --------------------------------------------------------
+                        No outer SCF
+
+ Number of electrons:                                                        328
+ Number of occupied orbitals:                                                164
+ Number of molecular orbitals:                                               234
+
+ Number of orbital functions:                                               1268
+ Number of independent orbital functions:                                   1268
+
+ Extrapolation method: initial_guess
+
+
+ SCF WAVEFUNCTION OPTIMIZATION
+
+  Step     Update method      Time    Convergence         Total energy    Change
+  ------------------------------------------------------------------------------
+     1 NoMix/Diag. 0.40E+00    0.7     5.73636374      -633.7761004903 -6.34E+02
+     2 Broy./Diag. 0.40E+00    0.7     0.64925831      -638.6288902459 -4.85E+00
+     3 Broy./Diag. 0.40E+00    0.8     0.11641671      -633.8795456485  4.75E+00
+     4 Broy./Diag. 0.40E+00    0.6     0.07267906      -634.0024892131 -1.23E-01
+     5 Broy./Diag. 0.40E+00    0.6     0.03772601      -633.8968583928  1.06E-01
+     6 Broy./Diag. 0.40E+00    0.6     0.04007087      -633.8528439584  4.40E-02
+     7 Broy./Diag. 0.40E+00    0.6     0.02836034      -633.8986917321 -4.58E-02
+     8 Broy./Diag. 0.40E+00    0.8     0.01599751      -633.9016359916 -2.94E-03
+     9 Broy./Diag. 0.40E+00    0.8     0.00304707      -633.8968441522  4.79E-03
+  SCCS| Iteration cycle converged in 27 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.044437966152
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        644.50508257260253
+  SCCS| Hartree energy of the solute only    [Hartree]        644.61214300579763
+  SCCS| Polarisation energy                  [Hartree]         -0.10706043319518
+  SCCS|                                      [kcal/mol]                  -67.181
+  SCCS| Cavitation energy                    [Hartree]          0.00576281616026
+  SCCS|                                      [kcal/mol]                    3.616
+  SCCS| Dispersion free energy               [Hartree]         -0.10906683966682
+  SCCS|                                      [kcal/mol]                  -68.440
+  SCCS| Repulsion free energy                [Hartree]          0.00156333398307
+  SCCS|                                      [kcal/mol]                    0.981
+  SCCS| Solvation free energy                [Hartree]         -0.20880112271867
+  SCCS|                                      [kcal/mol]                 -131.025
+    10 Broy./Diag. 0.40E+00    1.1     0.44242672      -633.9968756224 -1.00E-01
+  SCCS| Iteration cycle converged in 18 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.044473456707
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        644.50475746331381
+  SCCS| Hartree energy of the solute only    [Hartree]        644.61152650447593
+  SCCS| Polarisation energy                  [Hartree]         -0.10676904116209
+  SCCS|                                      [kcal/mol]                  -66.999
+  SCCS| Cavitation energy                    [Hartree]          0.00576153365037
+  SCCS|                                      [kcal/mol]                    3.615
+  SCCS| Dispersion free energy               [Hartree]         -0.10906705854705
+  SCCS|                                      [kcal/mol]                  -68.441
+  SCCS| Repulsion free energy                [Hartree]          0.00156298606441
+  SCCS|                                      [kcal/mol]                    0.981
+  SCCS| Solvation free energy                [Hartree]         -0.20851157999437
+  SCCS|                                      [kcal/mol]                 -130.843
+    11 Broy./Diag. 0.40E+00    0.9     0.00065356      -633.6848233989  3.12E-01
+  SCCS| Iteration cycle converged in 19 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.044550205099
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        644.50316273436795
+  SCCS| Hartree energy of the solute only    [Hartree]        644.60929875781721
+  SCCS| Polarisation energy                  [Hartree]         -0.10613602344920
+  SCCS|                                      [kcal/mol]                  -66.601
+  SCCS| Cavitation energy                    [Hartree]          0.00575890582804
+  SCCS|                                      [kcal/mol]                    3.614
+  SCCS| Dispersion free energy               [Hartree]         -0.10906742999594
+  SCCS|                                      [kcal/mol]                  -68.441
+  SCCS| Repulsion free energy                [Hartree]          0.00156227319003
+  SCCS|                                      [kcal/mol]                    0.980
+  SCCS| Solvation free energy                [Hartree]         -0.20788227442706
+  SCCS|                                      [kcal/mol]                 -130.448
+    12 Broy./Diag. 0.40E+00    0.9     0.00138684      -633.6873345735 -2.51E-03
+  SCCS| Iteration cycle converged in 20 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.044769606009
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        644.50196415374137
+  SCCS| Hartree energy of the solute only    [Hartree]        644.60623757207748
+  SCCS| Polarisation energy                  [Hartree]         -0.10427341833621
+  SCCS|                                      [kcal/mol]                  -65.433
+  SCCS| Cavitation energy                    [Hartree]          0.00575474825350
+  SCCS|                                      [kcal/mol]                    3.611
+  SCCS| Dispersion free energy               [Hartree]         -0.10906787100911
+  SCCS|                                      [kcal/mol]                  -68.441
+  SCCS| Repulsion free energy                [Hartree]          0.00156114532522
+  SCCS|                                      [kcal/mol]                    0.980
+  SCCS| Solvation free energy                [Hartree]         -0.20602539576659
+  SCCS|                                      [kcal/mol]                 -129.283
+    13 Broy./Diag. 0.40E+00    1.0     0.00368023      -633.6924322114 -5.10E-03
+  SCCS| Iteration cycle converged in 20 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.044484198453
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        644.50119290948646
+  SCCS| Hartree energy of the solute only    [Hartree]        644.60782349061469
+  SCCS| Polarisation energy                  [Hartree]         -0.10663058112834
+  SCCS|                                      [kcal/mol]                  -66.912
+  SCCS| Cavitation energy                    [Hartree]          0.00576256691532
+  SCCS|                                      [kcal/mol]                    3.616
+  SCCS| Dispersion free energy               [Hartree]         -0.10906677701541
+  SCCS|                                      [kcal/mol]                  -68.440
+  SCCS| Repulsion free energy                [Hartree]          0.00156326636802
+  SCCS|                                      [kcal/mol]                    0.981
+  SCCS| Solvation free energy                [Hartree]         -0.20837152486041
+  SCCS|                                      [kcal/mol]                 -130.755
+    14 Broy./Diag. 0.40E+00    1.0     0.00434564      -633.6944166850 -1.98E-03
+  SCCS| Iteration cycle converged in 20 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.044210431862
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        644.50192935091627
+  SCCS| Hartree energy of the solute only    [Hartree]        644.61048344564119
+  SCCS| Polarisation energy                  [Hartree]         -0.10855409472492
+  SCCS|                                      [kcal/mol]                  -68.119
+  SCCS| Cavitation energy                    [Hartree]          0.00576244692042
+  SCCS|                                      [kcal/mol]                    3.616
+  SCCS| Dispersion free energy               [Hartree]         -0.10906696673373
+  SCCS|                                      [kcal/mol]                  -68.441
+  SCCS| Repulsion free energy                [Hartree]          0.00156323381586
+  SCCS|                                      [kcal/mol]                    0.981
+  SCCS| Solvation free energy                [Hartree]         -0.21029538072237
+  SCCS|                                      [kcal/mol]                 -131.962
+    15 Broy./Diag. 0.40E+00    1.1     0.00511701      -633.6960015598 -1.58E-03
+  SCCS| Iteration cycle converged in 18 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.044238270068
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        644.50207321500102
+  SCCS| Hartree energy of the solute only    [Hartree]        644.61042672338806
+  SCCS| Polarisation energy                  [Hartree]         -0.10835350838722
+  SCCS|                                      [kcal/mol]                  -67.993
+  SCCS| Cavitation energy                    [Hartree]          0.00576138440070
+  SCCS|                                      [kcal/mol]                    3.615
+  SCCS| Dispersion free energy               [Hartree]         -0.10906714281388
+  SCCS|                                      [kcal/mol]                  -68.441
+  SCCS| Repulsion free energy                [Hartree]          0.00156294557603
+  SCCS|                                      [kcal/mol]                    0.981
+  SCCS| Solvation free energy                [Hartree]         -0.21009632122438
+  SCCS|                                      [kcal/mol]                 -131.837
+    16 Broy./Diag. 0.40E+00    1.1     0.00058498      -633.6982235217 -2.22E-03
+  SCCS| Iteration cycle converged in 16 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.044244307806
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        644.50202654123734
+  SCCS| Hartree energy of the solute only    [Hartree]        644.61034244867585
+  SCCS| Polarisation energy                  [Hartree]         -0.10831590743847
+  SCCS|                                      [kcal/mol]                  -67.969
+  SCCS| Cavitation energy                    [Hartree]          0.00576159493508
+  SCCS|                                      [kcal/mol]                    3.615
+  SCCS| Dispersion free energy               [Hartree]         -0.10906707789331
+  SCCS|                                      [kcal/mol]                  -68.441
+  SCCS| Repulsion free energy                [Hartree]          0.00156300268969
+  SCCS|                                      [kcal/mol]                    0.981
+  SCCS| Solvation free energy                [Hartree]         -0.21005838770702
+  SCCS|                                      [kcal/mol]                 -131.814
+    17 Broy./Diag. 0.40E+00    1.0     0.00025079      -633.6975653837  6.58E-04
+  SCCS| Iteration cycle converged in 17 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.044248973294
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        644.50377636865937
+  SCCS| Hartree energy of the solute only    [Hartree]        644.61193984953297
+  SCCS| Polarisation energy                  [Hartree]         -0.10816348087365
+  SCCS|                                      [kcal/mol]                  -67.874
+  SCCS| Cavitation energy                    [Hartree]          0.00575293501811
+  SCCS|                                      [kcal/mol]                    3.610
+  SCCS| Dispersion free energy               [Hartree]         -0.10906864631709
+  SCCS|                                      [kcal/mol]                  -68.442
+  SCCS| Repulsion free energy                [Hartree]          0.00156065343160
+  SCCS|                                      [kcal/mol]                    0.979
+  SCCS| Solvation free energy                [Hartree]         -0.20991853874103
+  SCCS|                                      [kcal/mol]                 -131.726
+    18 Broy./Diag. 0.40E+00    0.9     0.00031796      -633.6956882115  1.88E-03
+  SCCS| Iteration cycle converged in 29 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.094109824414
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        644.97798549985873
+  SCCS| Hartree energy of the solute only    [Hartree]        644.49074797404285
+  SCCS| Polarisation energy                  [Hartree]          0.48723752581576
+  SCCS|                                      [kcal/mol]                  305.746
+  SCCS| Cavitation energy                    [Hartree]          0.00598335074229
+  SCCS|                                      [kcal/mol]                    3.755
+  SCCS| Dispersion free energy               [Hartree]         -0.10902023576054
+  SCCS|                                      [kcal/mol]                  -68.411
+  SCCS| Repulsion free energy                [Hartree]          0.00162316049791
+  SCCS|                                      [kcal/mol]                    1.019
+  SCCS| Solvation free energy                [Hartree]          0.38582380129541
+  SCCS|                                      [kcal/mol]                  242.108
+    19 Broy./Diag. 0.40E+00    1.1     0.44006006      -633.2596149656  4.36E-01
+  SCCS| Iteration cycle converged in 42 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.363419618227
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        648.07948073158889
+  SCCS| Hartree energy of the solute only    [Hartree]        644.25499785820489
+  SCCS| Polarisation energy                  [Hartree]          3.82448287338391
+  SCCS|                                      [kcal/mol]                 2399.899
+  SCCS| Cavitation energy                    [Hartree]          0.00640608902996
+  SCCS|                                      [kcal/mol]                    4.020
+  SCCS| Dispersion free energy               [Hartree]         -0.10893510922886
+  SCCS|                                      [kcal/mol]                  -68.358
+  SCCS| Repulsion free energy                [Hartree]          0.00173784073630
+  SCCS|                                      [kcal/mol]                    1.091
+  SCCS| Solvation free energy                [Hartree]          3.72369169392130
+  SCCS|                                      [kcal/mol]                 2336.652
+    20 Broy./Diag. 0.40E+00    1.4     2.89247947      -629.3572854446  3.90E+00
+  SCCS| Iteration cycle converged in 27 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.359957844357
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        647.89776150474017
+  SCCS| Hartree energy of the solute only    [Hartree]        644.08147118473130
+  SCCS| Polarisation energy                  [Hartree]          3.81629032000886
+  SCCS|                                      [kcal/mol]                 2394.758
+  SCCS| Cavitation energy                    [Hartree]          0.00669143245305
+  SCCS|                                      [kcal/mol]                    4.199
+  SCCS| Dispersion free energy               [Hartree]         -0.10887937038848
+  SCCS|                                      [kcal/mol]                  -68.323
+  SCCS| Repulsion free energy                [Hartree]          0.00181524856222
+  SCCS|                                      [kcal/mol]                    1.139
+  SCCS| Solvation free energy                [Hartree]          3.71591763063565
+  SCCS|                                      [kcal/mol]                 2331.773
+    21 Broy./Diag. 0.40E+00    1.1     0.68097931      -623.9647963883  5.39E+00
+  SCCS| Iteration cycle converged in 28 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.358491659368
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        647.69192648120543
+  SCCS| Hartree energy of the solute only    [Hartree]        643.88702242827708
+  SCCS| Polarisation energy                  [Hartree]          3.80490405292847
+  SCCS|                                      [kcal/mol]                 2387.613
+  SCCS| Cavitation energy                    [Hartree]          0.00676017255126
+  SCCS|                                      [kcal/mol]                    4.242
+  SCCS| Dispersion free energy               [Hartree]         -0.10884756033444
+  SCCS|                                      [kcal/mol]                  -68.303
+  SCCS| Repulsion free energy                [Hartree]          0.00183389634285
+  SCCS|                                      [kcal/mol]                    1.151
+  SCCS| Solvation free energy                [Hartree]          3.70465056148814
+  SCCS|                                      [kcal/mol]                 2324.703
+    22 Broy./Diag. 0.40E+00    1.1     0.36545358      -624.4062865991 -4.41E-01
+  SCCS| Iteration cycle converged in 34 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.355638995975
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        647.57325898192403
+  SCCS| Hartree energy of the solute only    [Hartree]        643.84112620901146
+  SCCS| Polarisation energy                  [Hartree]          3.73213277291262
+  SCCS|                                      [kcal/mol]                 2341.949
+  SCCS| Cavitation energy                    [Hartree]          0.00654431258929
+  SCCS|                                      [kcal/mol]                    4.107
+  SCCS| Dispersion free energy               [Hartree]         -0.10888285458560
+  SCCS|                                      [kcal/mol]                  -68.325
+  SCCS| Repulsion free energy                [Hartree]          0.00177533795668
+  SCCS|                                      [kcal/mol]                    1.114
+  SCCS| Solvation free energy                [Hartree]          3.63156956887299
+  SCCS|                                      [kcal/mol]                 2278.844
+    23 Broy./Diag. 0.40E+00    1.2     0.69183084      -624.8726572086 -4.66E-01
+  SCCS| Iteration cycle converged in 32 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.116328126786
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        644.40552953661177
+  SCCS| Hartree energy of the solute only    [Hartree]        643.66452665848408
+  SCCS| Polarisation energy                  [Hartree]          0.74100287812773
+  SCCS|                                      [kcal/mol]                  464.986
+  SCCS| Cavitation energy                    [Hartree]          0.00687543345522
+  SCCS|                                      [kcal/mol]                    4.314
+  SCCS| Dispersion free energy               [Hartree]         -0.10880515523681
+  SCCS|                                      [kcal/mol]                  -68.276
+  SCCS| Repulsion free energy                [Hartree]          0.00186516426517
+  SCCS|                                      [kcal/mol]                    1.170
+  SCCS| Solvation free energy                [Hartree]          0.64093832061131
+  SCCS|                                      [kcal/mol]                  402.195
+    24 Broy./Diag. 0.40E+00    1.2     2.33766105      -628.3119644569 -3.44E+00
+  SCCS| Iteration cycle converged in 30 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.143150708136
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        644.97101779267177
+  SCCS| Hartree energy of the solute only    [Hartree]        643.88682507433577
+  SCCS| Polarisation energy                  [Hartree]          1.08419271833600
+  SCCS|                                      [kcal/mol]                  680.341
+  SCCS| Cavitation energy                    [Hartree]          0.00660673213486
+  SCCS|                                      [kcal/mol]                    4.146
+  SCCS| Dispersion free energy               [Hartree]         -0.10888896354293
+  SCCS|                                      [kcal/mol]                  -68.329
+  SCCS| Repulsion free energy                [Hartree]          0.00179227110083
+  SCCS|                                      [kcal/mol]                    1.125
+  SCCS| Solvation free energy                [Hartree]          0.98370275802876
+  SCCS|                                      [kcal/mol]                  617.283
+    25 Broy./Diag. 0.40E+00    1.2     0.28627404      -633.3584926952 -5.05E+00
+  SCCS| Iteration cycle converged in 29 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.146240895613
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.11139006945018
+  SCCS| Hartree energy of the solute only    [Hartree]        643.98075926390902
+  SCCS| Polarisation energy                  [Hartree]          1.13063080554119
+  SCCS|                                      [kcal/mol]                  709.482
+  SCCS| Cavitation energy                    [Hartree]          0.00670562893928
+  SCCS|                                      [kcal/mol]                    4.208
+  SCCS| Dispersion free energy               [Hartree]         -0.10887521647783
+  SCCS|                                      [kcal/mol]                  -68.320
+  SCCS| Repulsion free energy                [Hartree]          0.00181909977815
+  SCCS|                                      [kcal/mol]                    1.142
+  SCCS| Solvation free energy                [Hartree]          1.03028031778079
+  SCCS|                                      [kcal/mol]                  646.511
+    26 Broy./Diag. 0.40E+00    1.2     0.33223257      -632.1874018128  1.17E+00
+  SCCS| Iteration cycle converged in 28 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.147394775162
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.13524629594292
+  SCCS| Hartree energy of the solute only    [Hartree]        643.99449447698646
+  SCCS| Polarisation energy                  [Hartree]          1.14075181895645
+  SCCS|                                      [kcal/mol]                  715.833
+  SCCS| Cavitation energy                    [Hartree]          0.00657518148299
+  SCCS|                                      [kcal/mol]                    4.126
+  SCCS| Dispersion free energy               [Hartree]         -0.10890161692469
+  SCCS|                                      [kcal/mol]                  -68.337
+  SCCS| Repulsion free energy                [Hartree]          0.00178371205524
+  SCCS|                                      [kcal/mol]                    1.119
+  SCCS| Solvation free energy                [Hartree]          1.04020909556999
+  SCCS|                                      [kcal/mol]                  652.741
+    27 Broy./Diag. 0.40E+00    1.1     0.23524243      -631.9496693756  2.38E-01
+  SCCS| Iteration cycle converged in 32 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.186323711195
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.65395500072407
+  SCCS| Hartree energy of the solute only    [Hartree]        644.02225088143723
+  SCCS| Polarisation energy                  [Hartree]          1.63170411928694
+  SCCS|                                      [kcal/mol]                 1023.910
+  SCCS| Cavitation energy                    [Hartree]          0.00660699916835
+  SCCS|                                      [kcal/mol]                    4.146
+  SCCS| Dispersion free energy               [Hartree]         -0.10889676953971
+  SCCS|                                      [kcal/mol]                  -68.334
+  SCCS| Repulsion free energy                [Hartree]          0.00179234354155
+  SCCS|                                      [kcal/mol]                    1.125
+  SCCS| Solvation free energy                [Hartree]          1.53120669245713
+  SCCS|                                      [kcal/mol]                  960.847
+    28 Broy./Diag. 0.40E+00    1.2     0.58089922      -631.3937717424  5.56E-01
+  SCCS| Iteration cycle converged in 32 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.208629742027
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.83214285600502
+  SCCS| Hartree energy of the solute only    [Hartree]        643.92079779146002
+  SCCS| Polarisation energy                  [Hartree]          1.91134506454497
+  SCCS|                                      [kcal/mol]                 1199.387
+  SCCS| Cavitation energy                    [Hartree]          0.00667507670841
+  SCCS|                                      [kcal/mol]                    4.189
+  SCCS| Dispersion free energy               [Hartree]         -0.10887774199898
+  SCCS|                                      [kcal/mol]                  -68.322
+  SCCS| Repulsion free energy                [Hartree]          0.00181081158372
+  SCCS|                                      [kcal/mol]                    1.136
+  SCCS| Solvation free energy                [Hartree]          1.81095321083812
+  SCCS|                                      [kcal/mol]                 1136.390
+    29 Broy./Diag. 0.40E+00    1.2     0.38244721      -630.3211191262  1.07E+00
+  SCCS| Iteration cycle converged in 31 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.185245862637
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.78588679465281
+  SCCS| Hartree energy of the solute only    [Hartree]        644.16059032233954
+  SCCS| Polarisation energy                  [Hartree]          1.62529647231338
+  SCCS|                                      [kcal/mol]                 1019.889
+  SCCS| Cavitation energy                    [Hartree]          0.00661585641084
+  SCCS|                                      [kcal/mol]                    4.152
+  SCCS| Dispersion free energy               [Hartree]         -0.10890177265881
+  SCCS|                                      [kcal/mol]                  -68.337
+  SCCS| Repulsion free energy                [Hartree]          0.00179474633001
+  SCCS|                                      [kcal/mol]                    1.126
+  SCCS| Solvation free energy                [Hartree]          1.52480530239542
+  SCCS|                                      [kcal/mol]                  956.830
+    30 Broy./Diag. 0.40E+00    1.2     0.42361120      -629.9787293816  3.42E-01
+  SCCS| Iteration cycle converged in 30 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.169039399761
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.76774005098105
+  SCCS| Hartree energy of the solute only    [Hartree]        644.33838910632710
+  SCCS| Polarisation energy                  [Hartree]          1.42935094465399
+  SCCS|                                      [kcal/mol]                  896.931
+  SCCS| Cavitation energy                    [Hartree]          0.00658732063673
+  SCCS|                                      [kcal/mol]                    4.134
+  SCCS| Dispersion free energy               [Hartree]         -0.10891337771296
+  SCCS|                                      [kcal/mol]                  -68.344
+  SCCS| Repulsion free energy                [Hartree]          0.00178700515900
+  SCCS|                                      [kcal/mol]                    1.121
+  SCCS| Solvation free energy                [Hartree]          1.32881189273676
+  SCCS|                                      [kcal/mol]                  833.842
+    31 Broy./Diag. 0.40E+00    1.1     0.32284892      -630.1149911783 -1.36E-01
+  SCCS| Iteration cycle converged in 32 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.201703248670
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        646.03818989607248
+  SCCS| Hartree energy of the solute only    [Hartree]        644.20696983007520
+  SCCS| Polarisation energy                  [Hartree]          1.83122006599734
+  SCCS|                                      [kcal/mol]                 1149.108
+  SCCS| Cavitation energy                    [Hartree]          0.00659028059164
+  SCCS|                                      [kcal/mol]                    4.135
+  SCCS| Dispersion free energy               [Hartree]         -0.10890965864561
+  SCCS|                                      [kcal/mol]                  -68.342
+  SCCS| Repulsion free energy                [Hartree]          0.00178780813414
+  SCCS|                                      [kcal/mol]                    1.122
+  SCCS| Solvation free energy                [Hartree]          1.73068849607751
+  SCCS|                                      [kcal/mol]                 1086.023
+    32 Broy./Diag. 0.40E+00    1.2     0.45117537      -629.9434500671  1.72E-01
+  SCCS| Iteration cycle converged in 29 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.197423028420
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.97733989793142
+  SCCS| Hartree energy of the solute only    [Hartree]        644.20049876164785
+  SCCS| Polarisation energy                  [Hartree]          1.77684113628361
+  SCCS|                                      [kcal/mol]                 1114.985
+  SCCS| Cavitation energy                    [Hartree]          0.00658022663933
+  SCCS|                                      [kcal/mol]                    4.129
+  SCCS| Dispersion free energy               [Hartree]         -0.10891132139207
+  SCCS|                                      [kcal/mol]                  -68.343
+  SCCS| Repulsion free energy                [Hartree]          0.00178508070282
+  SCCS|                                      [kcal/mol]                    1.120
+  SCCS| Solvation free energy                [Hartree]          1.67629512223369
+  SCCS|                                      [kcal/mol]                 1051.891
+    33 Broy./Diag. 0.40E+00    1.1     0.08397741      -629.4924171121  4.51E-01
+  SCCS| Iteration cycle converged in 31 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.213196211202
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        646.08447724075108
+  SCCS| Hartree energy of the solute only    [Hartree]        644.11613111152917
+  SCCS| Polarisation energy                  [Hartree]          1.96834612922199
+  SCCS|                                      [kcal/mol]                 1235.156
+  SCCS| Cavitation energy                    [Hartree]          0.00656552916956
+  SCCS|                                      [kcal/mol]                    4.120
+  SCCS| Dispersion free energy               [Hartree]         -0.10891470527112
+  SCCS|                                      [kcal/mol]                  -68.345
+  SCCS| Repulsion free energy                [Hartree]          0.00178109358032
+  SCCS|                                      [kcal/mol]                    1.118
+  SCCS| Solvation free energy                [Hartree]          1.86777804670075
+  SCCS|                                      [kcal/mol]                 1172.048
+    34 Broy./Diag. 0.40E+00    1.1     0.20795597      -629.5030952607 -1.07E-02
+  SCCS| Iteration cycle converged in 30 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.203242615980
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        646.09706418180485
+  SCCS| Hartree energy of the solute only    [Hartree]        644.24552574601830
+  SCCS| Polarisation energy                  [Hartree]          1.85153843578655
+  SCCS|                                      [kcal/mol]                 1161.858
+  SCCS| Cavitation energy                    [Hartree]          0.00657798669840
+  SCCS|                                      [kcal/mol]                    4.128
+  SCCS| Dispersion free energy               [Hartree]         -0.10891395517544
+  SCCS|                                      [kcal/mol]                  -68.345
+  SCCS| Repulsion free energy                [Hartree]          0.00178447305272
+  SCCS|                                      [kcal/mol]                    1.120
+  SCCS| Solvation free energy                [Hartree]          1.75098694036223
+  SCCS|                                      [kcal/mol]                 1098.761
+    35 Broy./Diag. 0.40E+00    1.1     0.13250022      -629.2588654636  2.44E-01
+  SCCS| Iteration cycle converged in 29 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.202840400939
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        646.09905717577260
+  SCCS| Hartree energy of the solute only    [Hartree]        644.25154419230012
+  SCCS| Polarisation energy                  [Hartree]          1.84751298347258
+  SCCS|                                      [kcal/mol]                 1159.332
+  SCCS| Cavitation energy                    [Hartree]          0.00659035243134
+  SCCS|                                      [kcal/mol]                    4.136
+  SCCS| Dispersion free energy               [Hartree]         -0.10891248275107
+  SCCS|                                      [kcal/mol]                  -68.344
+  SCCS| Repulsion free energy                [Hartree]          0.00178782762278
+  SCCS|                                      [kcal/mol]                    1.122
+  SCCS| Solvation free energy                [Hartree]          1.74697868077563
+  SCCS|                                      [kcal/mol]                 1096.246
+    36 Broy./Diag. 0.40E+00    1.1     0.06501759      -629.2751647084 -1.63E-02
+  SCCS| Iteration cycle converged in 32 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.216042734749
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        646.18218122931489
+  SCCS| Hartree energy of the solute only    [Hartree]        644.17229434881733
+  SCCS| Polarisation energy                  [Hartree]          2.00988688049759
+  SCCS|                                      [kcal/mol]                 1261.223
+  SCCS| Cavitation energy                    [Hartree]          0.00660522556696
+  SCCS|                                      [kcal/mol]                    4.145
+  SCCS| Dispersion free energy               [Hartree]         -0.10890619137268
+  SCCS|                                      [kcal/mol]                  -68.340
+  SCCS| Repulsion free energy                [Hartree]          0.00179186239982
+  SCCS|                                      [kcal/mol]                    1.124
+  SCCS| Solvation free energy                [Hartree]          1.90937777709169
+  SCCS|                                      [kcal/mol]                 1198.153
+    37 Broy./Diag. 0.40E+00    1.2     0.32360218      -629.2028728369  7.23E-02
+  SCCS| Iteration cycle converged in 35 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.268209155337
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        646.35601011436279
+  SCCS| Hartree energy of the solute only    [Hartree]        643.69431078489538
+  SCCS| Polarisation energy                  [Hartree]          2.66169932946746
+  SCCS|                                      [kcal/mol]                 1670.242
+  SCCS| Cavitation energy                    [Hartree]          0.00682621946458
+  SCCS|                                      [kcal/mol]                    4.284
+  SCCS| Dispersion free energy               [Hartree]         -0.10884379895564
+  SCCS|                                      [kcal/mol]                  -68.301
+  SCCS| Repulsion free energy                [Hartree]          0.00185181351757
+  SCCS|                                      [kcal/mol]                    1.162
+  SCCS| Solvation free energy                [Hartree]          2.56153356349397
+  SCCS|                                      [kcal/mol]                 1607.387
+    38 Broy./Diag. 0.40E+00    1.2     1.09619637      -628.9509594514  2.52E-01
+  SCCS| Iteration cycle converged in 34 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.288398594276
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        646.38854395611111
+  SCCS| Hartree energy of the solute only    [Hartree]        643.47304642682252
+  SCCS| Polarisation energy                  [Hartree]          2.91549752928852
+  SCCS|                                      [kcal/mol]                 1829.502
+  SCCS| Cavitation energy                    [Hartree]          0.00688574649934
+  SCCS|                                      [kcal/mol]                    4.321
+  SCCS| Dispersion free energy               [Hartree]         -0.10881595638709
+  SCCS|                                      [kcal/mol]                  -68.283
+  SCCS| Repulsion free energy                [Hartree]          0.00186796198280
+  SCCS|                                      [kcal/mol]                    1.172
+  SCCS| Solvation free energy                [Hartree]          2.81543528138357
+  SCCS|                                      [kcal/mol]                 1766.712
+    39 Broy./Diag. 0.40E+00    1.2     0.30969010      -628.5010093124  4.50E-01
+  SCCS| Iteration cycle converged in 34 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.252128929108
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        646.06733303890110
+  SCCS| Hartree energy of the solute only    [Hartree]        643.61515857348968
+  SCCS| Polarisation energy                  [Hartree]          2.45217446541144
+  SCCS|                                      [kcal/mol]                 1538.763
+  SCCS| Cavitation energy                    [Hartree]          0.00680284354621
+  SCCS|                                      [kcal/mol]                    4.269
+  SCCS| Dispersion free energy               [Hartree]         -0.10884938827923
+  SCCS|                                      [kcal/mol]                  -68.304
+  SCCS| Repulsion free energy                [Hartree]          0.00184547210974
+  SCCS|                                      [kcal/mol]                    1.158
+  SCCS| Solvation free energy                [Hartree]          2.35197339278816
+  SCCS|                                      [kcal/mol]                 1475.886
+    40 Broy./Diag. 0.40E+00    1.2     0.74044718      -628.6711463481 -1.70E-01
+  SCCS| Iteration cycle converged in 35 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.287399509704
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        646.46126062504720
+  SCCS| Hartree energy of the solute only    [Hartree]        643.58016482294784
+  SCCS| Polarisation energy                  [Hartree]          2.88109580209942
+  SCCS|                                      [kcal/mol]                 1807.915
+  SCCS| Cavitation energy                    [Hartree]          0.00669539396653
+  SCCS|                                      [kcal/mol]                    4.201
+  SCCS| Dispersion free energy               [Hartree]         -0.10886485301511
+  SCCS|                                      [kcal/mol]                  -68.314
+  SCCS| Repulsion free energy                [Hartree]          0.00181632323968
+  SCCS|                                      [kcal/mol]                    1.140
+  SCCS| Solvation free energy                [Hartree]          2.78074266629053
+  SCCS|                                      [kcal/mol]                 1744.942
+    41 Broy./Diag. 0.40E+00    1.2     0.20823363      -628.8879025495 -2.17E-01
+  SCCS| Iteration cycle converged in 36 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.313077428689
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        646.37966875194331
+  SCCS| Hartree energy of the solute only    [Hartree]        643.13551504388261
+  SCCS| Polarisation energy                  [Hartree]          3.24415370806069
+  SCCS|                                      [kcal/mol]                 2035.737
+  SCCS| Cavitation energy                    [Hartree]          0.00712114764584
+  SCCS|                                      [kcal/mol]                    4.469
+  SCCS| Dispersion free energy               [Hartree]         -0.10875168666093
+  SCCS|                                      [kcal/mol]                  -68.243
+  SCCS| Repulsion free energy                [Hartree]          0.00193182149206
+  SCCS|                                      [kcal/mol]                    1.212
+  SCCS| Solvation free energy                [Hartree]          3.14445499053766
+  SCCS|                                      [kcal/mol]                 1973.175
+    42 Broy./Diag. 0.40E+00    1.3     1.32769940      -628.3471643066  5.41E-01
+  SCCS| Iteration cycle converged in 37 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.332250995792
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.74293128036811
+  SCCS| Hartree energy of the solute only    [Hartree]        642.16344839961323
+  SCCS| Polarisation energy                  [Hartree]          3.57948288075484
+  SCCS|                                      [kcal/mol]                 2246.159
+  SCCS| Cavitation energy                    [Hartree]          0.00783691031557
+  SCCS|                                      [kcal/mol]                    4.918
+  SCCS| Dispersion free energy               [Hartree]         -0.10852017727735
+  SCCS|                                      [kcal/mol]                  -68.097
+  SCCS| Repulsion free energy                [Hartree]          0.00212599324321
+  SCCS|                                      [kcal/mol]                    1.334
+  SCCS| Solvation free energy                [Hartree]          3.48092560703628
+  SCCS|                                      [kcal/mol]                 2184.314
+    43 Broy./Diag. 0.40E+00    1.5     1.63428813      -629.1768845338 -8.30E-01
+  SCCS| Iteration cycle converged in 36 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.297812398661
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.75647021884743
+  SCCS| Hartree energy of the solute only    [Hartree]        642.64898444112055
+  SCCS| Polarisation energy                  [Hartree]          3.10748577772683
+  SCCS|                                      [kcal/mol]                 1949.977
+  SCCS| Cavitation energy                    [Hartree]          0.00788511132133
+  SCCS|                                      [kcal/mol]                    4.948
+  SCCS| Dispersion free energy               [Hartree]         -0.10860916692927
+  SCCS|                                      [kcal/mol]                  -68.153
+  SCCS| Repulsion free energy                [Hartree]          0.00213906918876
+  SCCS|                                      [kcal/mol]                    1.342
+  SCCS| Solvation free energy                [Hartree]          3.00890079130765
+  SCCS|                                      [kcal/mol]                 1888.114
+    44 Broy./Diag. 0.40E+00    1.3     0.94548789      -629.9344443051 -7.58E-01
+  SCCS| Iteration cycle converged in 37 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.327178130032
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.75225323603058
+  SCCS| Hartree energy of the solute only    [Hartree]        642.22566433584893
+  SCCS| Polarisation energy                  [Hartree]          3.52658890018170
+  SCCS|                                      [kcal/mol]                 2212.968
+  SCCS| Cavitation energy                    [Hartree]          0.00813063017054
+  SCCS|                                      [kcal/mol]                    5.102
+  SCCS| Dispersion free energy               [Hartree]         -0.10851261607434
+  SCCS|                                      [kcal/mol]                  -68.093
+  SCCS| Repulsion free energy                [Hartree]          0.00220567342353
+  SCCS|                                      [kcal/mol]                    1.384
+  SCCS| Solvation free energy                [Hartree]          3.42841258770143
+  SCCS|                                      [kcal/mol]                 2151.361
+    45 Broy./Diag. 0.40E+00    1.4     0.78310418      -630.0964257397 -1.62E-01
+  SCCS| Iteration cycle converged in 33 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.321795654381
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.70266103356369
+  SCCS| Hartree energy of the solute only    [Hartree]        642.24678030498330
+  SCCS| Polarisation energy                  [Hartree]          3.45588072858034
+  SCCS|                                      [kcal/mol]                 2168.598
+  SCCS| Cavitation energy                    [Hartree]          0.00823470597937
+  SCCS|                                      [kcal/mol]                    5.167
+  SCCS| Dispersion free energy               [Hartree]         -0.10851106281649
+  SCCS|                                      [kcal/mol]                  -68.092
+  SCCS| Repulsion free energy                [Hartree]          0.00223390705865
+  SCCS|                                      [kcal/mol]                    1.402
+  SCCS| Solvation free energy                [Hartree]          3.35783827880188
+  SCCS|                                      [kcal/mol]                 2107.075
+    46 Broy./Diag. 0.40E+00    1.2     0.49103100      -630.0182904183  7.81E-02
+  SCCS| Iteration cycle converged in 33 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.323004036648
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.67411789171774
+  SCCS| Hartree energy of the solute only    [Hartree]        642.20050658747073
+  SCCS| Polarisation energy                  [Hartree]          3.47361130424702
+  SCCS|                                      [kcal/mol]                 2179.724
+  SCCS| Cavitation energy                    [Hartree]          0.00828905377873
+  SCCS|                                      [kcal/mol]                    5.201
+  SCCS| Dispersion free energy               [Hartree]         -0.10850106148155
+  SCCS|                                      [kcal/mol]                  -68.085
+  SCCS| Repulsion free energy                [Hartree]          0.00224865050340
+  SCCS|                                      [kcal/mol]                    1.411
+  SCCS| Solvation free energy                [Hartree]          3.37564794704760
+  SCCS|                                      [kcal/mol]                 2118.251
+    47 Broy./Diag. 0.40E+00    1.2     0.25958121      -630.1386967990 -1.20E-01
+  SCCS| Iteration cycle converged in 33 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.325662034800
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.66570499680074
+  SCCS| Hartree energy of the solute only    [Hartree]        642.15515747818722
+  SCCS| Polarisation energy                  [Hartree]          3.51054751861358
+  SCCS|                                      [kcal/mol]                 2202.902
+  SCCS| Cavitation energy                    [Hartree]          0.00832329069819
+  SCCS|                                      [kcal/mol]                    5.223
+  SCCS| Dispersion free energy               [Hartree]         -0.10849204120542
+  SCCS|                                      [kcal/mol]                  -68.080
+  SCCS| Repulsion free energy                [Hartree]          0.00225793827837
+  SCCS|                                      [kcal/mol]                    1.417
+  SCCS| Solvation free energy                [Hartree]          3.41263670638472
+  SCCS|                                      [kcal/mol]                 2141.462
+    48 Broy./Diag. 0.40E+00    1.2     0.15352851      -630.1877472514 -4.91E-02
+  SCCS| Iteration cycle converged in 32 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.323397899856
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.59233316140194
+  SCCS| Hartree energy of the solute only    [Hartree]        642.11550164664982
+  SCCS| Polarisation energy                  [Hartree]          3.47683151475213
+  SCCS|                                      [kcal/mol]                 2181.745
+  SCCS| Cavitation energy                    [Hartree]          0.00835698429163
+  SCCS|                                      [kcal/mol]                    5.244
+  SCCS| Dispersion free energy               [Hartree]         -0.10849182458315
+  SCCS|                                      [kcal/mol]                  -68.080
+  SCCS| Repulsion free energy                [Hartree]          0.00226707866011
+  SCCS|                                      [kcal/mol]                    1.423
+  SCCS| Solvation free energy                [Hartree]          3.37896375312072
+  SCCS|                                      [kcal/mol]                 2120.332
+    49 Broy./Diag. 0.40E+00    1.2     0.16507257      -630.2664826527 -7.87E-02
+  SCCS| Iteration cycle converged in 30 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.324816990694
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.64155628409515
+  SCCS| Hartree energy of the solute only    [Hartree]        642.15340172173001
+  SCCS| Polarisation energy                  [Hartree]          3.48815456236506
+  SCCS|                                      [kcal/mol]                 2188.850
+  SCCS| Cavitation energy                    [Hartree]          0.00831212255761
+  SCCS|                                      [kcal/mol]                    5.216
+  SCCS| Dispersion free energy               [Hartree]         -0.10850843412550
+  SCCS|                                      [kcal/mol]                  -68.090
+  SCCS| Repulsion free energy                [Hartree]          0.00225490859059
+  SCCS|                                      [kcal/mol]                    1.415
+  SCCS| Solvation free energy                [Hartree]          3.39021315938776
+  SCCS|                                      [kcal/mol]                 2127.391
+    50 Broy./Diag. 0.40E+00    1.3     0.10701247      -630.3278678327 -6.14E-02
+  SCCS| Iteration cycle converged in 29 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.325136739964
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.61942006804748
+  SCCS| Hartree energy of the solute only    [Hartree]        642.12504243850071
+  SCCS| Polarisation energy                  [Hartree]          3.49437762954685
+  SCCS|                                      [kcal/mol]                 2192.755
+  SCCS| Cavitation energy                    [Hartree]          0.00833574814729
+  SCCS|                                      [kcal/mol]                    5.231
+  SCCS| Dispersion free energy               [Hartree]         -0.10850210901677
+  SCCS|                                      [kcal/mol]                  -68.086
+  SCCS| Repulsion free energy                [Hartree]          0.00226131772914
+  SCCS|                                      [kcal/mol]                    1.419
+  SCCS| Solvation free energy                [Hartree]          3.39647258640652
+  SCCS|                                      [kcal/mol]                 2131.319
+    51 Broy./Diag. 0.40E+00    1.1     0.11404703      -630.2729259156  5.49E-02
+  SCCS| Iteration cycle converged in 28 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.324865257014
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.62178659977474
+  SCCS| Hartree energy of the solute only    [Hartree]        642.13088720574501
+  SCCS| Polarisation energy                  [Hartree]          3.49089939402976
+  SCCS|                                      [kcal/mol]                 2190.572
+  SCCS| Cavitation energy                    [Hartree]          0.00833478383303
+  SCCS|                                      [kcal/mol]                    5.230
+  SCCS| Dispersion free energy               [Hartree]         -0.10850292911250
+  SCCS|                                      [kcal/mol]                  -68.087
+  SCCS| Repulsion free energy                [Hartree]          0.00226105613043
+  SCCS|                                      [kcal/mol]                    1.419
+  SCCS| Solvation free energy                [Hartree]          3.39299230488072
+  SCCS|                                      [kcal/mol]                 2129.135
+    52 Broy./Diag. 0.40E+00    1.1     0.01594128      -630.2999591879 -2.70E-02
+  SCCS| Iteration cycle converged in 26 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.324888539977
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.62179253709223
+  SCCS| Hartree energy of the solute only    [Hartree]        642.13111534359098
+  SCCS| Polarisation energy                  [Hartree]          3.49067719350124
+  SCCS|                                      [kcal/mol]                 2190.433
+  SCCS| Cavitation energy                    [Hartree]          0.00833191288455
+  SCCS|                                      [kcal/mol]                    5.228
+  SCCS| Dispersion free energy               [Hartree]         -0.10850361115501
+  SCCS|                                      [kcal/mol]                  -68.087
+  SCCS| Repulsion free energy                [Hartree]          0.00226027730091
+  SCCS|                                      [kcal/mol]                    1.418
+  SCCS| Solvation free energy                [Hartree]          3.39276577253169
+  SCCS|                                      [kcal/mol]                 2128.993
+    53 Broy./Diag. 0.40E+00    1.1     0.01568777      -630.2967781328  3.18E-03
+  SCCS| Iteration cycle converged in 28 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.325126360412
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.62473889036983
+  SCCS| Hartree energy of the solute only    [Hartree]        642.13106030680729
+  SCCS| Polarisation energy                  [Hartree]          3.49367858356255
+  SCCS|                                      [kcal/mol]                 2192.316
+  SCCS| Cavitation energy                    [Hartree]          0.00833151507157
+  SCCS|                                      [kcal/mol]                    5.228
+  SCCS| Dispersion free energy               [Hartree]         -0.10850366983232
+  SCCS|                                      [kcal/mol]                  -68.087
+  SCCS| Repulsion free energy                [Hartree]          0.00226016938240
+  SCCS|                                      [kcal/mol]                    1.418
+  SCCS| Solvation free energy                [Hartree]          3.39576659818420
+  SCCS|                                      [kcal/mol]                 2130.876
+    54 Broy./Diag. 0.40E+00    1.1     0.01940700      -630.2942915621  2.49E-03
+  SCCS| Iteration cycle converged in 28 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.324891141326
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.62105802449821
+  SCCS| Hartree energy of the solute only    [Hartree]        642.12950107133940
+  SCCS| Polarisation energy                  [Hartree]          3.49155695315885
+  SCCS|                                      [kcal/mol]                 2190.985
+  SCCS| Cavitation energy                    [Hartree]          0.00833691204397
+  SCCS|                                      [kcal/mol]                    5.231
+  SCCS| Dispersion free energy               [Hartree]         -0.10850251152540
+  SCCS|                                      [kcal/mol]                  -68.086
+  SCCS| Repulsion free energy                [Hartree]          0.00226163347047
+  SCCS|                                      [kcal/mol]                    1.419
+  SCCS| Solvation free energy                [Hartree]          3.39365298714788
+  SCCS|                                      [kcal/mol]                 2129.549
+    55 Broy./Diag. 0.40E+00    1.3     0.05813162      -630.2927370786  1.55E-03
+  SCCS| Iteration cycle converged in 27 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.324907252197
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.62803672166547
+  SCCS| Hartree energy of the solute only    [Hartree]        642.13418469616840
+  SCCS| Polarisation energy                  [Hartree]          3.49385202549718
+  SCCS|                                      [kcal/mol]                 2192.425
+  SCCS| Cavitation energy                    [Hartree]          0.00834231177134
+  SCCS|                                      [kcal/mol]                    5.235
+  SCCS| Dispersion free energy               [Hartree]         -0.10850138191899
+  SCCS|                                      [kcal/mol]                  -68.086
+  SCCS| Repulsion free energy                [Hartree]          0.00226309830590
+  SCCS|                                      [kcal/mol]                    1.420
+  SCCS| Solvation free energy                [Hartree]          3.39595605365543
+  SCCS|                                      [kcal/mol]                 2130.995
+    56 Broy./Diag. 0.40E+00    1.1     0.07869163      -630.2906350782  2.10E-03
+  SCCS| Iteration cycle converged in 25 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.324658951399
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.62605399208633
+  SCCS| Hartree energy of the solute only    [Hartree]        642.13283031944422
+  SCCS| Polarisation energy                  [Hartree]          3.49322367264194
+  SCCS|                                      [kcal/mol]                 2192.031
+  SCCS| Cavitation energy                    [Hartree]          0.00835286670584
+  SCCS|                                      [kcal/mol]                    5.242
+  SCCS| Dispersion free energy               [Hartree]         -0.10849887555569
+  SCCS|                                      [kcal/mol]                  -68.084
+  SCCS| Repulsion free energy                [Hartree]          0.00226596164343
+  SCCS|                                      [kcal/mol]                    1.422
+  SCCS| Solvation free energy                [Hartree]          3.39534362543551
+  SCCS|                                      [kcal/mol]                 2130.610
+    57 Broy./Diag. 0.40E+00    1.1     0.07952356      -630.2799726349  1.07E-02
+  SCCS| Iteration cycle converged in 24 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.324396650259
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.62529611812533
+  SCCS| Hartree energy of the solute only    [Hartree]        642.13230764817115
+  SCCS| Polarisation energy                  [Hartree]          3.49298846995423
+  SCCS|                                      [kcal/mol]                 2191.883
+  SCCS| Cavitation energy                    [Hartree]          0.00836354060812
+  SCCS|                                      [kcal/mol]                    5.248
+  SCCS| Dispersion free energy               [Hartree]         -0.10849632276625
+  SCCS|                                      [kcal/mol]                  -68.082
+  SCCS| Repulsion free energy                [Hartree]          0.00226885725448
+  SCCS|                                      [kcal/mol]                    1.424
+  SCCS| Solvation free energy                [Hartree]          3.39512454505058
+  SCCS|                                      [kcal/mol]                 2130.473
+    58 Broy./Diag. 0.40E+00    1.0     0.07681186      -630.2828098550 -2.84E-03
+  SCCS| Iteration cycle converged in 22 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.324264587027
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.62481794906444
+  SCCS| Hartree energy of the solute only    [Hartree]        642.13190999942344
+  SCCS| Polarisation energy                  [Hartree]          3.49290794964099
+  SCCS|                                      [kcal/mol]                 2191.833
+  SCCS| Cavitation energy                    [Hartree]          0.00836784889949
+  SCCS|                                      [kcal/mol]                    5.251
+  SCCS| Dispersion free energy               [Hartree]         -0.10849533138634
+  SCCS|                                      [kcal/mol]                  -68.082
+  SCCS| Repulsion free energy                [Hartree]          0.00227002600568
+  SCCS|                                      [kcal/mol]                    1.424
+  SCCS| Solvation free energy                [Hartree]          3.39505049315982
+  SCCS|                                      [kcal/mol]                 2130.426
+    59 Broy./Diag. 0.40E+00    1.0     0.01776408      -630.2830007302 -1.91E-04
+  SCCS| Iteration cycle converged in 20 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.324232212153
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.62473890544447
+  SCCS| Hartree energy of the solute only    [Hartree]        642.13181020202774
+  SCCS| Polarisation energy                  [Hartree]          3.49292870341668
+  SCCS|                                      [kcal/mol]                 2191.846
+  SCCS| Cavitation energy                    [Hartree]          0.00836850185597
+  SCCS|                                      [kcal/mol]                    5.251
+  SCCS| Dispersion free energy               [Hartree]         -0.10849519578624
+  SCCS|                                      [kcal/mol]                  -68.082
+  SCCS| Repulsion free energy                [Hartree]          0.00227020313940
+  SCCS|                                      [kcal/mol]                    1.425
+  SCCS| Solvation free energy                [Hartree]          3.39507221262581
+  SCCS|                                      [kcal/mol]                 2130.440
+    60 Broy./Diag. 0.40E+00    1.0     0.00276165      -630.2831956750 -1.95E-04
+  SCCS| Iteration cycle converged in 20 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.324218942485
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.62473992637729
+  SCCS| Hartree energy of the solute only    [Hartree]        642.13176543950385
+  SCCS| Polarisation energy                  [Hartree]          3.49297448687349
+  SCCS|                                      [kcal/mol]                 2191.875
+  SCCS| Cavitation energy                    [Hartree]          0.00836885605765
+  SCCS|                                      [kcal/mol]                    5.252
+  SCCS| Dispersion free energy               [Hartree]         -0.10849509105856
+  SCCS|                                      [kcal/mol]                  -68.082
+  SCCS| Repulsion free energy                [Hartree]          0.00227029922706
+  SCCS|                                      [kcal/mol]                    1.425
+  SCCS| Solvation free energy                [Hartree]          3.39511855109965
+  SCCS|                                      [kcal/mol]                 2130.469
+    61 Broy./Diag. 0.40E+00    1.0     0.00113510      -630.2831707941  2.49E-05
+  SCCS| Iteration cycle converged in 18 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.324206457726
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.62472820023038
+  SCCS| Hartree energy of the solute only    [Hartree]        642.13173233302359
+  SCCS| Polarisation energy                  [Hartree]          3.49299586720677
+  SCCS|                                      [kcal/mol]                 2191.888
+  SCCS| Cavitation energy                    [Hartree]          0.00836929153878
+  SCCS|                                      [kcal/mol]                    5.252
+  SCCS| Dispersion free energy               [Hartree]         -0.10849495235682
+  SCCS|                                      [kcal/mol]                  -68.082
+  SCCS| Repulsion free energy                [Hartree]          0.00227041736417
+  SCCS|                                      [kcal/mol]                    1.425
+  SCCS| Solvation free energy                [Hartree]          3.39514062375290
+  SCCS|                                      [kcal/mol]                 2130.483
+    62 Broy./Diag. 0.40E+00    0.9     0.00099186      -630.2831223272  4.85E-05
+  SCCS| Iteration cycle converged in 16 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.324201905288
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.62472131400182
+  SCCS| Hartree energy of the solute only    [Hartree]        642.13172106952152
+  SCCS| Polarisation energy                  [Hartree]          3.49300024448020
+  SCCS|                                      [kcal/mol]                 2191.891
+  SCCS| Cavitation energy                    [Hartree]          0.00836946264140
+  SCCS|                                      [kcal/mol]                    5.252
+  SCCS| Dispersion free energy               [Hartree]         -0.10849488694679
+  SCCS|                                      [kcal/mol]                  -68.082
+  SCCS| Repulsion free energy                [Hartree]          0.00227046378081
+  SCCS|                                      [kcal/mol]                    1.425
+  SCCS| Solvation free energy                [Hartree]          3.39514528395563
+  SCCS|                                      [kcal/mol]                 2130.486
+    63 Broy./Diag. 0.40E+00    0.9     0.00028560      -630.2830906964  3.16E-05
+  SCCS| Iteration cycle converged in 17 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.324200594929
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.62472768932798
+  SCCS| Hartree energy of the solute only    [Hartree]        642.13172900440611
+  SCCS| Polarisation energy                  [Hartree]          3.49299868492186
+  SCCS|                                      [kcal/mol]                 2191.890
+  SCCS| Cavitation energy                    [Hartree]          0.00836951169831
+  SCCS|                                      [kcal/mol]                    5.252
+  SCCS| Dispersion free energy               [Hartree]         -0.10849485060384
+  SCCS|                                      [kcal/mol]                  -68.082
+  SCCS| Repulsion free energy                [Hartree]          0.00227047708894
+  SCCS|                                      [kcal/mol]                    1.425
+  SCCS| Solvation free energy                [Hartree]          3.39514382310527
+  SCCS|                                      [kcal/mol]                 2130.485
+    64 Broy./Diag. 0.40E+00    0.9     0.00064861      -630.2830967268 -6.03E-06
+  SCCS| Iteration cycle converged in 17 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.324201541983
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.62473957357361
+  SCCS| Hartree energy of the solute only    [Hartree]        642.13173301135839
+  SCCS| Polarisation energy                  [Hartree]          3.49300656221515
+  SCCS|                                      [kcal/mol]                 2191.895
+  SCCS| Cavitation energy                    [Hartree]          0.00836952303394
+  SCCS|                                      [kcal/mol]                    5.252
+  SCCS| Dispersion free energy               [Hartree]         -0.10849484590022
+  SCCS|                                      [kcal/mol]                  -68.082
+  SCCS| Repulsion free energy                [Hartree]          0.00227048016407
+  SCCS|                                      [kcal/mol]                    1.425
+  SCCS| Solvation free energy                [Hartree]          3.39515171951293
+  SCCS|                                      [kcal/mol]                 2130.490
+    65 Broy./Diag. 0.40E+00    0.9     0.00017626      -630.2830965297  1.97E-07
+  SCCS| Iteration cycle converged in 17 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.324202195221
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.62474726582616
+  SCCS| Hartree energy of the solute only    [Hartree]        642.13172807168166
+  SCCS| Polarisation energy                  [Hartree]          3.49301919414450
+  SCCS|                                      [kcal/mol]                 2191.903
+  SCCS| Cavitation energy                    [Hartree]          0.00836954869968
+  SCCS|                                      [kcal/mol]                    5.252
+  SCCS| Dispersion free energy               [Hartree]         -0.10849483891232
+  SCCS|                                      [kcal/mol]                  -68.082
+  SCCS| Repulsion free energy                [Hartree]          0.00227048712666
+  SCCS|                                      [kcal/mol]                    1.425
+  SCCS| Solvation free energy                [Hartree]          3.39516439105852
+  SCCS|                                      [kcal/mol]                 2130.498
+    66 Broy./Diag. 0.40E+00    1.0     0.00010102      -630.2830674537  2.91E-05
+  SCCS| Iteration cycle converged in 15 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.324201893217
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.62473682432892
+  SCCS| Hartree energy of the solute only    [Hartree]        642.13172045417173
+  SCCS| Polarisation energy                  [Hartree]          3.49301637015711
+  SCCS|                                      [kcal/mol]                 2191.901
+  SCCS| Cavitation energy                    [Hartree]          0.00836956159920
+  SCCS|                                      [kcal/mol]                    5.252
+  SCCS| Dispersion free energy               [Hartree]         -0.10849483680073
+  SCCS|                                      [kcal/mol]                  -68.082
+  SCCS| Repulsion free energy                [Hartree]          0.00227049062603
+  SCCS|                                      [kcal/mol]                    1.425
+  SCCS| Solvation free energy                [Hartree]          3.39516158558161
+  SCCS|                                      [kcal/mol]                 2130.496
+    67 Broy./Diag. 0.40E+00    0.9     0.00007335      -630.2830611446  6.31E-06
+  SCCS| Iteration cycle converged in 17 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.324201561603
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.62471448782674
+  SCCS| Hartree energy of the solute only    [Hartree]        642.13171334480182
+  SCCS| Polarisation energy                  [Hartree]          3.49300114302503
+  SCCS|                                      [kcal/mol]                 2191.891
+  SCCS| Cavitation energy                    [Hartree]          0.00836955530931
+  SCCS|                                      [kcal/mol]                    5.252
+  SCCS| Dispersion free energy               [Hartree]         -0.10849484374586
+  SCCS|                                      [kcal/mol]                  -68.082
+  SCCS| Repulsion free energy                [Hartree]          0.00227048891972
+  SCCS|                                      [kcal/mol]                    1.425
+  SCCS| Solvation free energy                [Hartree]          3.39514634350820
+  SCCS|                                      [kcal/mol]                 2130.486
+    68 Broy./Diag. 0.40E+00    0.9     0.00005636      -630.2830999947 -3.89E-05
+  SCCS| Iteration cycle converged in 13 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.324201847796
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.62472234061534
+  SCCS| Hartree energy of the solute only    [Hartree]        642.13171912445023
+  SCCS| Polarisation energy                  [Hartree]          3.49300321616500
+  SCCS|                                      [kcal/mol]                 2191.893
+  SCCS| Cavitation energy                    [Hartree]          0.00836954759956
+  SCCS|                                      [kcal/mol]                    5.252
+  SCCS| Dispersion free energy               [Hartree]         -0.10849484644811
+  SCCS|                                      [kcal/mol]                  -68.082
+  SCCS| Repulsion free energy                [Hartree]          0.00227048682822
+  SCCS|                                      [kcal/mol]                    1.425
+  SCCS| Solvation free energy                [Hartree]          3.39514840414467
+  SCCS|                                      [kcal/mol]                 2130.488
+    69 Broy./Diag. 0.40E+00    0.9     0.00007014      -630.2831263145 -2.63E-05
+  SCCS| Iteration cycle converged in 14 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.324202531707
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.62473392201468
+  SCCS| Hartree energy of the solute only    [Hartree]        642.13172613218853
+  SCCS| Polarisation energy                  [Hartree]          3.49300778982611
+  SCCS|                                      [kcal/mol]                 2191.895
+  SCCS| Cavitation energy                    [Hartree]          0.00836953322600
+  SCCS|                                      [kcal/mol]                    5.252
+  SCCS| Dispersion free energy               [Hartree]         -0.10849485061444
+  SCCS|                                      [kcal/mol]                  -68.082
+  SCCS| Repulsion free energy                [Hartree]          0.00227048292897
+  SCCS|                                      [kcal/mol]                    1.425
+  SCCS| Solvation free energy                [Hartree]          3.39515295536664
+  SCCS|                                      [kcal/mol]                 2130.491
+    70 Broy./Diag. 0.40E+00    0.9     0.00009104      -630.2831004356  2.59E-05
+  SCCS| Iteration cycle converged in 12 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.324202629450
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.62473168415045
+  SCCS| Hartree energy of the solute only    [Hartree]        642.13172462524506
+  SCCS| Polarisation energy                  [Hartree]          3.49300705890534
+  SCCS|                                      [kcal/mol]                 2191.895
+  SCCS| Cavitation energy                    [Hartree]          0.00836953199662
+  SCCS|                                      [kcal/mol]                    5.252
+  SCCS| Dispersion free energy               [Hartree]         -0.10849485139614
+  SCCS|                                      [kcal/mol]                  -68.082
+  SCCS| Repulsion free energy                [Hartree]          0.00227048259546
+  SCCS|                                      [kcal/mol]                    1.425
+  SCCS| Solvation free energy                [Hartree]          3.39515222210128
+  SCCS|                                      [kcal/mol]                 2130.490
+    71 Broy./Diag. 0.40E+00    0.9     0.00000944      -630.2830852144  1.52E-05
+  SCCS| Iteration cycle converged in 12 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.324202610518
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.62472915575347
+  SCCS| Hartree energy of the solute only    [Hartree]        642.13172338048093
+  SCCS| Polarisation energy                  [Hartree]          3.49300577527253
+  SCCS|                                      [kcal/mol]                 2191.894
+  SCCS| Cavitation energy                    [Hartree]          0.00836953256448
+  SCCS|                                      [kcal/mol]                    5.252
+  SCCS| Dispersion free energy               [Hartree]         -0.10849485158738
+  SCCS|                                      [kcal/mol]                  -68.082
+  SCCS| Repulsion free energy                [Hartree]          0.00227048274951
+  SCCS|                                      [kcal/mol]                    1.425
+  SCCS| Solvation free energy                [Hartree]          3.39515093899914
+  SCCS|                                      [kcal/mol]                 2130.489
+    72 Broy./Diag. 0.40E+00    0.8     0.00000667      -630.2830925411 -7.33E-06
+  SCCS| Iteration cycle converged in 9 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.324202671426
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.62473028957572
+  SCCS| Hartree energy of the solute only    [Hartree]        642.13172419293278
+  SCCS| Polarisation energy                  [Hartree]          3.49300609664293
+  SCCS|                                      [kcal/mol]                 2191.894
+  SCCS| Cavitation energy                    [Hartree]          0.00836953115502
+  SCCS|                                      [kcal/mol]                    5.252
+  SCCS| Dispersion free energy               [Hartree]         -0.10849485195188
+  SCCS|                                      [kcal/mol]                  -68.082
+  SCCS| Repulsion free energy                [Hartree]          0.00227048236715
+  SCCS|                                      [kcal/mol]                    1.425
+  SCCS| Solvation free energy                [Hartree]          3.39515125821323
+  SCCS|                                      [kcal/mol]                 2130.490
+    73 Broy./Diag. 0.40E+00    0.8     0.00001108      -630.2830961044 -3.56E-06
+  SCCS| Iteration cycle converged in 8 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.324202710282
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.62473074490777
+  SCCS| Hartree energy of the solute only    [Hartree]        642.13172453462334
+  SCCS| Polarisation energy                  [Hartree]          3.49300621028461
+  SCCS|                                      [kcal/mol]                 2191.894
+  SCCS| Cavitation energy                    [Hartree]          0.00836953023946
+  SCCS|                                      [kcal/mol]                    5.252
+  SCCS| Dispersion free energy               [Hartree]         -0.10849485225880
+  SCCS|                                      [kcal/mol]                  -68.082
+  SCCS| Repulsion free energy                [Hartree]          0.00227048211878
+  SCCS|                                      [kcal/mol]                    1.425
+  SCCS| Solvation free energy                [Hartree]          3.39515137038404
+  SCCS|                                      [kcal/mol]                 2130.490
+    74 Broy./Diag. 0.40E+00    0.8     0.00000420      -630.2830940843  2.02E-06
+  SCCS| Iteration cycle converged in 8 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.324202709411
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.62473040139434
+  SCCS| Hartree energy of the solute only    [Hartree]        642.13172433216357
+  SCCS| Polarisation energy                  [Hartree]          3.49300606923085
+  SCCS|                                      [kcal/mol]                 2191.894
+  SCCS| Cavitation energy                    [Hartree]          0.00836953028107
+  SCCS|                                      [kcal/mol]                    5.252
+  SCCS| Dispersion free energy               [Hartree]         -0.10849485232974
+  SCCS|                                      [kcal/mol]                  -68.082
+  SCCS| Repulsion free energy                [Hartree]          0.00227048213007
+  SCCS|                                      [kcal/mol]                    1.425
+  SCCS| Solvation free energy                [Hartree]          3.39515122931225
+  SCCS|                                      [kcal/mol]                 2130.490
+    75 Broy./Diag. 0.40E+00    0.8     0.00000211      -630.2830938416  2.43E-07
+  SCCS| Iteration cycle converged in 6 steps
+  SCCS|
+  SCCS| Polarisation charge                                      -0.324202713229
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.62473035365247
+  SCCS| Hartree energy of the solute only    [Hartree]        642.13172432337728
+  SCCS| Polarisation energy                  [Hartree]          3.49300603027515
+  SCCS|                                      [kcal/mol]                 2191.894
+  SCCS| Cavitation energy                    [Hartree]          0.00836953014300
+  SCCS|                                      [kcal/mol]                    5.252
+  SCCS| Dispersion free energy               [Hartree]         -0.10849485240521
+  SCCS|                                      [kcal/mol]                  -68.082
+  SCCS| Repulsion free energy                [Hartree]          0.00227048209261
+  SCCS|                                      [kcal/mol]                    1.425
+  SCCS| Solvation free energy                [Hartree]          3.39515119010556
+  SCCS|                                      [kcal/mol]                 2130.490
+    76 Broy./Diag. 0.40E+00    0.8     0.00000064      -630.2830944774 -6.36E-07
+
+  *** SCF run converged in    76 steps ***
+
+
+  Electronic density on regular grids:       -327.9999995735        0.0000004265
+  Core density on regular grids:              327.9999999998       -0.0000000002
+  Total charge density on r-space grids:        0.0000004263
+  Total charge density g-space grids:           0.0000004263
+
+  Overlap energy of the core charge distribution:               0.00001903113530
+  Self energy of the core charge distribution:              -1586.89744375665464
+  Core Hamiltonian energy:                                    473.87417083840785
+  Hartree energy:                                             642.13172432337728
+  Exchange-correlation energy:                               -162.63164845864850
+  Dispersion energy:                                           -0.25292248527621
+
+  SCCS| Hartree energy of solute and solvent [Hartree]        645.62473035365247
+  SCCS| Hartree energy of the solute only    [Hartree]        642.13172432337728
+  SCCS| Polarisation energy                  [Hartree]          3.49300603027515
+  SCCS|                                      [kcal/mol]                 2191.894
+  SCCS| Cavitation energy                    [Hartree]          0.00836953014300
+  SCCS|                                      [kcal/mol]                    5.252
+  SCCS| Dispersion free energy               [Hartree]         -0.10849485240521
+  SCCS|                                      [kcal/mol]                  -68.082
+  SCCS| Repulsion free energy                [Hartree]          0.00227048209261
+  SCCS|                                      [kcal/mol]                    1.425
+  SCCS| Solvation free energy                [Hartree]          3.39515119010556
+  SCCS|                                      [kcal/mol]                 2130.490
+
+  Total energy:                                              -630.28309447738366
+
+   Calculate DOS at iteration step                                   0
+  
+  Eigenvalues of the occupied subspace spin            1
+ ---------------------------------------------
+      -1.01010999      -1.01002434      -0.98388045      -0.98386994
+      -0.93347866      -0.93337555      -0.91682485      -0.91642588
+      -0.90702727      -0.90700159      -0.90179251      -0.90170210
+      -0.71726493      -0.71711784      -0.64412272      -0.64314976
+      -0.58841926      -0.58822829      -0.58222784      -0.58111421
+      -0.56109427      -0.55591973      -0.53011037      -0.52928169
+      -0.50916519      -0.50800383      -0.48842366      -0.48741714
+      -0.47404993      -0.47397724      -0.46978889      -0.46967935
+      -0.46629161      -0.46527370      -0.45998980      -0.45749825
+      -0.43901519      -0.43601401      -0.42454360      -0.42433912
+      -0.39037130      -0.39005127      -0.37307358      -0.37239707
+      -0.35850239      -0.35704562      -0.35137808      -0.35008610
+      -0.34485359      -0.34254772      -0.34103221      -0.33885395
+      -0.33243545      -0.33191643      -0.32618463      -0.32136026
+      -0.31762879      -0.31737134      -0.31065292      -0.31019477
+      -0.30607527      -0.30597612      -0.29964877      -0.29706704
+      -0.29336626      -0.28937353      -0.28910500      -0.28724632
+      -0.26941586      -0.26606207      -0.25381478      -0.25262686
+      -0.24031899      -0.23948683      -0.22969604      -0.22718948
+      -0.22599631      -0.22520050      -0.21859676      -0.21794856
+      -0.21223875      -0.21024757      -0.20243348      -0.19939116
+      -0.19687491      -0.19679749      -0.19617041      -0.19307298
+      -0.19197932      -0.19016515      -0.18860521      -0.18691599
+      -0.18604838      -0.18364361      -0.18281115      -0.18079460
+      -0.17976829      -0.17896628      -0.17748743      -0.17548314
+      -0.17440899      -0.17148667      -0.16895034      -0.16711025
+      -0.16478502      -0.16241910      -0.16097200      -0.15799270
+      -0.15688636      -0.15402435      -0.15315941      -0.15243888
+      -0.14940824      -0.14875799      -0.14654970      -0.14517451
+      -0.14466699      -0.14355354      -0.14275620      -0.14095262
+      -0.13841753      -0.13825441      -0.13422387      -0.13324888
+      -0.13000926      -0.12951618      -0.12559258      -0.12470727
+      -0.12004665      -0.11760688      -0.11478726      -0.11422567
+      -0.10992060      -0.10636786      -0.10149738      -0.09999199
+      -0.09750104      -0.09428440      -0.09255078      -0.08931469
+      -0.08927382      -0.08739659      -0.08714108      -0.07839983
+      -0.07318463      -0.06984242      -0.06731154      -0.06158664
+      -0.04480073      -0.03374366      -0.03243058      -0.02909341
+      -0.02808880      -0.02592572      -0.02207954      -0.01607440
+      -0.01046437      -0.00674126      -0.00311043      -0.00149166
+       0.01120795       0.01227578       0.01454021       0.01810777
+ Fermi Energy [eV] :    0.492737
+  
+  Lowest eigenvalues of the unoccupied subspace spin            1
+ ---------------------------------------------
+       0.09680242
+
+ *******************************************************************************
+ **                                                                           **
+ **         ######## #######   #######   ######## #######  ########           **
+ **            ##    ##     ## ##     ## ##       ##   ##     ##              **
+ **            ##    ##     ## ##     ## ######   #######     ##              **
+ **            ##    ##     ## ##     ## ##       ##          ##              **
+ **            ##    #######   #######   ##       ##          ##              **
+ **                                                                           **
+ *******************************************************************************
+ KERNEL|                                                                    FULL
+ FUNCTIONAL| PBE:
+ FUNCTIONAL| J.P.Perdew, K.Burke, M.Ernzerhof, Phys. Rev. Letter, vol. 77, n 18,
+ FUNCTIONAL|  pp. 3865-3868, (1996){spin unpolarized}                           
+ KERNEL| Spin symmetry of excitations                                    Singlet
+ TDDFPT| Number of states calculated                                         300
+ TDDFPT| Number of Davidson iterations                                       100
+ TDDFPT| Davidson iteration convergence                                0.367E-05
+ TDDFPT| Max. number of Krylov space vectors                                5000
+ TDDFPT| Molecular Orbitals:        Spin       AOs       Occ      Virt     Total
+ TDDFPT|                               1      1268       164      1104      1268
+ 
+ -------------------------------------------------------------------------------
+ -                            TDDFPT Initial Guess                             -
+ -------------------------------------------------------------------------------
+          State         Occupied      ->      Virtual          Excitation
+          number         orbital              orbital          energy (eV)
+ -------------------------------------------------------------------------------
+             1              164                  165              2.14139
+             2              163                  165              2.23847
+             3              164                  166              2.27733
+             4              162                  165              2.30009
+             5              161                  165              2.32914
+             6              163                  166              2.37441
+             7              162                  166              2.43602
+             8              161                  166              2.46508
+             9              160                  165              2.67472
+            10              159                  165              2.71877
+            11              160                  166              2.81066
+            12              158                  165              2.81757
+            13              159                  166              2.85471
+            14              164                  167              2.88363
+            15              157                  165              2.91888
+            16              158                  166              2.95351
+            17              163                  167              2.98071
+            18              164                  168              2.99036
+            19              162                  167              3.04233
+            20              157                  166              3.05482
+            21              161                  167              3.07138
+            22              156                  165              3.07153
+            23              163                  168              3.08744
+            24              162                  168              3.14906
+            25              161                  168              3.17812
+            26              156                  166              3.20747
+            27              155                  165              3.23494
+            28              154                  165              3.33960
+            29              155                  166              3.37088
+            30              153                  165              3.39846
+            31              160                  167              3.41696
+            32              152                  165              3.42580
+            33              159                  167              3.46101
+            34              154                  166              3.47554
+            35              151                  165              3.51661
+            36              160                  168              3.52369
+            37              153                  166              3.53440
+            38              150                  165              3.55234
+            39              158                  167              3.55981
+            40              152                  166              3.56174
+            41              159                  168              3.56774
+            42              151                  166              3.65255
+            43              157                  167              3.66112
+            44              158                  168              3.66654
+            45              150                  166              3.68828
+            46              157                  168              3.76785
+            47              164                  169              3.80151
+            48              156                  167              3.81378
+            49              164                  170              3.81528
+            50              164                  171              3.84698
+            51              149                  165              3.85322
+            52              164                  172              3.88070
+            53              163                  169              3.89858
+            54              163                  170              3.91236
+            55              156                  168              3.92051
+            56              163                  171              3.94406
+            57              162                  169              3.96020
+            58              162                  170              3.97397
+            59              155                  167              3.97718
+            60              163                  172              3.97778
+            61              149                  166              3.98916
+            62              161                  169              3.98926
+            63              161                  170              4.00303
+            64              162                  171              4.00567
+            65              161                  171              4.03473
+            66              162                  172              4.03940
+            67              161                  172              4.06845
+            68              154                  167              4.08184
+            69              155                  168              4.08392
+            70              153                  167              4.14070
+            71              164                  173              4.16346
+            72              152                  167              4.16804
+            73              154                  168              4.18858
+            74              164                  174              4.19029
+            75              164                  175              4.19696
+            76              153                  168              4.24744
+            77              151                  167              4.25885
+            78              163                  173              4.26054
+            79              152                  168              4.27477
+            80              163                  174              4.28737
+            81              163                  175              4.29404
+            82              150                  167              4.29458
+            83              148                  165              4.30999
+            84              162                  173              4.32216
+            85              160                  169              4.33483
+            86              160                  170              4.34860
+            87              162                  174              4.34899
+            88              161                  173              4.35122
+            89              162                  175              4.35565
+            90              151                  168              4.36558
+            91              161                  174              4.37804
+            92              159                  169              4.37888
+            93              160                  171              4.38031
+            94              161                  175              4.38471
+            95              159                  170              4.39265
+            96              150                  168              4.40131
+            97              160                  172              4.41403
+            98              159                  171              4.42436
+            99              148                  166              4.44592
+           100              159                  172              4.45808
+           101              147                  165              4.46577
+           102              158                  169              4.47768
+           103              164                  176              4.48579
+           104              158                  170              4.49145
+           105              158                  171              4.52316
+           106              146                  165              4.53464
+           107              158                  172              4.55688
+           108              157                  169              4.57899
+           109              163                  176              4.58287
+           110              157                  170              4.59276
+           111              149                  167              4.59546
+           112              147                  166              4.60171
+           113              157                  171              4.62447
+           114              145                  165              4.62558
+           115              162                  176              4.64449
+           116              157                  172              4.65819
+           117              146                  166              4.67057
+           118              161                  176              4.67355
+           119              160                  173              4.69679
+           120              149                  168              4.70219
+           121              160                  174              4.72362
+           122              160                  175              4.73029
+           123              156                  169              4.73165
+           124              159                  173              4.74084
+           125              156                  170              4.74542
+           126              145                  166              4.76152
+           127              144                  165              4.76750
+           128              159                  174              4.76767
+           129              164                  177              4.76811
+           130              159                  175              4.77434
+           131              156                  171              4.77712
+           132              156                  172              4.81085
+           133              164                  178              4.82069
+           134              158                  173              4.83964
+           135              163                  177              4.86519
+           136              158                  174              4.86647
+           137              158                  175              4.87314
+           138              155                  169              4.89506
+           139              144                  166              4.90343
+           140              155                  170              4.90883
+           141              163                  178              4.91777
+           142              162                  177              4.92680
+           143              155                  171              4.94053
+           144              157                  173              4.94095
+           145              161                  177              4.95586
+           146              157                  174              4.96778
+           147              155                  172              4.97425
+           148              157                  175              4.97445
+           149              162                  178              4.97939
+           150              154                  169              4.99972
+           151              143                  165              5.00536
+           152              161                  178              5.00844
+           153              142                  165              5.01231
+           154              154                  170              5.01349
+           155              160                  176              5.01912
+           156              154                  171              5.04519
+           157              148                  167              5.05223
+           158              153                  169              5.05858
+           159              159                  176              5.06317
+           160              141                  165              5.06339
+           161              140                  165              5.06450
+           162              153                  170              5.07235
+           163              154                  172              5.07891
+           164              152                  169              5.08591
+           165              156                  173              5.09361
+           166              152                  170              5.09969
+           167              153                  171              5.10405
+           168              156                  174              5.12043
+           169              156                  175              5.12710
+           170              152                  171              5.13139
+           171              153                  172              5.13777
+           172              143                  166              5.14130
+           173              142                  166              5.14825
+           174              139                  165              5.15256
+           175              148                  168              5.15896
+           176              158                  176              5.16197
+           177              152                  172              5.16511
+           178              151                  169              5.17672
+           179              151                  170              5.19050
+           180              141                  166              5.19933
+           181              138                  165              5.19974
+           182              140                  166              5.20044
+           183              147                  167              5.20801
+           184              150                  169              5.21245
+           185              151                  171              5.22220
+           186              150                  170              5.22623
+           187              151                  172              5.25592
+           188              155                  173              5.25702
+           189              150                  171              5.25793
+           190              157                  176              5.26328
+           191              146                  167              5.27688
+           192              155                  174              5.28384
+           193              137                  165              5.28727
+           194              139                  166              5.28850
+           195              155                  175              5.29051
+           196              150                  172              5.29165
+           197              160                  177              5.30143
+           198              147                  168              5.31474
+           199              138                  166              5.33567
+           200              159                  177              5.34548
+           201              160                  178              5.35402
+           202              136                  165              5.35505
+           203              154                  173              5.36168
+           204              145                  167              5.36782
+           205              146                  168              5.38361
+           206              164                  179              5.38843
+           207              154                  174              5.38850
+           208              154                  175              5.39517
+           209              135                  165              5.39601
+           210              159                  178              5.39807
+           211              164                  180              5.40307
+           212              156                  176              5.41594
+           213              153                  173              5.42054
+           214              137                  166              5.42320
+           215              158                  177              5.44428
+           216              153                  174              5.44736
+           217              152                  173              5.44787
+           218              153                  175              5.45403
+           219              145                  168              5.47456
+           220              152                  174              5.47470
+           221              152                  175              5.48137
+           222              163                  179              5.48551
+           223              136                  166              5.49099
+           224              158                  178              5.49687
+           225              163                  180              5.50015
+           226              144                  167              5.50974
+           227              149                  169              5.51333
+           228              149                  170              5.52710
+           229              134                  165              5.52854
+           230              135                  166              5.53195
+           231              151                  173              5.53868
+           232              157                  177              5.54559
+           233              162                  179              5.54712
+           234              149                  171              5.55881
+           235              162                  180              5.56177
+           236              151                  174              5.56551
+           237              151                  175              5.57218
+           238              150                  173              5.57441
+           239              161                  179              5.57618
+           240              155                  176              5.57934
+           241              161                  180              5.59082
+           242              149                  172              5.59253
+           243              157                  178              5.59818
+           244              150                  174              5.60124
+           245              150                  175              5.60791
+           246              144                  168              5.61647
+           247              133                  165              5.62522
+           248              134                  166              5.66448
+           249              154                  176              5.68400
+           250              156                  177              5.69825
+           251              132                  165              5.74237
+           252              153                  176              5.74286
+           253              143                  167              5.74760
+           254              156                  178              5.75083
+           255              142                  167              5.75455
+           256              131                  165              5.75765
+           257              164                  181              5.75814
+           258              133                  166              5.76116
+           259              152                  176              5.77020
+           260              141                  167              5.80563
+           261              140                  167              5.80674
+           262              130                  165              5.83437
+           263              143                  168              5.85433
+           264              163                  181              5.85522
+           265              151                  176              5.86101
+           266              142                  168              5.86128
+           267              155                  177              5.86166
+           268              149                  173              5.87529
+           269              132                  166              5.87830
+           270              131                  166              5.89359
+           271              139                  167              5.89480
+           272              150                  176              5.89674
+           273              129                  165              5.90076
+           274              149                  174              5.90212
+           275              149                  175              5.90879
+           276              141                  168              5.91237
+           277              140                  168              5.91348
+           278              155                  178              5.91424
+           279              162                  181              5.91684
+           280              160                  179              5.92175
+           281              160                  180              5.93640
+           282              138                  167              5.94198
+           283              161                  181              5.94590
+           284              159                  179              5.96580
+           285              154                  177              5.96632
+           286              148                  169              5.97010
+           287              130                  166              5.97031
+           288              159                  180              5.98045
+           289              148                  170              5.98387
+           290              139                  168              6.00154
+           291              148                  171              6.01557
+           292              154                  178              6.01890
+           293              153                  177              6.02518
+           294              128                  165              6.02759
+           295              137                  167              6.02951
+           296              129                  166              6.03670
+           297              138                  168              6.04871
+           298              148                  172              6.04930
+           299              127                  165              6.05168
+           300              152                  177              6.05252
+
+      Number of active states:                                     181056
+ -------------------------------------------------------------------------------
