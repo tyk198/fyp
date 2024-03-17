@@ -92,11 +92,11 @@
   &DFT
     BASIS_SET_FILE_NAME  GTH_BASIS_SETS
     POTENTIAL_FILE_NAME  POTENTIAL
-#   WFN_RESTART_FILE_NAME 4amp15pbeiso-RESTART.wfn
+    WFN_RESTART_FILE_NAME 4amp15pbeiso-RESTART.wfn
     CHARGE    0 #Net charge
     MULTIPLICITY    1 #Spin multiplicity
     &QS
-      EPS_DEFAULT 1.0E-12 #Set all EPS_xxx to values such that the energy will be correct up to this value
+      EPS_DEFAULT 1.0E-10 #Set all EPS_xxx to values such that the energy will be correct up to this value
     &END QS
     &POISSON
       PERIODIC NONE #Direction(s) of PBC for calculating electrostatics
@@ -119,8 +119,8 @@
       &END XC_FUNCTIONAL
     &END XC
     &MGRID
-      CUTOFF  600
-      REL_CUTOFF  80
+      CUTOFF  500
+      REL_CUTOFF  70
       NGRIDS 6
     &END MGRID
     &SCCS ON
@@ -129,7 +129,7 @@
       DELTA_RHO 2.0E-5
       DERIVATIVE_METHOD CD5
       DIELECTRIC_CONSTANT 36.71
-      EPS_SCCS 1.0E-8
+      EPS_SCCS 1.0E-7
       EPS_SCF 1.0E-2
       GAMMA [mN/m] 36.42
       MAX_ITER 100
@@ -139,8 +139,8 @@
 
     &SCF
       MAX_SCF 128
-      EPS_SCF 1.0E-06 #Convergence threshold of density matrix of inner SCF
-   #  SCF_GUESS RESTART #Use wavefunction from WFN_RESTART_FILE_NAME file as initial guess
+      EPS_SCF 1.0E-05 #Convergence threshold of density matrix of inner SCF
+      SCF_GUESS RESTART #Use wavefunction from WFN_RESTART_FILE_NAME file as initial guess
       &DIAGONALIZATION
         ALGORITHM STANDARD #Algorithm for diagonalization
       &END DIAGONALIZATION
@@ -149,7 +149,7 @@
         ALPHA 0.4 #Default. Mixing 40% of new density matrix with the old one
         NBROYDEN 8 #Default is 4. Number of previous steps stored for the actual mixing scheme
       &END MIXING
-      ADDED_MOS    30 #Number of virtual MOs to solve
+      ADDED_MOS    70 #Number of virtual MOs to solve
       &PRINT
         &RESTART #Note: Use "&RESTART OFF" can prevent generating .wfn file
           BACKUP_COPIES 0 #Maximum number of backup copies of wfn file. 0 means never
@@ -181,7 +181,7 @@
   &PROPERTIES
      &TDDFPT #TDDFT calculation with Tamm-Dancoff approximation
       MAX_ITER 100
-      NSTATES   20 #Number of excited states to solve
+      NSTATES   50 #Number of excited states to solve
       RKS_TRIPLETS F #If calculating triplet rather than singlet excited states
       CONVERGENCE [eV] 1E-4 #Convergence criterion of all excitation energies
       MIN_AMPLITUDE 0.01 #The smallest excitation amplitude to print
