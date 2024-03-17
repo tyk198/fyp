@@ -101,14 +101,14 @@
     POTENTIAL_FILE_NAME POTENTIAL_UZH
     BASIS_SET_FILE_NAME BASIS_MOLOPT_UZH
     BASIS_SET_FILE_NAME BASIS_ADMM_UZH
-#   WFN_RESTART_FILE_NAME 4amp15iso-RESTART.wfn
+    WFN_RESTART_FILE_NAME 4amp33isosolvent-RESTART.wfn
     CHARGE    0 #Net charge
     MULTIPLICITY    1 #Spin multiplicity
     &QS
       METHOD GPW
       EPS_FILTER_MATRIX 0	
       EPS_DEFAULT 1.0E-10
-      EPS_PGF_ORB 1.0E-30
+      EPS_PGF_ORB 1.0E-35
     &END QS
     &POISSON
       PERIODIC NONE #Direction(s) of PBC for calculating electrostatics
@@ -143,17 +143,18 @@
       ADMM_PURIFICATION_METHOD NONE        
     &END AUXILIARY_DENSITY_MATRIX_METHOD
     &SCF
-      MAX_SCF 50
+      MAX_SCF 128
       EPS_SCF 1.0E-05 #Convergence threshold of density matrix of inner SCF
-  #   SCF_GUESS RESTART #Use wavefunction from WFN_RESTART_FILE_NAME file as initial guess
-      &OUTER_SCF
-         MAX_SCF 20
-         EPS_SCF 1.0E-5
-      &END OUTER_SCF
-      &OT T
-         PRECONDITIONER FULL_ALL
-         MINIMIZER DIIS
-      &END OT
+      SCF_GUESS RESTART #Use wavefunction from WFN_RESTART_FILE_NAME file as initial guess
+      &DIAGONALIZATION
+        ALGORITHM STANDARD #Algorithm for diagonalization
+      &END DIAGONALIZATION
+      &MIXING #How to mix old and new density matrices
+        METHOD BROYDEN_MIXING #PULAY_MIXING is also a good alternative
+        ALPHA 0.4 #Default. Mixing 40% of new density matrix with the old one
+        NBROYDEN 8 #Default is 4. Number of previous steps stored for the actual mixing scheme
+      &END MIXING
+      ADDED_MOS    70 #Number of virtual MOs to solve
       &PRINT
         &RESTART #Note: Use "&RESTART OFF" can prevent generating .wfn file
           BACKUP_COPIES 0 #Maximum number of backup copies of wfn file. 0 means never
@@ -185,7 +186,7 @@
   &PROPERTIES
      &TDDFPT #TDDFT calculation with Tamm-Dancoff approximation
       MAX_ITER 100
-      NSTATES   20 #Number of excited states to solve
+      NSTATES   30 #Number of excited states to solve
       RKS_TRIPLETS F #If calculating triplet rather than singlet excited states
       CONVERGENCE [eV] 1E-4 #Convergence criterion of all excitation energies
       MIN_AMPLITUDE 0.01 #The smallest excitation amplitude to print
