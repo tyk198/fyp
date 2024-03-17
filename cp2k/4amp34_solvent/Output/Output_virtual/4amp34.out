@@ -1,0 +1,1157 @@
+ DBCSR| CPU Multiplication driver                                           XSMM (U)
+ DBCSR| Multrec recursion limit                                              512 (U)
+ DBCSR| Multiplication stack size                                           1000 (D)
+ DBCSR| Maximum elements for images                                    UNLIMITED (U)
+ DBCSR| Multiplicative factor virtual images                                   1 (U)
+ DBCSR| Use multiplication densification                                       T (D)
+ DBCSR| Multiplication size stacks                                             3 (U)
+ DBCSR| Use memory pool for CPU allocation                                     F (U)
+ DBCSR| Number of 3D layers                                               SINGLE (U)
+ DBCSR| Use MPI memory allocation                                              F (U)
+ DBCSR| Use RMA algorithm                                                      F (U)
+ DBCSR| Use Communication thread                                               T (U)
+ DBCSR| Communication thread load                                             83 (D)
+ DBCSR| MPI: My process id                                                     0
+ DBCSR| MPI: Number of processes                                              90
+ DBCSR| OMP: Current number of threads                                         2
+ DBCSR| OMP: Max number of threads                                             2
+ DBCSR| Split modifier for TAS multiplication algorithm                  1.0E+00 (U)
+
+
+  **** **** ******  **  PROGRAM STARTED AT               2024-03-17 10:10:50.830
+ ***** ** ***  *** **   PROGRAM STARTED ON                          107ce6a06495
+ **    ****   ******    PROGRAM STARTED BY                             <unknown>
+ ***** **    ** ** **   PROGRAM PROCESS ID                                   538
+  **** **  *******  **  PROGRAM STARTED IN                                  /mnt
+
+ CP2K| version string:                                       CP2K version 2023.2
+ CP2K| source code revision number:                                  git:65cca6c
+ CP2K| cp2kflags: omp libint fftw3 libxc pexsi elpa parallel scalapack cosma qui
+ CP2K|            p xsmm plumed2 spglib sirius libvori libbqb libtorch libvdwxc
+ CP2K| is freely available from                            https://www.cp2k.org/
+ CP2K| Program compiled at                          Wed Oct 18 11:40:41 UTC 2023
+ CP2K| Program compiled on                                          633bb7bf566f
+ CP2K| Program compiled for                                                local
+ CP2K| Data directory path                                        /opt/cp2k/data
+ CP2K| Input file name                                        4amp34_solvent2.in
+
+ GLOBAL| Force Environment number                                              1
+ GLOBAL| Basis set file name                                      GTH_BASIS_SETS
+ GLOBAL| Potential file name                                           POTENTIAL
+ GLOBAL| MM Potential file name                                     MM_POTENTIAL
+ GLOBAL| Coordinate file name                                      __STD_INPUT__
+ GLOBAL| Method name                                                        CP2K
+ GLOBAL| Project name                                              4amp34solvent
+ GLOBAL| Run type                                                         ENERGY
+ GLOBAL| FFT library                                                       FFTW3
+ GLOBAL| Diagonalization library                                       ScaLAPACK
+ GLOBAL| DGEMM library                                                      BLAS
+ GLOBAL| Orthonormality check for eigenvectors                          DISABLED
+ GLOBAL| Matrix multiplication library                                     COSMA
+ GLOBAL| All-to-all communication in single precision                          F
+ GLOBAL| FFTs using library dependent lengths                                  F
+ GLOBAL| Grid backend                                                       AUTO
+ GLOBAL| Global print level                                                  LOW
+ GLOBAL| MPI I/O enabled                                                       T
+ GLOBAL| Total number of message passing processes                            90
+ GLOBAL| Number of threads for this process                                    2
+ GLOBAL| This output is from process                                           0
+ GLOBAL| Stack size for threads created by OpenMP (OMP_STACKSIZE)            16M
+ GLOBAL| CPU model name                                            AMD EPYC 9B14
+ GLOBAL| CPUID                                                              1003
+ GLOBAL| Compiled for CPUID                                                    0
+
+ *** HINT in environment.F:904 :: The compiler target flags (generic) used ***
+ *** to build this binary cannot exploit all extensions of this CPU model  ***
+ *** (x86_avx512). Consider compiler target flags as part of FCFLAGS and   ***
+ *** CFLAGS (ARCH file).                                                   ***
+
+
+ MEMORY| system memory details [Kb]
+ MEMORY|                        rank 0           min           max       average
+ MEMORY| MemTotal            365023368     365023368     365023368     365023368
+ MEMORY| MemFree             344583204     344583204     344583204     344583204
+ MEMORY| Buffers                 35808         35808         35808         35808
+ MEMORY| Cached                7333372       7333372       7333372       7333372
+ MEMORY| Slab                   737088        737088        737088        737088
+ MEMORY| SReclaimable           291204        291204        291204        291204
+ MEMORY| MemLikelyFree       352243588     352243588     352243588     352243588
+
+
+ GENERATE|  Preliminary Number of Bonds generated:                             0
+ GENERATE|  Achieved consistency in connectivity generation.
+
+ *******************************************************************************
+ *******************************************************************************
+ **                                                                           **
+ **     #####                         ##              ##                      **
+ **    ##   ##            ##          ##              ##                      **
+ **   ##     ##                       ##            ######                    **
+ **   ##     ##  ##   ##  ##   #####  ##  ##   ####   ##    #####    #####    **
+ **   ##     ##  ##   ##  ##  ##      ## ##   ##      ##   ##   ##  ##   ##   **
+ **   ##  ## ##  ##   ##  ##  ##      ####     ###    ##   ######   ######    **
+ **    ##  ###   ##   ##  ##  ##      ## ##      ##   ##   ##       ##        **
+ **     #######   #####   ##   #####  ##  ##  ####    ##    #####   ##        **
+ **           ##                                                    ##        **
+ **                                                                           **
+ **                                                ... make the atoms dance   **
+ **                                                                           **
+ **            Copyright (C) by CP2K developers group (2000-2023)             **
+ **                      J. Chem. Phys. 152, 194103 (2020)                    **
+ **                                                                           **
+ *******************************************************************************
+
+
+ TOTAL NUMBERS AND MAXIMUM NUMBERS
+
+  Total number of            - Atomic kinds:                                   5
+                             - Atoms:                                        196
+                             - Shell sets:                                   392
+                             - Shells:                                      1192
+                             - Primitive Cartesian functions:               1176
+                             - Cartesian basis functions:                   2808
+                             - Spherical basis functions:                   2672
+
+  Maximum angular momentum of- Orbital basis functions:                        2
+                             - Local part of the GTH pseudopotential:          2
+                             - Non-local part of the GTH pseudopotential:      0
+
+
+ SCF PARAMETERS         Density guess:                                   RESTART
+                        --------------------------------------------------------
+                        max_scf:                                             128
+                        max_scf_history:                                       0
+                        max_diis:                                              4
+                        --------------------------------------------------------
+                        eps_scf:                                        1.00E-06
+                        eps_scf_history:                                0.00E+00
+                        eps_diis:                                       1.00E-01
+                        eps_eigval:                                     1.00E-05
+                        --------------------------------------------------------
+                        level_shift [a.u.]:                             0.000000
+                        added MOs                                        70    0
+                        --------------------------------------------------------
+                        Mixing method:                            BROYDEN_MIXING
+                                                charge density mixing in g-space
+                        --------------------------------------------------------
+                        No outer SCF
+
+ Number of electrons:                                                        704
+ Number of occupied orbitals:                                                352
+ Number of molecular orbitals:                                               422
+
+ Number of orbital functions:                                               2672
+ Number of independent orbital functions:                                   2672
+
+ Extrapolation method: initial_guess
+
+
+ SCF WAVEFUNCTION OPTIMIZATION
+
+  Step     Update method      Time    Convergence         Total energy    Change
+  ------------------------------------------------------------------------------
+     1 NoMix/Diag. 0.40E+00    1.4     0.85050974     -1393.4678272452 -1.39E+03
+     2 Broy./Diag. 0.40E+00    1.8     0.12718147     -1394.1728880747 -7.05E-01
+     3 Broy./Diag. 0.40E+00    1.7     0.02576241     -1393.3785088657  7.94E-01
+     4 Broy./Diag. 0.40E+00    1.7     0.03668858     -1393.4611168811 -8.26E-02
+     5 Broy./Diag. 0.40E+00    1.7     0.01523263     -1393.4502179407  1.09E-02
+     6 Broy./Diag. 0.40E+00    1.8     0.00775890     -1393.4686745955 -1.85E-02
+  SCCS| Iteration cycle converged in 45 steps
+  SCCS|
+  SCCS| Polarisation charge                                       0.003037277195
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]       1405.07880177624952
+  SCCS| Hartree energy of the solute only    [Hartree]       1405.12471006317332
+  SCCS| Polarisation energy                  [Hartree]         -0.04590828692375
+  SCCS|                                      [kcal/mol]                  -28.808
+  SCCS| Cavitation energy                    [Hartree]          0.02935887686156
+  SCCS|                                      [kcal/mol]                   18.423
+  SCCS| Dispersion free energy               [Hartree]         -0.22464909320552
+  SCCS|                                      [kcal/mol]                 -140.969
+  SCCS| Repulsion free energy                [Hartree]          0.00796446192730
+  SCCS|                                      [kcal/mol]                    4.998
+  SCCS| Solvation free energy                [Hartree]         -0.23323404134042
+  SCCS|                                      [kcal/mol]                 -146.357
+     7 Broy./Diag. 0.40E+00    3.7     0.79215943     -1393.5206212139 -5.19E-02
+  SCCS| Iteration cycle converged in 35 steps
+  SCCS|
+  SCCS| Polarisation charge                                       0.002788411423
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]       1405.00339346838996
+  SCCS| Hartree energy of the solute only    [Hartree]       1405.05073680390910
+  SCCS| Polarisation energy                  [Hartree]         -0.04734333551921
+  SCCS|                                      [kcal/mol]                  -29.708
+  SCCS| Cavitation energy                    [Hartree]          0.02970313715668
+  SCCS|                                      [kcal/mol]                   18.639
+  SCCS| Dispersion free energy               [Hartree]         -0.22451381227958
+  SCCS|                                      [kcal/mol]                 -140.885
+  SCCS| Repulsion free energy                [Hartree]          0.00805785269380
+  SCCS|                                      [kcal/mol]                    5.056
+  SCCS| Solvation free energy                [Hartree]         -0.23409615794831
+  SCCS|                                      [kcal/mol]                 -146.898
+     8 Broy./Diag. 0.40E+00    3.0     0.04992858     -1392.6648132673  8.56E-01
+  SCCS| Iteration cycle converged in 35 steps
+  SCCS|
+  SCCS| Polarisation charge                                       0.002499028492
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]       1404.93741333105436
+  SCCS| Hartree energy of the solute only    [Hartree]       1404.98576976000572
+  SCCS| Polarisation energy                  [Hartree]         -0.04835642895128
+  SCCS|                                      [kcal/mol]                  -30.344
+  SCCS| Cavitation energy                    [Hartree]          0.03002932429555
+  SCCS|                                      [kcal/mol]                   18.844
+  SCCS| Dispersion free energy               [Hartree]         -0.22438882792549
+  SCCS|                                      [kcal/mol]                 -140.806
+  SCCS| Repulsion free energy                [Hartree]          0.00814634058320
+  SCCS|                                      [kcal/mol]                    5.112
+  SCCS| Solvation free energy                [Hartree]         -0.23456959199803
+  SCCS|                                      [kcal/mol]                 -147.195
+     9 Broy./Diag. 0.40E+00    3.0     0.04723128     -1393.0346954788 -3.70E-01
+  SCCS| Iteration cycle converged in 33 steps
+  SCCS|
+  SCCS| Polarisation charge                                       0.002334343064
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]       1404.90749896954276
+  SCCS| Hartree energy of the solute only    [Hartree]       1404.95610461766410
+  SCCS| Polarisation energy                  [Hartree]         -0.04860564812120
+  SCCS|                                      [kcal/mol]                  -30.501
+  SCCS| Cavitation energy                    [Hartree]          0.03017894848348
+  SCCS|                                      [kcal/mol]                   18.938
+  SCCS| Dispersion free energy               [Hartree]         -0.22433373078951
+  SCCS|                                      [kcal/mol]                 -140.772
+  SCCS| Repulsion free energy                [Hartree]          0.00818693056059
+  SCCS|                                      [kcal/mol]                    5.137
+  SCCS| Solvation free energy                [Hartree]         -0.23457349986664
+  SCCS|                                      [kcal/mol]                 -147.197
+    10 Broy./Diag. 0.40E+00    2.9     0.02194288     -1393.3169187271 -2.82E-01
+  SCCS| Iteration cycle converged in 29 steps
+  SCCS|
+  SCCS| Polarisation charge                                       0.002257273072
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]       1404.89699605671558
+  SCCS| Hartree energy of the solute only    [Hartree]       1404.94555255490422
+  SCCS| Polarisation energy                  [Hartree]         -0.04855649818884
+  SCCS|                                      [kcal/mol]                  -30.470
+  SCCS| Cavitation energy                    [Hartree]          0.03022897375367
+  SCCS|                                      [kcal/mol]                   18.969
+  SCCS| Dispersion free energy               [Hartree]         -0.22431702299903
+  SCCS|                                      [kcal/mol]                 -140.761
+  SCCS| Repulsion free energy                [Hartree]          0.00820050139172
+  SCCS|                                      [kcal/mol]                    5.146
+  SCCS| Solvation free energy                [Hartree]         -0.23444404604249
+  SCCS|                                      [kcal/mol]                 -147.116
+    11 Broy./Diag. 0.40E+00    3.1     0.00769894     -1393.4380089381 -1.21E-01
+  SCCS| Iteration cycle converged in 27 steps
+  SCCS|
+  SCCS| Polarisation charge                                       0.002211573470
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]       1404.89208600627421
+  SCCS| Hartree energy of the solute only    [Hartree]       1404.94054689589530
+  SCCS| Polarisation energy                  [Hartree]         -0.04846088962104
+  SCCS|                                      [kcal/mol]                  -30.410
+  SCCS| Cavitation energy                    [Hartree]          0.03024962345060
+  SCCS|                                      [kcal/mol]                   18.982
+  SCCS| Dispersion free energy               [Hartree]         -0.22431096812290
+  SCCS|                                      [kcal/mol]                 -140.757
+  SCCS| Repulsion free energy                [Hartree]          0.00820610323152
+  SCCS|                                      [kcal/mol]                    5.149
+  SCCS| Solvation free energy                [Hartree]         -0.23431613106182
+  SCCS|                                      [kcal/mol]                 -147.036
+    12 Broy./Diag. 0.40E+00    2.8     0.00352846     -1393.4807068101 -4.27E-02
+  SCCS| Iteration cycle converged in 23 steps
+  SCCS|
+  SCCS| Polarisation charge                                       0.002182304622
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]       1404.88991027255588
+  SCCS| Hartree energy of the solute only    [Hartree]       1404.93825957302533
+  SCCS| Polarisation energy                  [Hartree]         -0.04834930046959
+  SCCS|                                      [kcal/mol]                  -30.340
+  SCCS| Cavitation energy                    [Hartree]          0.03025692182583
+  SCCS|                                      [kcal/mol]                   18.987
+  SCCS| Dispersion free energy               [Hartree]         -0.22430949735334
+  SCCS|                                      [kcal/mol]                 -140.756
+  SCCS| Repulsion free energy                [Hartree]          0.00820808313123
+  SCCS|                                      [kcal/mol]                    5.151
+  SCCS| Solvation free energy                [Hartree]         -0.23419379286587
+  SCCS|                                      [kcal/mol]                 -146.959
+    13 Broy./Diag. 0.40E+00    2.8     0.00162194     -1393.5003311061 -1.96E-02
+  SCCS| Iteration cycle converged in 16 steps
+  SCCS|
+  SCCS| Polarisation charge                                       0.002169731683
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]       1404.88930416042103
+  SCCS| Hartree energy of the solute only    [Hartree]       1404.93756512319851
+  SCCS| Polarisation energy                  [Hartree]         -0.04826096277755
+  SCCS|                                      [kcal/mol]                  -30.284
+  SCCS| Cavitation energy                    [Hartree]          0.03025719669341
+  SCCS|                                      [kcal/mol]                   18.987
+  SCCS| Dispersion free energy               [Hartree]         -0.22431005560160
+  SCCS|                                      [kcal/mol]                 -140.757
+  SCCS| Repulsion free energy                [Hartree]          0.00820815769717
+  SCCS|                                      [kcal/mol]                    5.151
+  SCCS| Solvation free energy                [Hartree]         -0.23410566398858
+  SCCS|                                      [kcal/mol]                 -146.904
+    14 Broy./Diag. 0.40E+00    2.4     0.00050044     -1393.5086920795 -8.36E-03
+  SCCS| Iteration cycle converged in 17 steps
+  SCCS|
+  SCCS| Polarisation charge                                       0.002157300830
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]       1404.88901396883080
+  SCCS| Hartree energy of the solute only    [Hartree]       1404.93720623454078
+  SCCS| Polarisation energy                  [Hartree]         -0.04819226570998
+  SCCS|                                      [kcal/mol]                  -30.241
+  SCCS| Cavitation energy                    [Hartree]          0.03025618194297
+  SCCS|                                      [kcal/mol]                   18.986
+  SCCS| Dispersion free energy               [Hartree]         -0.22431084710244
+  SCCS|                                      [kcal/mol]                 -140.757
+  SCCS| Repulsion free energy                [Hartree]          0.00820788241616
+  SCCS|                                      [kcal/mol]                    5.151
+  SCCS| Solvation free energy                [Hartree]         -0.23403904845328
+  SCCS|                                      [kcal/mol]                 -146.862
+    15 Broy./Diag. 0.40E+00    2.4     0.00032916     -1393.5114980287 -2.81E-03
+  SCCS| Iteration cycle converged in 17 steps
+  SCCS|
+  SCCS| Polarisation charge                                       0.002153779368
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]       1404.88842260599222
+  SCCS| Hartree energy of the solute only    [Hartree]       1404.93658434286294
+  SCCS| Polarisation energy                  [Hartree]         -0.04816173687075
+  SCCS|                                      [kcal/mol]                  -30.222
+  SCCS| Cavitation energy                    [Hartree]          0.03025749614478
+  SCCS|                                      [kcal/mol]                   18.987
+  SCCS| Dispersion free energy               [Hartree]         -0.22431053982101
+  SCCS|                                      [kcal/mol]                 -140.757
+  SCCS| Repulsion free energy                [Hartree]          0.00820823893219
+  SCCS|                                      [kcal/mol]                    5.151
+  SCCS| Solvation free energy                [Hartree]         -0.23400654161479
+  SCCS|                                      [kcal/mol]                 -146.841
+    16 Broy./Diag. 0.40E+00    2.4     0.00040669     -1393.5137596444 -2.26E-03
+  SCCS| Iteration cycle converged in 13 steps
+  SCCS|
+  SCCS| Polarisation charge                                       0.002153283864
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]       1404.88840988598463
+  SCCS| Hartree energy of the solute only    [Hartree]       1404.93657054841788
+  SCCS| Polarisation energy                  [Hartree]         -0.04816066243295
+  SCCS|                                      [kcal/mol]                  -30.221
+  SCCS| Cavitation energy                    [Hartree]          0.03025703286337
+  SCCS|                                      [kcal/mol]                   18.987
+  SCCS| Dispersion free energy               [Hartree]         -0.22431073329086
+  SCCS|                                      [kcal/mol]                 -140.757
+  SCCS| Repulsion free energy                [Hartree]          0.00820811325343
+  SCCS|                                      [kcal/mol]                    5.151
+  SCCS| Solvation free energy                [Hartree]         -0.23400624960701
+  SCCS|                                      [kcal/mol]                 -146.841
+    17 Broy./Diag. 0.40E+00    2.8     0.00004429     -1393.5159776907 -2.22E-03
+  SCCS| Iteration cycle converged in 12 steps
+  SCCS|
+  SCCS| Polarisation charge                                       0.002153921666
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]       1404.88840100870539
+  SCCS| Hartree energy of the solute only    [Hartree]       1404.93656128952239
+  SCCS| Polarisation energy                  [Hartree]         -0.04816028081717
+  SCCS|                                      [kcal/mol]                  -30.221
+  SCCS| Cavitation energy                    [Hartree]          0.03025640844701
+  SCCS|                                      [kcal/mol]                   18.986
+  SCCS| Dispersion free energy               [Hartree]         -0.22431102757977
+  SCCS|                                      [kcal/mol]                 -140.757
+  SCCS| Repulsion free energy                [Hartree]          0.00820794386207
+  SCCS|                                      [kcal/mol]                    5.151
+  SCCS| Solvation free energy                [Hartree]         -0.23400695608787
+  SCCS|                                      [kcal/mol]                 -146.842
+    18 Broy./Diag. 0.40E+00    2.3     0.00006248     -1393.5160031882 -2.55E-05
+  SCCS| Iteration cycle converged in 12 steps
+  SCCS|
+  SCCS| Polarisation charge                                       0.002151800233
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]       1404.88841105532811
+  SCCS| Hartree energy of the solute only    [Hartree]       1404.93657679384160
+  SCCS| Polarisation energy                  [Hartree]         -0.04816573851352
+  SCCS|                                      [kcal/mol]                  -30.224
+  SCCS| Cavitation energy                    [Hartree]          0.03025638363814
+  SCCS|                                      [kcal/mol]                   18.986
+  SCCS| Dispersion free energy               [Hartree]         -0.22431104769003
+  SCCS|                                      [kcal/mol]                 -140.757
+  SCCS| Repulsion free energy                [Hartree]          0.00820793713193
+  SCCS|                                      [kcal/mol]                    5.151
+  SCCS| Solvation free energy                [Hartree]         -0.23401246543348
+  SCCS|                                      [kcal/mol]                 -146.845
+    19 Broy./Diag. 0.40E+00    2.2     0.00001691     -1393.5160074331 -4.24E-06
+  SCCS| Iteration cycle converged in 12 steps
+  SCCS|
+  SCCS| Polarisation charge                                       0.002152617948
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]       1404.88841859497779
+  SCCS| Hartree energy of the solute only    [Hartree]       1404.93658862622578
+  SCCS| Polarisation energy                  [Hartree]         -0.04817003124832
+  SCCS|                                      [kcal/mol]                  -30.227
+  SCCS| Cavitation energy                    [Hartree]          0.03025642473712
+  SCCS|                                      [kcal/mol]                   18.986
+  SCCS| Dispersion free energy               [Hartree]         -0.22431101886769
+  SCCS|                                      [kcal/mol]                 -140.757
+  SCCS| Repulsion free energy                [Hartree]          0.00820794828124
+  SCCS|                                      [kcal/mol]                    5.151
+  SCCS| Solvation free energy                [Hartree]         -0.23401667709765
+  SCCS|                                      [kcal/mol]                 -146.848
+    20 Broy./Diag. 0.40E+00    2.2     0.00001472     -1393.5159983824  9.05E-06
+  SCCS| Iteration cycle converged in 11 steps
+  SCCS|
+  SCCS| Polarisation charge                                       0.002153307306
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]       1404.88841707415077
+  SCCS| Hartree energy of the solute only    [Hartree]       1404.93658820199335
+  SCCS| Polarisation energy                  [Hartree]         -0.04817112784280
+  SCCS|                                      [kcal/mol]                  -30.228
+  SCCS| Cavitation energy                    [Hartree]          0.03025645786765
+  SCCS|                                      [kcal/mol]                   18.986
+  SCCS| Dispersion free energy               [Hartree]         -0.22431099240068
+  SCCS|                                      [kcal/mol]                 -140.757
+  SCCS| Repulsion free energy                [Hartree]          0.00820795726887
+  SCCS|                                      [kcal/mol]                    5.151
+  SCCS| Solvation free energy                [Hartree]         -0.23401770510695
+  SCCS|                                      [kcal/mol]                 -146.848
+    21 Broy./Diag. 0.40E+00    2.2     0.00000465     -1393.5159968835  1.50E-06
+  SCCS| Iteration cycle converged in 9 steps
+  SCCS|
+  SCCS| Polarisation charge                                       0.002153972494
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]       1404.88841357737692
+  SCCS| Hartree energy of the solute only    [Hartree]       1404.93658495039494
+  SCCS| Polarisation energy                  [Hartree]         -0.04817137301801
+  SCCS|                                      [kcal/mol]                  -30.228
+  SCCS| Cavitation energy                    [Hartree]          0.03025645672989
+  SCCS|                                      [kcal/mol]                   18.986
+  SCCS| Dispersion free energy               [Hartree]         -0.22431097687749
+  SCCS|                                      [kcal/mol]                 -140.757
+  SCCS| Repulsion free energy                [Hartree]          0.00820795696022
+  SCCS|                                      [kcal/mol]                    5.151
+  SCCS| Solvation free energy                [Hartree]         -0.23401793620539
+  SCCS|                                      [kcal/mol]                 -146.848
+    22 Broy./Diag. 0.40E+00    2.2     0.00000484     -1393.5160029161 -6.03E-06
+  SCCS| Iteration cycle converged in 8 steps
+  SCCS|
+  SCCS| Polarisation charge                                       0.002153927475
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]       1404.88841322425833
+  SCCS| Hartree energy of the solute only    [Hartree]       1404.93658441942648
+  SCCS| Polarisation energy                  [Hartree]         -0.04817119516796
+  SCCS|                                      [kcal/mol]                  -30.228
+  SCCS| Cavitation energy                    [Hartree]          0.03025644377439
+  SCCS|                                      [kcal/mol]                   18.986
+  SCCS| Dispersion free energy               [Hartree]         -0.22431097385571
+  SCCS|                                      [kcal/mol]                 -140.757
+  SCCS| Repulsion free energy                [Hartree]          0.00820795344566
+  SCCS|                                      [kcal/mol]                    5.151
+  SCCS| Solvation free energy                [Hartree]         -0.23401777180361
+  SCCS|                                      [kcal/mol]                 -146.848
+    23 Broy./Diag. 0.40E+00    2.2     0.00000361     -1393.5160045937 -1.68E-06
+  SCCS| Iteration cycle converged in 9 steps
+  SCCS|
+  SCCS| Polarisation charge                                       0.002153918666
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]       1404.88841396237058
+  SCCS| Hartree energy of the solute only    [Hartree]       1404.93658463281417
+  SCCS| Polarisation energy                  [Hartree]         -0.04817067044406
+  SCCS|                                      [kcal/mol]                  -30.228
+  SCCS| Cavitation energy                    [Hartree]          0.03025644086430
+  SCCS|                                      [kcal/mol]                   18.986
+  SCCS| Dispersion free energy               [Hartree]         -0.22431097111794
+  SCCS|                                      [kcal/mol]                 -140.757
+  SCCS| Repulsion free energy                [Hartree]          0.00820795265621
+  SCCS|                                      [kcal/mol]                    5.151
+  SCCS| Solvation free energy                [Hartree]         -0.23401724804149
+  SCCS|                                      [kcal/mol]                 -146.848
+    24 Broy./Diag. 0.40E+00    2.1     0.00000331     -1393.5160026716  1.92E-06
+  SCCS| Iteration cycle converged in 9 steps
+  SCCS|
+  SCCS| Polarisation charge                                       0.002153524321
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]       1404.88841421501320
+  SCCS| Hartree energy of the solute only    [Hartree]       1404.93658455366517
+  SCCS| Polarisation energy                  [Hartree]         -0.04817033865210
+  SCCS|                                      [kcal/mol]                  -30.227
+  SCCS| Cavitation energy                    [Hartree]          0.03025645064887
+  SCCS|                                      [kcal/mol]                   18.986
+  SCCS| Dispersion free energy               [Hartree]         -0.22431097055245
+  SCCS|                                      [kcal/mol]                 -140.757
+  SCCS| Repulsion free energy                [Hartree]          0.00820795531057
+  SCCS|                                      [kcal/mol]                    5.151
+  SCCS| Solvation free energy                [Hartree]         -0.23401690324511
+  SCCS|                                      [kcal/mol]                 -146.848
+    25 Broy./Diag. 0.40E+00    2.1     0.00000255     -1393.5160012049  1.47E-06
+  SCCS| Iteration cycle converged in 7 steps
+  SCCS|
+  SCCS| Polarisation charge                                       0.002153577898
+  SCCS|
+  SCCS| Hartree energy of solute and solvent [Hartree]       1404.88841421857842
+  SCCS| Hartree energy of the solute only    [Hartree]       1404.93658454421438
+  SCCS| Polarisation energy                  [Hartree]         -0.04817032563573
+  SCCS|                                      [kcal/mol]                  -30.227
+  SCCS| Cavitation energy                    [Hartree]          0.03025645696134
+  SCCS|                                      [kcal/mol]                   18.986
+  SCCS| Dispersion free energy               [Hartree]         -0.22431097181423
+  SCCS|                                      [kcal/mol]                 -140.757
+  SCCS| Repulsion free energy                [Hartree]          0.00820795702301
+  SCCS|                                      [kcal/mol]                    5.151
+  SCCS| Solvation free energy                [Hartree]         -0.23401688346561
+  SCCS|                                      [kcal/mol]                 -146.848
+    26 Broy./Diag. 0.40E+00    2.0     0.00000089     -1393.5160018749 -6.70E-07
+
+  *** SCF run converged in    26 steps ***
+
+
+  Electronic density on regular grids:       -704.0000008648       -0.0000008648
+  Core density on regular grids:              703.9999999996       -0.0000000004
+  Total charge density on r-space grids:       -0.0000008652
+  Total charge density g-space grids:          -0.0000008652
+
+  Overlap energy of the core charge distribution:               0.00114328655653
+  Self energy of the core charge distribution:              -3506.00454414530031
+  Core Hamiltonian energy:                                   1068.83982423319299
+  Hartree energy:                                            1404.93658454421438
+  Exchange-correlation energy:                               -360.72621589706210
+  Dispersion energy:                                           -0.51462357089148
+
+  SCCS| Hartree energy of solute and solvent [Hartree]       1404.88841421857842
+  SCCS| Hartree energy of the solute only    [Hartree]       1404.93658454421438
+  SCCS| Polarisation energy                  [Hartree]         -0.04817032563573
+  SCCS|                                      [kcal/mol]                  -30.227
+  SCCS| Cavitation energy                    [Hartree]          0.03025645696134
+  SCCS|                                      [kcal/mol]                   18.986
+  SCCS| Dispersion free energy               [Hartree]         -0.22431097181423
+  SCCS|                                      [kcal/mol]                 -140.757
+  SCCS| Repulsion free energy                [Hartree]          0.00820795702301
+  SCCS|                                      [kcal/mol]                    5.151
+  SCCS| Solvation free energy                [Hartree]         -0.23401688346561
+  SCCS|                                      [kcal/mol]                 -146.848
+
+  Total energy:                                             -1393.51600187492522
+
+   Calculate DOS at iteration step                                   0
+  
+  Eigenvalues of the occupied subspace spin            1
+ ---------------------------------------------
+      -1.08357657      -1.08353953      -1.08350780      -1.08346737
+      -1.06694675      -1.06694634      -1.06694558      -1.06694337
+      -0.98593131      -0.98592911      -0.98592704      -0.98592632
+      -0.96702383      -0.96698896      -0.96692870      -0.96689124
+      -0.88149961      -0.88149111      -0.88147262      -0.88146464
+      -0.88087506      -0.88086503      -0.88084268      -0.88078973
+      -0.81950166      -0.81950073      -0.81949562      -0.81949504
+      -0.81337014      -0.81335567      -0.81330230      -0.81328056
+      -0.74734124      -0.74733773      -0.74726077      -0.74725908
+      -0.67221703      -0.67221410      -0.67090482      -0.67089674
+      -0.61699573      -0.61695697      -0.61650269      -0.61636282
+      -0.61337362      -0.61336802      -0.61330507      -0.61326802
+      -0.59127784      -0.59106558      -0.58884259      -0.58854513
+      -0.54706875      -0.54693373      -0.54681864      -0.54679924
+      -0.53347393      -0.53317729      -0.53282334      -0.53242847
+      -0.50456606      -0.50453157      -0.50405195      -0.50379390
+      -0.50257672      -0.50241905      -0.50215551      -0.50193029
+      -0.49959437      -0.49952964      -0.49947890      -0.49928411
+      -0.48855219      -0.48789139      -0.48776582      -0.48685712
+      -0.48650008      -0.48620582      -0.48611162      -0.48568637
+      -0.45142019      -0.45037301      -0.45011469      -0.44992429
+      -0.43893507      -0.43843574      -0.43806411      -0.43745061
+      -0.41462905      -0.41404850      -0.41356433      -0.41356094
+      -0.40604899      -0.40603925      -0.40591008      -0.40574303
+      -0.39200083      -0.39199582      -0.39198920      -0.39188640
+      -0.38677364      -0.38609247      -0.38576804      -0.38564138
+      -0.38550612      -0.38532702      -0.38515220      -0.38475539
+      -0.36931372      -0.36921370      -0.36890730      -0.36846326
+      -0.36457359      -0.36427990      -0.36390790      -0.36352297
+      -0.36192759      -0.36184855      -0.36157072      -0.36128321
+      -0.35629435      -0.35558823      -0.35526383      -0.35487516
+      -0.34519898      -0.34439582      -0.34303927      -0.34296616
+      -0.34197289      -0.34184472      -0.34184198      -0.34165716
+      -0.33837066      -0.33812669      -0.33758465      -0.33717065
+      -0.33437803      -0.33434402      -0.33427276      -0.33397249
+      -0.33181854      -0.33129718      -0.32841422      -0.32829516
+      -0.30772536      -0.30734514      -0.30692112      -0.30664805
+      -0.28958759      -0.28912437      -0.28886952      -0.28835942
+      -0.27658309      -0.27615643      -0.27494322      -0.27415805
+      -0.26579760      -0.26527951      -0.26516228      -0.26499733
+      -0.24824998      -0.24811583      -0.24788560      -0.24758957
+      -0.23982039      -0.23972866      -0.23920843      -0.23915808
+      -0.23451130      -0.23437336      -0.23426552      -0.23416078
+      -0.23188146      -0.23130367      -0.23074746      -0.23068352
+      -0.22604121      -0.22559544      -0.22535204      -0.22475096
+      -0.22023160      -0.22005862      -0.21945554      -0.21888189
+      -0.21810432      -0.21749279      -0.21708239      -0.21678632
+      -0.21576704      -0.21575171      -0.21501131      -0.21445396
+      -0.21410555      -0.21334293      -0.21265538      -0.21257648
+      -0.21047213      -0.20952986      -0.20924205      -0.20909753
+      -0.20867248      -0.20814625      -0.20734295      -0.20608067
+      -0.20576905      -0.20496179      -0.20405359      -0.20349032
+      -0.19780623      -0.19759590      -0.19639812      -0.19580593
+      -0.19479643      -0.19328707      -0.19308807      -0.19304490
+      -0.19029083      -0.18989582      -0.18975564      -0.18957778
+      -0.18878183      -0.18649516      -0.18457224      -0.18423099
+      -0.18360243      -0.18358139      -0.17973324      -0.17903855
+      -0.17819379      -0.17728816      -0.17679871      -0.17647306
+      -0.17492329      -0.17304429      -0.17282246      -0.17267781
+      -0.17220810      -0.17214847      -0.16999653      -0.16990228
+      -0.16971941      -0.16576897      -0.16313916      -0.16288771
+      -0.16261429      -0.16182290      -0.16137993      -0.16034245
+      -0.15550903      -0.15405286      -0.15078812      -0.14945222
+      -0.14881958      -0.14768279      -0.14763936      -0.14461045
+      -0.14411018      -0.14363345      -0.14348877      -0.14307633
+      -0.14288430      -0.14264674      -0.14217989      -0.14200871
+      -0.13999738      -0.13959751      -0.13945665      -0.13844086
+      -0.13706070      -0.13624954      -0.13555336      -0.13255225
+      -0.12912646      -0.12848302      -0.12707138      -0.12699560
+      -0.12286939      -0.12237823      -0.12219639      -0.12214220
+      -0.11822096      -0.11649812      -0.11591644      -0.11398650
+      -0.11253195      -0.11220165      -0.11132574      -0.11116904
+      -0.10799611      -0.10694233      -0.10223738      -0.10220333
+      -0.10095351      -0.10004055      -0.09992003      -0.09983192
+      -0.09955888      -0.09939455      -0.09914427      -0.09486964
+      -0.08991280      -0.08644660      -0.08357507      -0.08325897
+      -0.08216309      -0.08196071      -0.08165313      -0.08162558
+      -0.07241693      -0.07108819      -0.07065950      -0.06940123
+      -0.05994630      -0.05902720      -0.05647327      -0.05548876
+      -0.04624295      -0.04563117      -0.04562569      -0.04540819
+      -0.04512448      -0.04444169      -0.04383393      -0.04177210
+      -0.04102137      -0.04079197      -0.04022789      -0.03991603
+      -0.03504549      -0.03441102      -0.03407718      -0.03380999
+      -0.03139488      -0.03009555      -0.02342200      -0.01912529
+      -0.01708360      -0.01553475      -0.01516920      -0.01407470
+      -0.00641278      -0.00615210      -0.00507151      -0.00349803
+       0.00048200       0.00301730       0.00459310       0.00483566
+       0.00489389       0.00562939       0.00908992       0.01327499
+ Fermi Energy [eV] :    0.361231
+  
+  Lowest eigenvalues of the unoccupied subspace spin            1
+ ---------------------------------------------
+       0.09870871
+
+ *******************************************************************************
+ **                                                                           **
+ **         ######## #######   #######   ######## #######  ########           **
+ **            ##    ##     ## ##     ## ##       ##   ##     ##              **
+ **            ##    ##     ## ##     ## ######   #######     ##              **
+ **            ##    ##     ## ##     ## ##       ##          ##              **
+ **            ##    #######   #######   ##       ##          ##              **
+ **                                                                           **
+ *******************************************************************************
+ KERNEL|                                                                    FULL
+ FUNCTIONAL| PBE:
+ FUNCTIONAL| J.P.Perdew, K.Burke, M.Ernzerhof, Phys. Rev. Letter, vol. 77, n 18,
+ FUNCTIONAL|  pp. 3865-3868, (1996){spin unpolarized}                           
+ KERNEL| Spin symmetry of excitations                                    Singlet
+ TDDFPT| Number of states calculated                                         500
+ TDDFPT| Number of Davidson iterations                                       100
+ TDDFPT| Davidson iteration convergence                                0.367E-05
+ TDDFPT| Max. number of Krylov space vectors                                5000
+ TDDFPT| Molecular Orbitals:        Spin       AOs       Occ      Virt     Total
+ TDDFPT|                               1      2672       352      2320      2672
+ 
+ -------------------------------------------------------------------------------
+ -                            TDDFPT Initial Guess                             -
+ -------------------------------------------------------------------------------
+          State         Occupied      ->      Virtual          Excitation
+          number         orbital              orbital          energy (eV)
+ -------------------------------------------------------------------------------
+             1              352                  353              2.32477
+             2              352                  354              2.38991
+             3              351                  353              2.43865
+             4              351                  354              2.50379
+             5              350                  353              2.53282
+             6              349                  353              2.55283
+             7              348                  353              2.55442
+             8              347                  353              2.56102
+             9              352                  355              2.58510
+            10              350                  354              2.59796
+            11              346                  353              2.60390
+            12              349                  354              2.61797
+            13              348                  354              2.61956
+            14              347                  354              2.62616
+            15              352                  356              2.64542
+            16              346                  354              2.66904
+            17              345                  353              2.67288
+            18              351                  355              2.69898
+            19              345                  354              2.73803
+            20              351                  356              2.75930
+            21              344                  353              2.78119
+            22              350                  355              2.79314
+            23              349                  355              2.81316
+            24              348                  355              2.81474
+            25              347                  355              2.82134
+            26              343                  353              2.82400
+            27              344                  354              2.84633
+            28              342                  353              2.85341
+            29              350                  356              2.85347
+            30              341                  353              2.86050
+            31              346                  355              2.86422
+            32              349                  356              2.87348
+            33              348                  356              2.87507
+            34              347                  356              2.88167
+            35              343                  354              2.88915
+            36              342                  354              2.91855
+            37              346                  356              2.92455
+            38              341                  354              2.92564
+            39              345                  355              2.93321
+            40              345                  356              2.99354
+            41              344                  355              3.04151
+            42              340                  353              3.06899
+            43              352                  357              3.08430
+            44              343                  355              3.08433
+            45              339                  353              3.09878
+            46              344                  356              3.10184
+            47              338                  353              3.10872
+            48              342                  355              3.11373
+            49              341                  355              3.12083
+            50              340                  354              3.13414
+            51              343                  356              3.14465
+            52              337                  353              3.15087
+            53              352                  358              3.16311
+            54              339                  354              3.16392
+            55              338                  354              3.17387
+            56              342                  356              3.17406
+            57              341                  356              3.18115
+            58              352                  359              3.19812
+            59              351                  357              3.19818
+            60              336                  353              3.20643
+            61              337                  354              3.21601
+            62              336                  354              3.27157
+            63              352                  360              3.27342
+            64              351                  358              3.27699
+            65              350                  357              3.29235
+            66              351                  359              3.31200
+            67              349                  357              3.31236
+            68              348                  357              3.31395
+            69              347                  357              3.32055
+            70              335                  353              3.32335
+            71              340                  355              3.32932
+            72              339                  355              3.35910
+            73              346                  357              3.36343
+            74              338                  355              3.36905
+            75              350                  358              3.37116
+            76              351                  360              3.38730
+            77              335                  354              3.38849
+            78              340                  356              3.38964
+            79              349                  358              3.39117
+            80              348                  358              3.39276
+            81              347                  358              3.39936
+            82              350                  359              3.40617
+            83              337                  355              3.41119
+            84              339                  356              3.41943
+            85              349                  359              3.42618
+            86              348                  359              3.42776
+            87              338                  356              3.42937
+            88              345                  357              3.43241
+            89              347                  359              3.43436
+            90              346                  358              3.44224
+            91              336                  355              3.46675
+            92              337                  356              3.47152
+            93              346                  359              3.47724
+            94              350                  360              3.48147
+            95              349                  360              3.50148
+            96              348                  360              3.50307
+            97              334                  353              3.50494
+            98              347                  360              3.50967
+            99              345                  358              3.51122
+           100              336                  356              3.52708
+           101              333                  353              3.54030
+           102              344                  357              3.54072
+           103              345                  359              3.54623
+           104              346                  360              3.55255
+           105              334                  354              3.57009
+           106              343                  357              3.58353
+           107              335                  355              3.58367
+           108              333                  354              3.60544
+           109              332                  353              3.60602
+           110              342                  357              3.61294
+           111              331                  353              3.61329
+           112              344                  358              3.61953
+           113              341                  357              3.62003
+           114              345                  360              3.62153
+           115              330                  353              3.62237
+           116              329                  353              3.63964
+           117              335                  356              3.64400
+           118              344                  359              3.65454
+           119              343                  358              3.66234
+           120              332                  354              3.67116
+           121              331                  354              3.67843
+           122              330                  354              3.68752
+           123              342                  358              3.69175
+           124              343                  359              3.69735
+           125              341                  358              3.69884
+           126              329                  354              3.70478
+           127              342                  359              3.72676
+           128              344                  360              3.72984
+           129              341                  359              3.73385
+           130              334                  355              3.76527
+           131              328                  353              3.77217
+           132              343                  360              3.77265
+           133              327                  353              3.78066
+           134              326                  353              3.79601
+           135              333                  355              3.80062
+           136              342                  360              3.80206
+           137              325                  353              3.80225
+           138              341                  360              3.80915
+           139              324                  353              3.82268
+           140              334                  356              3.82559
+           141              340                  357              3.82852
+           142              328                  354              3.83731
+           143              327                  354              3.84580
+           144              339                  357              3.85831
+           145              333                  356              3.86095
+           146              326                  354              3.86115
+           147              332                  355              3.86634
+           148              325                  354              3.86739
+           149              338                  357              3.86825
+           150              331                  355              3.87361
+           151              323                  353              3.87878
+           152              330                  355              3.88270
+           153              324                  354              3.88782
+           154              322                  353              3.89532
+           155              329                  355              3.89996
+           156              340                  358              3.90733
+           157              337                  357              3.91040
+           158              321                  353              3.91390
+           159              320                  353              3.92162
+           160              332                  356              3.92667
+           161              319                  353              3.92754
+           162              318                  353              3.92769
+           163              331                  356              3.93394
+           164              339                  358              3.93712
+           165              340                  359              3.94234
+           166              330                  356              3.94302
+           167              323                  354              3.94393
+           168              317                  353              3.94434
+           169              338                  358              3.94706
+           170              329                  356              3.96029
+           171              322                  354              3.96046
+           172              336                  357              3.96596
+           173              339                  359              3.97212
+           174              321                  354              3.97904
+           175              338                  359              3.98207
+           176              320                  354              3.98676
+           177              337                  358              3.98921
+           178              319                  354              3.99268
+           179              318                  354              3.99283
+           180              317                  354              4.00948
+           181              340                  360              4.01764
+           182              352                  361              4.01824
+           183              337                  359              4.02422
+           184              328                  355              4.03250
+           185              352                  362              4.03481
+           186              327                  355              4.04098
+           187              336                  358              4.04477
+           188              339                  360              4.04743
+           189              352                  363              4.05291
+           190              326                  355              4.05633
+           191              352                  364              4.05637
+           192              338                  360              4.05737
+           193              325                  355              4.06257
+           194              336                  359              4.07978
+           195              335                  357              4.08288
+           196              324                  355              4.08300
+           197              328                  356              4.09282
+           198              337                  360              4.09952
+           199              327                  356              4.10131
+           200              326                  356              4.11666
+           201              325                  356              4.12290
+           202              352                  365              4.12622
+           203              351                  361              4.13212
+           204              323                  355              4.13911
+           205              324                  356              4.14333
+           206              351                  362              4.14869
+           207              336                  360              4.15508
+           208              322                  355              4.15565
+           209              335                  358              4.16169
+           210              351                  363              4.16679
+           211              351                  364              4.17025
+           212              352                  366              4.17304
+           213              321                  355              4.17423
+           214              320                  355              4.18195
+           215              319                  355              4.18786
+           216              318                  355              4.18801
+           217              316                  353              4.19593
+           218              335                  359              4.19669
+           219              323                  356              4.19943
+           220              317                  355              4.20466
+           221              322                  356              4.21597
+           222              315                  353              4.22272
+           223              350                  361              4.22629
+           224              321                  356              4.23455
+           225              351                  365              4.24010
+           226              320                  356              4.24227
+           227              350                  362              4.24286
+           228              349                  361              4.24630
+           229              348                  361              4.24789
+           230              319                  356              4.24819
+           231              318                  356              4.24834
+           232              347                  361              4.25449
+           233              350                  363              4.26096
+           234              316                  354              4.26107
+           235              349                  362              4.26287
+           236              350                  364              4.26441
+           237              348                  362              4.26446
+           238              334                  357              4.26447
+           239              317                  356              4.26499
+           240              347                  362              4.27106
+           241              335                  360              4.27200
+           242              349                  363              4.28097
+           243              348                  363              4.28255
+           244              349                  364              4.28443
+           245              348                  364              4.28601
+           246              351                  366              4.28692
+           247              315                  354              4.28786
+           248              347                  363              4.28915
+           249              314                  353              4.29221
+           250              347                  364              4.29261
+           251              346                  361              4.29737
+           252              352                  367              4.29982
+           253              333                  357              4.29983
+           254              346                  362              4.31394
+           255              313                  353              4.31722
+           256              352                  368              4.32569
+           257              346                  363              4.33203
+           258              350                  365              4.33427
+           259              346                  364              4.33549
+           260              334                  358              4.34328
+           261              349                  365              4.35428
+           262              348                  365              4.35587
+           263              314                  354              4.35736
+           264              347                  365              4.36247
+           265              332                  357              4.36555
+           266              345                  361              4.36635
+           267              331                  357              4.37282
+           268              334                  359              4.37829
+           269              333                  358              4.37864
+           270              350                  366              4.38109
+           271              330                  357              4.38190
+           272              313                  354              4.38237
+           273              345                  362              4.38292
+           274              329                  357              4.39917
+           275              345                  363              4.40102
+           276              349                  366              4.40110
+           277              352                  369              4.40230
+           278              348                  366              4.40269
+           279              345                  364              4.40448
+           280              346                  365              4.40535
+           281              347                  366              4.40929
+           282              333                  359              4.41365
+           283              351                  367              4.41370
+           284              352                  370              4.43675
+           285              351                  368              4.43957
+           286              332                  358              4.44436
+           287              331                  358              4.45163
+           288              346                  366              4.45217
+           289              334                  360              4.45359
+           290              316                  355              4.45625
+           291              330                  358              4.46071
+           292              345                  365              4.47434
+           293              344                  361              4.47466
+           294              329                  358              4.47798
+           295              332                  359              4.47937
+           296              315                  355              4.48304
+           297              331                  359              4.48664
+           298              333                  360              4.48895
+           299              344                  362              4.49123
+           300              330                  359              4.49572
+           301              350                  367              4.50787
+           302              344                  363              4.50933
+           303              344                  364              4.51278
+           304              329                  359              4.51299
+           305              351                  369              4.51618
+           306              316                  356              4.51658
+           307              343                  361              4.51747
+           308              352                  371              4.52054
+           309              345                  366              4.52116
+           310              349                  367              4.52788
+           311              348                  367              4.52947
+           312              328                  357              4.53170
+           313              350                  368              4.53373
+           314              343                  362              4.53404
+           315              347                  367              4.53607
+           316              327                  357              4.54019
+           317              315                  356              4.54337
+           318              342                  361              4.54688
+           319              351                  370              4.55063
+           320              343                  363              4.55214
+           321              314                  355              4.55254
+           322              349                  368              4.55375
+           323              341                  361              4.55397
+           324              332                  360              4.55467
+           325              348                  368              4.55533
+           326              326                  357              4.55554
+           327              343                  364              4.55560
+           328              325                  357              4.56178
+           329              347                  368              4.56193
+           330              331                  360              4.56194
+           331              342                  362              4.56345
+           332              341                  362              4.57054
+           333              330                  360              4.57102
+           334              312                  353              4.57450
+           335              313                  355              4.57755
+           336              346                  367              4.57895
+           337              342                  363              4.58155
+           338              324                  357              4.58221
+           339              344                  365              4.58264
+           340              342                  364              4.58500
+           341              329                  360              4.58829
+           342              341                  363              4.58864
+           343              352                  372              4.58875
+           344              341                  364              4.59210
+           345              346                  368              4.60481
+           346              311                  353              4.60874
+           347              350                  369              4.61035
+           348              328                  358              4.61051
+           349              314                  356              4.61286
+           350              327                  358              4.61900
+           351              310                  353              4.62041
+           352              343                  365              4.62546
+           353              344                  366              4.62946
+           354              349                  369              4.63036
+           355              348                  369              4.63195
+           356              326                  358              4.63435
+           357              351                  371              4.63442
+           358              313                  356              4.63787
+           359              323                  357              4.63831
+           360              347                  369              4.63855
+           361              312                  354              4.63965
+           362              325                  358              4.64059
+           363              350                  370              4.64480
+           364              328                  359              4.64552
+           365              345                  367              4.64793
+           366              327                  359              4.65401
+           367              322                  357              4.65485
+           368              342                  365              4.65486
+           369              309                  353              4.65657
+           370              352                  373              4.65853
+           371              352                  374              4.66001
+           372              324                  358              4.66102
+           373              341                  365              4.66195
+           374              349                  370              4.66481
+           375              348                  370              4.66640
+           376              326                  359              4.66936
+           377              343                  366              4.67227
+           378              347                  370              4.67300
+           379              321                  357              4.67343
+           380              345                  368              4.67380
+           381              311                  354              4.67389
+           382              325                  359              4.67560
+           383              320                  357              4.68115
+           384              346                  369              4.68143
+           385              310                  354              4.68555
+           386              319                  357              4.68707
+           387              318                  357              4.68722
+           388              324                  359              4.69603
+           389              352                  375              4.70093
+           390              342                  366              4.70168
+           391              352                  376              4.70225
+           392              351                  372              4.70264
+           393              317                  357              4.70386
+           394              341                  366              4.70877
+           395              346                  370              4.71588
+           396              323                  358              4.71712
+           397              328                  360              4.72082
+           398              309                  354              4.72171
+           399              350                  371              4.72859
+           400              327                  360              4.72931
+           401              322                  358              4.73366
+           402              326                  360              4.74466
+           403              349                  371              4.74860
+           404              348                  371              4.75019
+           405              345                  369              4.75041
+           406              325                  360              4.75090
+           407              323                  359              4.75213
+           408              321                  358              4.75224
+           409              344                  367              4.75624
+           410              347                  371              4.75679
+           411              320                  358              4.75996
+           412              340                  361              4.76246
+           413              319                  358              4.76588
+           414              318                  358              4.76603
+           415              322                  359              4.76867
+           416              324                  360              4.77133
+           417              351                  373              4.77241
+           418              351                  374              4.77390
+           419              340                  362              4.77903
+           420              344                  368              4.78210
+           421              317                  358              4.78267
+           422              345                  370              4.78487
+           423              321                  359              4.78725
+           424              339                  361              4.79225
+           425              320                  359              4.79497
+           426              350                  372              4.79680
+           427              340                  363              4.79713
+           428              343                  367              4.79905
+           429              346                  371              4.79967
+           430              340                  364              4.80059
+           431              319                  359              4.80089
+           432              318                  359              4.80104
+           433              338                  361              4.80219
+           434              339                  362              4.80882
+           435              351                  375              4.81481
+           436              351                  376              4.81613
+           437              349                  372              4.81682
+           438              317                  359              4.81768
+           439              348                  372              4.81840
+           440              338                  362              4.81876
+           441              343                  368              4.82492
+           442              347                  372              4.82500
+           443              339                  363              4.82691
+           444              323                  360              4.82743
+           445              342                  367              4.82846
+           446              339                  364              4.83037
+           447              312                  355              4.83483
+           448              341                  367              4.83555
+           449              338                  363              4.83686
+           450              338                  364              4.84032
+           451              322                  360              4.84397
+           452              337                  361              4.84434
+           453              342                  368              4.85432
+           454              344                  369              4.85872
+           455              337                  362              4.86091
+           456              341                  368              4.86142
+           457              321                  360              4.86255
+           458              350                  373              4.86657
+           459              346                  372              4.86788
+           460              350                  374              4.86806
+           461              345                  371              4.86866
+           462              311                  355              4.86907
+           463              320                  360              4.87027
+           464              340                  365              4.87044
+           465              319                  360              4.87619
+           466              318                  360              4.87634
+           467              337                  363              4.87901
+           468              310                  355              4.88073
+           469              337                  364              4.88247
+           470              349                  373              4.88659
+           471              349                  374              4.88808
+           472              348                  373              4.88817
+           473              348                  374              4.88966
+           474              317                  360              4.89299
+           475              344                  370              4.89317
+           476              347                  373              4.89477
+           477              312                  356              4.89516
+           478              347                  374              4.89626
+           479              336                  361              4.89990
+           480              339                  365              4.90023
+           481              343                  369              4.90153
+           482              308                  353              4.90715
+           483              307                  353              4.90790
+           484              350                  375              4.90898
+           485              338                  365              4.91017
+           486              350                  376              4.91030
+           487              306                  353              4.91626
+           488              336                  362              4.91647
+           489              309                  355              4.91689
+           490              340                  366              4.91726
+           491              305                  353              4.92177
+           492              349                  375              4.92899
+           493              311                  356              4.92939
+           494              349                  376              4.93031
+           495              348                  375              4.93058
+           496              342                  369              4.93094
+           497              348                  376              4.93189
+           498              336                  363              4.93456
+           499              343                  370              4.93599
+           500              345                  372              4.93687
+
+      Number of active states:                                     816640
+ -------------------------------------------------------------------------------
